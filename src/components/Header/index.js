@@ -5,8 +5,9 @@ import {
   Logo,
   SiteTitle,
   Nav,
+  NavEntry,
+  NavSubEntry,
   NavLink,
-  SubNavLink,
   NavIcons,
   NavIcon,
 } from './styles'
@@ -24,18 +25,18 @@ const Header = ({ meta, header }) => (
       </SiteTitle>
       <Nav role="navigation">
         {header.nav.map(item => (
-          <React.Fragment key={item.url}>
+          <NavEntry key={item.url}>
             <NavLink to={item.url} title={item.title} {...item.props}>
               {item.title}
             </NavLink>
-            <div>
-              {item.subNav && item.subNav.map(subItem => (
-                <SubNavLink key={subItem.url} to={subItem.url} title={subItem.title} {...subItem.props}>
+            {item.subNav && <NavSubEntry>
+              {item.subNav.map(subItem => (
+                <NavLink hoverBlue key={subItem.url} to={item.url + subItem.url} title={subItem.title} {...subItem.props}>
                   {subItem.title}
-                </SubNavLink>
+                </NavLink>
               ))}
-            </div>
-          </React.Fragment>
+            </NavSubEntry>}
+          </NavEntry>
         ))}
       </Nav>
       <NavIcons>

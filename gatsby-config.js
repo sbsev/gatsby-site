@@ -6,12 +6,12 @@ const {
 
 if (!spaceId || !accessToken) {
   throw new Error(
-    'Contentful spaceId and at least the delivery token need to be provided.'
+    `Contentful spaceId and at least the delivery token need to be provided.`
   )
 }
 if (!trackingId) {
   throw new Error(
-    'Google Analytics trackingId needs to be provided.'
+    `Google Analytics trackingId needs to be provided.`
   )
 }
 

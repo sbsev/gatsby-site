@@ -5,7 +5,7 @@ import mediaQuery from '../../utils/mediaQuery'
 const navLinkStyle = css`
   color: inherit;
   &:hover {
-    color: ${props => props.theme.mainGreen};
+    color: ${props => props.hoverBlue ? props.theme.mainBlue : props.theme.mainGreen};
     text-decoration: none;
   }
 `
@@ -54,16 +54,25 @@ export const Nav = styled.nav`
   }
 `
 
-export const NavLink = styled(Link)`
-  ${navLinkStyle};
+export const NavEntry = styled.div`
   margin-right: 1rem;
+  position: relative;
 `
 
-export const SubNavLink = styled(Link)`
-  ${navLinkStyle};
-  ${NavLink}:hover & {
-    background: red;
+export const NavSubEntry = styled.div`
+  position: absolute;
+  display: none;
+  ${NavEntry}:hover & {
+    display: flex;
+    flex-direction: column;
+    background: ${props => props.theme.mainGreen};
+    padding: 0.5rem 1rem;
+    border-radius: 0.2rem;
   }
+`
+
+export const NavLink = styled(Link)`
+  ${navLinkStyle};
 `
 
 export const NavIcons = styled.div`
