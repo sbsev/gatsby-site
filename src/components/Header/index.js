@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Background,
   Content,
+  Logo,
   SiteTitle,
   Nav,
   NavLink,
@@ -9,11 +10,15 @@ import {
   NavIcons,
   NavIcon,
 } from './styles'
+import logo from '../../assets/logo.svg'
 import { FacebookIcon, EmailIcon } from '../Icons'
 
 const Header = ({ meta, header }) => (
   <Background>
     <Content>
+      <Logo>
+        <img src={logo} alt="Logo"/>
+      </Logo>
       <SiteTitle to="/" title={meta.title} rel="home">
         {meta.title}
       </SiteTitle>

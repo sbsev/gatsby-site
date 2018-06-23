@@ -22,10 +22,21 @@ export const Content = styled.div`
   display: grid;
   grid-gap: 0.25rem 1rem;
   justify-items: center;
+  align-items: center;
   ${mediaQuery.minTablet} {
-    grid-template-columns: min-content 1fr min-content;
+    grid-template-columns: min-content min-content 1fr min-content;
     padding: 1.25rem;
   }
+`
+
+export const Logo = styled.div`
+  height: 3rem;
+  width: 3rem;
+  padding: 0.2rem;
+  border-radius: 50%;
+  background: white;
+  overflow: hidden;
+  border: 1px solid white;
 `
 
 export const SiteTitle = styled(Link)`
