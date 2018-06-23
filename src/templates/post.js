@@ -18,7 +18,7 @@ const PostTemplate = props => {
       </Helmet>
       <PostTitle
         title={post.title.title}
-        date={post.frontmatter.date}
+        date={post.date}
         timeToRead={post.timeToRead}
       />
       <BlogContent dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }} />
@@ -41,7 +41,7 @@ export const pageQuery = graphql`
         title
       }
       slug
-      createdAt(formatString: "MMMM Do, YYYY")
+      date: createdAt(formatString: "MMMM Do, YYYY")
       body {
         childMarkdownRemark {
           timeToRead
