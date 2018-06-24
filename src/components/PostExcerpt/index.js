@@ -1,9 +1,17 @@
 import React from 'react'
 import { Article, Title, TitleLink, Meta } from './styles'
 import { DateIcon, TimeIcon } from '../Icons'
+import FeaturedImage from '../FeaturedImage'
 
 const PostExcerpt = ({ post }) => (
   <Article>
+    {post.featuredImage &&
+      <FeaturedImage
+        src={post.featuredImage.file.url}
+        alt={post.featuredImage.title}
+        small smallMargin
+      />
+    }
     <Title>
       <TitleLink to={'/blog/' + post.slug}>
         {post.title.title}

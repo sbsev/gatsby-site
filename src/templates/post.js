@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 import PostTitle from '../components/PostTitle'
 import BlogContent from '../components/BlogContent'
+import FeaturedImage from '../components/FeaturedImage'
 
 const PostTemplate = props => {
   const { post, site } = props.data
@@ -13,7 +14,9 @@ const PostTemplate = props => {
         <meta property="og:title" content={post.title.title} />
         <meta property="og:url" content={`${site.meta.url}/posts/${post.slug}`} />
       </Helmet>
-      <img src={post.featuredImage.file.url} alt={post.featuredImage.title} />
+      {post.featuredImage &&
+        <FeaturedImage src={post.featuredImage.file.url} alt={post.featuredImage.title} />
+      }
       <PostTitle
         title={post.title.title}
         date={post.date}
