@@ -18,7 +18,7 @@ const PageTemplate = props => {
         <meta name="description" content={page.excerpt} />
       </Helmet>
       <PageTitle title={page.title.title} updated={page.updated} />
-      <div dangerouslySetInnerHTML={{ __html: page.body.childMarkdownRemark.html }} />
+      <div dangerouslySetInnerHTML={{ __html: page.body.data.html }} />
     </Fragment>
   )
 }
@@ -40,7 +40,7 @@ export const pageQuery = graphql`
       slug
       updated: updatedAt(formatString: "MMMM Do, YYYY")
       body {
-        childMarkdownRemark {
+        data: childMarkdownRemark {
           html
         }
       }
