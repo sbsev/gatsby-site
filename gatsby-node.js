@@ -6,6 +6,9 @@ const pagesQuery = `
     content: allContentfulPage {
       edges {
         node {
+          parent {
+            id
+          }
           slug
         }
       }
@@ -18,6 +21,9 @@ const postsQuery = `
     content: allContentfulPost {
       edges {
         node {
+          parent {
+            id
+          }
           slug
         }
       }
@@ -39,7 +45,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     }
     response.data.content.edges.forEach(({ node }) => {
       createPage({
-        path: node.slug,
+        path: node.parent.id === 'Post' ? '/blog/' + node.slug : node.slug,
         component,
         context: {
           slug: node.slug,

@@ -3,16 +3,16 @@ import Helmet from 'react-helmet'
 import PageTitle from '../components/PageTitle'
 
 const PageTemplate = props => {
-  const { page, site: { meta: { siteTitle, siteUrl } } } = props.data
+  const { page, site } = props.data
   return (
     <Fragment>
       <Helmet>
-        <title>{`${page.title.title} | ${siteTitle}`}</title>
+        <title>{`${page.title.title} | ${site.meta.title}`}</title>
         <meta property="og:type" content="website" />
         <meta property="og:title" content={page.title.title} />
         <meta
           property="og:url"
-          content={`${siteUrl}/pages/${page.slug}`}
+          content={`${site.meta.url}/pages/${page.slug}`}
         />
         <meta property="og:description" content={page.excerpt} />
         <meta name="description" content={page.excerpt} />
@@ -29,8 +29,8 @@ export const pageQuery = graphql`
   query PageBySlug($slug: String!) {
     site {
       meta: siteMetadata {
-        siteTitle: title
-        siteUrl
+        title
+        url: siteUrl
       }
     }
     page: contentfulPage(slug: { eq: $slug }) {

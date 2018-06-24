@@ -4,18 +4,16 @@ import PostTitle from '../components/PostTitle'
 import BlogContent from '../components/BlogContent'
 
 const PostTemplate = props => {
-  const { post, site: { meta: { siteTitle, siteUrl } } } = props.data
+  const { post, site } = props.data
   return (
     <Fragment>
       <Helmet>
-        <title>{`${post.title.title} | ${siteTitle}`}</title>
+        <title>{`${post.title.title} | ${site.meta.title}`}</title>
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.title.title} />
-        <meta
-          property="og:url"
-          content={`${siteUrl}/posts/${post.slug}`}
-        />
+        <meta property="og:url" content={`${site.meta.url}/posts/${post.slug}`} />
       </Helmet>
+      <img src={post.featuredImage.file.url} alt={post.featuredImage.title} />
       <PostTitle
         title={post.title.title}
         date={post.date}
@@ -28,26 +26,46 @@ const PostTemplate = props => {
 
 export default PostTemplate
 
+export const postFields = graphql`
+  fragment postFields on ContentfulPost {
+    slug
+    title {
+      title
+    }
+    category {
+      title
+    }
+    tags
+    date(formatString: "D. MMMM YYYY", locale: "de")
+    featuredImage {
+      file {
+        url
+        fileName
+        contentType
+      }
+      title
+      description
+    }
+    body {
+      data: childMarkdownRemark {
+        html
+        timeToRead
+        excerpt(pruneLength: 250)
+      }
+    }
+  }
+`
+
 export const pageQuery = graphql`
   query PostBySlug($slug: String!) {
     site {
       meta: siteMetadata {
-        siteTitle: title
-        siteUrl
+        title
+        url: siteUrl
       }
     }
     post: contentfulPost(slug: { eq: $slug }) {
-      title {
-        title
-      }
-      slug
-      date: createdAt(formatString: "MMMM Do, YYYY")
-      body {
-        data: childMarkdownRemark {
-          timeToRead
-          html
-        }
-      }
+      ...postFields
     }
   }
 `

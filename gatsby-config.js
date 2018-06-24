@@ -18,8 +18,7 @@ if (!trackingId) {
 module.exports = {
   siteMetadata: {
     title: `Studenten bilden Schüler`,
-    description: `Homepage of the German student-run
-      nonprofit initiative Studenten bilden Schüler e.V.`,
+    description: `German student-run nonprofit initiative`,
     author: `Janosh Riebesell`,
     siteUrl: `https://studenten-bilden-schueler.de`,
   },
