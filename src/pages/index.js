@@ -18,6 +18,7 @@ const BlogIndex = props => {
 
 export default BlogIndex
 
+// postFields defined in src/templates/post.js
 export const pageQuery = graphql`
   query IndexQuery {
     site {
@@ -28,18 +29,7 @@ export const pageQuery = graphql`
     posts: allContentfulPost {
       edges {
         node {
-          slug
-          date: createdAt(formatString: "MMMM D, YYYY")
-          title {
-            title
-          }
-          body {
-            data: childMarkdownRemark {
-              timeToRead
-              excerpt
-              html
-            }
-          }
+          ...postFields
         }
       }
     }
