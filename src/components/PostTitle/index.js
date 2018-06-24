@@ -6,7 +6,7 @@ const PostTitle = props => (
   <Container>
     <Title>{props.title}</Title>
     <Meta>
-      <DateIcon /> {props.date} | <TimeIcon /> {props.timeToRead} Minute Read
+      <DateIcon /> {props.date} | <TimeIcon /> {props.timeToRead} Min Lesezeit
     </Meta>
   </Container>
 )
