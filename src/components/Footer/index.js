@@ -2,6 +2,7 @@ import React from 'react'
 import {
   Background,
   Content,
+  FooterLinks,
   FooterLink,
 } from './styles'
 
@@ -9,11 +10,13 @@ const Footer = ({ footer }) => (
   <Background>
     <Content>
       {footer.copyright}
-      {footer.links.map(link =>
-        <FooterLink key={link.url} to={link.url}>
-          {link.title}
-        </FooterLink>
-      )}
+      <FooterLinks>
+        {footer.links.map(link =>
+          <FooterLink key={link.url} to={link.url}>
+            {link.title}
+          </FooterLink>
+        )}
+      </FooterLinks>
     </Content>
   </Background>
 )
