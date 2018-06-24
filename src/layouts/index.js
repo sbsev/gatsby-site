@@ -14,7 +14,7 @@ injectGlobal`
 
 const Content = styled.main`
   max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
+  margin: 2rem auto;
   padding: 1rem;
   flex: 1;
 `
