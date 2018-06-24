@@ -56,7 +56,7 @@ export const Nav = styled.nav`
 `
 
 export const NavEntry = styled.div`
-  margin-right: 1rem;
+  margin-right: 1.5rem;
   position: relative;
 `
 
@@ -64,6 +64,7 @@ export const NavSubEntry = styled.div`
   position: absolute;
   display: none;
   ${NavEntry}:hover & {
+    z-index: 2;
     display: grid;
     grid-template-columns: ${props => props.children.length >= 10 ? `1fr 1fr` : `1fr`};
     grid-gap: 0 1rem;

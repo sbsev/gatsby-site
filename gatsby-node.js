@@ -1,5 +1,4 @@
 const path = require('path')
-const { createFilePath } = require('gatsby-source-filesystem')
 
 const pageTemplate = path.resolve('./src/templates/page.js')
 const pagesQuery = `
@@ -30,7 +29,7 @@ const pageSets = [
   { query: postsQuery, component: postTemplate },
 ]
 
-exports.createPages = ({ graphql, boundActionCreators, getNode }) => {
+exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
   pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
