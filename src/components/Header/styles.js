@@ -4,6 +4,7 @@ import mediaQuery from '../../utils/mediaQuery'
 
 const navLinkStyle = css`
   color: inherit;
+  white-space: nowrap;
   &:hover {
     color: ${props => props.hoverBlue ? props.theme.mainBlue : props.theme.mainGreen};
     text-decoration: none;
@@ -18,7 +19,7 @@ export const Content = styled.div`
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
   padding: 0.75rem;
-  color: ${props => props.theme.lightText};
+  color: ${props => props.theme.mainWhite};
   display: grid;
   grid-gap: 0.25rem 1rem;
   justify-items: center;
@@ -36,7 +37,7 @@ export const Logo = styled.div`
   border-radius: 50%;
   background: white;
   overflow: hidden;
-  border: 1px solid white;
+  border: ${({theme}) => theme.smallBorder + ' solid ' + theme.mainWhite};
 `
 
 export const SiteTitle = styled(Link)`
@@ -63,11 +64,13 @@ export const NavSubEntry = styled.div`
   position: absolute;
   display: none;
   ${NavEntry}:hover & {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: ${props => props.children.length >= 10 ? `1fr 1fr` : `1fr`};
+    grid-gap: 0 1rem;
     background: ${props => props.theme.mainGreen};
     padding: 0.5rem 1rem;
-    border-radius: 0.2rem;
+    border-radius: ${props => props.theme.smallBorderRadius};
+    right: 0;
   }
 `
 
