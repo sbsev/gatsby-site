@@ -5,13 +5,13 @@ import FeaturedImage from '../FeaturedImage'
 
 const PostExcerpt = ({ post }) => (
   <Article>
-    {post.featuredImage &&
+    {/* {post.featuredImage &&
       <FeaturedImage
         src={post.featuredImage.file.url}
         alt={post.featuredImage.title}
         small smallMargin
       />
-    }
+    } */}
     <Title>
       <TitleLink to={'/blog/' + post.slug}>
         {post.title.title}
