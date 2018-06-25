@@ -32,11 +32,14 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-contentful`,
             options: {
-              maxWidth: 720,
-              linkImagesToOriginal: false,
+              // maxWidth (in pixels) of content container
+              // used as base for generating different widths of each image
+              maxWidth: 880,
               showCaptions: true,
+              sizeByPixelDensity: true,
+              backgroundColor: `none`,
             },
           },
           {
