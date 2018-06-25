@@ -32,11 +32,14 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-contentful`,
             options: {
-              maxWidth: 720,
-              linkImagesToOriginal: false,
+              // maxWidth (in pixels) of content container
+              // used as base for generating different widths of each image
+              maxWidth: 880,
               showCaptions: true,
+              sizeByPixelDensity: true,
+              backgroundColor: `none`,
             },
           },
           {
@@ -45,11 +48,11 @@ module.exports = {
               wrapperStyle: `margin-bottom: 1rem`,
             },
           },
-          `gatsby-remark-copy-linked-files`,
           `gatsby-remark-smartypants`,
         ],
       },
     },
+    `gatsby-plugin-catch-links`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,

@@ -12,7 +12,7 @@ import {
   NavIcon,
 } from './styles'
 import logo from '../../assets/logo.svg'
-import { FacebookIcon, EmailIcon } from '../Icons'
+import { EmailIcon, FacebookIcon, GitHubIcon, LinkedinIcon } from '../Icons'
 
 const Header = ({ meta, header }) => (
   <Background>
@@ -40,11 +40,17 @@ const Header = ({ meta, header }) => (
         ))}
       </Nav>
       <NavIcons>
-        <NavIcon href={header.facebook}>
-          <FacebookIcon title="Facebook" size="1.1rem" />
+        <NavIcon href={header.social.email}>
+          <EmailIcon title="Email" size="1.25rem" />
         </NavIcon>
-        <NavIcon href={header.email}>
-          <EmailIcon title="Email" size="1.5rem" />
+        <NavIcon href={header.social.facebook}>
+          <FacebookIcon title="Facebook" />
+        </NavIcon>
+        <NavIcon href={header.social.github}>
+          <GitHubIcon title="GitHub" />
+        </NavIcon>
+        <NavIcon href={header.social.linkedin}>
+          <LinkedinIcon title="Linkedin" />
         </NavIcon>
       </NavIcons>
     </Content>
