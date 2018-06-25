@@ -45,8 +45,12 @@ export const query = graphql`
     }
     header: contentfulJson(title: {eq: "Header"}) {
       data {
-        facebook
-        email
+        social {
+          email
+          facebook
+          github
+          linkedin
+        }
         nav {
           url
           title

@@ -18,7 +18,7 @@ const PageTemplate = props => {
         <meta name="description" content={page.excerpt} />
       </Helmet>
       <PageTitle title={page.title.title} updated={page.updated} />
-      <div dangerouslySetInnerHTML={{ __html: page.body.data.html }} />
+      <article dangerouslySetInnerHTML={{ __html: page.body.data.html }} />
     </Fragment>
   )
 }
