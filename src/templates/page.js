@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 import PageTitle from '../components/PageTitle'
+import PageMeta from '../components/PageMeta'
 
 const PageTemplate = props => {
   const { page, site } = props.data
@@ -17,8 +18,9 @@ const PageTemplate = props => {
         <meta property="og:description" content={page.excerpt} />
         <meta name="description" content={page.excerpt} />
       </Helmet>
-      <PageTitle title={page.title.title} updated={page.updated} />
-      <article dangerouslySetInnerHTML={{ __html: page.body.data.html }} />
+      <PageTitle title={page.title.title} />
+      {page.body && <article dangerouslySetInnerHTML={{ __html: page.body.data.html }} />}
+      <PageMeta updated={page.updated} authors={page.author} />
     </Fragment>
   )
 }
@@ -38,11 +40,14 @@ export const pageQuery = graphql`
         title
       }
       slug
-      updated: updatedAt(formatString: "MMMM Do, YYYY")
+      updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
       body {
         data: childMarkdownRemark {
           html
         }
+      }
+      author {
+        name
       }
     }
   }
