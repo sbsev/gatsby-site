@@ -20,7 +20,7 @@ export default BlogIndex
 
 // postFields defined in src/templates/post.js
 export const pageQuery = graphql`
-  query IndexQuery {
+  query BlogIndexQuery {
     site {
       siteMetadata {
         title
