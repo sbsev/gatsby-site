@@ -26,7 +26,9 @@ export const pageQuery = graphql`
         title
       }
     }
-    posts: allContentfulPost {
+    posts: allContentfulPost(
+      sort: { fields: [ date ], order: DESC }
+    ) {
       edges {
         node {
           ...postFields
