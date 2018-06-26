@@ -1,24 +1,12 @@
 const path = require('path')
 
 const pageTemplate = path.resolve('./src/templates/page.js')
-const pagesQuery = `
-  {
-    content: allContentfulPage {
-      edges {
-        node {
-          parent {
-            id
-          }
-          slug
-        }
-      }
-    }
-  }
-`
 const postTemplate = path.resolve('./src/templates/post.js')
-const postsQuery = `
+const blogCategoryTemplate = path.resolve('./src/templates/blogCategory.js')
+
+const contentfulQuery = contentType => `
   {
-    content: allContentfulPost {
+    content: allContentful${contentType} {
       edges {
         node {
           parent {
@@ -30,10 +18,23 @@ const postsQuery = `
     }
   }
 `
+
 const pageSets = [
-  { query: pagesQuery, component: pageTemplate },
-  { query: postsQuery, component: postTemplate },
+  { query: contentfulQuery(`Page`), component: pageTemplate },
+  { query: contentfulQuery(`Post`), component: postTemplate },
+  { query: contentfulQuery(`Category`), component: blogCategoryTemplate },
 ]
+
+const pagePath = node => {
+  switch (node.parent.id) {
+    case `Post`:
+      return `/blog/` + node.slug
+    case `Category`:
+      return `/blog/category/` + node.slug
+    default:
+      return node.slug
+  }
+}
 
 exports.createPages = ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators
@@ -45,7 +46,7 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     }
     response.data.content.edges.forEach(({ node }) => {
       createPage({
-        path: node.parent.id === 'Post' ? '/blog/' + node.slug : node.slug,
+        path: pagePath(node),
         component,
         context: {
           slug: node.slug,

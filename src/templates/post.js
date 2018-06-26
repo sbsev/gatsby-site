@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
+
 import PostTitle from '../components/PostTitle'
-import BlogContent from '../components/BlogContent'
 import FeaturedImage from '../components/FeaturedImage'
 
 const PostTemplate = props => {
@@ -22,7 +22,7 @@ const PostTemplate = props => {
         date={post.date}
         timeToRead={post.body.data.timeToRead}
       />
-      <BlogContent dangerouslySetInnerHTML={{ __html: post.body.data.html }} />
+      <div dangerouslySetInnerHTML={{ __html: post.body.data.html }} />
     </Fragment>
   )
 }

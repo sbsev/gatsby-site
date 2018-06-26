@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Link from 'gatsby-link'
+
 import mediaQuery from '../../utils/mediaQuery'
 
 export const Background = styled.footer`
@@ -14,7 +15,7 @@ export const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${mediaQuery.phone} {
+  ${mediaQuery.tablet} {
     flex-direction: column;
   }
 `
@@ -23,6 +24,12 @@ export const FooterLinks = styled.div`
   background: ${props => props.theme.mainGray};
   padding: 0.5rem 1rem;
   border-radius: ${props => props.theme.largeBorderRadius};
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  ${mediaQuery.tablet} {
+    margin-top: 1rem;
+  }
 `
 
 export const FooterLink = styled(Link)`

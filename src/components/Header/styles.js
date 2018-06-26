@@ -1,12 +1,13 @@
 import styled, { css } from 'styled-components'
 import Link from 'gatsby-link'
+
 import mediaQuery from '../../utils/mediaQuery'
 
 const navLinkStyle = css`
   color: inherit;
   white-space: nowrap;
   &:hover {
-    color: ${props => props.hoverBlue ? props.theme.mainBlue : props.theme.mainGreen};
+    color: ${props => props.hoverblue ? props.theme.mainBlue : props.theme.mainGreen};
     text-decoration: none;
   }
 `
