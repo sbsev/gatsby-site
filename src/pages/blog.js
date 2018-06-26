@@ -1,28 +1,18 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 
-import PostExcerpt from '../components/PostExcerpt'
+import PostList from '../components/PostList'
 
-const BlogIndex = props => {
-  const siteTitle = props.data.site.siteMetadata.title
-  const posts = props.data.posts.edges
-  return (
-    <React.Fragment>
-      <Helmet title={siteTitle} />
-      {posts.map(({ node: post }) => (
-        <PostExcerpt key={post.slug} post={post} />
-      ))}
-    </React.Fragment>
-  )
-}
+const BlogIndex = props => (
+  <PostList {...props.data} />
+)
 
 export default BlogIndex
 
 // postFields defined in src/templates/post.js
 export const pageQuery = graphql`
-  query BlogIndexQuery {
+  query BlogIndex {
     site {
-      siteMetadata {
+      meta: siteMetadata {
         title
       }
     }
@@ -35,5 +25,6 @@ export const pageQuery = graphql`
         }
       }
     }
+    ...categories
   }
 `

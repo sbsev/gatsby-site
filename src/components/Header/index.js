@@ -31,7 +31,7 @@ const Header = ({ meta, header }) => (
             </NavLink>
             {item.subNav && <NavSubEntry>
               {item.subNav.map(subItem => (
-                <NavLink hoverBlue key={subItem.url} to={item.url + subItem.url} title={subItem.title} {...subItem.props}>
+                <NavLink hoverblue="true" key={subItem.url} to={item.url + subItem.url} title={subItem.title} {...subItem.props}>
                   {subItem.title}
                 </NavLink>
               ))}
