@@ -1,7 +1,16 @@
+import React from 'react'
+import GatsbyLink from 'gatsby-link'
 import styled from 'styled-components'
-import Link from 'gatsby-link'
 
 import mediaQuery from '../../utils/mediaQuery'
+
+const Link = props => (
+  props.to.startsWith('/')
+    ? <GatsbyLink {...props}>{props.children}</GatsbyLink>
+    : <a {...props} href={props.to}>{props.children}</a>
+)
+
+export default Link
 
 export const Background = styled.footer`
   background-color: ${props => props.theme.darkGray};
