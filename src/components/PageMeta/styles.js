@@ -5,5 +5,6 @@ export const Layout = styled.div`
 `
 
 export const Content = styled.p`
+  margin-top: 2rem;
   font-size: 0.5rem;
 `
