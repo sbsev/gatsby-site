@@ -1,7 +1,7 @@
 import React from 'react'
-import { Article, Title, TitleLink, Meta } from './styles'
+import { Article, Title, TitleLink, Meta, Tags, Tag } from './styles'
 import { DateIcon, TimeIcon } from '../Icons'
-import FeaturedImage from '../FeaturedImage'
+// import FeaturedImage from '../FeaturedImage'
 
 const PostExcerpt = ({ post }) => (
   <Article>
@@ -21,6 +21,9 @@ const PostExcerpt = ({ post }) => (
       <DateIcon /> {post.date} | <TimeIcon /> {post.body.data.timeToRead} Min Lesezeit
     </Meta>
     <p dangerouslySetInnerHTML={{ __html: post.body.data.excerpt }} />
+    <Tags>Tags: {post.tags.map(tag =>
+      <Tag>{tag}</Tag>
+    )}</Tags>
   </Article>
 )
 
