@@ -17,7 +17,7 @@ export const Background = styled.header`
 `
 
 export const Content = styled.div`
-  max-width: ${props => props.theme.maxWidth};
+  max-width: calc(${props => props.theme.maxWidth} + 10rem);
   margin: 0 auto;
   padding: 0.75rem;
   color: ${props => props.theme.mainWhite};
