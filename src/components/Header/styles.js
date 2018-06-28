@@ -61,8 +61,10 @@ export const NavEntry = styled.div`
   position: relative;
 `
 
-export const NavSubEntry = styled.div`
+export const SubNav = styled.div`
   position: absolute;
+  left: 0;
+  width: min-content;
   display: none;
   ${NavEntry}:hover & {
     z-index: 2;
@@ -73,6 +75,9 @@ export const NavSubEntry = styled.div`
     padding: 0.5rem 1rem;
     border-radius: ${props => props.theme.smallBorderRadius};
     right: 0;
+    ${mediaQuery.phone} {
+      display: none;
+    }
   }
 `
 
