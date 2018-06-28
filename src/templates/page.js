@@ -21,8 +21,8 @@ const PageTemplate = props => {
         <meta name="description" content={page.excerpt} />
       </Helmet>
       <PageTitle title={page.title.title} />
-      {page.body && <article dangerouslySetInnerHTML={{ __html: page.body.data.html }} />}
-      {page.imageGrid && <ImageGrid images={page.imageGrid.imageList} />}
+      {page.body && <div dangerouslySetInnerHTML={{__html: page.body.data.html}} />}
+      {page.imageGrid && <ImageGrid images={page.imageGrid} />}
       <PageMeta updated={page.updated} authors={page.author} />
     </Fragment>
   )
@@ -38,24 +38,39 @@ export const pageQuery = graphql`
         url: siteUrl
       }
     }
-    page: contentfulPage(slug: { eq: $slug }) {
+    page: contentfulPage(slug: {eq: $slug}) {
       title {
         title
       }
       slug
-      updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
       body {
         data: childMarkdownRemark {
           html
+          headings {
+            value
+            depth
+          }
         }
       }
+      updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
       author {
         name
       }
       imageGrid {
+        description {
+          data: childMarkdownRemark {
+            html
+          }
+        }
+        captions {
+          main
+          sub
+          link {
+            url
+            text
+          }
+        }
         imageList {
-          title
-          description
           file {
             url
           }
