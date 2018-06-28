@@ -26,6 +26,16 @@ const ChapterIndex = props => {
           </li>
         )}
       </ChapterList>
+      <p>
+        Ist deine Stadt nicht mit dabei? Wenn du von unserer 
+        Vereinsidee überzeugt bist und trotzdem Kindern, Jugendlichen 
+        und Flüchtlingen in deiner Nähe helfen möchtest, dann
+        nimm die Dinge selbst in die Hand und Gründe einen neuen Standort! 
+        Wir freuen uns sehr über deine Initiative und stehen dir 
+        unter <a href="mailto:gruenden@studenten-bilden-schueler.de">
+        gruenden@studenten-bilden-schueler.de</a> mit Rat und Tat zur Seite!
+      </p>
+      
     </Fragment>
   )
 }
