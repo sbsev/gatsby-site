@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
 import PageTitle from '../components/PageTitle'
-import ImageGrid from '../components/ImageGrid'
+import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const PageTemplate = props => {
@@ -21,8 +21,7 @@ const PageTemplate = props => {
         <meta name="description" content={page.excerpt} />
       </Helmet>
       <PageTitle title={page.title.title} />
-      {page.body && <div dangerouslySetInnerHTML={{__html: page.body.data.html}} />}
-      {page.imageGrid && <ImageGrid images={page.imageGrid} />}
+      {page.body && <PageBody dangerouslySetInnerHTML={{__html: page.body.data.html}} />}
       <PageMeta updated={page.updated} authors={page.author} />
     </Fragment>
   )
@@ -55,26 +54,6 @@ export const pageQuery = graphql`
       updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
       author {
         name
-      }
-      imageGrid {
-        description {
-          data: childMarkdownRemark {
-            html
-          }
-        }
-        captions {
-          main
-          sub
-          link {
-            url
-            text
-          }
-        }
-        imageList {
-          file {
-            url
-          }
-        }
       }
     }
   }

@@ -7,7 +7,7 @@ const theme = {
   mainWhite: `white`,
   mainGreen: `#00a35b`,
 
-  maxWidth: `55rem`,
+  maxWidth: `50rem`,
 
   smallBorder: `1px`,
   mediumBorder: `2px`,
