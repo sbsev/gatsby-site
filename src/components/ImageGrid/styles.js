@@ -6,6 +6,11 @@ export const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
 `
 
+export const Description = styled.div`
+  margin-bottom: 2rem;
+  text-align: center;
+`
+
 export const ImageContainer = styled.figure`
   text-align: center;
   margin: 0;
