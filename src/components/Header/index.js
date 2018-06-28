@@ -6,7 +6,7 @@ import {
   SiteTitle,
   Nav,
   NavEntry,
-  NavSubEntry,
+  SubNav,
   NavLink,
   NavIcons,
   NavIcon,
@@ -29,19 +29,19 @@ const Header = ({ meta, header }) => (
             <NavLink to={item.url} title={item.title} {...item.props}>
               {item.title}
             </NavLink>
-            {item.subNav && <NavSubEntry>
+            {item.subNav && <SubNav>
               {item.subNav.map(subItem => (
                 <NavLink hoverblue="true" key={subItem.url} to={item.url + subItem.url} title={subItem.title} {...subItem.props}>
                   {subItem.title}
                 </NavLink>
               ))}
-            </NavSubEntry>}
+            </SubNav>}
           </NavEntry>
         ))}
       </Nav>
       <NavIcons>
         <NavIcon href={header.social.email}>
-          <EmailIcon title="Email" size="1.25rem" />
+          <EmailIcon title="Email" size="1.27rem" />
         </NavIcon>
         <NavIcon href={header.social.facebook}>
           <FacebookIcon title="Facebook" />
