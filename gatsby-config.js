@@ -41,19 +41,11 @@ module.exports = {
               backgroundColor: `none`,
             },
           },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin-bottom: 1rem`,
-            },
-          },
           `gatsby-remark-smartypants`,
         ],
       },
     },
     `gatsby-plugin-catch-links`,
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-google-analytics`,

@@ -3916,7 +3916,7 @@ gatsby-plugin-react-helmet@^2.0.11:
   dependencies:
     babel-runtime "^6.26.0"
 
-gatsby-plugin-sharp@^1.6.43, gatsby-plugin-sharp@^1.6.48:
+gatsby-plugin-sharp@^1.6.48:
   version "1.6.48"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-1.6.48.tgz#9bb7515da9c7753b3065c51b2d35a0de5b9aa1f5"
   dependencies:
@@ -3968,16 +3968,6 @@ gatsby-remark-images-contentful@^1.0.2:
     sharp "^0.20.2"
     unist-util-select "^1.5.0"
 
-gatsby-remark-responsive-iframe@^1.4.18:
-  version "1.4.20"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-iframe/-/gatsby-remark-responsive-iframe-1.4.20.tgz#fd72b9ffee8846cb29e546090968bc9cf6d3c85f"
-  dependencies:
-    babel-runtime "^6.26.0"
-    bluebird "^3.5.0"
-    cheerio "^1.0.0-rc.2"
-    lodash "^4.17.4"
-    unist-util-visit "^1.1.1"
-
 gatsby-remark-smartypants@^1.4.12:
   version "1.4.12"
   resolved "https://registry.yarnpkg.com/gatsby-remark-smartypants/-/gatsby-remark-smartypants-1.4.12.tgz#d783518b8bf0943aa78def717fdf2e9b9f893552"
@@ -4027,15 +4017,6 @@ gatsby-transformer-remark@^1.7.40:
     unist-util-remove-position "^1.1.1"
     unist-util-select "^1.5.0"
     unist-util-visit "^1.1.1"
-
-gatsby-transformer-sharp@^1.6.23:
-  version "1.6.27"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-1.6.27.tgz#89167e4d9fcd3cf772bc029380af9cdcd88e23a1"
-  dependencies:
-    babel-runtime "^6.26.0"
-    bluebird "^3.5.0"
-    fs-extra "^4.0.2"
-    probe-image-size "^4.0.0"
 
 gatsby@^1.9.253:
   version "1.9.272"
