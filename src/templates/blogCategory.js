@@ -24,7 +24,7 @@ export const categories = graphql`
 `
 
 // postFields defined in src/templates/post.js
-export const pageQuery = graphql`
+export const blogCategoryQuery = graphql`
   query BlogCategoryBySlug($slug: String!) {
     site {
       meta: siteMetadata {

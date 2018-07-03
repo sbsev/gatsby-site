@@ -9,7 +9,7 @@ const BlogIndex = props => (
 export default BlogIndex
 
 // postFields defined in src/templates/post.js
-export const pageQuery = graphql`
+export const blogIndexQuery = graphql`
   query BlogIndex {
     site {
       meta: siteMetadata {

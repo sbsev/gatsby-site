@@ -59,7 +59,7 @@ export const postFields = graphql`
   }
 `
 
-export const pageQuery = graphql`
+export const postQuery = graphql`
   query PostBySlug($slug: String!) {
     site {
       meta: siteMetadata {
