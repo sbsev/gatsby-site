@@ -38,7 +38,6 @@ module.exports = {
               // used as base for generating different widths of each image
               maxWidth: 880,
               showCaptions: true,
-              sizeByPixelDensity: true,
               backgroundColor: `none`,
             },
           },
