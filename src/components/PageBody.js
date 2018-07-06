@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const imageGrid = (props = {}) => `
   display: grid;
   grid-gap: ${props.gridGap || `2rem`};
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(5rem, 12rem));
   margin-top: 2rem;
 
   h1, h2, h3, h4, h5, h6 {
@@ -19,6 +19,7 @@ const imageGrid = (props = {}) => `
     }
     em {
       display: block;
+      font-style: normal;
     }
     strong {
       display: block;
@@ -28,7 +29,7 @@ const imageGrid = (props = {}) => `
 `
 
 export const PageBody = styled.article`
-  #heads {
+  #heads, #alumni {
     ${imageGrid({ borderRadius: `50%` })}
   }
 
