@@ -20,7 +20,7 @@ const ChapterIndex = props => {
       <ChapterList>
         {chapters.subNav.map(chapter =>
           <li key={chapter.url}>
-            <Link to={chapter.url}>
+            <Link to={`/standorte` + chapter.url}>
               {chapter.title}
             </Link>
           </li>
@@ -30,7 +30,7 @@ const ChapterIndex = props => {
         Ist deine Stadt nicht mit dabei? Wenn du von unserer 
         Vereinsidee überzeugt bist und trotzdem Kindern, Jugendlichen 
         und Flüchtlingen in deiner Nähe helfen möchtest, dann
-        nimm die Dinge selbst in die Hand und Gründe einen neuen Standort! 
+        nimm die Dinge selbst in die Hand und gründe einen neuen Standort! 
         Wir freuen uns sehr über deine Initiative und stehen dir 
         unter <a href="mailto:gruenden@studenten-bilden-schueler.de">
         gruenden@studenten-bilden-schueler.de</a> mit Rat und Tat zur Seite!
