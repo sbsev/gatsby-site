@@ -40,6 +40,12 @@ export const PageBody = styled.article`
   .side-by-side {
     ${imageGrid({ gridGap: `1rem` })}
   }
+
+  .multi-col-list ul, .multi-col-list ol {
+    display: grid;
+    grid-gap: 0 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
 `
 
 export default PageBody
