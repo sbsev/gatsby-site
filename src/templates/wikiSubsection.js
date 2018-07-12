@@ -10,7 +10,6 @@ const WikiSubsectionTemplate = props => {
   const { subsection, site, articles } = props.data
   const { sections } = subsection
   const { title, slug, subsections } = sections[0]
-  console.log('title :', title);
   const baseUrl = `/wiki/` + slug
   return (
     <Fragment>

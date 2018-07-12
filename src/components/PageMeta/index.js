@@ -1,9 +1,11 @@
 import React from 'react'
+import _ from 'lodash'
 
 import { Layout, Content } from './styles'
 
-const PageMeta = ({ created, updated, authors }) => (
-  <Layout>
+const PageMeta = ({ created, updated, authors }) => {
+  authors = _.uniqWith(authors, _.isEqual)
+  return <Layout>
     <Content>
       Erstellt: {created} &bull;{` `}
       {created !== updated && <span>Zuletzt bearbeitet: {updated} &bull; </span>}
@@ -19,6 +21,6 @@ const PageMeta = ({ created, updated, authors }) => (
       }
     </Content>
   </Layout>
-)
+}
 
 export default PageMeta
