@@ -7,22 +7,23 @@ import PageMeta from '../components/PageMeta'
 
 const PageTemplate = props => {
   const { page, site } = props.data
+  const { title, slug, body } = page
   return (
     <Fragment>
       <Helmet>
-        <title>{`${page.title.title} | ${site.meta.title}`}</title>
+        <title>{`${title.title} | ${site.meta.title}`}</title>
         <meta property="og:type" content="website" />
-        <meta property="og:title" content={page.title.title} />
+        <meta property="og:title" content={title.title} />
         <meta
           property="og:url"
-          content={`${site.meta.url}/pages/${page.slug}`}
+          content={`${site.meta.url}/pages/${slug}`}
         />
-        <meta property="og:description" content={page.excerpt} />
-        <meta name="description" content={page.excerpt} />
+        <meta property="og:description" content={body.data.excerpt} />
+        <meta name="description" content={body.data.excerpt} />
       </Helmet>
-      <PageTitle title={page.title.title} />
-      {page.body && <PageBody dangerouslySetInnerHTML={{__html: page.body.data.html}} />}
-      <PageMeta updated={page.updated} authors={page.author} />
+      <PageTitle text={title.title} />
+      {body && <PageBody dangerouslySetInnerHTML={{__html: body.data.html}} />}
+      <PageMeta {...page} />
     </Fragment>
   )
 }
@@ -44,6 +45,7 @@ export const pageQuery = graphql`
       slug
       body {
         data: childMarkdownRemark {
+          excerpt
           html
           headings {
             value
@@ -51,9 +53,11 @@ export const pageQuery = graphql`
           }
         }
       }
+      created: createdAt(formatString: "D. MMMM YYYY", locale: "de")
       updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
-      author {
+      authors: author {
         name
+        email
       }
     }
   }
