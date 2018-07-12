@@ -1,11 +1,22 @@
 import React from 'react'
+
 import { Layout, Content } from './styles'
 
-const PageMeta = props => (
+const PageMeta = ({ created, updated, authors }) => (
   <Layout>
     <Content>
-      Zuletzt bearbeitet: {props.updated}<br/>
-      Autor{props.authors.length > 1 ? `en` : ``}: {props.authors.map(author => author.name).join(`, `)}
+      Erstellt: {created} &bull;{` `}
+      {created !== updated && <span>Zuletzt bearbeitet: {updated} &bull; </span>}
+      {authors.length &&
+        <span>Autor{authors.length > 1 ? `en` : ``}: {
+          authors.map(author =>
+            <a key={author.name} href={`mailto:` + author.email}>
+              {author.name}
+            </a>
+          ).reduce((prev, curr) => [prev, `, `, curr])
+        }
+        </span>
+      }
     </Content>
   </Layout>
 )

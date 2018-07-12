@@ -1,22 +1,34 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import Helmet from 'react-helmet'
 
+import PageTitle from '../components/PageTitle' 
 import PostList from '../components/PostList'
 
-const CategoryIndex = props => (
-  <PostList {...props.data} />
+const blogCategoryTemplate = ({ data }) => (
+  <Fragment>
+    <Helmet title={data.site.meta.title} />
+    <PageTitle text="Blog" />
+    <PostList {...data} />
+  </Fragment>
 )
 
-export default CategoryIndex
+export default blogCategoryTemplate
 
 export const categories = graphql`
   fragment categories on RootQueryType {
-    categories: allContentfulCategory(
+    categories: allContentfulBlogCategory(
       sort: { fields: [title], order: ASC}
     ) {
       edges {
         node {
           title
           slug
+          icon {
+            title
+            file {
+              url
+            }
+          }
         }
       }
     }
@@ -42,7 +54,7 @@ export const blogCategoryQuery = graphql`
       }
     }
     ...categories
-    activeCategory: contentfulCategory(slug: {eq: $slug}) {
+    activeCategory: contentfulBlogCategory(slug: {eq: $slug}) {
       slug
     }
   }

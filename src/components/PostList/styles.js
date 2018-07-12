@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
-import mediaQuery from '../utils/mediaQuery'
+import mediaQuery from '../../utils/mediaQuery'
 
-const BlogIndexLayout = styled.div`
+export const BlogIndexLayout = styled.div`
   ${mediaQuery.minPhone} {
     display: grid;
     grid-template-columns: 1fr min-content;
@@ -12,5 +12,3 @@ const BlogIndexLayout = styled.div`
     }
   }
 `
-
-export default BlogIndexLayout

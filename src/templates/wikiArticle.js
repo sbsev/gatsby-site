@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react'
 import Helmet from 'react-helmet'
 
+import Breadcrumbs from '../components/Breadcrumbs'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
-const PageTemplate = props => {
-  const { page, site } = props.data
-  const { title, slug, body } = page
+const WikiArticleTemplate = props => {
+  const { article, site } = props.data
+  const { title, slug, section, subsection, body } = article
   return (
     <Fragment>
       <Helmet>
@@ -16,36 +17,36 @@ const PageTemplate = props => {
         <meta property="og:title" content={title.title} />
         <meta
           property="og:url"
-          content={`${site.meta.url}/pages/${slug}`}
+          content={`${site.meta.url}/articles/${slug}`}
         />
         <meta property="og:description" content={body.data.excerpt} />
         <meta name="description" content={body.data.excerpt} />
       </Helmet>
+      <Breadcrumbs path={props.location.pathname} />
       <PageTitle text={title.title} />
       {body && <PageBody dangerouslySetInnerHTML={{__html: body.data.html}} />}
-      <PageMeta {...page} />
+      <PageMeta {...article} />
     </Fragment>
   )
 }
 
-export default PageTemplate
+export default WikiArticleTemplate
 
-export const pageQuery = graphql`
-  query PageBySlug($slug: String!) {
+export const wikiArticleQuery = graphql`
+  query WikiArticleBySlug($slug: String!) {
     site {
       meta: siteMetadata {
         title
         url: siteUrl
       }
     }
-    page: contentfulPage(slug: {eq: $slug}) {
+    article: contentfulWikiArticle(slug: {eq: $slug}) {
       title {
         title
       }
       slug
       body {
         data: childMarkdownRemark {
-          excerpt
           html
           headings {
             value
@@ -58,6 +59,14 @@ export const pageQuery = graphql`
       authors: author {
         name
         email
+      }
+      section {
+        title
+        slug
+      }
+      subsection {
+        title
+        slug
       }
     }
   }
