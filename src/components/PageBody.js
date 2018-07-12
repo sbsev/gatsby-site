@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-const imageGrid = (props = {}) => `
+const imageGrid = css => `
   display: grid;
-  grid-gap: ${props.gridGap || `2rem`};
+  grid-gap: 2rem;
   grid-template-columns: repeat(auto-fit, minmax(5rem, 12rem));
-  margin-top: 2rem;
+  margin: 2rem 0;
 
   h1, h2, h3, h4, h5, h6 {
     grid-column: 1/-1;
@@ -12,10 +12,10 @@ const imageGrid = (props = {}) => `
 
   p {
     text-align: center;
+    margin: 0;
 
     img {
       width: 100%;
-      border-radius: ${props.borderRadius || `0`};
     }
     em {
       display: block;
@@ -26,11 +26,17 @@ const imageGrid = (props = {}) => `
       font-weight: 200;
     }
   }
+
+  ${css}
 `
 
 export const PageBody = styled.article`
   #heads, #alumni {
-    ${imageGrid({ borderRadius: `50%` })}
+    ${imageGrid(`
+      img {
+        border-radius: 50%;
+      }
+    `)}
   }
 
   #partners {
@@ -38,7 +44,18 @@ export const PageBody = styled.article`
   }
 
   .side-by-side {
-    ${imageGrid({ gridGap: `1rem` })}
+    display: grid;
+    grid-gap: 1rem;
+    margin: 2rem 0;
+    grid-auto-flow: column;
+    ${'' /* .gatsby-resp-image-link,
+    .gatsby-resp-image-wrapper,
+    .gatsby-resp-image-background-image,
+    .gatsby-resp-image-image,
+    img {
+      height: 100%;
+      object-fit: cover;
+    } */}
   }
 
   .multi-col-list ul, .multi-col-list ol {
