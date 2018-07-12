@@ -9,6 +9,7 @@ const Crumbs = styled.nav`
 const Breadcrumbs = ({ path }) => {
   const crumbs = path.substring(1).split(`/`)
   return <Crumbs>
+    <span>Pfad:&ensp;</span>
     {crumbs
       .map((crumb, index) => {
         const prevCrumbs = crumbs.slice(0, index + 1)
