@@ -22,7 +22,7 @@ const PostTemplate = props => {
         date={post.date}
         timeToRead={post.body.data.timeToRead}
       />
-      <div dangerouslySetInnerHTML={{ __html: post.body.data.html }} />
+      <article dangerouslySetInnerHTML={{ __html: post.body.data.html }} />
     </Fragment>
   )
 }
