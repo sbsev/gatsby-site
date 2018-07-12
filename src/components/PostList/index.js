@@ -1,13 +1,11 @@
 import React from 'react'
-import Helmet from 'react-helmet'
 
-import PostExcerpt from './PostExcerpt'
-import BlogIndexLayout from './BlogIndexLayout'
-import CategoryList from './CategoryList'
+import { BlogIndexLayout } from './styles'
+import PostExcerpt from '../PostExcerpt'
+import CategoryList from '../CategoryList'
 
-const PostList = ({ site, posts, categories, activeCategory }) => (
+const PostList = ({ posts, categories, activeCategory }) => (
   <BlogIndexLayout>
-    <Helmet title={site.meta.title} />
     <div>
       {posts.edges.map(({ node: post }) => (
         <PostExcerpt key={post.slug} post={post} />
