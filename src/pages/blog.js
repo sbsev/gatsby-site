@@ -1,28 +1,45 @@
 import React, { Fragment } from 'react'
-import Helmet from 'react-helmet'
 
+import Helmet from '../components/Helmet' 
 import PageTitle from '../components/PageTitle' 
-import PostList from '../components/PostList'
+import BlogIndex from '../components/BlogIndex'
 
-const BlogIndex = ({ data }) => (
-  <Fragment>
-    <Helmet title={data.site.meta.title} />
-    <PageTitle text="Blog" />
-    <PostList {...data} />
+const Blog = ({ data, location }) => {
+  const title = `Blog`
+  const path = location.pathname
+  return <Fragment>
+    <Helmet pageTitle={title} site={data.site} path={path} />
+    <PageTitle text={title} />
+    <BlogIndex {...data} />
   </Fragment>
-)
+}
 
-export default BlogIndex
+export default Blog
 
-// postFields defined in src/templates/post.js
-// categories defined in src/templates/blogCategory.js
-export const blogIndexQuery = graphql`
-  query BlogIndex {
-    site {
-      meta: siteMetadata {
-        title
+export const categories = graphql`
+  fragment categories on RootQueryType {
+    categories: allContentfulBlogCategory(
+      sort: { fields: [title], order: ASC}
+    ) {
+      edges {
+        node {
+          title
+          slug
+          icon {
+            title
+            file {
+              url
+            }
+          }
+        }
       }
     }
+  }
+`
+
+export const blogIndexQuery = graphql`
+  query Blog {
+    ...siteMetaQuery
     posts: allContentfulPost(
       sort: { fields: [ date ], order: DESC }
     ) {
