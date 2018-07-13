@@ -1,48 +1,26 @@
 import React, { Fragment } from 'react'
-import Helmet from 'react-helmet'
 
+import Helmet from '../components/Helmet' 
 import PageTitle from '../components/PageTitle' 
-import PostList from '../components/PostList'
+import BlogIndex from '../components/BlogIndex'
 
-const blogCategoryTemplate = ({ data }) => (
-  <Fragment>
-    <Helmet title={data.site.meta.title} />
-    <PageTitle text="Blog" />
-    <PostList {...data} />
+const blogCategoryTemplate = ({ data, location }) => {
+  const { activeCategory = { title: ``, shortDescription: { text: ``}}, site } = data
+  const title = `Blog - ${activeCategory.title}`
+  const { text } = activeCategory.shortDescription
+  const path = location.pathname
+  return <Fragment>
+    <Helmet pageTitle={title} site={site} path={path} description={text} />
+    <PageTitle text={title} />
+    <BlogIndex {...data} />
   </Fragment>
-)
+}
 
 export default blogCategoryTemplate
 
-export const categories = graphql`
-  fragment categories on RootQueryType {
-    categories: allContentfulBlogCategory(
-      sort: { fields: [title], order: ASC}
-    ) {
-      edges {
-        node {
-          title
-          slug
-          icon {
-            title
-            file {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-`
-
-// postFields defined in src/templates/post.js
 export const blogCategoryQuery = graphql`
   query BlogCategoryBySlug($slug: String!) {
-    site {
-      meta: siteMetadata {
-        title
-      }
-    }
+    ...siteMetaQuery
     posts: allContentfulPost(
       sort: { fields: [ date ], order: DESC }
       filter: { category: { slug: { eq: $slug } } }
@@ -55,7 +33,11 @@ export const blogCategoryQuery = graphql`
     }
     ...categories
     activeCategory: contentfulBlogCategory(slug: {eq: $slug}) {
+      title
       slug
+      shortDescription {
+        text: shortDescription
+      }
     }
   }
 `
