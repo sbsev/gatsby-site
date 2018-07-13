@@ -10,6 +10,9 @@ const navLinkStyle = css`
     color: ${props => props.hoverblue ? props.theme.mainBlue : props.theme.mainGreen};
     text-decoration: none;
   }
+  &.${props => props.activeClassName} {
+    border-bottom: ${({ theme }) => theme.smallBorder + ` solid ` + theme.mainGreen};
+  }
 `
 
 export const Background = styled.header`
@@ -26,7 +29,7 @@ export const Content = styled.div`
   justify-items: center;
   align-items: center;
   ${mediaQuery.minTablet} {
-    grid-template-columns: min-content min-content 1fr min-content;
+    grid-auto-flow: column;
     padding: 1.25rem;
   }
 `

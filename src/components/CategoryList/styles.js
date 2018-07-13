@@ -15,7 +15,9 @@ export const CategoryIcon = styled.img`
 export const CategoryLink = styled(Link)`
   display: flex;
   white-space: nowrap;
-  color: ${props => props.active ? props.theme.mainGreen : ''};
+  &.${props => props.activeClassName} {
+    color: ${props => props.theme.mainGreen};
+  }
 `
 
 export const List = styled.div`

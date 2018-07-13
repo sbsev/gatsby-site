@@ -3,12 +3,16 @@ import Link from 'gatsby-link'
 
 import { List, Subsection } from './styles'
 
-const SubsectionList = ({ sectionSlug, subsections }) => (
-  <Fragment>
+const SubsectionList = ({ sectionSlug, subsections, path = `` }) => {
+  const subsectionSlug = path.split(`/`).pop()
+  return <Fragment>
     <h2>Unterpunkte</h2>
     <List>
       {subsections.map(subsection =>
-        <Subsection key={subsection.slug}>
+        <Subsection
+          key={subsection.slug}
+          active={subsection.slug === subsectionSlug}
+        >
           <Link to={`/wiki/${sectionSlug}/${subsection.slug}`}>
             {subsection.title}
           </Link>
@@ -16,6 +20,6 @@ const SubsectionList = ({ sectionSlug, subsections }) => (
       )}
     </List>
   </Fragment>
-)
+}
 
 export default SubsectionList

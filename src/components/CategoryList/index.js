@@ -2,17 +2,20 @@ import React from 'react'
 
 import { List, ListTitle, CategoryIcon, CategoryLink } from './styles'
 
-const Category = ({ category, active }) => (
-  <CategoryLink
-    active={active}
-    to={`/blog/` + category.slug}
+const Category = ({ category }) => {
+  const { title, slug, icon } = category
+  const link = `/blog/` + (slug === `alle` ? `` : slug)
+  return <CategoryLink
+    exact
+    activeClassName
+    to={link}
   >
-    <CategoryIcon src={category.icon.file.url} alt={category.icon.title}/>
-    {category.title}
+    <CategoryIcon src={icon.file.url} alt={icon.title}/>
+    {title}
   </CategoryLink>
-)
+}
 
-const CategoryList = ({ title, categories, activeCategory }) => (
+const CategoryList = ({ title, categories }) => (
   <div>
     <ListTitle>{title}</ListTitle>
     <List>
@@ -20,7 +23,6 @@ const CategoryList = ({ title, categories, activeCategory }) => (
         <Category
           key={category.node.slug}
           category={category.node}
-          active={category.node.slug === activeCategory}
         />
       )}
     </List>

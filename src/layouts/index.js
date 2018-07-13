@@ -38,13 +38,20 @@ class Template extends Component {
 
 export default Template
 
-export const query = graphql`
-  query TemplateQuery {
+export const siteMetaQuery = graphql`
+  fragment siteMetaQuery on RootQueryType {
     site {
       meta: siteMetadata {
         title
+        url: siteUrl
       }
     }
+  }
+`
+
+export const query = graphql`
+  query TemplateQuery {
+    ...siteMetaQuery
     header: contentfulJson(title: {eq: "Header"}) {
       data {
         social {

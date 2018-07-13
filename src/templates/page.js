@@ -1,28 +1,20 @@
 import React, { Fragment } from 'react'
-import Helmet from 'react-helmet'
 
+import Helmet from '../components/Helmet'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
-const PageTemplate = props => {
-  const { page, site } = props.data
-  const { title, slug, body } = page
+const PageTemplate = ({ data, location }) => {
+  const { page, site } = data
+  const { title: { title }, body } = page
+  const { excerpt, html } = body && body.data
+  const path = location.pathname
   return (
     <Fragment>
-      <Helmet>
-        <title>{`${title.title} | ${site.meta.title}`}</title>
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title.title} />
-        <meta
-          property="og:url"
-          content={`${site.meta.url}/pages/${slug}`}
-        />
-        <meta property="og:description" content={body.data.excerpt} />
-        <meta name="description" content={body.data.excerpt} />
-      </Helmet>
-      <PageTitle text={title.title} />
-      {body && <PageBody dangerouslySetInnerHTML={{__html: body.data.html}} />}
+      <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
+      <PageTitle text={title} />
+      {html && <PageBody dangerouslySetInnerHTML={{__html: html}} />}
       <PageMeta {...page} />
     </Fragment>
   )
@@ -32,12 +24,7 @@ export default PageTemplate
 
 export const pageQuery = graphql`
   query PageBySlug($slug: String!) {
-    site {
-      meta: siteMetadata {
-        title
-        url: siteUrl
-      }
-    }
+    ...siteMetaQuery
     page: contentfulPage(slug: {eq: $slug}) {
       title {
         title
@@ -47,10 +34,6 @@ export const pageQuery = graphql`
         data: childMarkdownRemark {
           excerpt
           html
-          headings {
-            value
-            depth
-          }
         }
       }
       created: createdAt(formatString: "D. MMMM YYYY", locale: "de")
