@@ -17,11 +17,7 @@ export default WikiIndex
 // postFields defined in src/templates/post.js
 export const wikiIndexQuery = graphql`
   query WikiIndex {
-    site {
-      meta: siteMetadata {
-        title
-      }
-    }
+    ...siteMetaQuery
     sections: allContentfulWikiSection(
       sort: {fields: [title], order: DESC}
     ) {
