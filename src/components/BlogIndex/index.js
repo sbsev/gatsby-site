@@ -6,7 +6,7 @@ import CategoryList from '../CategoryList'
 
 const BlogIndex = ({ posts, categories }) => (
   <BlogIndexLayout>
-    <PostsList posts={posts} />
+    {posts && <PostsList posts={posts} />}
     <CategoryList
       title="Kategorien"
       categories={categories.edges}
