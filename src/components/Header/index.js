@@ -27,7 +27,7 @@ const Header = ({ meta, header }) => (
       <Nav role="navigation">
         {header.nav.map(item => (
           <NavEntry key={item.url}>
-            <NavLink to={item.url} title={item.title} {...item.props}>
+            <NavLink activeClassName to={item.url} title={item.title} {...item.props}>
               {item.title}
             </NavLink>
             {item.subNav && <SubNav>
