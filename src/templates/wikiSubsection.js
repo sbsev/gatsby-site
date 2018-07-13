@@ -1,42 +1,30 @@
 import React, { Fragment } from 'react'
-import Helmet from 'react-helmet'
-import Link from 'gatsby-link'
 
+import Helmet from '../components/Helmet'
 import PageTitle from '../components/PageTitle'
 import Breadcrumbs from '../components/Breadcrumbs'
 import SubsectionList from '../components/SubsectionList'
+import ArticleList from '../components/ArticleList'
 
-const WikiSubsectionTemplate = props => {
-  const { subsection, site, articles } = props.data
-  const { sections } = subsection
+const WikiSubsectionTemplate = ({ data, location }) => {
+  const { subsection, site, articles } = data
+  const { sections, description } = subsection
   const { title, slug, subsections } = sections[0]
-  const baseUrl = `/wiki/` + slug
+  const path = location.pathname
   return (
     <Fragment>
-      <Helmet>
-        <title>{`${title} | ${site.meta.title}`}</title>
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={title} />
-        <meta
-          property="og:url"
-          content={`${site.meta.url}/articles/${slug}`}
-        />
-      </Helmet>
-      <Breadcrumbs path={props.location.pathname} />
+      <Helmet pageTitle={title} site={site} path={path} description={description.text} />
+      <Breadcrumbs path={path} />
       <PageTitle text={title} />
-      {subsections && <SubsectionList sectionSlug={slug} subsections={subsections} />}
-      {articles && <h2>Artikel</h2>}
-      {articles && articles.edges.map(({ node: article }) => {
-        const link = `${baseUrl}/${subsection.slug}/${article.slug}`
-        return <Fragment key={article.title.title}>
-          <Link to={link}>
-            <h4>{article.title.title}</h4>
-          </Link>
-          {article.body.data.headings.map(heading =>
-            <span key={heading.value}>{heading.value}<br/></span>
-          )}
-        </Fragment>
-      })}
+      {description && <div dangerouslySetInnerHTML={{
+        __html: description.data.html
+      }} />}
+      {subsections && <SubsectionList
+        sectionSlug={slug}
+        subsections={subsections}
+        path={path}
+      />}
+      {articles && <ArticleList articles={articles} />}
     </Fragment>
   )
 }
@@ -45,15 +33,16 @@ export default WikiSubsectionTemplate
 
 export const wikiSectionQuery = graphql`
   query WikiSubsectionBySlug($slug: String!) {
-    site {
-      meta: siteMetadata {
-        title
-        url: siteUrl
-      }
-    }
+    ...siteMetaQuery
     subsection: contentfulWikiSubsection(slug: { eq: $slug }) {
       title
       slug
+      description: shortDescription {
+        text: shortDescription
+        data: childMarkdownRemark {
+          html
+        }
+      }
       sections: wiki_section {
         title
         slug
@@ -68,21 +57,7 @@ export const wikiSectionQuery = graphql`
     ) {
       edges {
         node {
-          title {
-            title
-          }
-          slug
-          subsection {
-            slug
-          }
-          body {
-            data: childMarkdownRemark {
-              headings {
-                value
-                depth
-              }
-            }
-          }
+          ...articleFields
         }
       }
     }
