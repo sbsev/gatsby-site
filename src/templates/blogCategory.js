@@ -5,9 +5,9 @@ import PageTitle from '../components/PageTitle'
 import BlogIndex from '../components/BlogIndex'
 
 const blogCategoryTemplate = ({ data, location }) => {
-  const { activeCategory = { title: ``, shortDescription: { text: ``}}, site } = data
+  const { activeCategory = { title: ``, description: { text: ``}}, site } = data
   const title = `Blog - ${activeCategory.title}`
-  const { text } = activeCategory.shortDescription
+  const { text } = activeCategory.description
   const path = location.pathname
   return <Fragment>
     <Helmet pageTitle={title} site={site} path={path} description={text} />
@@ -35,8 +35,8 @@ export const blogCategoryQuery = graphql`
     activeCategory: contentfulBlogCategory(slug: {eq: $slug}) {
       title
       slug
-      shortDescription {
-        text: shortDescription
+      description {
+        text: description
       }
     }
   }
