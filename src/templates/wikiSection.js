@@ -35,8 +35,8 @@ export const wikiSectionQuery = graphql`
     section: contentfulWikiSection(slug: { eq: $slug }) {
       title
       slug
-      description: shortDescription {
-        text: shortDescription
+      description {
+        text: description
         data: childMarkdownRemark {
           html
         }
