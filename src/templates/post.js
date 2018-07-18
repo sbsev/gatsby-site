@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 
 import Helmet from '../components/Helmet'
 import PostTitle from '../components/PostTitle'
+import PageBody from '../components/PageBody'
 import FeaturedImage from '../components/FeaturedImage'
 
 const PostTemplate = ({ data, location }) => {
@@ -16,7 +17,7 @@ const PostTemplate = ({ data, location }) => {
         <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
       }
       <PostTitle title={title} date={date} timeToRead={timeToRead} />
-      <article dangerouslySetInnerHTML={{ __html: html }} />
+      <PageBody dangerouslySetInnerHTML={{ __html: html }} />
     </Fragment>
   )
 }
