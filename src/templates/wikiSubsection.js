@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { graphql } from 'gatsby'
 
+import Layout from '../components/layout'
 import Helmet from '../components/Helmet'
 import PageTitle from '../components/PageTitle'
 import Breadcrumbs from '../components/Breadcrumbs'
@@ -12,7 +14,7 @@ const WikiSubsectionTemplate = ({ data, location }) => {
   const { title, slug, subsections } = sections[0]
   const path = location.pathname
   return (
-    <Fragment>
+    <Layout>
       <Helmet pageTitle={title} site={site} path={path} description={description.text} />
       <Breadcrumbs path={path} />
       <PageTitle text={title} />
@@ -25,14 +27,14 @@ const WikiSubsectionTemplate = ({ data, location }) => {
         path={path}
       />}
       {articles && <ArticleList articles={articles} />}
-    </Fragment>
+    </Layout>
   )
 }
 
 export default WikiSubsectionTemplate
 
 export const wikiSectionQuery = graphql`
-  query WikiSubsectionBySlug($slug: String!) {
+  query($slug: String!) {
     ...siteMetaQuery
     subsection: contentfulWikiSubsection(slug: { eq: $slug }) {
       title

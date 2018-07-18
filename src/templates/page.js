@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { graphql } from 'gatsby'
 
+import Layout from '../components/layout'
 import Helmet from '../components/Helmet'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
@@ -11,19 +13,19 @@ const PageTemplate = ({ data, location }) => {
   const { excerpt, html } = body && body.data
   const path = location.pathname
   return (
-    <Fragment>
+    <Layout>
       <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
       <PageTitle text={title} />
       {html && <PageBody dangerouslySetInnerHTML={{__html: html}} />}
       <PageMeta {...page} />
-    </Fragment>
+    </Layout>
   )
 }
 
 export default PageTemplate
 
 export const pageQuery = graphql`
-  query PageBySlug($slug: String!) {
+  query($slug: String!) {
     ...siteMetaQuery
     page: contentfulPage(slug: {eq: $slug}) {
       title {

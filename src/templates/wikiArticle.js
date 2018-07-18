@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { graphql } from 'gatsby'
 
+import Layout from '../components/layout'
 import Helmet from '../components/Helmet'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTitle from '../components/PageTitle'
@@ -12,19 +14,19 @@ const WikiArticleTemplate = ({ data, location }) => {
   const { html, excerpt } = body.data
   const path = location.pathname
   return (
-    <Fragment>
+    <Layout>
       <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
       <Breadcrumbs path={path} />
       <PageTitle text={title} />
       <PageBody dangerouslySetInnerHTML={{__html: html}} />
       <PageMeta {...article} />
-    </Fragment>
+    </Layout>
   )
 }
 
 export default WikiArticleTemplate
 
-export const articleFields = graphql`
+export const wikiArticleQuery = graphql`
   fragment articleFields on ContentfulWikiArticle {
     title {
       title
@@ -55,10 +57,7 @@ export const articleFields = graphql`
       slug
     }
   }
-`
-
-export const wikiArticleQuery = graphql`
-  query WikiArticleBySlug($slug: String!) {
+  query($slug: String!) {
     ...siteMetaQuery
     article: contentfulWikiArticle(slug: {eq: $slug}) {
       ...articleFields
