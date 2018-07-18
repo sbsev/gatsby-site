@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import Link from 'gatsby-link'
+import React from 'react'
+import { Link } from 'gatsby'
 
 import { Section, ResponsiveList, SectionIcon } from './styles'
 

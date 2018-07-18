@@ -1,5 +1,5 @@
 import React from 'react'
-import GatsbyLink from 'gatsby-link'
+import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
 import mediaQuery from '../../utils/mediaQuery'

@@ -1,22 +1,24 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { graphql } from 'gatsby'
 import Helmet from 'react-helmet'
 
+import Layout from '../components/layout'
 import PageTitle from '../components/PageTitle' 
 import SectionList from '../components/SectionList'
 
 const WikiIndex = ({ data }) => (
-  <Fragment>
+  <Layout>
     <Helmet title={data.site.meta.title} />
     <PageTitle text="Wiki" />
     <SectionList {...data} />
-  </Fragment>
+  </Layout>
 )
 
 export default WikiIndex
 
 // postFields defined in src/templates/post.js
 export const wikiIndexQuery = graphql`
-  query WikiIndex {
+  {
     ...siteMetaQuery
     sections: allContentfulWikiSection(
       sort: {fields: [title], order: DESC}

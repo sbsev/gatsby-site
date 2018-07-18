@@ -12,8 +12,8 @@ const contentfulQuery = (contentType, fragment = ``) => `
     content: allContentful${contentType} {
       edges {
         node {
-          parent {
-            id
+          internal {
+            type
           }
           slug
           ${fragment}
@@ -39,10 +39,18 @@ const wikiArticleFragment = `
 `
 
 const pageSets = [
-  { query: contentfulQuery(`Page`), component: pageTemplate },
-  { query: contentfulQuery(`Post`), component: postTemplate },
-  { query: contentfulQuery(`BlogCategory`), component: blogCategoryTemplate },
-  { query: contentfulQuery(`WikiSection`), component: wikiSectionTemplate },
+  {
+    query: contentfulQuery(`Page`),
+    component: pageTemplate },
+  {
+    query: contentfulQuery(`Post`),
+    component: postTemplate },
+  {
+    query: contentfulQuery(`BlogCategory`),
+    component: blogCategoryTemplate },
+  {
+    query: contentfulQuery(`WikiSection`),
+    component: wikiSectionTemplate },
   {
     query: contentfulQuery(`WikiSubsection`, wikiSubsectionFragment),
     component: wikiSubsectionTemplate
@@ -54,15 +62,15 @@ const pageSets = [
 ]
 
 const pagePath = node => {
-  switch (node.parent.id) {
-    case `Post`:
-    case `Blog Category`:
+  switch (node.internal.type) {
+    case `ContentfulPost`:
+    case `ContentfulBlogCategory`:
       return `/blog/` + node.slug
-    case `Wiki Section`:
+    case `ContentfulWikiSection`:
       return `/wiki/${node.slug}`
-    case `Wiki Subsection`:
+    case `ContentfulWikiSubsection`:
       return `/wiki/${node.sections[0].slug}/${node.slug}`
-    case `Wiki Article`:
+    case `ContentfulWikiArticle`:
       if (!node.subsection) return `/wiki/${node.section.slug}/${node.slug}`
       return `/wiki/${node.section.slug}/${node.subsection.slug}/${node.slug}`
     default:
@@ -70,8 +78,8 @@ const pagePath = node => {
   }
 }
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
   pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
     if (response.errors) {

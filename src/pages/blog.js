@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { graphql } from 'gatsby'
 
+import Layout from '../components/layout'
 import Helmet from '../components/Helmet' 
 import PageTitle from '../components/PageTitle' 
 import BlogIndex from '../components/BlogIndex'
@@ -7,16 +9,16 @@ import BlogIndex from '../components/BlogIndex'
 const Blog = ({ data, location }) => {
   const title = `Blog`
   const path = location.pathname
-  return <Fragment>
+  return <Layout>
     <Helmet pageTitle={title} site={data.site} path={path} />
     <PageTitle text={title} />
     <BlogIndex {...data} />
-  </Fragment>
+  </Layout>
 }
 
 export default Blog
 
-export const categories = graphql`
+export const blogIndexQuery = graphql`
   fragment categories on RootQueryType {
     categories: allContentfulBlogCategory(
       sort: { fields: [title], order: ASC}
@@ -35,10 +37,7 @@ export const categories = graphql`
       }
     }
   }
-`
-
-export const blogIndexQuery = graphql`
-  query Blog {
+  {
     ...siteMetaQuery
     posts: allContentfulPost(
       sort: { fields: [ date ], order: DESC }

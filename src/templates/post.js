@@ -1,5 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import { graphql } from 'gatsby'
 
+import Layout from '../components/layout'
 import Helmet from '../components/Helmet'
 import PostTitle from '../components/PostTitle'
 import PageBody from '../components/PageBody'
@@ -11,20 +13,20 @@ const PostTemplate = ({ data, location }) => {
   const { timeToRead, html, excerpt } = body.data
   const path = location.pathname
   return (
-    <Fragment>
+    <Layout>
       <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
       {featuredImage &&
         <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
       }
       <PostTitle title={title} date={date} timeToRead={timeToRead} />
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
-    </Fragment>
+    </Layout>
   )
 }
 
 export default PostTemplate
 
-export const postFields = graphql`
+export const postQuery = graphql`
   fragment postFields on ContentfulPost {
     slug
     title {
@@ -52,10 +54,7 @@ export const postFields = graphql`
       }
     }
   }
-`
-
-export const postQuery = graphql`
-  query PostBySlug($slug: String!) {
+  query($slug: String!) {
     ...siteMetaQuery
     post: contentfulPost(slug: { eq: $slug }) {
       ...postFields
