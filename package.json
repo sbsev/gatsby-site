@@ -5,7 +5,7 @@
   "homepage": "https://studenten-bilden-schueler.de",
   "version": "1.0.0",
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
-  "repository": "https://github.com/JanoshRiebesell/sbs.git",
+  "repository": "https://github.com/StudentenBildenSchueler/homepage",
   "dependencies": {
     "gatsby": "^1.9.253",
     "gatsby-link": "^1.6.41",

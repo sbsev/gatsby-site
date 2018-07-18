@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import styled, { ThemeProvider, injectGlobal } from 'styled-components'
 
 import Header from '../components/Header'
@@ -21,22 +21,17 @@ const Content = styled.main`
   flex: 1;
 `
 
-class Template extends Component {
-  render() {
-    const { header, footer, site } = this.props.data
-    return (
-      <ThemeProvider theme={theme}>
-        <Fragment>
-          <Header meta={site.meta} header={header.data} />
-          <Content>{this.props.children()}</Content>
-          <Footer footer={footer.data} />
-        </Fragment>
-      </ThemeProvider>
-    )
-  }
-}
+const Layout = ({ children, data: { header, footer, site } }) => (
+  <ThemeProvider theme={theme}>
+    <Fragment>
+      <Header meta={site.meta} header={header.data} />
+      <Content>{children()}</Content>
+      <Footer footer={footer.data} />
+    </Fragment>
+  </ThemeProvider>
+)
 
-export default Template
+export default Layout
 
 export const siteMetaQuery = graphql`
   fragment siteMetaQuery on RootQueryType {
@@ -50,7 +45,7 @@ export const siteMetaQuery = graphql`
 `
 
 export const query = graphql`
-  query TemplateQuery {
+  query LayoutQuery {
     ...siteMetaQuery
     header: contentfulJson(title: {eq: "Header"}) {
       data {
