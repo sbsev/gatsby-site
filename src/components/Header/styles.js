@@ -64,10 +64,12 @@ export const NavEntry = styled.div`
   position: relative;
 `
 
+// TODO: replace 'width: min-content;' as soon as Safari supports it
+// see 'Known issues' under https://caniuse.com/#search=max-content
 export const SubNav = styled.div`
   position: absolute;
   left: 0;
-  width: min-content;
+  width: ${props => Math.max(...props.children.map(child => child.props.title.length)) * (props.children.length >= 10 ? 1.2 : 0.6) + `rem`};
   display: none;
   ${NavEntry}:hover & {
     z-index: 2;
