@@ -7,7 +7,7 @@ const Category = ({ category }) => {
   const link = `/blog/` + (slug === `alle` ? `` : slug)
   return <CategoryLink
     exact
-    activeClassName
+    activeClassName='active'
     to={link}
   >
     <CategoryIcon src={icon.file.url} alt={icon.title}/>
