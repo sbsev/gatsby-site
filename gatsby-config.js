@@ -1,20 +1,3 @@
-const config = require('./config')
-const {
-  contentful: { spaceId, accessToken },
-  googleAnalytics: { trackingId }
-} = config
-
-if (!spaceId || !accessToken) {
-  throw new Error(
-    `Contentful spaceId and at least the delivery token need to be provided.`
-  )
-}
-if (!trackingId) {
-  throw new Error(
-    `Google Analytics trackingId needs to be provided.`
-  )
-}
-
 module.exports = {
   siteMetadata: {
     title: `Studenten bilden Schüler`,
@@ -25,7 +8,10 @@ module.exports = {
   plugins: [
     {
       resolve: `gatsby-source-contentful`,
-      options: config.contentful,
+      options: {
+        spaceId: `gi9muc70s4ub`,
+        accessToken: `72d19ad7e53acc3342cf4d697f686a178da039646724412fa160d6f02c8728b4`,
+      },
     },
     {
       resolve: `gatsby-transformer-remark`,
@@ -36,7 +22,7 @@ module.exports = {
             options: {
               // maxWidth (in pixels) of content container
               // used as base for generating different widths of each image
-              maxWidth: 880,
+              maxWidth: 1000,
               showCaptions: true,
               backgroundColor: `none`,
             },
@@ -49,7 +35,9 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-google-analytics`,
-      options: config.googleAnalytics,
+      options: {
+        trackingId: `UA-121212963-1`,
+      },
     },
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
