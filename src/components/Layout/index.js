@@ -1,26 +1,11 @@
 import React, { Fragment } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import styled, { ThemeProvider, injectGlobal } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 
-import Header from './Header'
-import Footer from './Footer'
-import theme from '../utils/theme'
-
-injectGlobal`
-  #___gatsby {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-`
-
-const Content = styled.main`
-  width: 100%;
-  max-width: ${props => props.theme.maxWidth};
-  margin: 2rem auto;
-  padding: 1rem;
-  flex: 1;
-`
+import Header from '../Header'
+import Footer from '../Footer'
+import theme from '../../utils/theme'
+import { Content } from './styles'
 
 const Layout = ({ children }) => (
   <StaticQuery

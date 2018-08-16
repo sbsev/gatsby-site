@@ -41,21 +41,20 @@ const wikiArticleFragment = `
 const pageSets = [
   {
     query: contentfulQuery(`Page`),
-    component: pageTemplate },
-  {
+    component: pageTemplate
+  }, {
     query: contentfulQuery(`Post`),
-    component: postTemplate },
-  {
+    component: postTemplate
+  }, {
     query: contentfulQuery(`BlogCategory`),
-    component: blogCategoryTemplate },
-  {
+    component: blogCategoryTemplate
+  }, {
     query: contentfulQuery(`WikiSection`),
-    component: wikiSectionTemplate },
-  {
+    component: wikiSectionTemplate
+  }, {
     query: contentfulQuery(`WikiSubsection`, wikiSubsectionFragment),
     component: wikiSubsectionTemplate
-  },
-    {
+  }, {
     query: contentfulQuery(`WikiArticle`, wikiArticleFragment),
     component: wikiArticleTemplate
   },
@@ -65,14 +64,14 @@ const pagePath = node => {
   switch (node.internal.type) {
     case `ContentfulPost`:
     case `ContentfulBlogCategory`:
-      return `/blog/` + node.slug
+      return `blog/` + node.slug
     case `ContentfulWikiSection`:
-      return `/wiki/${node.slug}`
+      return `wiki/${node.slug}`
     case `ContentfulWikiSubsection`:
-      return `/wiki/${node.sections[0].slug}/${node.slug}`
+      return `wiki/${node.sections[0].slug}/${node.slug}`
     case `ContentfulWikiArticle`:
-      if (!node.subsection) return `/wiki/${node.section.slug}/${node.slug}`
-      return `/wiki/${node.section.slug}/${node.subsection.slug}/${node.slug}`
+      if (!node.subsection) return `wiki/${node.section.slug}/${node.slug}`
+      return `wiki/${node.section.slug}/${node.subsection.slug}/${node.slug}`
     default:
       return node.slug
   }
