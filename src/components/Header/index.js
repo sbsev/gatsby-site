@@ -15,7 +15,7 @@ import {
 import logo from '../../assets/logo.svg'
 import { EmailIcon, FacebookIcon, GitHubIcon, LinkedinIcon } from '../Icons'
 
-const Header = ({ meta, header }) => (
+const Header = ({ meta, header: { nav, social } }) => (
   <Background>
     <Content>
       <Logo>
@@ -25,7 +25,7 @@ const Header = ({ meta, header }) => (
         {meta.title}
       </SiteTitle>
       <Nav role="navigation">
-        {header.nav.map(item => (
+        {nav.map(item => (
           <NavEntry key={item.url}>
             <NavLink activeClassName='active' to={item.url} title={item.title} {...item.props}>
               {item.title}
@@ -41,16 +41,16 @@ const Header = ({ meta, header }) => (
         ))}
       </Nav>
       <NavIcons>
-        <NavIcon href={header.social.email}>
+        <NavIcon href={social.email}>
           <EmailIcon title="Email" size="1.27rem" />
         </NavIcon>
-        <NavIcon href={header.social.facebook}>
+        <NavIcon href={social.facebook}>
           <FacebookIcon title="Facebook" />
         </NavIcon>
-        <NavIcon href={header.social.github}>
+        <NavIcon href={social.github}>
           <GitHubIcon title="GitHub" />
         </NavIcon>
-        <NavIcon href={header.social.linkedin}>
+        <NavIcon href={social.linkedin}>
           <LinkedinIcon title="Linkedin" />
         </NavIcon>
       </NavIcons>

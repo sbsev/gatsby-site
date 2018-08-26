@@ -9,9 +9,9 @@ injectGlobal`
 `
 
 export const Content = styled.main`
-width: 100%;
-max-width: ${props => props.theme.maxWidth};
-margin: 2rem auto;
-padding: 1rem;
-flex: 1;
+  width: 100%;
+  max-width: ${props => props.theme.maxWidth};
+  margin: 2rem auto;
+  padding: 1rem;
+  flex: 1;
 `
