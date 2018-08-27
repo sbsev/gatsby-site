@@ -15,7 +15,6 @@
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-styled-components": "next",
-    "gatsby-plugin-typography": "next",
     "gatsby-remark-images-contentful": "next",
     "gatsby-remark-smartypants": "next",
     "gatsby-source-contentful": "next",
@@ -23,14 +22,8 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-helmet": "^5.2.0",
-    "react-typography": "^0.16.13",
     "styled-components": "^3.2.6",
-    "styled-icons": "^2.2.0",
-    "typography": "^0.16.17",
-    "typography-theme-github": "^0.15.10"
-  },
-  "devDependencies": {
-    "prettier": "^1.9.2"
+    "styled-icons": "^2.2.0"
   },
   "scripts": {
     "start": "gatsby develop",
