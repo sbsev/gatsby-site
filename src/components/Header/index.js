@@ -1,61 +1,19 @@
 import React from 'react'
 
-import {
-  Background,
-  Content,
-  Logo,
-  SiteTitle,
-  Nav,
-  NavEntry,
-  SubNav,
-  NavLink,
-  NavIcons,
-  NavIcon,
-} from './styles'
-import logo from '../../assets/logo.svg'
-import { EmailIcon, FacebookIcon, GitHubIcon, LinkedinIcon } from '../Icons'
+import { Container, Logo, SiteTitle } from './styles'
+import Nav from '../Nav'
+import Social from '../Social'
+import { navLinkStyle } from '../Nav/styles'
 
-const Header = ({ meta, header: { nav, social } }) => (
-  <Background>
-    <Content>
-      <Logo>
-        <img src={logo} alt="Logo"/>
-      </Logo>
-      <SiteTitle to="/" title={meta.title} rel="home">
-        {meta.title}
-      </SiteTitle>
-      <Nav role="navigation">
-        {nav.map(item => (
-          <NavEntry key={item.url}>
-            <NavLink activeClassName='active' to={item.url} title={item.title} {...item.props}>
-              {item.title}
-            </NavLink>
-            {item.subNav && <SubNav>
-              {item.subNav.map(subItem => (
-                <NavLink hoverblue="true" key={subItem.url} to={item.url + subItem.url} title={subItem.title} {...subItem.props}>
-                  {subItem.title}
-                </NavLink>
-              ))}
-            </SubNav>}
-          </NavEntry>
-        ))}
-      </Nav>
-      <NavIcons>
-        <NavIcon href={social.email}>
-          <EmailIcon title="Email" size="1.27rem" />
-        </NavIcon>
-        <NavIcon href={social.facebook}>
-          <FacebookIcon title="Facebook" />
-        </NavIcon>
-        <NavIcon href={social.github}>
-          <GitHubIcon title="GitHub" />
-        </NavIcon>
-        <NavIcon href={social.linkedin}>
-          <LinkedinIcon title="Linkedin" />
-        </NavIcon>
-      </NavIcons>
-    </Content>
-  </Background>
+const Header = ({ site }) => (
+  <Container>
+    <SiteTitle to="/" title={site.title} rel="home" styles={navLinkStyle}>
+      <Logo />
+      {site.title}
+    </SiteTitle>
+    <Nav />
+    <Social css={navLinkStyle} />
+  </Container>
 )
 
 export default Header
