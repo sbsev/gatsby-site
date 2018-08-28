@@ -2,22 +2,22 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Helmet from '../components/Helmet'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const PageTemplate = ({ data, location }) => {
-  const { page, site } = data
-  const { title: { title }, body } = page
+  const {
+    title: { title },
+    body,
+  } = data.page
   const { excerpt, html } = body && body.data
   const path = location.pathname
   return (
-    <Layout>
-      <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
+    <Layout pageTitle={title} path={path} description={excerpt}>
       <PageTitle text={title} />
-      {html && <PageBody dangerouslySetInnerHTML={{__html: html}} />}
-      <PageMeta {...page} />
+      {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
+      <PageMeta {...data.page} />
     </Layout>
   )
 }
@@ -26,8 +26,7 @@ export default PageTemplate
 
 export const pageQuery = graphql`
   query($slug: String!) {
-    ...siteMetaQuery
-    page: contentfulPage(slug: {eq: $slug}) {
+    page: contentfulPage(slug: { eq: $slug }) {
       title {
         title
       }

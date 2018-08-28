@@ -2,24 +2,24 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Helmet from '../components/Helmet'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const WikiArticleTemplate = ({ data, location }) => {
-  const { article, site } = data
-  const { title: { title }, body } = article
+  const {
+    title: { title },
+    body,
+  } = data.article
   const { html, excerpt } = body.data
   const path = location.pathname
   return (
-    <Layout>
-      <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
+    <Layout pageTitle={title} path={path} description={excerpt}>
       <Breadcrumbs path={path} />
       <PageTitle text={title} />
-      <PageBody dangerouslySetInnerHTML={{__html: html}} />
-      <PageMeta {...article} />
+      <PageBody dangerouslySetInnerHTML={{ __html: html }} />
+      <PageMeta {...data.article} />
     </Layout>
   )
 }
@@ -58,8 +58,7 @@ export const wikiArticleQuery = graphql`
     }
   }
   query($slug: String!) {
-    ...siteMetaQuery
-    article: contentfulWikiArticle(slug: {eq: $slug}) {
+    article: contentfulWikiArticle(slug: { eq: $slug }) {
       ...articleFields
     }
   }

@@ -2,22 +2,24 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import Helmet from '../components/Helmet'
 import PostTitle from '../components/PostTitle'
 import PageBody from '../components/PageBody'
 import FeaturedImage from '../components/FeaturedImage'
 
 const PostTemplate = ({ data, location }) => {
-  const { post, site } = data
-  const { title: { title }, date, body, featuredImage } = post
+  const {
+    title: { title },
+    date,
+    body,
+    featuredImage,
+  } = data.post
   const { timeToRead, html, excerpt } = body.data
   const path = location.pathname
   return (
-    <Layout>
-      <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
-      {featuredImage &&
+    <Layout pageTitle={title} path={path} description={excerpt}>
+      {featuredImage && (
         <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
-      }
+      )}
       <PostTitle title={title} date={date} timeToRead={timeToRead} />
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
@@ -55,7 +57,6 @@ export const postQuery = graphql`
     }
   }
   query($slug: String!) {
-    ...siteMetaQuery
     post: contentfulPost(slug: { eq: $slug }) {
       ...postFields
     }
