@@ -1,64 +1,45 @@
 import React, { Fragment } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import { ThemeProvider } from 'styled-components'
+import PropTypes from 'prop-types'
 
+import Helmet from '../Helmet'
 import Header from '../Header'
 import Footer from '../Footer'
 import theme from '../../utils/theme'
 import { Content } from './styles'
+import favicon from '../../assets/favicon.png'
 
-const Layout = ({ children }) => (
+const Layout = ({ children, site, ...rest }) => (
+  <ThemeProvider theme={theme}>
+    <Fragment>
+      <Helmet site={site.meta} {...rest}>
+        <link rel="icon" type="image/png" href={favicon} />
+      </Helmet>
+      <Header site={site.meta} />
+      <Content>{children}</Content>
+      <Footer />
+    </Fragment>
+  </ThemeProvider>
+)
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+}
+
+export default props => (
   <StaticQuery
     query={graphql`
-      fragment siteMetaQuery on RootQueryType {
+      {
         site {
           meta: siteMetadata {
             title
             url: siteUrl
-          }
-        }
-      }
-      query LayoutQuery {
-        ...siteMetaQuery
-        header: contentfulJson(title: {eq: "Header"}) {
-          data {
-            social {
-              email
-              facebook
-              github
-              linkedin
-            }
-            nav {
-              url
-              title
-              subNav {
-                url
-                title
-              }
-            }
-          }
-        }
-        footer: contentfulJson(title: {eq: "Footer"}) {
-          data {
-            copyright
-            links {
-              url
-              title
-            }
+            description
           }
         }
       }
     `}
-    render={({ header, footer, site }) => (
-      <ThemeProvider theme={theme}>
-        <Fragment>
-          <Header meta={site.meta} header={header.data} />
-          <Content>{children}</Content>
-          <Footer footer={footer.data} />
-        </Fragment>
-      </ThemeProvider>
-    )}
+    render={data => <Layout {...data} {...props} />}
   />
 )
-
-export default Layout
