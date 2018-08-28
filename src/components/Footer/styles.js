@@ -1,28 +1,14 @@
-import React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
 import mediaQuery from '../../utils/mediaQuery'
+import Link from '../Link'
 
-const Link = props => (
-  props.to.startsWith('/')
-    ? <GatsbyLink {...props}>{props.children}</GatsbyLink>
-    : <a {...props} href={props.to}>{props.children}</a>
-)
-
-export default Link
-
-export const Background = styled.footer`
+export const Container = styled.div`
   background-color: ${props => props.theme.darkGray};
-`
-
-export const Content = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 0.75rem;
+  padding: 3rem;
   color: ${props => props.theme.mainWhite};
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   ${mediaQuery.tablet} {
     flex-direction: column;
@@ -31,11 +17,11 @@ export const Content = styled.div`
 
 export const FooterLinks = styled.div`
   background: ${props => props.theme.mainGray};
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   border-radius: ${props => props.theme.largeBorderRadius};
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 1vmin;
   ${mediaQuery.tablet} {
     margin-top: 1rem;
   }
