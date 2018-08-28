@@ -41,22 +41,27 @@ const wikiArticleFragment = `
 const pageSets = [
   {
     query: contentfulQuery(`Page`),
-    component: pageTemplate
-  }, {
+    component: pageTemplate,
+  },
+  {
     query: contentfulQuery(`Post`),
-    component: postTemplate
-  }, {
+    component: postTemplate,
+  },
+  {
     query: contentfulQuery(`BlogCategory`),
-    component: blogCategoryTemplate
-  }, {
+    component: blogCategoryTemplate,
+  },
+  {
     query: contentfulQuery(`WikiSection`),
-    component: wikiSectionTemplate
-  }, {
+    component: wikiSectionTemplate,
+  },
+  {
     query: contentfulQuery(`WikiSubsection`, wikiSubsectionFragment),
-    component: wikiSubsectionTemplate
-  }, {
+    component: wikiSubsectionTemplate,
+  },
+  {
     query: contentfulQuery(`WikiArticle`, wikiArticleFragment),
-    component: wikiArticleTemplate
+    component: wikiArticleTemplate,
   },
 ]
 
