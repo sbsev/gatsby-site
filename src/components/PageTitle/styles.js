@@ -6,7 +6,7 @@ export const Layout = styled.header`
 `
 
 export const Title = styled.h1`
-  color: ${props => props.theme.lightGreen};
+  color: ${props => props.theme.mainYellow};
   background: ${props => props.theme.darkBlue};
   padding: 2rem;
   border-radius: ${props => props.theme.mediumBorderRadius};

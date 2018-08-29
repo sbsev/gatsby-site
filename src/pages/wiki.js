@@ -17,7 +17,6 @@ const WikiIndex = ({ data, location }) => {
 
 export default WikiIndex
 
-// postFields defined in src/templates/post.js
 export const wikiIndexQuery = graphql`
   {
     sections: allContentfulWikiSection(sort: { fields: [title], order: DESC }) {

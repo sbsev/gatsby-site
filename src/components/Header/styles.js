@@ -6,14 +6,12 @@ import LogoComp from '../../assets/logo'
 
 export const Container = styled.div`
   background-color: ${props => props.theme.darkBlue};
-  padding: 0.75rem;
-  color: ${props => props.theme.mainWhite};
   display: grid;
-  grid-gap: 0.25rem 4rem;
+  grid-gap: 1vmin 7vmin;
   align-items: center;
   justify-content: center;
   grid-auto-columns: max-content;
-  ${mediaQuery.minTablet} {
+  ${mediaQuery.minLaptop} {
     grid-template-columns: auto 1fr auto;
     padding: 1.25rem 2rem;
   }
