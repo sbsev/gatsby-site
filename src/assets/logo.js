@@ -1,7 +1,7 @@
 import React from 'react'
 import { withTheme } from 'styled-components'
 
-const Logo = ({ className, theme: { mainBlue, darkBlue, mainGreen } }) => (
+const Logo = ({ className, theme: { mainBlue, darkBlue, darkYellow } }) => (
   <svg
     className={className}
     clipRule="evenodd"
@@ -27,7 +27,7 @@ const Logo = ({ className, theme: { mainBlue, darkBlue, mainGreen } }) => (
           d="m70.561 37.43s51.88 21.027 51.88 81.645v56.794h-51.88-51.881v-56.794c0-60.618 51.881-81.645 51.881-81.645m0-1.079-.375.152c-.537.218-13.305 5.479-26.269 18.307-11.969 11.843-26.237 32.606-26.237 64.264v57.794h105.761v-1-56.794c0-31.658-14.268-52.421-26.237-64.265-12.963-12.827-25.73-18.088-26.267-18.306z"
           fill={darkBlue}
         />
-        <path d="m48.899 26.008h43.325v25.027h-43.325z" fill={mainGreen} />
+        <path d="m48.899 26.008h43.325v25.027h-43.325z" fill={darkYellow} />
         <path
           d="m91.724 26.508v24.027h-42.325v-24.027zm1-1h-1-42.325-1v26.027h44.325v-1-24.027z"
           fill={darkBlue}
@@ -71,13 +71,13 @@ const Logo = ({ className, theme: { mainBlue, darkBlue, mainGreen } }) => (
       />
       <path
         d="m70.531 124.977-9.816-9.817c-.684 1.955-1.076 4.13-1.076 6.44 0 8.255 4.889 14.949 10.922 14.949 6.031 0 10.924-6.693 10.924-14.949 0-2.326-.4-4.52-1.093-6.484z"
-        fill={mainGreen}
+        fill={darkYellow}
         fillOpacity=".8"
         fillRule="nonzero"
       />
       <path
         d="m80.392 115.116c-1.765-5.004-5.498-8.467-9.831-8.467-4.345 0-8.087 3.483-9.846 8.511l9.816 9.817z"
-        fill={mainGreen}
+        fill={darkYellow}
         fillRule="nonzero"
       />
       <ellipse cx="96.36" cy="84.123" fill={darkBlue} rx="1.5" ry="17.5" />
