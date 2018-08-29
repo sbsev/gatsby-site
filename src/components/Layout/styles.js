@@ -1,11 +1,33 @@
 import styled, { injectGlobal } from 'styled-components'
 
+import mediaQuery, { screenSize } from '../../utils/mediaQuery'
+import typography from '../../utils/typography'
+
+const { phone, desktop } = screenSize
+const {
+  fonts,
+  minFontSize,
+  maxFontSize,
+  minLineHeight,
+  maxLineHeight,
+} = typography
+
 injectGlobal`
   body {
-    font-size: calc(1rem + (1.4 - 1) * ((100vw - 20rem) / (100 - 20)));
-    line-height: calc(1.5rem + (2.2 - 1.5) * ((100vw - 20rem) / (100 - 20)));
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    margin: 0 !important;
+    margin: 0;
+    font-family: ${fonts};
+    font-size: ${minFontSize}em;
+    line-height: ${minLineHeight}em;
+
+    ${mediaQuery.minPhone} {
+      font-size: calc(${minFontSize}em + (${maxFontSize} - ${minFontSize}) * ((100vw - ${phone}em) / (${desktop} - ${phone})));
+      line-height: calc(${minLineHeight}em + (${maxLineHeight} - ${minLineHeight}) * ((100vw - ${phone}em) / (${desktop} - ${phone})));
+    }
+
+    ${mediaQuery.minDesktop} {
+      font-size: ${maxFontSize}em;
+      line-height: ${maxLineHeight}em;
+    }
   }
   a {
     color: inherit;
@@ -38,8 +60,8 @@ injectGlobal`
 `
 
 export const Content = styled.main`
-  margin: 5vmin;
   display: grid;
+  grid-gap: 5vmin;
   grid-template-columns: 1fr ${props => props.theme.maxWidth} 1fr;
   > * {
     grid-column: 2;
