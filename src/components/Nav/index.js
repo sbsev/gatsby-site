@@ -14,7 +14,7 @@ const Nav = ({ nav }) => (
           title={item.title}
           {...item.props}
         >
-          {item.title}
+          {item.title} {item.subNav && <span>&#9662;</span>}
         </NavLink>
         {item.subNav && (
           <SubNav>

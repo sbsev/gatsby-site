@@ -4,14 +4,14 @@ import { Link } from 'gatsby'
 import mediaQuery from '../../utils/mediaQuery'
 
 export const navLinkStyle = css`
-  color: ${props => props.theme.lightGreen};
+  color: ${props => props.theme.mainYellow};
   &:hover {
     color: ${props => props.theme.mainWhite};
     text-decoration: none;
   }
   &.${props => props.activeClassName} {
     border-bottom: ${({ theme }) =>
-      theme.mediumBorder + ` solid ` + theme.lightGreen};
+      theme.mediumBorder + ` solid ` + theme.mainYellow};
     &:hover {
       border-bottom: ${({ theme }) =>
         theme.mediumBorder + ` solid ` + theme.mainWhite};
@@ -26,12 +26,9 @@ export const NavLink = styled(Link)`
 export const NavContainer = styled.nav`
   display: grid;
   grid-auto-flow: column;
-  grid-gap: 2rem;
+  grid-gap: 3vmin;
   grid-auto-columns: max-content;
   justify-self: end;
-  ${mediaQuery.laptop} {
-    justify-content: center;
-  }
 `
 
 export const NavEntry = styled.div`
@@ -41,7 +38,6 @@ export const NavEntry = styled.div`
 export const SubNav = styled.div`
   position: absolute;
   left: 0;
-  top: 2.5rem;
   width: max-content;
   display: none;
   ${NavEntry}:hover & {
