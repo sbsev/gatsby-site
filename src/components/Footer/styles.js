@@ -4,36 +4,29 @@ import mediaQuery from '../../utils/mediaQuery'
 import Link from '../Link'
 
 export const Container = styled.div`
-  background-color: ${props => props.theme.darkGray};
-  padding: 3rem;
-  color: ${props => props.theme.mainWhite};
-  display: flex;
-  justify-content: space-around;
+  background: ${props => props.theme.darkBlue};
+  padding: 5vmin 8vmin;
+  color: ${props => props.theme.mainYellow};
+  display: grid;
+  grid-auto-flow: column;
   align-items: center;
-  ${mediaQuery.tablet} {
-    flex-direction: column;
-  }
+  justify-content: space-around;
+  grid-gap: 3vmin;
 `
 
 export const FooterLinks = styled.div`
-  background: ${props => props.theme.mainGray};
   padding: 0.7rem 1rem;
-  border-radius: ${props => props.theme.largeBorderRadius};
   display: grid;
+  grid-gap: 3vmin;
   grid-auto-flow: column;
-  grid-gap: 1vmin;
-  ${mediaQuery.tablet} {
-    margin-top: 1rem;
+  grid-auto-columns: max-content;
+  justify-content: center;
+  ${mediaQuery.laptop} {
+    grid-row: 2;
+    grid-column: span 2;
   }
 `
 
 export const FooterLink = styled(Link)`
-  color: inherit;
-  &:hover {
-    color: ${props => props.theme.mainGreen};
-    text-decoration: none;
-  }
-  & + & {
-    margin-left: 1rem;
-  }
+  ${props => props.css};
 `

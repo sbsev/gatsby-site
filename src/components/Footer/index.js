@@ -4,20 +4,21 @@ import PropTypes from 'prop-types'
 
 import { Container, FooterLinks, FooterLink } from './styles'
 import Social from '../Social'
+import { navLinkStyle } from '../Nav/styles'
 
 const Footer = ({ footer }) => (
   <Container>
     <div>
       © {new Date().getFullYear()} - {footer.copyright}
     </div>
-    <Social />
     <FooterLinks>
       {footer.links.map(link => (
-        <FooterLink key={link.url} to={link.url}>
+        <FooterLink css={navLinkStyle} key={link.url} to={link.url}>
           {link.title}
         </FooterLink>
       ))}
     </FooterLinks>
+    <Social css={navLinkStyle} />
   </Container>
 )
 
