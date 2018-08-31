@@ -4,7 +4,9 @@ import { Link as GatsbyLink } from 'gatsby'
 
 const Link = ({ to, children, ...rest }) =>
   to.startsWith('/') ? (
-    <GatsbyLink {...rest}>{children}</GatsbyLink>
+    <GatsbyLink to={to} {...rest}>
+      {children}
+    </GatsbyLink>
   ) : (
     <a {...rest} href={to}>
       {children}
