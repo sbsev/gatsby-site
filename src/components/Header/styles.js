@@ -5,23 +5,28 @@ import mediaQuery from '../../utils/mediaQuery'
 import LogoComp from '../../assets/logo'
 
 export const Container = styled.div`
-  background-color: ${props => props.theme.darkBlue};
+  background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: 1vmin 7vmin;
+  grid-gap: 6vmin;
   align-items: center;
-  justify-content: center;
-  grid-auto-columns: max-content;
+  justify-content: space-between;
+  grid-template-areas: 'nav title social';
+  padding: 2vmin 4vmin;
+  ${mediaQuery.minNetbook} {
+    grid-template-areas: 'title nav social';
+  }
   ${mediaQuery.minLaptop} {
     grid-template-columns: auto 1fr auto;
-    padding: 1.25rem 2rem;
+    grid-template-areas: 'title nav social';
   }
 `
 
 export const SiteTitle = styled(Link)`
+  grid-area: title;
   display: grid;
   align-items: center;
   grid-auto-flow: column;
-  grid-gap: 1rem;
+  grid-gap: 1em;
   font-weight: bold;
   ${props => props.styles};
   white-space: nowrap;

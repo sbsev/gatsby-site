@@ -12,7 +12,7 @@ const Header = ({ site }) => (
       {site.title}
     </SiteTitle>
     <Nav />
-    <Social css={navLinkStyle} />
+    <Social expandOnHover iconCss={navLinkStyle} />
   </Container>
 )
 
