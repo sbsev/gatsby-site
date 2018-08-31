@@ -1,11 +1,7 @@
 import React from 'react'
 
-import { Layout, Title } from './styles'
+import { Title } from './styles'
 
-const PageTitle = props => (
-  <Layout>
-    <Title>{props.text}</Title>
-  </Layout>
-)
+const PageTitle = props => <Title>{props.text}</Title>
 
 export default PageTitle

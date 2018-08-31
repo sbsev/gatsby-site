@@ -1,13 +1,7 @@
 import styled from 'styled-components'
 
-export const Layout = styled.header`
-  text-align: center;
-  margin-bottom: 2rem;
-`
-
 export const Title = styled.h1`
-  color: ${props => props.theme.mainYellow};
-  background: ${props => props.theme.darkBlue};
-  padding: 2rem;
-  border-radius: ${props => props.theme.mediumBorderRadius};
+  text-align: center;
+  padding: 0.5em;
+  border-bottom: 1px solid ${props => props.theme.lightGray};
 `
