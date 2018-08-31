@@ -5,25 +5,39 @@ import Link from '../Link'
 
 export const Container = styled.div`
   background: ${props => props.theme.darkBlue};
-  padding: 5vmin 8vmin;
-  color: ${props => props.theme.mainYellow};
+  padding: 5vmin;
+  color: ${props => props.theme.lightBlue};
   display: grid;
-  grid-auto-flow: column;
   align-items: center;
-  justify-content: space-around;
+  justify-items: center;
   grid-gap: 3vmin;
+  grid-template-areas:
+    'social'
+    'copyright'
+    'links';
+  ${mediaQuery.minTablet} {
+    justify-content: space-around;
+    grid-template-areas:
+      'copyright social'
+      'links links';
+  }
+  ${mediaQuery.minLaptop} {
+    grid-template-areas: 'copyright links social';
+  }
+`
+
+export const Copyright = styled.div`
+  grid-area: copyright;
 `
 
 export const FooterLinks = styled.div`
-  padding: 0.7rem 1rem;
+  grid-area: links;
   display: grid;
   grid-gap: 3vmin;
   grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  justify-content: center;
-  ${mediaQuery.laptop} {
-    grid-row: 2;
-    grid-column: span 2;
+  ${mediaQuery.phone} {
+    grid-template-rows: auto auto;
+    justify-items: center;
   }
 `
 

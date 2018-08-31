@@ -2,15 +2,15 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import { Container, FooterLinks, FooterLink } from './styles'
+import { Container, Copyright, FooterLinks, FooterLink } from './styles'
 import Social from '../Social'
 import { navLinkStyle } from '../Nav/styles'
 
 const Footer = ({ footer }) => (
   <Container>
-    <div>
+    <Copyright>
       © {new Date().getFullYear()} - {footer.copyright}
-    </div>
+    </Copyright>
     <FooterLinks>
       {footer.links.map(link => (
         <FooterLink css={navLinkStyle} key={link.url} to={link.url}>
@@ -18,7 +18,7 @@ const Footer = ({ footer }) => (
         </FooterLink>
       ))}
     </FooterLinks>
-    <Social css={navLinkStyle} />
+    <Social iconCss={navLinkStyle} />
   </Container>
 )
 
