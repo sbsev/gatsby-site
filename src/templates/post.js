@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PostTitle from '../components/PostTitle'
 import PageBody from '../components/PageBody'
-import FeaturedImage from '../components/FeaturedImage'
 
 const PostTemplate = ({ data, location }) => {
   const {
@@ -14,13 +13,10 @@ const PostTemplate = ({ data, location }) => {
     featuredImage,
   } = data.post
   const { timeToRead, html, excerpt } = body.data
-  const path = location.pathname
+  const titleData = { featuredImage, title, date, timeToRead }
   return (
-    <Layout pageTitle={title} path={path} description={excerpt}>
-      {featuredImage && (
-        <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
-      )}
-      <PostTitle title={title} date={date} timeToRead={timeToRead} />
+    <Layout pageTitle={title} path={location.pathname} description={excerpt}>
+      <PostTitle {...titleData} />
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
