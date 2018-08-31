@@ -1,12 +1,15 @@
 import React from 'react'
-import { Container, Title, Meta } from './styles'
+import { Container, FeaturedImage, Title, Meta } from './styles'
 import { DateIcon, TimeIcon } from '../Icons'
 
-const PostTitle = props => (
+const PostTitle = ({ featuredImage, title, date, timeToRead }) => (
   <Container>
-    <Title>{props.title}</Title>
+    {featuredImage && (
+      <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
+    )}
+    <Title>{title}</Title>
     <Meta>
-      <DateIcon /> {props.date} | <TimeIcon /> {props.timeToRead} Min Lesezeit
+      <DateIcon /> {date} | <TimeIcon /> {timeToRead} Min Lesezeit
     </Meta>
   </Container>
 )
