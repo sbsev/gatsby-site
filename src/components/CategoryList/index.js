@@ -1,32 +1,27 @@
 import React from 'react'
 
-import { List, ListTitle, CategoryIcon, CategoryLink } from './styles'
+import { Container, List, CategoryIcon, CategoryLink } from './styles'
 
 const Category = ({ category }) => {
   const { title, slug, icon } = category
   const link = `/blog/` + (slug === `alle` ? `` : slug)
-  return <CategoryLink
-    exact
-    activeClassName='active'
-    to={link}
-  >
-    <CategoryIcon src={icon.file.url} alt={icon.title}/>
-    {title}
-  </CategoryLink>
+  return (
+    <CategoryLink exact activeClassName="active" to={link}>
+      <CategoryIcon src={icon.file.url} alt={icon.title} />
+      {title}
+    </CategoryLink>
+  )
 }
 
 const CategoryList = ({ title, categories }) => (
-  <div>
-    <ListTitle>{title}</ListTitle>
+  <Container>
+    <h1>{title}</h1>
     <List>
-      {categories.map(category =>
-        <Category
-          key={category.node.slug}
-          category={category.node}
-        />
-      )}
+      {categories.map(category => (
+        <Category key={category.node.slug} category={category.node} />
+      ))}
     </List>
-  </div>
+  </Container>
 )
 
 export default CategoryList

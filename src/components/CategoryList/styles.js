@@ -3,31 +3,33 @@ import { Link } from 'gatsby'
 
 import mediaQuery from '../../utils/mediaQuery'
 
+export const Container = styled.div`
+  ${mediaQuery.minTablet} {
+    grid-column: 4 !important;
+    grid-row: 2;
+  }
+  margin-bottom: 5vmin;
+`
+
 export const CategoryIcon = styled.img`
-  height: 1.75rem;
-  width: 1.75rem;
-  margin: 0 1rem 0 0;
+  height: 1.75em;
+  width: 1.75em;
+  margin: 0 1em 0 0;
   background: ${props => props.theme.lightGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
-  padding: 0.2rem;
+  padding: 0.2em;
 `
 
 export const CategoryLink = styled(Link)`
   display: flex;
   white-space: nowrap;
   &.${props => props.activeClassName} {
-    color: ${props => props.theme.mainGreen};
+    color: ${props => props.theme.lightBlue};
   }
 `
 
 export const List = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  grid-gap: 1rem;
-`
-
-export const ListTitle = styled.h1`
-  ${mediaQuery.minPhone} {
-    margin-top: 0;
-  }
+  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  grid-gap: 1em;
 `
