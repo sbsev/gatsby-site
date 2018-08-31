@@ -4,31 +4,43 @@ import { Link } from 'gatsby'
 import mediaQuery from '../../utils/mediaQuery'
 
 export const navLinkStyle = css`
-  color: ${props => props.theme.mainYellow};
-  &:hover {
+  color: ${props => props.theme.lightBlue};
+  :hover {
     color: ${props => props.theme.mainWhite};
-    text-decoration: none;
   }
   &.${props => props.activeClassName} {
     border-bottom: ${({ theme }) =>
-      theme.mediumBorder + ` solid ` + theme.mainYellow};
-    &:hover {
+      theme.mediumBorder + ` solid ` + theme.lightBlue};
+    :hover {
       border-bottom: ${({ theme }) =>
         theme.mediumBorder + ` solid ` + theme.mainWhite};
     }
   }
 `
 
-export const NavLink = styled(Link)`
-  ${navLinkStyle};
-`
-
-export const NavContainer = styled.nav`
+export const Container = styled.nav`
+  grid-area: nav;
   display: grid;
-  grid-auto-flow: column;
   grid-gap: 3vmin;
-  grid-auto-columns: max-content;
-  justify-self: end;
+  ${props => props.css};
+  ${mediaQuery.netbook} {
+    position: fixed;
+    left: 0;
+    z-index: 2;
+    background: ${props => props.theme.darkGray};
+    padding: 5vmin;
+    grid-gap: 1em;
+    height: 100%;
+    min-width: 15vw;
+    grid-auto-rows: max-content;
+    transform: translate(${props => (props.showNav ? `0` : `-100%`)});
+    transition: transform 0.5s ease;
+  }
+  ${mediaQuery.minNetbook} {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    justify-self: end;
+  }
 `
 
 export const NavEntry = styled.div`
@@ -45,13 +57,42 @@ export const SubNav = styled.div`
     display: grid;
     grid-template-columns: ${props =>
       props.children.length >= 10 ? `1fr 1fr` : `1fr`};
-    grid-gap: 0 1rem;
-    background: ${props => props.theme.mainBlue};
-    padding: 0.5rem 1rem;
+    grid-gap: 0 1em;
+    background: ${props => props.theme.lightGreen};
+    padding: 0.5em 1em;
     border-radius: ${props => props.theme.smallBorderRadius};
     right: 0;
-    ${mediaQuery.phone} {
-      display: none;
-    }
   }
+`
+
+const span = css`
+  grid-column: 1/-1;
+  border-top: 1px solid ${props => props.theme.mainWhite};
+`
+
+export const NavLink = styled(Link)`
+  ${navLinkStyle};
+  ${SubNav} & {
+    color: ${props => props.theme.mainWhite};
+    :hover {
+      color: ${props => props.theme.darkBlue};
+    }
+    ${props => props.span && span};
+  }
+`
+
+export const Toggle = styled.div`
+  font-size: 1.8em;
+  cursor: pointer;
+  ${mediaQuery.minNetbook} {
+    display: none;
+  }
+  ${props =>
+    props.inside &&
+    `
+    position: absolute;
+    top: 0.3em;
+    right: 0.5em;
+  `};
+  ${navLinkStyle};
 `

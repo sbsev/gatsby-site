@@ -2,38 +2,7 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import { NavContainer, NavEntry, SubNav, NavLink } from './styles'
-
-const Nav = ({ nav }) => (
-  <NavContainer role="navigation">
-    {nav.map(item => (
-      <NavEntry key={item.url}>
-        <NavLink
-          activeClassName="active"
-          to={item.url}
-          title={item.title}
-          {...item.props}
-        >
-          {item.title} {item.subNav && <span>&#9662;</span>}
-        </NavLink>
-        {item.subNav && (
-          <SubNav>
-            {item.subNav.map(subItem => (
-              <NavLink
-                key={subItem.url}
-                to={item.url + subItem.url}
-                title={subItem.title}
-                {...subItem.props}
-              >
-                {subItem.title}
-              </NavLink>
-            ))}
-          </SubNav>
-        )}
-      </NavEntry>
-    ))}
-  </NavContainer>
-)
+import Nav from './comp'
 
 export default props => (
   <StaticQuery
@@ -47,6 +16,7 @@ export default props => (
               subNav {
                 url
                 title
+                span
               }
             }
           }
@@ -66,6 +36,7 @@ Nav.propTypes = {
         PropTypes.shape({
           url: PropTypes.string.isRequired,
           title: PropTypes.string.isRequired,
+          span: PropTypes.bool,
         })
       ),
     })
