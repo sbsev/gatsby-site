@@ -3,14 +3,14 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
-import BlogIndex from '../components/BlogIndex'
+import PostList from '../components/PostList'
 
 const Blog = ({ data, location }) => {
   const title = `Blog`
   return (
     <Layout pageTitle={title} path={location.pathname}>
       <PageTitle text={title} />
-      <BlogIndex {...data} />
+      <PostList {...data} />
     </Layout>
   )
 }

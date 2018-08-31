@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
-import BlogIndex from '../components/BlogIndex'
+import PostList from '../components/PostList'
 
 const blogCategoryTemplate = ({ data, location }) => {
   const { activeCategory = { title: ``, description: { text: `` } } } = data
@@ -13,7 +13,7 @@ const blogCategoryTemplate = ({ data, location }) => {
   return (
     <Layout pageTitle={title} path={path} description={text}>
       <PageTitle text={title} />
-      <BlogIndex {...data} />
+      <PostList {...data} />
     </Layout>
   )
 }
