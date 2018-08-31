@@ -19,7 +19,7 @@ const theme = {
   mainWhite: `white`,
   mainBlack: `black`,
 
-  maxWidth: `50rem`,
+  maxWidth: `40em`,
 
   smallBorder: `0.1rem`,
   mediumBorder: `0.15rem`,
