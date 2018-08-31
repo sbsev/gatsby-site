@@ -60,10 +60,14 @@ injectGlobal`
 `
 
 export const Content = styled.main`
+  padding: 3vmin 0;
   display: grid;
-  grid-gap: 5vmin;
-  grid-template-columns: 1fr ${props => props.theme.maxWidth} 1fr;
+  grid-gap: 3vmin;
+  grid-template-columns:
+    auto auto minmax(auto, ${props => props.theme.maxWidth})
+    auto auto;
+  grid-auto-rows: max-content;
   > * {
-    grid-column: 2;
+    grid-column: 3;
   }
 `

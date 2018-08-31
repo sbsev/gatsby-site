@@ -8,14 +8,11 @@ import Header from '../Header'
 import Footer from '../Footer'
 import theme from '../../utils/theme'
 import { Content } from './styles'
-import favicon from '../../assets/favicon.png'
 
 const Layout = ({ children, site, ...rest }) => (
   <ThemeProvider theme={theme}>
     <Fragment>
-      <Helmet site={site.meta} {...rest}>
-        <link rel="icon" type="image/png" href={favicon} />
-      </Helmet>
+      <Helmet site={site.meta} {...rest} />
       <Header site={site.meta} />
       <Content>{children}</Content>
       <Footer />
