@@ -2,25 +2,25 @@ import styled from 'styled-components'
 
 import mediaQuery from '../../utils/mediaQuery'
 
-export const ResponsiveList = styled.ol`
+export const Container = styled.ol`
   display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  justify-items: center;
-  
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  padding: 0;
+
   list-style: none;
   counter-reset: section;
   > li {
     position: relative;
-    margin-top: 6rem;
+    margin-top: 6em;
     ${mediaQuery.phone} {
-      margin-top: 3.75rem;
+      margin-top: 3.75em;
     }
   }
   > li:before {
     counter-increment: section;
-    content: counter(section) ".";
-    padding-right: 0.5rem;
+    content: counter(section) '.';
+    padding-right: 0.5em;
   }
   li ol {
     list-style: none;
@@ -28,27 +28,26 @@ export const ResponsiveList = styled.ol`
   }
   ol li:before {
     counter-increment: inner;
-    content: counter(section) "." counters(inner,'.');
-    padding-right: 0.5rem;
+    content: counter(section) '.' counters(inner, '.');
+    padding-right: 0.5em;
   }
 `
 
 export const Section = styled.li`
   background: ${props => props.theme.veryLightGray};
-  padding: 1rem 0.7rem;
+  padding: 0.5em;
   border-radius: ${props => props.theme.smallBorderRadius};
-  width: 100%;
 `
 
 export const SectionIcon = styled.img`
   position: absolute;
-  width: 5rem;
-  top: -6rem;
+  width: 5em;
+  top: -6em;
   left: 0;
   right: 0;
   margin: auto;
   ${mediaQuery.phone} {
-    width: 3rem;
-    top: -3.75rem;
+    width: 3em;
+    top: -3.75em;
   }
 `
