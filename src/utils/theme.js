@@ -28,6 +28,10 @@ const theme = {
   smallBorderRadius: `0.2rem`,
   mediumBorderRadius: `0.5rem`,
   largeBorderRadius: `1rem`,
+
+  shortTrans: `0.3s`,
+  mediumTrans: `0.6s`,
+  longTrans: `1s`,
 }
 
 export default theme
