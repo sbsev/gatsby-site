@@ -5,6 +5,7 @@ import mediaQuery from '../../utils/mediaQuery'
 
 export const navLinkStyle = css`
   color: ${props => props.theme.lightBlue};
+  transition: ${props => props.theme.shortTrans};
   :hover {
     color: ${props => props.theme.mainWhite};
   }
@@ -25,7 +26,7 @@ export const Container = styled.nav`
   ${props => props.css};
   ${mediaQuery.netbook} {
     position: fixed;
-    left: 0;
+    right: 100%;
     z-index: 2;
     background: ${props => props.theme.darkGray};
     padding: 5vmin;
@@ -33,8 +34,8 @@ export const Container = styled.nav`
     height: 100%;
     min-width: 15vw;
     grid-auto-rows: max-content;
-    transform: translate(${props => (props.showNav ? `0` : `-100%`)});
-    transition: transform 0.5s ease;
+    transform: translate(${props => (props.showNav ? `99%` : `0`)});
+    transition: ${props => props.theme.mediumTrans};
   }
   ${mediaQuery.minNetbook} {
     grid-auto-flow: column;
@@ -61,7 +62,6 @@ export const SubNav = styled.div`
     background: ${props => props.theme.lightGreen};
     padding: 0.5em 1em;
     border-radius: ${props => props.theme.smallBorderRadius};
-    right: 0;
   }
 `
 
