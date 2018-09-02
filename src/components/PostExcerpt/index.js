@@ -22,7 +22,7 @@ const PostExcerpt = ({ post }) => (
     <Tags>
       Tags:{' '}
       {post.tags.map(tag => (
-        <Tag>{tag}</Tag>
+        <Tag key={tag}>{tag}</Tag>
       ))}
     </Tags>
   </article>
