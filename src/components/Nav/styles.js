@@ -23,7 +23,7 @@ export const Container = styled.nav`
   grid-area: nav;
   display: grid;
   grid-gap: 3vmin;
-  ${props => props.css};
+  grid-auto-columns: max-content;
   ${mediaQuery.netbook} {
     position: fixed;
     right: 100%;
@@ -39,9 +39,9 @@ export const Container = styled.nav`
   }
   ${mediaQuery.minNetbook} {
     grid-auto-flow: column;
-    grid-auto-columns: max-content;
     justify-self: end;
   }
+  ${props => props.css};
 `
 
 export const NavEntry = styled.div`
