@@ -71,6 +71,7 @@ class Nav extends React.Component {
                       to={item.url + subItem.url}
                       title={subItem.title}
                       span={subItem.span}
+                      onClick={this.toggleNav}
                     >
                       {subItem.title}
                     </NavLink>
