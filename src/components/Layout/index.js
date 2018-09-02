@@ -8,6 +8,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import theme from '../../utils/theme'
 import { Content } from './styles'
+import Scrollup from '../Scrollup'
 
 const Layout = ({ children, site, ...rest }) => (
   <ThemeProvider theme={theme}>
@@ -16,6 +17,7 @@ const Layout = ({ children, site, ...rest }) => (
       <Header site={site.meta} />
       <Content>{children}</Content>
       <Footer />
+      <Scrollup />
     </Fragment>
   </ThemeProvider>
 )
