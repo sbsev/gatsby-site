@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const imageGrid = css => `
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(5em, 12em));
+  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
   margin: 2em 0;
 
   h1, h2, h3, h4, h5, h6 {
