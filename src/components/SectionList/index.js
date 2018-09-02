@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import { Section, Container, SectionIcon } from './styles'
+import { Container, Section, SectionIcon } from './styles'
 
 const SectionList = ({ sections }) => (
   <Container>

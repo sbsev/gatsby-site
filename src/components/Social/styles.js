@@ -13,14 +13,18 @@ export const Wrapper = styled.div`
 `
 
 const expandOnHover = css`
-  display: none;
+  display: grid;
+  visibility: hidden;
+  opacity: 0;
   position: absolute;
   background: ${props => props.theme.lightGreen};
   border-radius: ${props => props.theme.smallBorderRadius};
   padding: 1vmin;
   font-size: 1.8em;
+  transition: ${props => props.theme.shortTrans};
   ${Wrapper}:hover & {
-    display: grid;
+    visibility: visible;
+    opacity: 1;
   }
 `
 
