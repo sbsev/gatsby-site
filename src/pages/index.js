@@ -6,7 +6,7 @@ import LandingGrid from '../components/LandingGrid'
 import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
-const PageTemplate = ({ data, location }) => {
+const LandingPage = ({ data, location }) => {
   const { images, page } = data
   const {
     title: { title },
@@ -23,7 +23,7 @@ const PageTemplate = ({ data, location }) => {
   )
 }
 
-export default PageTemplate
+export default LandingPage
 
 export const query = graphql`
   {

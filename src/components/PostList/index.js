@@ -9,8 +9,8 @@ const PostList = ({ posts, categories }) => (
     <CategoryList title="Kategorien" categories={categories.edges} />
     {posts && (
       <Posts>
-        {posts.edges.map(({ node: post }) => (
-          <PostExcerpt key={post.slug} post={post} />
+        {posts.edges.map(({ node }) => (
+          <PostExcerpt key={node.slug} post={node} />
         ))}
       </Posts>
     )}
