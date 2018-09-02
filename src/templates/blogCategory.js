@@ -20,7 +20,7 @@ const blogCategoryTemplate = ({ data, location }) => {
 
 export default blogCategoryTemplate
 
-export const blogCategoryQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     posts: allContentfulPost(
       sort: { fields: [date], order: DESC }

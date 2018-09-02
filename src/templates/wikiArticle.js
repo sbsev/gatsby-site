@@ -26,7 +26,7 @@ const WikiArticleTemplate = ({ data, location }) => {
 
 export default WikiArticleTemplate
 
-export const wikiArticleQuery = graphql`
+export const query = graphql`
   fragment articleFields on ContentfulWikiArticle {
     title {
       title

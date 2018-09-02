@@ -32,7 +32,7 @@ const WikiSectionTemplate = ({ data, location }) => {
 
 export default WikiSectionTemplate
 
-export const wikiSectionQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     section: contentfulWikiSection(slug: { eq: $slug }) {
       title

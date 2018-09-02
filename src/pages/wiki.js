@@ -17,7 +17,7 @@ const WikiIndex = ({ data, location }) => {
 
 export default WikiIndex
 
-export const wikiIndexQuery = graphql`
+export const query = graphql`
   {
     sections: allContentfulWikiSection(sort: { fields: [title], order: DESC }) {
       edges {

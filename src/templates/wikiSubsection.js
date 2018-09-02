@@ -37,7 +37,7 @@ const WikiSubsectionTemplate = ({ data, location }) => {
 
 export default WikiSubsectionTemplate
 
-export const wikiSectionQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
     subsection: contentfulWikiSubsection(slug: { eq: $slug }) {
       title
