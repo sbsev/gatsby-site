@@ -16,6 +16,7 @@ const mediaQuery = {
   netbook: max(screenSize.netbook),
   laptop: max(screenSize.laptop),
   desktop: max(screenSize.desktop),
+
   minPhone: min(screenSize.phone),
   minTablet: min(screenSize.tablet),
   minNetbook: min(screenSize.netbook),

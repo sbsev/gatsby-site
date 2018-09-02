@@ -8,15 +8,12 @@ import PageBody from '../components/PageBody'
 const PostTemplate = ({ data, location }) => {
   const {
     title: { title },
-    date,
     body,
-    featuredImage,
   } = data.post
-  const { timeToRead, html, excerpt } = body.data
-  const titleData = { featuredImage, title, date, timeToRead }
+  const { html, excerpt } = body.data
   return (
     <Layout pageTitle={title} path={location.pathname} description={excerpt}>
-      <PostTitle {...titleData} />
+      <PostTitle {...data} />
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
@@ -30,6 +27,16 @@ export const query = graphql`
     title {
       title
     }
+    author {
+      name
+      email
+      homepage
+      profilePhoto {
+        fixed(width: 100) {
+          src
+        }
+      }
+    }
     category {
       title
     }
@@ -38,11 +45,8 @@ export const query = graphql`
     featuredImage {
       file {
         url
-        fileName
-        contentType
       }
       title
-      description
     }
     body {
       data: childMarkdownRemark {
