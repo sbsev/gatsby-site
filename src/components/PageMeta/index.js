@@ -7,13 +7,14 @@ const PageMeta = ({ created, updated, authors }) => {
   authors = _.uniqWith(authors, _.isEqual)
   return (
     <Container>
-      Erstellt: {created} &bull;
+      Erstellt: {created}
       {created !== updated && (
-        <span> Zuletzt bearbeitet: {updated} &bull; </span>
+        <span> &bull; Zuletzt bearbeitet: {updated}</span>
       )}
       {authors.length && (
         <span>
-          Autor
+          {' '}
+          &bull; Autor
           {authors.length > 1 && `en`}:{' '}
           {authors
             .map(author => (
