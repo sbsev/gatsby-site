@@ -28,10 +28,17 @@ class Nav extends React.Component {
     }
   }
 
+  handleScroll = () => {
+    if (this.state.showNav) {
+      this.toggleNav()
+    }
+  }
+
   componentDidMount() {
     events.forEach(event =>
       document.addEventListener(event, this.handleClickOutside)
     )
+    document.addEventListener(`scroll`, this.handleScroll)
   }
 
   componentWillUnmount() {
