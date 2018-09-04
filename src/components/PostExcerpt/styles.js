@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 
 export { UserEdit } from 'styled-icons/fa-solid/UserEdit'
 export { Email } from 'styled-icons/material/Email'
@@ -24,11 +25,6 @@ export const Meta = styled.div`
   display: grid;
   grid: auto auto / max-content max-content;
   grid-gap: 0 1em;
-  img {
-    grid-row: 1 / -1;
-    border-radius: 50%;
-    height: 100%;
-  }
   span {
     display: flex;
     align-items: center;
@@ -38,22 +34,27 @@ export const Meta = styled.div`
   }
 `
 
-export const Tags = styled.div`
+export const AuthorPhoto = styled(Img)`
+  grid-row: 1 / -1;
+  border-radius: 50%;
+`
+
+export const Categories = styled.div`
   display: flex;
   flex-wrap: wrap;
   font-size: 0.8em;
 `
 
-export const Tag = styled.span`
+export const Category = styled(Link)`
   padding: 0 0.5em;
   border-radius: ${props => props.theme.smallBorderRadius};
   background: ${props => props.theme.lightGray};
   margin-left: 0.5em;
 `
 
-export const FeaturedImage = styled.img`
+export const FeaturedImage = styled(Img)`
   width: 50%;
   transform: translate(50%);
   max-height: 20vmax;
-  object-fit: cover;
+  border-radius: ${props => props.theme.mediumBorderRadius};
 `
