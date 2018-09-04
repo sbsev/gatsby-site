@@ -4,9 +4,10 @@ import {
   Title,
   TitleLink,
   Meta,
-  Tags,
-  Tag,
+  Categories,
+  Category,
   FeaturedImage,
+  AuthorPhoto,
   UserEdit,
   AuthorPage,
   Email,
@@ -15,20 +16,20 @@ import {
 } from './styles'
 
 const PostExcerpt = ({ post }) => {
-  const { featuredImage, slug, title, author, date, tags, body } = post
+  const { featuredImage, slug, title, author, date, categories, body } = post
   const {
     data: { timeToRead, excerpt },
   } = body
   return (
     <article>
       {featuredImage && (
-        <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
+        <FeaturedImage fluid={featuredImage.fluid} alt={featuredImage.title} />
       )}
       <Title>
         <TitleLink to={'/blog/' + slug}>{title.title}</TitleLink>
       </Title>
       <Meta>
-        <img src={author.profilePhoto.fixed.src} alt={author.name} />
+        <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
         <span>
           <span>
             <UserEdit size="1em" /> &nbsp; {author.name}
@@ -50,12 +51,14 @@ const PostExcerpt = ({ post }) => {
         </span>
       </Meta>
       <p dangerouslySetInnerHTML={{ __html: excerpt }} />
-      <Tags>
-        Tags:{' '}
-        {tags.map(tag => (
-          <Tag key={tag}>{tag}</Tag>
+      <Categories>
+        Kategorien:{' '}
+        {categories.map(category => (
+          <Category key={category.slug} to={category.slug}>
+            {category.title}
+          </Category>
         ))}
-      </Tags>
+      </Categories>
     </article>
   )
 }
