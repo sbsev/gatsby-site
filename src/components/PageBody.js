@@ -35,9 +35,12 @@ export const PageBody = styled.article`
   #heads,
   #alumni {
     ${imageGrid(`
-    .gatsby-resp-image-wrapper {
-      border-radius: 50%;
-    }
+      .gatsby-resp-image-wrapper {
+        border-radius: 50%;
+      }
+      img {
+        border-radius: 50%;
+      }
     `)};
   }
 
