@@ -7,11 +7,11 @@ import LogoComp from '../../assets/logo'
 export const Container = styled.div`
   background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: 6vmin;
+  grid-gap: 5vmin;
   align-items: center;
   justify-content: space-between;
   grid-template-areas: 'nav title social';
-  padding: 2vmin 4vmin;
+  padding: 2vmin 3vmin;
   ${mediaQuery.minNetbook} {
     grid-template-areas: 'title nav social';
   }
