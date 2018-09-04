@@ -22,16 +22,16 @@ export const navLinkStyle = css`
 export const Container = styled.nav`
   grid-area: nav;
   display: grid;
-  grid-gap: 3vmin;
+  grid-gap: 2vw;
   grid-auto-columns: max-content;
   ${mediaQuery.netbook} {
     position: fixed;
     right: 100%;
     z-index: 2;
     background: ${props => props.theme.darkGray};
-    padding: 5vmin;
+    padding: 5vh;
     grid-gap: 1em;
-    height: 100%;
+    height: 100vh;
     min-width: 15vw;
     grid-auto-rows: max-content;
     transform: translate(${props => (props.showNav ? `99%` : `0`)});
