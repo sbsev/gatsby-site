@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
-import LandingGrid from '../components/LandingGrid'
+import LandingTitle from '../components/LandingTitle'
 import PageBody from '../components/PageBody'
 import PageMeta from '../components/PageMeta'
 
@@ -16,7 +16,7 @@ const LandingPage = ({ data, location }) => {
   const { excerpt, html } = body && body.data
   return (
     <Layout pageTitle={title} path={location.pathname} description={excerpt}>
-      <LandingGrid {...{ title, subtitle, images: images.edges }} />
+      <LandingTitle {...{ title, subtitle, images: images.edges }} />
       {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
       <PageMeta {...page} />
     </Layout>
@@ -49,8 +49,9 @@ export const query = graphql`
       edges {
         node {
           title
-          fluid {
-            src
+          description
+          fluid(quality: 100) {
+            ...GatsbyContentfulFluid_withWebp
           }
         }
       }
