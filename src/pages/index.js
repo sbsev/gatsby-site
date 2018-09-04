@@ -41,12 +41,7 @@ export const query = graphql`
           html
         }
       }
-      created: createdAt(formatString: "D. MMMM YYYY", locale: "de")
       updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
-      authors: author {
-        name
-        email
-      }
     }
     images: allContentfulAsset(
       filter: { file: { fileName: { regex: "/stock/" } } }
