@@ -5,6 +5,7 @@ import {
   FeaturedImage,
   Title,
   Author,
+  AuthorPhoto,
   Meta,
   UserEdit,
   AuthorPage,
@@ -18,12 +19,12 @@ const PostTitle = ({ post }) => {
   return (
     <Container>
       {featuredImage && (
-        <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
+        <FeaturedImage fluid={featuredImage.fluid} alt={featuredImage.title} />
       )}
       <Title>{title.title}</Title>
       <Author>
-        <img src={author.profilePhoto.fixed.src} alt={author.name} />
-        <div>
+        <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
+        <span>
           <UserEdit size="1em" /> &nbsp; {author.name} &nbsp;
           {author.homepage && (
             <a href={author.homepage}>
@@ -36,7 +37,7 @@ const PostTitle = ({ post }) => {
               <Email size="1em" />
             </a>
           )}
-        </div>
+        </span>
       </Author>
       <Meta>
         <Date size="1em" /> &nbsp; {date} &nbsp; | &nbsp; <Timer size="1em" />{' '}

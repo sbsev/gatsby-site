@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 export { UserEdit } from 'styled-icons/fa-solid/UserEdit'
 export { Email } from 'styled-icons/material/Email'
@@ -19,17 +20,18 @@ export const Title = styled.h1`
 `
 
 export const Author = styled.div`
-  font-size: 0.9em;
   color: ${props => props.theme.lightBlue};
   text-align: center;
-  img {
-    border-radius: 50%;
-  }
+`
+
+export const AuthorPhoto = styled(Img)`
+  border-radius: 50%;
 `
 
 export const Meta = styled.div`
   font-size: 0.9em;
   margin: 2em 0;
+  padding: 0 1em;
   color: ${props => props.theme.lightBlue};
   border: ${({ theme }) => theme.mediumBorder + ' solid ' + theme.darkBlue};
   border-radius: ${props => props.theme.largeBorderRadius};
@@ -37,9 +39,10 @@ export const Meta = styled.div`
   align-items: center;
 `
 
-export const FeaturedImage = styled.img`
+export const FeaturedImage = styled(Img)`
   width: 100%;
   max-height: 30vmax;
   object-fit: cover;
   margin: 3vmin 0;
+  border-radius: ${props => props.theme.mediumBorderRadius};
 `
