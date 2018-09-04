@@ -3,19 +3,20 @@ import styled from 'styled-components'
 const imageGrid = css => `
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
   margin: 2em 0;
-
   h1, h2, h3, h4, h5, h6 {
     grid-column: 1/-1;
   }
-
   p {
     text-align: center;
     margin: 0;
-
     img {
       width: 100%;
+    }
+    .gatsby-resp-image-wrapper {
+      border-radius: 50%;
+      overflow: hidden;
     }
     em {
       display: block;
@@ -24,6 +25,7 @@ const imageGrid = css => `
     strong {
       display: block;
       font-weight: 200;
+      font-size: 0.9em;
     }
   }
   ${css}
@@ -33,9 +35,9 @@ export const PageBody = styled.article`
   #heads,
   #alumni {
     ${imageGrid(`
-      img {
-        border-radius: 50%;
-      }
+    .gatsby-resp-image-wrapper {
+      border-radius: 50%;
+    }
     `)};
   }
 
