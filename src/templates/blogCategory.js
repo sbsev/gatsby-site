@@ -24,7 +24,7 @@ export const query = graphql`
   query($slug: String!) {
     posts: allContentfulPost(
       sort: { fields: [date], order: DESC }
-      filter: { category: { slug: { eq: $slug } } }
+      filter: { categories: { slug: { eq: $slug } } }
     ) {
       edges {
         node {
