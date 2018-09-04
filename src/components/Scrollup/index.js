@@ -19,7 +19,7 @@ Scrollup.propTypes = {
 }
 
 Scrollup.defaultProps = {
-  showUnder: 1000,
+  showUnder: 2000,
   size: `2em`,
   style: {
     right: 50,
