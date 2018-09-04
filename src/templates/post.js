@@ -31,20 +31,20 @@ export const query = graphql`
       name
       email
       homepage
-      profilePhoto {
+      photo {
         fixed(width: 100) {
-          src
+          ...GatsbyContentfulFixed_withWebp
         }
       }
     }
-    category {
+    categories {
       title
+      slug
     }
-    tags
     date(formatString: "D. MMMM YYYY", locale: "de")
     featuredImage {
-      file {
-        url
+      fluid {
+        ...GatsbyContentfulFluid_withWebp
       }
       title
     }
