@@ -20,11 +20,9 @@ module.exports = {
           {
             resolve: `gatsby-remark-images-contentful`,
             options: {
-              // maxWidth (in pixels) of content container
-              // used as base for generating different widths of each image
-              maxWidth: 1000,
-              showCaptions: true,
-              backgroundColor: `none`,
+              maxWidth: 500,
+              linkImagesToOriginal: false,
+              wrapperStyle: `max-width: none !important;`,
             },
           },
           `gatsby-remark-smartypants`,
@@ -40,5 +38,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
   ],
 }
