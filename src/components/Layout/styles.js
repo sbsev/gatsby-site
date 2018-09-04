@@ -39,6 +39,9 @@ injectGlobal`
     display: grid;
     grid-template-rows: auto 1fr auto;
   }
+  .gatsby-image-outer-wrapper {
+    display: contents;
+  }
 `
 
 export const Content = styled.main`
