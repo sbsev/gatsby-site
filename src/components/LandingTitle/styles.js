@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 import Img from 'gatsby-image'
-import { Circle } from 'styled-icons/feather/Circle'
 
-export { Button } from '../Button'
+export { default as Button } from '../Button'
 
 export const Container = styled.div`
   grid-column: 1 / -1 !important;
@@ -32,6 +31,7 @@ export const Title = styled.div`
 
 export const Hero = styled(Img)`
   max-height: 80vh;
+  transition: ${props => props.theme.mediumTrans};
 `
 
 export const Caption = styled.div`
@@ -56,14 +56,18 @@ export const Dots = styled.div`
   color: ${props => props.theme.mainWhite};
 `
 
-export const Dot = styled(Circle)`
+export const Dot = styled.div`
   border-radius: 50%;
+  height: 1em;
+  width: 1em;
   background: rgba(0, 0, 0, 0.5);
   background: ${props => props.active && props.theme.lightGreen};
   transition: ${props => props.theme.mediumTrans};
+  border: ${({ theme }) => theme.smallBorder + ` solid ` + theme.mainWhite};
   :hover {
     color: ${props => props.theme.lightBlue};
     background: ${props => props.theme.darkBlue};
     transform: scale(1.2);
+    border: ${({ theme }) => theme.smallBorder + ` solid ` + theme.lightBlue};
   }
 `

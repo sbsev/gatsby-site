@@ -31,7 +31,7 @@ const imageGrid = css => `
   ${css}
 `
 
-export const PageBody = styled.article`
+const PageBody = styled.article`
   #heads,
   #alumni {
     ${imageGrid(`

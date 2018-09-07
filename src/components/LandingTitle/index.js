@@ -61,7 +61,6 @@ class LandingTitle extends Component {
               key={ind}
               active={hero === ind}
               onClick={() => this.setHero(ind)}
-              size="1.5em"
             />
           ))}
         </Dots>
