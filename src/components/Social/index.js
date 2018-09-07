@@ -20,21 +20,23 @@ const Social = ({ social, iconSize, containerCss, iconCss, expandOnHover }) => (
   </Wrapper>
 )
 
+const query = graphql`
+  {
+    social: contentfulJson(title: { eq: "Social" }) {
+      data {
+        Email
+        Facebook
+        Github
+        Linkedin
+        Youtube
+      }
+    }
+  }
+`
+
 export default props => (
   <StaticQuery
-    query={graphql`
-      {
-        social: contentfulJson(title: { eq: "Social" }) {
-          data {
-            Email
-            Facebook
-            Github
-            Linkedin
-            Youtube
-          }
-        }
-      }
-    `}
+    query={query}
     render={data => <Social social={data.social.data} {...props} />}
   />
 )

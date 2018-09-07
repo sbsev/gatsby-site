@@ -22,28 +22,30 @@ const Footer = ({ footer }) => (
   </Container>
 )
 
-export default props => (
-  <StaticQuery
-    query={graphql`
-      {
-        footer: contentfulJson(title: { eq: "Footer" }) {
-          data {
-            copyright
-            links {
-              url
-              title
-            }
-          }
-        }
-      }
-    `}
-    render={data => <Footer footer={data.footer.data} {...props} />}
-  />
-)
-
 Footer.propTypes = {
   footer: PropTypes.shape({
     copyright: PropTypes.string.isRequired,
     links: PropTypes.array.isRequired,
   }).isRequired,
 }
+
+const query = graphql`
+  {
+    footer: contentfulJson(title: { eq: "Footer" }) {
+      data {
+        copyright
+        links {
+          url
+          title
+        }
+      }
+    }
+  }
+`
+
+export default props => (
+  <StaticQuery
+    query={query}
+    render={data => <Footer footer={data.footer.data} {...props} />}
+  />
+)

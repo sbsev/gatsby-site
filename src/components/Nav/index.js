@@ -4,25 +4,27 @@ import PropTypes from 'prop-types'
 
 import Nav from './comp'
 
-export default props => (
-  <StaticQuery
-    query={graphql`
-      {
-        nav: contentfulJson(title: { eq: "Nav" }) {
-          data {
-            nav {
-              url
-              title
-              subNav {
-                url
-                title
-                span
-              }
-            }
+const query = graphql`
+  {
+    nav: contentfulJson(title: { eq: "Nav" }) {
+      data {
+        nav {
+          url
+          title
+          subNav {
+            url
+            title
+            span
           }
         }
       }
-    `}
+    }
+  }
+`
+
+export default props => (
+  <StaticQuery
+    query={query}
     render={data => <Nav nav={data.nav.data.nav} {...props} />}
   />
 )

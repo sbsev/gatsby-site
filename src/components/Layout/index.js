@@ -26,9 +26,7 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default props => (
-  <StaticQuery
-    query={graphql`
+const query = graphql`
       {
         site {
           meta: siteMetadata {
@@ -38,7 +36,8 @@ export default props => (
           }
         }
       }
-    `}
-    render={data => <Layout {...data} {...props} />}
-  />
+`
+
+export default props => (
+  <StaticQuery query={query} render={data => <Layout {...data} {...props} />} />
 )
