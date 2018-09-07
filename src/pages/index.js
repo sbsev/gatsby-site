@@ -34,7 +34,6 @@ export const query = graphql`
       subtitle {
         subtitle
       }
-      slug
       body {
         data: childMarkdownRemark {
           excerpt
