@@ -7,13 +7,14 @@ import Helmet from '../Helmet'
 import Header from '../Header'
 import Footer from '../Footer'
 import theme from '../../utils/theme'
-import { Content } from './styles'
+import { Content, GlobalStyle } from './styles'
 import Scrollup from '../Scrollup'
 
 const Layout = ({ children, site, ...rest }) => (
   <ThemeProvider theme={theme}>
     <Fragment>
       <Helmet site={site.meta} {...rest} />
+      <GlobalStyle />
       <Header site={site.meta} />
       <Content>{children}</Content>
       <Footer />
@@ -27,15 +28,15 @@ Layout.propTypes = {
 }
 
 const query = graphql`
-      {
-        site {
-          meta: siteMetadata {
-            title
-            url: siteUrl
-            description
-          }
-        }
+  {
+    site {
+      meta: siteMetadata {
+        title
+        url: siteUrl
+        description
       }
+    }
+  }
 `
 
 export default props => (

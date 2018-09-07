@@ -1,4 +1,4 @@
-import styled, { injectGlobal } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 import mediaQuery, { screenSize } from '../../utils/mediaQuery'
 import typography from '../../utils/typography'
@@ -12,7 +12,7 @@ const {
   maxLineHeight,
 } = typography
 
-injectGlobal`
+export const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: ${fonts};
@@ -32,7 +32,7 @@ injectGlobal`
   }
   a {
     text-decoration: none;
-    color: #003e90;
+    color: ${props => props.theme.darkBlue};
   }
   #___gatsby {
     min-height: 100vh;

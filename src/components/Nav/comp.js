@@ -55,7 +55,7 @@ class Nav extends React.Component {
         <Container
           role="navigation"
           css={css}
-          innerRef={node => (this.node = node)}
+          ref={node => (this.node = node)}
           showNav={this.state.showNav}
         >
           <Toggle inside onClick={this.toggleNav}>
