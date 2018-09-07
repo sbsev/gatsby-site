@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import Link from './Link'
 
-export const Button = styled(Link)`
+const Button = styled(Link)`
   background: ${props => props.theme.darkBlue};
   color: ${props => props.theme.mainWhite};
   border-radius: ${props => props.theme.smallBorderRadius};
@@ -14,6 +14,8 @@ export const Button = styled(Link)`
     background: ${props => props.theme.lightBlue};
   }
 `
+
+export default Button
 
 Button.propTypes = {
   size: PropTypes.string.isRequired,
