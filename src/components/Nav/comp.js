@@ -48,7 +48,9 @@ class Nav extends React.Component {
   }
 
   render() {
-    const { nav, css } = this.props
+    const { nav, chapters, css } = this.props
+    const assembledNav = JSON.parse(JSON.stringify(nav))
+    assembledNav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
     return (
       <Fragment>
         <Toggle onClick={this.toggleNav}>&#9776;</Toggle>
@@ -61,7 +63,7 @@ class Nav extends React.Component {
           <Toggle inside onClick={this.toggleNav}>
             &times;
           </Toggle>
-          {nav.map(item => (
+          {assembledNav.map(item => (
             <NavEntry key={item.url}>
               <NavLink
                 activeClassName="active"

@@ -19,13 +19,27 @@ const query = graphql`
         }
       }
     }
+    chapters: contentfulJson(title: { eq: "Chapters" }) {
+      data {
+        chapters {
+          url
+          title
+        }
+      }
+    }
   }
 `
 
 export default props => (
   <StaticQuery
     query={query}
-    render={data => <Nav nav={data.nav.data.nav} {...props} />}
+    render={data => (
+      <Nav
+        nav={data.nav.data.nav}
+        chapters={data.chapters.data.chapters}
+        {...props}
+      />
+    )}
   />
 )
 
