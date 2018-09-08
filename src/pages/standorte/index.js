@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 
-import Layout from '../components/Layout'
-import PageTitle from '../components/PageTitle'
-import Map from '../components/Map'
-import PageBody from '../components/PageBody'
-import PageMeta from '../components/PageMeta'
+import Layout from '../../components/Layout'
+import PageTitle from '../../components/PageTitle'
+import Map from '../../components/Map'
+import PageBody from '../../components/PageBody'
+import PageMeta from '../../components/PageMeta'
+
+import { Chapters } from './styles'
 
 class ChaptersPage extends Component {
   initMap = () => {
@@ -15,39 +17,35 @@ class ChaptersPage extends Component {
     })
   }
 
-  getChapters = () => {
-    const chapters = this.props.data.nav.data.nav
-      .find(el => el.url === `/standorte`)
-      .subNav.map(el => el.title)
-    chapters.pop()
-    this.chapters = chapters.map(el => el + `, Germany`)
-  }
-
   addMarkers = () => {
-    this.chapters.forEach(el => {
-      this.geocoder.geocode({ address: el }, (res, status) => {
-        if (status === window.google.maps.GeocoderStatus.OK) {
-          new window.google.maps.Marker({
-            map: this.map,
-            position: res[0].geometry.location,
-          })
-        } else {
-          console.warn(`Geocode unsuccessful for ${el}, status: ${status}`)
+    this.props.data.chapters.data.chapters.forEach(el => {
+      this.geocoder.geocode(
+        { address: el.title + `, Germany` },
+        (res, status) => {
+          if (status === window.google.maps.GeocoderStatus.OK) {
+            new window.google.maps.Marker({
+              map: this.map,
+              position: res[0].geometry.location,
+            })
+          } else {
+            console.warn(
+              `Geocode unsuccessful for ${el.title}, status: ${status}`
+            )
+          }
         }
-      })
+      )
     })
   }
 
   componentDidMount() {
     this.geocoder = new window.google.maps.Geocoder()
-    this.getChapters()
     this.initMap()
     this.addMarkers()
   }
 
   render() {
     const { data, location } = this.props
-    const { page } = data
+    const { page, chapters } = data
     const {
       title: { title },
       body,
@@ -58,6 +56,13 @@ class ChaptersPage extends Component {
       <Layout pageTitle={title} path={location.pathname} description={excerpt}>
         <PageTitle text={title} />
         <Map id="map" />
+        <Chapters>
+          {chapters.data.chapters.map(chapter => (
+            <li key={chapter.url}>
+              <Link to={`standorte/` + chapter.url}>{chapter.title}</Link>
+            </li>
+          ))}
+        </Chapters>
         {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
         <PageMeta {...page} />
       </Layout>
@@ -81,15 +86,11 @@ export const query = graphql`
       }
       updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
     }
-    nav: contentfulJson(title: { eq: "Nav" }) {
+    chapters: contentfulJson(title: { eq: "Chapters" }) {
       data {
-        nav {
+        chapters {
           url
           title
-          subNav {
-            url
-            title
-          }
         }
       }
     }
