@@ -7,7 +7,7 @@
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
   "repository": "https://github.com/StudentenBildenSchueler/homepage",
   "dependencies": {
-    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-styled-components": "^1.6.4",
     "gatsby": "^2.0.0-rc.13",
     "gatsby-image": "next",
     "gatsby-plugin-catch-links": "^2.0.2-rc.1",
