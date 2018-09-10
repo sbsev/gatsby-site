@@ -44,6 +44,7 @@ export const query = graphql`
     }
     images: allContentfulAsset(
       filter: { file: { fileName: { regex: "/stock/" } } }
+      sort: { fields: title, order: ASC }
     ) {
       edges {
         node {
