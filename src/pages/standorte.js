@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { graphql, Link } from 'gatsby'
 
-import Layout from '../../components/Layout'
-import PageTitle from '../../components/PageTitle'
-import Map from '../../components/Map'
-import PageBody from '../../components/PageBody'
-import PageMeta from '../../components/PageMeta'
-
-import { Chapters } from './styles'
+import Layout from '../components/Layout'
+import PageTitle from '../components/PageTitle'
+import Map from '../components/styles/Map'
+import PageBody from '../components/styles/PageBody'
+import PageMeta from '../components/PageMeta'
+import Chapters from '../components/styles/Chapters'
 
 class ChaptersPage extends Component {
   initMap = () => {
