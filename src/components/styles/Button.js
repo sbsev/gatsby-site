@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import Link from './Link'
+import Link from '../Link'
 
 const Button = styled(Link)`
   background: ${props => props.theme.darkBlue};
