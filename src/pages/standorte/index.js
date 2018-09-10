@@ -18,27 +18,20 @@ class ChaptersPage extends Component {
   }
 
   addMarkers = () => {
-    this.props.data.chapters.data.chapters.forEach(el => {
-      this.geocoder.geocode(
-        { address: el.title + `, Germany` },
-        (res, status) => {
-          if (status === window.google.maps.GeocoderStatus.OK) {
-            new window.google.maps.Marker({
-              map: this.map,
-              position: res[0].geometry.location,
-            })
-          } else {
-            console.warn(
-              `Geocode unsuccessful for ${el.title}, status: ${status}`
-            )
-          }
-        }
-      )
+    this.props.data.chapters.data.chapters.forEach(chapter => {
+      const marker = new window.google.maps.Marker({
+        map: this.map,
+        position: chapter.coords,
+        label: chapter.title[0],
+        title: chapter.title,
+      })
+      marker.addListener('click', () => {
+        window.location.href = `standorte` + chapter.url
+      })
     })
   }
 
   componentDidMount() {
-    this.geocoder = new window.google.maps.Geocoder()
     this.initMap()
     this.addMarkers()
   }
@@ -86,11 +79,15 @@ export const query = graphql`
       }
       updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
     }
-    chapters: contentfulJson(title: { eq: "Chapters" }) {
+    chapters: contentfulJson(title: { eq: "Standorte" }) {
       data {
         chapters {
           url
           title
+          coords {
+            lat
+            lng
+          }
         }
       }
     }

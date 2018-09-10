@@ -19,7 +19,7 @@ const query = graphql`
         }
       }
     }
-    chapters: contentfulJson(title: { eq: "Chapters" }) {
+    chapters: contentfulJson(title: { eq: "Standorte" }) {
       data {
         chapters {
           url
