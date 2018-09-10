@@ -8,6 +8,8 @@ export const Container = styled.div`
   margin-top: -5vh;
   position: relative;
   text-align: center;
+  height: 90vh;
+  overflow: hidden;
 `
 
 export const Title = styled.div`
@@ -30,8 +32,8 @@ export const Title = styled.div`
 `
 
 export const Hero = styled(Img)`
-  max-height: 80vh;
-  transition: ${props => props.theme.mediumTrans};
+  object-fit: cover;
+  height: 100%;
 `
 
 export const Dots = styled.div`
@@ -40,15 +42,15 @@ export const Dots = styled.div`
   transform: translate(-50%);
   bottom: 1em;
   display: grid;
-  grid-gap: 1em;
+  grid-gap: 1vw;
   grid-auto-flow: column;
   color: ${props => props.theme.mainWhite};
 `
 
 export const Dot = styled.div`
   border-radius: 50%;
-  height: 1em;
-  width: 1em;
+  height: 0.8em;
+  width: 0.8em;
   background: rgba(0, 0, 0, 0.5);
   background: ${props => props.active && props.theme.lightGreen};
   transition: ${props => props.theme.mediumTrans};

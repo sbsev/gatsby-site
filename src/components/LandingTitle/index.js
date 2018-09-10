@@ -54,7 +54,6 @@ class LandingTitle extends Component {
           <h2>{subtitle}</h2>
           <Button to="/standorte">Standorte</Button>
         </Title>
-        {/* {image.description && <Caption>{image.description}</Caption>} */}
         <Dots>
           {Array.apply(null, { length: images.length }).map((el, ind) => (
             <Dot
