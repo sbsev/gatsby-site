@@ -51,7 +51,7 @@ class ChaptersPage extends Component {
         <Chapters>
           {chapters.data.chapters.map(chapter => (
             <li key={chapter.url}>
-              <Link to={`standorte/` + chapter.url}>{chapter.title}</Link>
+              <Link to={`/standorte` + chapter.url}>{chapter.title}</Link>
             </li>
           ))}
         </Chapters>
