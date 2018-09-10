@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PostTitle from '../components/PostTitle'
-import PageBody from '../components/PageBody'
+import PageBody from '../components/styles/PageBody'
 
 const PostTemplate = ({ data, location }) => {
   const {

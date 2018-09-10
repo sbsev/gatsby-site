@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import LandingTitle from '../components/LandingTitle'
-import PageBody from '../components/PageBody'
+import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const LandingPage = ({ data, location }) => {

@@ -5,7 +5,7 @@ import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
 import SectionList from '../components/SectionList'
 
-const WikiIndex = ({ data, location }) => {
+const Wiki = ({ data, location }) => {
   const title = `Wiki`
   return (
     <Layout pageTitle={title} path={location.pathname}>
@@ -15,7 +15,7 @@ const WikiIndex = ({ data, location }) => {
   )
 }
 
-export default WikiIndex
+export default Wiki
 
 export const query = graphql`
   {
