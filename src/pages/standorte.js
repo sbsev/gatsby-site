@@ -25,7 +25,7 @@ class ChaptersPage extends Component {
         title: chapter.title,
       })
       marker.addListener('click', () => {
-        window.location.href = `standorte` + chapter.url
+        window.location.href = `/standorte` + chapter.url
       })
     })
   }
@@ -51,7 +51,7 @@ class ChaptersPage extends Component {
         <Chapters>
           {chapters.data.chapters.map(chapter => (
             <li key={chapter.url}>
-              <Link to={`standorte/` + chapter.url}>{chapter.title}</Link>
+              <Link to={`/standorte` + chapter.url}>{chapter.title}</Link>
             </li>
           ))}
         </Chapters>
