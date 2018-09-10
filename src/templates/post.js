@@ -1,24 +1,19 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import Helmet from '../components/Helmet'
+import Layout from '../components/Layout'
 import PostTitle from '../components/PostTitle'
-import PageBody from '../components/PageBody'
-import FeaturedImage from '../components/FeaturedImage'
+import PageBody from '../components/styles/PageBody'
 
 const PostTemplate = ({ data, location }) => {
-  const { post, site } = data
-  const { title: { title }, date, body, featuredImage } = post
-  const { timeToRead, html, excerpt } = body.data
-  const path = location.pathname
+  const {
+    title: { title },
+    body,
+  } = data.post
+  const { html, excerpt } = body.data
   return (
-    <Layout>
-      <Helmet pageTitle={title} site={site} path={path} description={excerpt} />
-      {featuredImage &&
-        <FeaturedImage src={featuredImage.file.url} alt={featuredImage.title} />
-      }
-      <PostTitle title={title} date={date} timeToRead={timeToRead} />
+    <Layout pageTitle={title} path={location.pathname} description={excerpt}>
+      <PostTitle {...data} />
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   )
@@ -26,25 +21,32 @@ const PostTemplate = ({ data, location }) => {
 
 export default PostTemplate
 
-export const postQuery = graphql`
+export const query = graphql`
   fragment postFields on ContentfulPost {
     slug
     title {
       title
     }
-    category {
-      title
+    author {
+      name
+      email
+      homepage
+      photo {
+        fixed(width: 100) {
+          ...GatsbyContentfulFixed_withWebp
+        }
+      }
     }
-    tags
+    categories {
+      title
+      slug
+    }
     date(formatString: "D. MMMM YYYY", locale: "de")
     featuredImage {
-      file {
-        url
-        fileName
-        contentType
+      fluid {
+        ...GatsbyContentfulFluid_withWebp
       }
       title
-      description
     }
     body {
       data: childMarkdownRemark {
@@ -55,7 +57,6 @@ export const postQuery = graphql`
     }
   }
   query($slug: String!) {
-    ...siteMetaQuery
     post: contentfulPost(slug: { eq: $slug }) {
       ...postFields
     }

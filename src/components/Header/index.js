@@ -1,61 +1,22 @@
 import React from 'react'
+import Headroom from 'react-headroom'
 
-import {
-  Background,
-  Content,
-  Logo,
-  SiteTitle,
-  Nav,
-  NavEntry,
-  SubNav,
-  NavLink,
-  NavIcons,
-  NavIcon,
-} from './styles'
-import logo from '../../assets/logo.svg'
-import { EmailIcon, FacebookIcon, GitHubIcon, LinkedinIcon } from '../Icons'
+import { Container, Logo, SiteTitle } from './styles'
+import Nav from '../Nav'
+import Social from '../Social'
+import { navLinkStyle } from '../Nav/styles'
 
-const Header = ({ meta, header }) => (
-  <Background>
-    <Content>
-      <Logo>
-        <img src={logo} alt="Logo"/>
-      </Logo>
-      <SiteTitle to="/" title={meta.title} rel="home">
-        {meta.title}
+const Header = ({ site }) => (
+  <Headroom>
+    <Container>
+      <SiteTitle to="/" title={site.title} rel="home" styles={navLinkStyle}>
+        <Logo />
+        {site.title}
       </SiteTitle>
-      <Nav role="navigation">
-        {header.nav.map(item => (
-          <NavEntry key={item.url}>
-            <NavLink activeClassName='active' to={item.url} title={item.title} {...item.props}>
-              {item.title}
-            </NavLink>
-            {item.subNav && <SubNav>
-              {item.subNav.map(subItem => (
-                <NavLink hoverblue="true" key={subItem.url} to={item.url + subItem.url} title={subItem.title} {...subItem.props}>
-                  {subItem.title}
-                </NavLink>
-              ))}
-            </SubNav>}
-          </NavEntry>
-        ))}
-      </Nav>
-      <NavIcons>
-        <NavIcon href={header.social.email}>
-          <EmailIcon title="Email" size="1.27rem" />
-        </NavIcon>
-        <NavIcon href={header.social.facebook}>
-          <FacebookIcon title="Facebook" />
-        </NavIcon>
-        <NavIcon href={header.social.github}>
-          <GitHubIcon title="GitHub" />
-        </NavIcon>
-        <NavIcon href={header.social.linkedin}>
-          <LinkedinIcon title="Linkedin" />
-        </NavIcon>
-      </NavIcons>
-    </Content>
-  </Background>
+      <Nav />
+      <Social expandOnHover iconCss={navLinkStyle} />
+    </Container>
+  </Headroom>
 )
 
 export default Header

@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 
-export const Layout = styled.div`
+export const Meta = styled.p`
   text-align: right;
-`
-
-export const Content = styled.p`
-  margin-top: 2rem;
-  font-size: 0.5rem;
+  margin-top: 2em;
+  font-size: 0.5em;
 `

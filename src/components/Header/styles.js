@@ -1,102 +1,46 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import mediaQuery from '../../utils/mediaQuery'
+import LogoComp from '../../assets/logo'
 
-const navLinkStyle = css`
-  color: inherit;
-  white-space: nowrap;
-  &:hover {
-    color: ${props => props.hoverblue ? props.theme.mainBlue : props.theme.mainGreen};
-    text-decoration: none;
-  }
-  &.${props => props.activeClassName} {
-    border-bottom: ${({ theme }) => theme.smallBorder + ` solid ` + theme.mainGreen};
-  }
-`
-
-export const Background = styled.header`
-  background-color: ${props => props.theme.darkBlue};
-`
-
-export const Content = styled.div`
-  max-width: calc(${props => props.theme.maxWidth} + 10rem);
-  margin: 0 auto;
-  padding: 0.75rem;
-  color: ${props => props.theme.mainWhite};
+export const Container = styled.div`
+  background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: 0.25rem 1rem;
-  justify-items: center;
+  grid-gap: 5vmin;
   align-items: center;
-  ${mediaQuery.minTablet} {
-    grid-auto-flow: column;
-    padding: 1.25rem;
+  justify-content: space-between;
+  grid-template-areas: 'nav title social';
+  padding: 2vmin 3vmin;
+  ${mediaQuery.minNetbook} {
+    grid-template-areas: 'title nav social';
   }
-`
-
-export const Logo = styled.div`
-  height: 3rem;
-  width: 3rem;
-  padding: 0.2rem;
-  border-radius: 50%;
-  background: white;
-  overflow: hidden;
-  border: ${({theme}) => theme.smallBorder + ' solid ' + theme.mainWhite};
+  ${mediaQuery.minLaptop} {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'title nav social';
+  }
 `
 
 export const SiteTitle = styled(Link)`
-  ${navLinkStyle};
+  grid-area: title;
+  display: grid;
+  align-items: center;
+  grid-auto-flow: column;
+  grid-gap: 1em;
   font-weight: bold;
+  ${props => props.styles};
   white-space: nowrap;
-  color: ${props => props.theme.mainGreen};
-`
-
-export const Nav = styled.nav`
-  display: flex;
-  flex-wrap: wrap;
-  ${mediaQuery.laptop} {
-    justify-content: center;
+  ${mediaQuery.minTablet} {
+    grid-auto-flow: column;
   }
 `
 
-export const NavEntry = styled.div`
-  margin-right: 1.5rem;
-  position: relative;
-`
-
-// TODO: replace 'width: min-content;' as soon as Safari supports it
-// see 'Known issues' under https://caniuse.com/#search=max-content
-export const SubNav = styled.div`
-  position: absolute;
-  left: 0;
-  width: ${props => Math.max(...props.children.map(child => child.props.title.length)) * (props.children.length >= 10 ? 1.2 : 0.6) + `rem`};
-  display: none;
-  ${NavEntry}:hover & {
-    z-index: 2;
-    display: grid;
-    grid-template-columns: ${props => props.children.length >= 10 ? `1fr 1fr` : `1fr`};
-    grid-gap: 0 1rem;
-    background: ${props => props.theme.mainGreen};
-    padding: 0.5rem 1rem;
-    border-radius: ${props => props.theme.smallBorderRadius};
-    right: 0;
-    ${mediaQuery.phone} {
-      display: none;
-    }
-  }
-`
-
-export const NavLink = styled(Link)`
-  ${navLinkStyle};
-`
-
-export const NavIcons = styled.div`
-  display: flex;
-`
-
-export const NavIcon = styled.a`
-  ${navLinkStyle};
-  & + & {
-    margin-left: 0.5rem;
-  }
+export const Logo = styled(LogoComp)`
+  height: 3em;
+  width: 3em;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 50%;
+  background: white;
+  border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.mainWhite};
 `

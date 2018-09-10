@@ -1,28 +1,25 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import Helmet from 'react-helmet'
 
-import Layout from '../components/layout'
-import PageTitle from '../components/PageTitle' 
+import Layout from '../components/Layout'
+import PageTitle from '../components/PageTitle'
 import SectionList from '../components/SectionList'
 
-const WikiIndex = ({ data }) => (
-  <Layout>
-    <Helmet title={data.site.meta.title} />
-    <PageTitle text="Wiki" />
-    <SectionList {...data} />
-  </Layout>
-)
+const Wiki = ({ data, location }) => {
+  const title = `Wiki`
+  return (
+    <Layout pageTitle={title} path={location.pathname}>
+      <PageTitle text={title} />
+      <SectionList {...data} />
+    </Layout>
+  )
+}
 
-export default WikiIndex
+export default Wiki
 
-// postFields defined in src/templates/post.js
-export const wikiIndexQuery = graphql`
+export const query = graphql`
   {
-    ...siteMetaQuery
-    sections: allContentfulWikiSection(
-      sort: {fields: [title], order: DESC}
-    ) {
+    sections: allContentfulWikiSection(sort: { fields: [title], order: DESC }) {
       edges {
         node {
           title

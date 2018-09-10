@@ -1,53 +1,46 @@
-import React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
 import mediaQuery from '../../utils/mediaQuery'
+import Link from '../Link'
 
-const Link = props => (
-  props.to.startsWith('/')
-    ? <GatsbyLink {...props}>{props.children}</GatsbyLink>
-    : <a {...props} href={props.to}>{props.children}</a>
-)
-
-export default Link
-
-export const Background = styled.footer`
-  background-color: ${props => props.theme.darkGray};
-`
-
-export const Content = styled.div`
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto;
-  padding: 0.75rem;
-  color: ${props => props.theme.mainWhite};
-  display: flex;
-  justify-content: space-between;
+export const Container = styled.div`
+  background: ${props => props.theme.darkBlue};
+  padding: 5vmin;
+  color: ${props => props.theme.lightBlue};
+  display: grid;
   align-items: center;
-  ${mediaQuery.tablet} {
-    flex-direction: column;
+  justify-items: center;
+  grid-gap: 3vmin;
+  grid-template-areas:
+    'social'
+    'copyright'
+    'links';
+  ${mediaQuery.minTablet} {
+    justify-content: space-around;
+    grid-template-areas:
+      'copyright social'
+      'links links';
+  }
+  ${mediaQuery.minLaptop} {
+    grid-template-areas: 'copyright links social';
   }
 `
 
+export const Copyright = styled.div`
+  grid-area: copyright;
+`
+
 export const FooterLinks = styled.div`
-  background: ${props => props.theme.mainGray};
-  padding: 0.5rem 1rem;
-  border-radius: ${props => props.theme.largeBorderRadius};
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  ${mediaQuery.tablet} {
-    margin-top: 1rem;
+  grid-area: links;
+  display: grid;
+  grid-gap: 3vmin;
+  grid-auto-flow: column;
+  ${mediaQuery.phone} {
+    grid-template-rows: auto auto;
+    justify-items: center;
   }
 `
 
 export const FooterLink = styled(Link)`
-  color: inherit;
-  &:hover {
-    color: ${props => props.theme.mainGreen};
-    text-decoration: none;
-  }
-  & + & {
-    margin-left: 1rem;
-  }
+  ${props => props.css};
 `

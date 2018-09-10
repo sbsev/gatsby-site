@@ -1,31 +1,30 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/layout'
-import Helmet from '../components/Helmet' 
-import PageTitle from '../components/PageTitle' 
-import BlogIndex from '../components/BlogIndex'
+import Layout from '../components/Layout'
+import PageTitle from '../components/PageTitle'
+import PostList from '../components/PostList'
 
 const blogCategoryTemplate = ({ data, location }) => {
-  const { activeCategory = { title: ``, description: { text: ``}}, site } = data
+  const { activeCategory = { title: ``, description: { text: `` } } } = data
   const title = `Blog - ${activeCategory.title}`
   const { text } = activeCategory.description
   const path = location.pathname
-  return <Layout>
-    <Helmet pageTitle={title} site={site} path={path} description={text} />
-    <PageTitle text={title} />
-    <BlogIndex {...data} />
-  </Layout>
+  return (
+    <Layout pageTitle={title} path={path} description={text}>
+      <PageTitle text={title} />
+      <PostList {...data} />
+    </Layout>
+  )
 }
 
 export default blogCategoryTemplate
 
-export const blogCategoryQuery = graphql`
+export const query = graphql`
   query($slug: String!) {
-    ...siteMetaQuery
     posts: allContentfulPost(
-      sort: { fields: [ date ], order: DESC }
-      filter: { category: { slug: { eq: $slug } } }
+      sort: { fields: [date], order: DESC }
+      filter: { categories: { slug: { eq: $slug } } }
     ) {
       edges {
         node {
@@ -34,7 +33,7 @@ export const blogCategoryQuery = graphql`
       }
     }
     ...categories
-    activeCategory: contentfulBlogCategory(slug: {eq: $slug}) {
+    activeCategory: contentfulBlogCategory(slug: { eq: $slug }) {
       title
       slug
       description {

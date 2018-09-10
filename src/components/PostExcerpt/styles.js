@@ -1,15 +1,18 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
+import Img from 'gatsby-image'
 
-export const Article = styled.article`
-  & + & {
-    margin-top: 3rem;
-  }
-`
+export { UserEdit } from 'styled-icons/fa-solid/UserEdit'
+export { Email } from 'styled-icons/material/Email'
+export {
+  ExternalLinkAlt as AuthorPage,
+} from 'styled-icons/fa-solid/ExternalLinkAlt'
+export { Calendar as Date } from 'styled-icons/octicons/Calendar'
+export { Timer } from 'styled-icons/material/Timer'
 
 export const Title = styled.h1`
-  margin: 0.5rem 0;
-  font-size: 1.5rem;
+  margin: 0.5em 0;
+  font-size: 1.5em;
 `
 
 export const TitleLink = styled(Link)`
@@ -18,18 +21,40 @@ export const TitleLink = styled(Link)`
 `
 
 export const Meta = styled.div`
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 0.9em;
+  display: grid;
+  grid: auto auto / max-content max-content;
+  grid-gap: 0 1em;
+  span {
+    display: flex;
+    align-items: center;
+  }
+  a {
+    margin-left: 0.5em;
+  }
 `
 
-export const Tags = styled.p`
+export const AuthorPhoto = styled(Img)`
+  grid-row: 1 / -1;
+  border-radius: 50%;
+`
+
+export const Categories = styled.div`
   display: flex;
   flex-wrap: wrap;
+  font-size: 0.8em;
 `
 
-export const Tag = styled.span`
-  padding: 0 0.5rem;
-  border-radius: ${props => props.theme.largeBorderRadius};
+export const Category = styled(Link)`
+  padding: 0 0.5em;
+  border-radius: ${props => props.theme.smallBorderRadius};
   background: ${props => props.theme.lightGray};
-  margin-left: 0.5rem;
+  margin-left: 0.5em;
+`
+
+export const FeaturedImage = styled(Img)`
+  width: 50%;
+  transform: translate(50%);
+  max-height: 20vmax;
+  border-radius: ${props => props.theme.mediumBorderRadius};
 `
