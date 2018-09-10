@@ -14,7 +14,8 @@ export const Container = styled.div`
 export const CategoryIcon = styled.img`
   height: 1.75em;
   width: 1.75em;
-  margin: 0 1em 0 0;
+  min-width: 1.75em;
+  margin-right: 0.7em;
   background: ${props => props.theme.lightGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
   padding: 0.2em;
@@ -22,7 +23,7 @@ export const CategoryIcon = styled.img`
 
 export const CategoryLink = styled(Link)`
   display: flex;
-  white-space: nowrap;
+  align-items: center;
   &.${props => props.activeClassName} {
     color: ${props => props.theme.lightBlue};
   }
