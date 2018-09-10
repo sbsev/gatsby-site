@@ -37,6 +37,7 @@ module.exports = {
         trackingId: `UA-121212963-1`,
       },
     },
+    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
