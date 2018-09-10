@@ -32,12 +32,15 @@ export const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.mainBlue};
+    :hover {
+      color: ${props => props.theme.lightBlue};
+    }
   }
-  #___gatsby {
+  #___gatsby > * {
     min-height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    display: flex;
+    flex-direction: column;
   }
   .gatsby-image-outer-wrapper {
     display: contents;
@@ -45,6 +48,7 @@ export const GlobalStyle = createGlobalStyle`
 `
 
 export const Content = styled.main`
+  flex: 1;
   margin: 5vh 0;
   display: grid;
   grid-gap: 3vmin;
