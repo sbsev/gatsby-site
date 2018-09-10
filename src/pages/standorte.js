@@ -25,7 +25,7 @@ class ChaptersPage extends Component {
         title: chapter.title,
       })
       marker.addListener('click', () => {
-        window.location.href = `standorte` + chapter.url
+        window.location.href = `/standorte` + chapter.url
       })
     })
   }
