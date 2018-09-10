@@ -34,17 +34,6 @@ export const Hero = styled(Img)`
   transition: ${props => props.theme.mediumTrans};
 `
 
-export const Caption = styled.div`
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  bottom: 5em;
-  color: ${props => props.theme.mainWhite};
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: ${props => props.theme.mediumBorderRadius};
-  padding: 0 0.5em;
-`
-
 export const Dots = styled.div`
   position: absolute;
   left: 50%;

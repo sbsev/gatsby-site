@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Container, Hero, Title, Button, Caption, Dots, Dot } from './styles'
+import { Container, Hero, Title, Button, Dots, Dot } from './styles'
 
 class LandingTitle extends Component {
   static propTypes = {
