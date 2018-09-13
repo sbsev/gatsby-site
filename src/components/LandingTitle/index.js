@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Container, Hero, Title, Button, Dots, Dot } from './styles'
 
-class LandingTitle extends Component {
+export default class LandingTitle extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({
@@ -67,5 +67,3 @@ class LandingTitle extends Component {
     )
   }
 }
-
-export default LandingTitle

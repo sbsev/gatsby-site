@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import { Container, NavEntry, SubNav, NavLink, Toggle } from './styles'
 
 const events = ['mousedown', 'touchstart']
 
-class Nav extends React.Component {
+export default class Nav extends Component {
   static propTypes = {
     nav: PropTypes.arrayOf(
       PropTypes.shape({
@@ -94,5 +94,3 @@ class Nav extends React.Component {
     )
   }
 }
-
-export default Nav
