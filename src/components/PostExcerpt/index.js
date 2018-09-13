@@ -1,4 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
+import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
+import { Email } from 'styled-icons/material/Email'
+import { ExternalLinkAlt } from 'styled-icons/fa-solid/ExternalLinkAlt'
+import { Calendar as Date } from 'styled-icons/octicons/Calendar'
+import { Timer } from 'styled-icons/material/Timer'
 
 import {
   Title,
@@ -8,18 +15,11 @@ import {
   Category,
   FeaturedImage,
   AuthorPhoto,
-  UserEdit,
-  AuthorPage,
-  Email,
-  Date,
-  Timer,
 } from './styles'
 
-const PostExcerpt = ({ post }) => {
+const PostExcerpt = ({ post, iconSize }) => {
   const { featuredImage, slug, title, author, date, categories, body } = post
-  const {
-    data: { timeToRead, excerpt },
-  } = body
+  const { timeToRead, excerpt } = body.data
   return (
     <article>
       {featuredImage && (
@@ -32,29 +32,29 @@ const PostExcerpt = ({ post }) => {
         <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
         <span>
           <span>
-            <UserEdit size="1em" /> &nbsp; {author.name}
+            <UserEdit size={iconSize} /> &nbsp; {author.name}
           </span>
           {author.homepage && (
             <a href={author.homepage}>
-              <AuthorPage size="1em" />
+              <ExternalLinkAlt size={iconSize} />
             </a>
           )}
           {author.email && (
             <a href={`mailto:${author.email}`}>
-              <Email size="1em" />
+              <Email size={iconSize} />
             </a>
           )}
         </span>
         <span>
-          <Date size="1em" /> &nbsp; {date} &nbsp; | &nbsp; <Timer size="1em" />{' '}
-          &nbsp; {timeToRead} Min Lesezeit
+          <Date size={iconSize} /> &nbsp; {date} &nbsp; | &nbsp;{' '}
+          <Timer size={iconSize} /> &nbsp; {timeToRead} Min Lesezeit
         </span>
       </Meta>
       <p dangerouslySetInnerHTML={{ __html: excerpt }} />
       <Categories>
-        Kategorien:{' '}
+        <span>Kategorien: </span>
         {categories.map(category => (
-          <Category key={category.slug} to={category.slug}>
+          <Category key={category.slug} to={`blog/` + category.slug}>
             {category.title}
           </Category>
         ))}
@@ -64,3 +64,30 @@ const PostExcerpt = ({ post }) => {
 }
 
 export default PostExcerpt
+
+PostExcerpt.propTypes = {
+  post: PropTypes.shape({
+    featuredImage: PropTypes.object,
+    title: PropTypes.object.isRequired,
+    slug: PropTypes.string.isRequired,
+    author: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      email: PropTypes.string,
+      homepage: PropTypes.string,
+      photo: PropTypes.object.isRequired,
+    }).isRequired,
+    date: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        slug: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    body: PropTypes.object.isRequired,
+  }),
+  iconSize: PropTypes.string.isRequired,
+}
+
+PostExcerpt.defaultProps = {
+  iconSize: '1em',
+}

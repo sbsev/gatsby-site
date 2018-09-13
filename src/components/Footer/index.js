@@ -6,13 +6,13 @@ import { Container, Copyright, FooterLinks, FooterLink } from './styles'
 import Social from '../Social'
 import { navLinkStyle } from '../Nav/styles'
 
-const Footer = ({ footer }) => (
+const Footer = ({ copyright, links }) => (
   <Container>
     <Copyright>
-      © {new Date().getFullYear()} - {footer.copyright}
+      © {new Date().getFullYear()} - {copyright}
     </Copyright>
     <FooterLinks>
-      {footer.links.map(link => (
+      {links.map(link => (
         <FooterLink css={navLinkStyle} key={link.url} to={link.url}>
           {link.title}
         </FooterLink>
@@ -23,10 +23,8 @@ const Footer = ({ footer }) => (
 )
 
 Footer.propTypes = {
-  footer: PropTypes.shape({
-    copyright: PropTypes.string.isRequired,
-    links: PropTypes.array.isRequired,
-  }).isRequired,
+  copyright: PropTypes.string.isRequired,
+  links: PropTypes.array.isRequired,
 }
 
 const query = graphql`
@@ -46,6 +44,6 @@ const query = graphql`
 export default props => (
   <StaticQuery
     query={query}
-    render={data => <Footer footer={data.footer.data} {...props} />}
+    render={data => <Footer {...data.footer.data} {...props} />}
   />
 )

@@ -21,13 +21,13 @@ const theme = {
 
   maxWidth: `40em`,
 
-  smallBorder: `0.1rem`,
-  mediumBorder: `0.15rem`,
-  largeBorder: `0.2rem`,
+  smallBorder: `0.1em`,
+  mediumBorder: `0.15em`,
+  largeBorder: `0.2em`,
 
-  smallBorderRadius: `0.2rem`,
-  mediumBorderRadius: `0.5rem`,
-  largeBorderRadius: `1rem`,
+  smallBorderRadius: `0.2em`,
+  mediumBorderRadius: `0.5em`,
+  largeBorderRadius: `1em`,
 
   shortTrans: `0.3s`,
   mediumTrans: `0.6s`,

@@ -2,14 +2,6 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-export { UserEdit } from 'styled-icons/fa-solid/UserEdit'
-export { Email } from 'styled-icons/material/Email'
-export {
-  ExternalLinkAlt as AuthorPage,
-} from 'styled-icons/fa-solid/ExternalLinkAlt'
-export { Calendar as Date } from 'styled-icons/octicons/Calendar'
-export { Timer } from 'styled-icons/material/Timer'
-
 export const Title = styled.h1`
   margin: 0.5em 0;
   font-size: 1.5em;

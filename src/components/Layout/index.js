@@ -8,7 +8,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import theme from '../../utils/theme'
 import { Content, GlobalStyle } from './styles'
-import Scrollup from '../Scrollup'
+import Scroll from '../Scroll'
 
 const Layout = ({ children, site, ...rest }) => (
   <ThemeProvider theme={theme}>
@@ -18,7 +18,7 @@ const Layout = ({ children, site, ...rest }) => (
       <Header site={site.meta} />
       <Content>{children}</Content>
       <Footer />
-      <Scrollup />
+      <Scroll to="top" position="fixed" justify="right" showBelow={2000} />
     </Fragment>
   </ThemeProvider>
 )

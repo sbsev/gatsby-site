@@ -8,7 +8,7 @@ import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 import Chapters from '../components/styles/Chapters'
 
-class ChaptersPage extends Component {
+export default class ChaptersPage extends Component {
   initMap = () => {
     this.map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 51, lng: 10 },
@@ -61,8 +61,6 @@ class ChaptersPage extends Component {
     )
   }
 }
-
-export default ChaptersPage
 
 export const query = graphql`
   {
