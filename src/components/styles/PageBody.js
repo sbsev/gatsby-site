@@ -32,6 +32,7 @@ const imageGrid = css => `
 `
 
 const PageBody = styled.article`
+  margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
   #heads,
   #alumni {
     ${imageGrid(`

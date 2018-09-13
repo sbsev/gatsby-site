@@ -17,7 +17,9 @@ const LandingPage = ({ data, location }) => {
   return (
     <Layout pageTitle={title} path={location.pathname} description={excerpt}>
       <LandingTitle {...{ title, subtitle, images: images.edges }} />
-      {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
+      {html && (
+        <PageBody isLanding dangerouslySetInnerHTML={{ __html: html }} />
+      )}
       <PageMeta {...page} />
     </Layout>
   )
