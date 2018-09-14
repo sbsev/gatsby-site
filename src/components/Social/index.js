@@ -2,7 +2,7 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import { Wrapper, Container, Toggle, Icons } from './styles'
+import { Wrapper, Container, Toggle, Link, Icons } from './styles'
 
 const Social = ({ social, iconSize, containerCss, iconCss, expandOnHover }) => (
   <Wrapper>
@@ -11,9 +11,9 @@ const Social = ({ social, iconSize, containerCss, iconCss, expandOnHover }) => (
       {Object.keys(social).map(service => {
         const Icon = Icons[service]
         return (
-          <a key={service} href={social[service]}>
-            <Icon key={service} size={iconSize} css={iconCss} />
-          </a>
+          <Link key={service} href={social[service]} css={iconCss}>
+            <Icon key={service} size={iconSize} />
+          </Link>
         )
       })}
     </Container>

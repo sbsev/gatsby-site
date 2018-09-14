@@ -50,9 +50,14 @@ export const Container = styled.div`
 export const Toggle = styled(Share)`
   cursor: pointer;
   font-size: 1.7em;
+  ${props => props.css};
   ${mediaQuery.minLaptop} {
     display: none !important;
   }
+`
+
+export const Link = styled.a`
+  ${props => props.css};
 `
 
 export const Icons = {
