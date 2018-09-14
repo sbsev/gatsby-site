@@ -10,6 +10,7 @@
     "babel-plugin-styled-components": "^1.6.4",
     "gatsby": "^2.0.0-rc.13",
     "gatsby-image": "next",
+    "gatsby-plugin-algolia": "^0.1.0",
     "gatsby-plugin-catch-links": "^2.0.2-rc.1",
     "gatsby-plugin-google-analytics": "^2.0.0-rc.1",
     "gatsby-plugin-manifest": "^2.0.2-rc.1",
