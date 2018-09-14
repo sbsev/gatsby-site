@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const pageQuery = `{
   pages: allContentfulPage {
     edges {
@@ -24,7 +26,7 @@ const pageQuery = `{
 const queries = [
   {
     pageQuery,
-    transformer: ({ data }) => data.pages.edges.map(({ node }) => node), // optional
+    transformer: ({ data }) => data.pages.edges.map(({ node }) => node),
   },
 ]
 
@@ -74,9 +76,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
-        appId: `T0ZLKGU1XK`,
-        apiKey: `2a97e0f01a6b705852a641c3451bd2b1`,
-        indexName: `SbS Homepage`,
+        appId: process.env.algoliaAppId,
+        apiKey: process.env.algoliaApiKey,
+        indexName: process.env.algoliaIndexName,
         queries,
         chunkSize: 10000, // default: 1000
       },
