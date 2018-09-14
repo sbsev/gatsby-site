@@ -16,20 +16,20 @@ export default class Nav extends Component {
       })
     ),
   }
-  state = { showNav: false }
+  state = { show: false }
 
   toggleNav = () => {
-    this.setState({ showNav: !this.state.showNav })
+    this.setState({ show: !this.state.show })
   }
 
   handleClickOutside = event => {
-    if (this.node && !this.node.contains(event.target) && this.state.showNav) {
+    if (this.node && !this.node.contains(event.target) && this.state.show) {
       this.toggleNav()
     }
   }
 
   handleScroll = () => {
-    if (this.state.showNav) {
+    if (this.state.show) {
       this.toggleNav()
     }
   }
@@ -58,7 +58,7 @@ export default class Nav extends Component {
           role="navigation"
           css={css}
           ref={node => (this.node = node)}
-          showNav={this.state.showNav}
+          show={this.state.show}
         >
           <Toggle inside onClick={this.toggleNav}>
             &times;
@@ -73,7 +73,7 @@ export default class Nav extends Component {
                 {item.title} {item.subNav && <span>&#9662;</span>}
               </NavLink>
               {item.subNav && (
-                <SubNav>
+                <SubNav show={this.state.show}>
                   {item.subNav.map(subItem => (
                     <NavLink
                       key={subItem.url}
