@@ -1,3 +1,33 @@
+const pageQuery = `{
+  pages: allContentfulPage {
+    edges {
+      node {
+        objectID:id
+        slug
+        title {
+          title
+        }
+        body {
+          childMarkdownRemark {
+            excerpt
+            headings {
+              value
+              depth
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+
+const queries = [
+  {
+    pageQuery,
+    transformer: ({ data }) => data.pages.edges.map(({ node }) => node), // optional
+  },
+]
+
 module.exports = {
   siteMetadata: {
     title: `Studenten bilden Schüler`,
@@ -41,5 +71,15 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: `T0ZLKGU1XK`,
+        apiKey: `2a97e0f01a6b705852a641c3451bd2b1`,
+        indexName: `SbS Homepage`,
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
   ],
 }
