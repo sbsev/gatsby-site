@@ -17,7 +17,6 @@ export const Container = styled.div`
   }
   ${mediaQuery.minLaptop} {
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: 'title nav social';
   }
 `
 
@@ -29,7 +28,6 @@ export const SiteTitle = styled(Link)`
   grid-gap: 1em;
   font-weight: bold;
   ${props => props.styles};
-  white-space: nowrap;
   ${mediaQuery.minTablet} {
     grid-auto-flow: column;
   }
@@ -41,6 +39,6 @@ export const Logo = styled(LogoComp)`
   object-fit: cover;
   object-position: top;
   border-radius: 50%;
-  background: white;
+  background: ${props => props.theme.mainWhite};
   border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.mainWhite};
 `
