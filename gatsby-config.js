@@ -25,6 +25,8 @@ module.exports = {
               wrapperStyle: `max-width: none !important;`,
             },
           },
+          `gatsby-remark-embed-video`,
+          `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
         ],
       },
