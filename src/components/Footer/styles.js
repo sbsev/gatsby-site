@@ -8,6 +8,7 @@ export const Container = styled.div`
   padding: 5vmin;
   color: ${props => props.theme.lightBlue};
   display: grid;
+  text-align: center;
   align-items: center;
   justify-items: center;
   grid-gap: 3vmin;
