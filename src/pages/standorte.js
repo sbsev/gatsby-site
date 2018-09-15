@@ -17,11 +17,11 @@ export default class ChaptersPage extends Component {
   }
 
   addMarkers = () => {
-    this.props.data.chapters.data.chapters.forEach(chapter => {
+    this.props.data.chapters.data.chapters.forEach((chapter, index) => {
       const marker = new window.google.maps.Marker({
         map: this.map,
         position: chapter.coords,
-        label: chapter.title[0],
+        label: `${index + 1}`,
         title: chapter.title,
       })
       marker.addListener('click', () => {
