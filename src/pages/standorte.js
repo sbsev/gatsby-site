@@ -21,7 +21,7 @@ export default class ChaptersPage extends Component {
       const marker = new window.google.maps.Marker({
         map: this.map,
         position: chapter.coords,
-        label: String(index + 1),
+        label: `${index + 1}`,
         title: chapter.title,
       })
       marker.addListener('click', () => {
