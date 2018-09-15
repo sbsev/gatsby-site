@@ -24,7 +24,7 @@ const PostTitle = ({ post }) => {
       <Title>{title.title}</Title>
       <Author>
         <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
-        <span>
+        <div>
           <UserEdit size="1em" /> &nbsp; {author.name} &nbsp;
           {author.homepage && (
             <a href={author.homepage}>
@@ -37,7 +37,7 @@ const PostTitle = ({ post }) => {
               <Email size="1em" />
             </a>
           )}
-        </span>
+        </div>
       </Author>
       <Meta>
         <Date size="1em" /> &nbsp; {date} &nbsp; | &nbsp; <Timer size="1em" />{' '}
