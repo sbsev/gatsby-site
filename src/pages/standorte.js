@@ -12,7 +12,7 @@ export default class ChaptersPage extends Component {
   initMap = () => {
     this.map = new window.google.maps.Map(document.getElementById('map'), {
       center: { lat: 51, lng: 10 },
-      zoom: 6.2,
+      zoom: 5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
     })
   }
 

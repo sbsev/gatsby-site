@@ -12,7 +12,7 @@ const Social = ({ social, iconSize, containerCss, iconCss, expandOnHover }) => (
         const Icon = Icons[service]
         return (
           <Link key={service} href={social[service]} css={iconCss}>
-            <Icon key={service} size={iconSize} />
+            <Icon size={iconSize} />
           </Link>
         )
       })}
