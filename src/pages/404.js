@@ -6,10 +6,9 @@ import PageTitle from '../components/PageTitle'
 import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
-const LandingPage = ({ data: { page }, location }) => {
+const PageNotFound = ({ data: { page }, location }) => {
   const {
     title: { title },
-    subtitle: { subtitle },
     body,
   } = page
   const { excerpt, html } = body && body.data
@@ -24,7 +23,7 @@ const LandingPage = ({ data: { page }, location }) => {
   )
 }
 
-export default LandingPage
+export default PageNotFound
 
 export const query = graphql`
   {
