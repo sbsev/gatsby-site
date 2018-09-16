@@ -105,7 +105,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
     response.data.content.edges.forEach(({ node }) => {
       // exclude pages that are stored locally in src/pages
-      if (![`/`, `standorte`].includes(node.slug)) {
+      if (![`/`, `standorte`, `404`].includes(node.slug)) {
         createPage({
           path: pagePath(node),
           component,
