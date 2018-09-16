@@ -83,7 +83,14 @@ const pagePath = node => {
 }
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createPage, createRedirect } = actions
+
+  createRedirect({
+    fromPath: `https://studenten-bilden-schueler.netlify.com/*`,
+    toPath: `https://studenten-bilden-schueler.de/:splat 301!`,
+    isPermanent: true,
+  })
+
   pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
     if (response.errors) {
