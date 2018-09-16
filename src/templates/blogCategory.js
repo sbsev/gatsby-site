@@ -12,7 +12,9 @@ const blogCategoryTemplate = ({ data, location }) => {
   const path = location.pathname
   return (
     <Layout pageTitle={title} path={path} description={text}>
-      <PageTitle text={title} />
+      <PageTitle>
+        <h1>{title}</h1>
+      </PageTitle>
       <PostList {...data} />
     </Layout>
   )

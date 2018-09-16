@@ -46,7 +46,9 @@ export default class ChaptersPage extends Component {
     const { excerpt, html } = body && body.data
     return (
       <Layout pageTitle={title} path={location.pathname} description={excerpt}>
-        <PageTitle text={title} />
+        <PageTitle>
+          <h1>{title}</h1>
+        </PageTitle>
         <Map id="map" />
         <Chapters>
           {chapters.data.chapters.map(chapter => (

@@ -15,7 +15,9 @@ const PageTemplate = ({ data, location }) => {
   const path = location.pathname
   return (
     <Layout pageTitle={title} path={path} description={excerpt}>
-      <PageTitle text={title} />
+      <PageTitle>
+        <h1>{title}</h1>
+      </PageTitle>
       {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
       <PageMeta {...data.page} />
     </Layout>

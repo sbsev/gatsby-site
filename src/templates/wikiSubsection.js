@@ -15,7 +15,9 @@ const WikiSubsectionTemplate = ({ data, location }) => {
   return (
     <Layout pageTitle={title} path={path} description={description.text}>
       <Breadcrumbs path={path} />
-      <PageTitle text={title} />
+      <PageTitle>
+        <h1>{title}</h1>
+      </PageTitle>
       {description && (
         <div
           dangerouslySetInnerHTML={{
