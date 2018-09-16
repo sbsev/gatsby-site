@@ -3,36 +3,39 @@ import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
+import Logo from '../assets/logo'
 import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
-const PageTemplate = ({ data, location }) => {
+const PageNotFound = ({ data: { page }, location }) => {
   const {
     title: { title },
     body,
-  } = data.page
+  } = page
   const { excerpt, html } = body && body.data
-  const path = location.pathname
   return (
-    <Layout pageTitle={title} path={path} description={excerpt}>
+    <Layout pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle>
+        <Logo width="calc(5em + 5vw)" />
         <h1>{title}</h1>
       </PageTitle>
       {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
-      <PageMeta {...data.page} />
+      <PageMeta {...page} />
     </Layout>
   )
 }
 
-export default PageTemplate
+export default PageNotFound
 
 export const query = graphql`
-  query($slug: String!) {
-    page: contentfulPage(slug: { eq: $slug }) {
+  {
+    page: contentfulPage(slug: { eq: "404" }) {
       title {
         title
       }
-      slug
+      subtitle {
+        subtitle
+      }
       body {
         data: childMarkdownRemark {
           excerpt

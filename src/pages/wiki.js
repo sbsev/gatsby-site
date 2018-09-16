@@ -9,7 +9,9 @@ const Wiki = ({ data, location }) => {
   const title = `Wiki`
   return (
     <Layout pageTitle={title} path={location.pathname}>
-      <PageTitle text={title} />
+      <PageTitle>
+        <h1>{title}</h1>
+      </PageTitle>
       <SectionList {...data} />
     </Layout>
   )

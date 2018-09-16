@@ -86,12 +86,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
 
   createRedirect({
-    fromPath: `https://studenten-bilden-schueler.netlify.com/*`,
-    toPath: `https://studenten-bilden-schueler.de/:splat`,
-    isPermanent: true,
-  })
-
-  createRedirect({
     fromPath: `/index.php/*`,
     toPath: `/:splat`,
     isPermanent: true,
@@ -105,7 +99,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
     response.data.content.edges.forEach(({ node }) => {
       // exclude pages that are stored locally in src/pages
-      if (![`/`, `standorte`].includes(node.slug)) {
+      if (![`/`, `standorte`, `404`].includes(node.slug)) {
         createPage({
           path: pagePath(node),
           component,

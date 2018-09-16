@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 
 import mediaQuery from '../../utils/mediaQuery'
 import LogoComp from '../../assets/logo'
+import { navLinkStyle } from '../Nav/styles'
 
 export const Container = styled.div`
   background: ${props => props.theme.darkBlue};
@@ -27,7 +28,7 @@ export const SiteTitle = styled(Link)`
   grid-auto-flow: column;
   grid-gap: 1em;
   font-weight: bold;
-  ${props => props.styles};
+  ${navLinkStyle};
   ${mediaQuery.minTablet} {
     grid-auto-flow: column;
   }
