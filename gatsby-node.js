@@ -86,12 +86,6 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
 
   createRedirect({
-    fromPath: `https://studenten-bilden-schueler.netlify.com/*`,
-    toPath: `https://studenten-bilden-schueler.de/:splat`,
-    isPermanent: true,
-  })
-
-  createRedirect({
     fromPath: `/index.php/*`,
     toPath: `/:splat`,
     isPermanent: true,
