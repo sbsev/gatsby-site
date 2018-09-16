@@ -87,13 +87,13 @@ exports.createPages = ({ graphql, actions }) => {
 
   createRedirect({
     fromPath: `https://studenten-bilden-schueler.netlify.com/*`,
-    toPath: `https://studenten-bilden-schueler.de/:splat 301!`,
+    toPath: `https://studenten-bilden-schueler.de/:splat`,
     isPermanent: true,
   })
 
   createRedirect({
     fromPath: `/index.php/*`,
-    toPath: `/:splat 301!`,
+    toPath: `/:splat`,
     isPermanent: true,
   })
 
