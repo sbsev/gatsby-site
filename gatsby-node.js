@@ -92,8 +92,8 @@ exports.createPages = ({ graphql, actions }) => {
   })
 
   createRedirect({
-    fromPath: `https://studenten-bilden-schueler.de/index.php/*`,
-    toPath: `https://studenten-bilden-schueler.de/:splat 301!`,
+    fromPath: `/index.php/*`,
+    toPath: `/:splat 301!`,
     isPermanent: true,
   })
 
