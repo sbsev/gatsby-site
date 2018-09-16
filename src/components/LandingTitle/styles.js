@@ -36,8 +36,13 @@ export const Title = styled.div`
 `
 
 export const Hero = styled(Img)`
+  position: absolute !important;
   object-fit: cover;
   height: 100%;
+  width: 100%;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? `visible` : `hidden`)};
+  transition: 1.5s ease-in;
 `
 
 export const Dots = styled.div`
