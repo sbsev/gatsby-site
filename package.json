@@ -2,6 +2,7 @@
   "private": true,
   "name": "studenten-bilden-schueler-homepage",
   "title": "Studenten bilden Schüler",
+  "description": "Gatsby Site powering the homepage and blog of the German student-run non-profit organisation Studenten bilden Schüler e.V.",
   "homepage": "https://studenten-bilden-schueler.de",
   "version": "1.0.0",
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
