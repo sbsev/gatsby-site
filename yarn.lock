@@ -4710,14 +4710,15 @@ gatsby-plugin-manifest@next:
     bluebird "^3.5.0"
     sharp "^0.20.2"
 
-gatsby-plugin-netlify@^1.0.21:
-  version "1.0.21"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-1.0.21.tgz#a4cd6631e2c73d73177f1ce8532f125601c8c426"
+gatsby-plugin-netlify@^2.0.0-rc.6:
+  version "2.0.0-rc.6"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-netlify/-/gatsby-plugin-netlify-2.0.0-rc.6.tgz#33ff1535442a0d6b50d8fb54ef049cccb47bb1bd"
   dependencies:
-    babel-runtime "^6.26.0"
+    "@babel/runtime" "^7.0.0"
     fs-extra "^4.0.2"
-    lodash "^4.17.4"
-    webpack-assets-manifest "^1.0.0"
+    kebab-hash "^0.1.2"
+    lodash "^4.17.10"
+    webpack-assets-manifest "^3.0.2"
 
 gatsby-plugin-offline@next:
   version "2.0.0-rc.7"
@@ -6876,10 +6877,6 @@ lodash.keys@^3.0.0, lodash.keys@^3.1.2:
     lodash.isarguments "^3.0.0"
     lodash.isarray "^3.0.0"
 
-lodash.keys@^4.0:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/lodash.keys/-/lodash.keys-4.2.0.tgz#a08602ac12e4fb83f91fc1fb7a360a4d9ba35205"
-
 lodash.map@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/lodash.map/-/lodash.map-4.6.0.tgz#771ec7839e3473d9c4cde28b19394c3562f4f6d3"
@@ -6892,17 +6889,9 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
 
-lodash.merge@^4.0:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
-
 lodash.mergewith@^4.6.0:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.mergewith/-/lodash.mergewith-4.6.1.tgz#639057e726c3afbdb3e7d42741caa8d6e4335927"
-
-lodash.pick@^4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/lodash.pick/-/lodash.pick-4.4.0.tgz#52f05610fff9ded422611441ed1fc123a03001b3"
 
 lodash.restparam@^3.0.0:
   version "3.6.1"
@@ -11108,17 +11097,17 @@ web-namespaces@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/web-namespaces/-/web-namespaces-1.1.2.tgz#c8dc267ab639505276bae19e129dbd6ae72b22b4"
 
-webpack-assets-manifest@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-1.0.0.tgz#54a1bc4036e2eed2b3ce1fd6a7e31c09be99538a"
+webpack-assets-manifest@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-3.0.2.tgz#d9c7f57d4e0a6a261e2558258073f7c5e95e3f32"
   dependencies:
     chalk "^2.0"
     lodash.get "^4.0"
     lodash.has "^4.0"
-    lodash.keys "^4.0"
-    lodash.merge "^4.0"
-    lodash.pick "^4.0"
     mkdirp "^0.5"
+    schema-utils "^1.0.0"
+    tapable "^1.0.0"
+    webpack-sources "^1.0.0"
 
 webpack-dev-middleware@3.2.0:
   version "3.2.0"
@@ -11198,7 +11187,7 @@ webpack-merge@^4.1.0:
   dependencies:
     lodash "^4.17.5"
 
-webpack-sources@^1.1.0, webpack-sources@^1.2.0:
+webpack-sources@^1.0.0, webpack-sources@^1.1.0, webpack-sources@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-1.2.0.tgz#18181e0d013fce096faf6f8e6d41eeffffdceac2"
   dependencies:
