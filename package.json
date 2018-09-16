@@ -14,13 +14,14 @@
     "gatsby-plugin-catch-links": "next",
     "gatsby-plugin-google-analytics": "next",
     "gatsby-plugin-manifest": "next",
+    "gatsby-plugin-netlify": "^1.0.21",
     "gatsby-plugin-offline": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sharp": "next",
     "gatsby-plugin-styled-components": "next",
     "gatsby-remark-embed-video": "^1.4.0",
     "gatsby-remark-images-contentful": "next",
-    "gatsby-remark-responsive-iframe": "^2.0.0-rc.5",
+    "gatsby-remark-responsive-iframe": "next",
     "gatsby-remark-smartypants": "next",
     "gatsby-source-contentful": "next",
     "gatsby-transformer-remark": "next",
@@ -29,7 +30,17 @@
     "react-dom": "^16.5.1",
     "react-headroom": "^2.2.2",
     "react-helmet": "^5.2.0",
-    "styled-components": "^4.0.0-beta.4",
+    "styled-components": "^4.0.0-beta.5",
     "styled-icons": "^3.0.0"
-  }
+  },
+  "keywords": [
+    "Studenten bilden Schüler e.V.",
+    "student-run nonprofit",
+    "education",
+    "nonprofit",
+    "equal opportunities",
+    "gatsby",
+    "styled-components",
+    "CSS grid"
+  ]
 }
