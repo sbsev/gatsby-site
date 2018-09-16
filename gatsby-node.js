@@ -91,6 +91,12 @@ exports.createPages = ({ graphql, actions }) => {
     isPermanent: true,
   })
 
+  createRedirect({
+    fromPath: `https://studenten-bilden-schueler.de/index.php/*`,
+    toPath: `https://studenten-bilden-schueler.de/:splat 301!`,
+    isPermanent: true,
+  })
+
   pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
     if (response.errors) {
