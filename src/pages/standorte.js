@@ -3,23 +3,16 @@ import { graphql, Link } from 'gatsby'
 
 import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
-import Map from '../components/styles/Map'
+import Map from '../components/Map'
 import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 import Chapters from '../components/styles/Chapters'
 
 export default class ChaptersPage extends Component {
-  initMap = () => {
-    this.map = new window.google.maps.Map(document.getElementById('map'), {
-      center: { lat: 51, lng: 10 },
-      zoom: 5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
-    })
-  }
-
-  addMarkers = () => {
+  addMarkers = map => {
     this.props.data.chapters.data.chapters.forEach((chapter, index) => {
       const marker = new window.google.maps.Marker({
-        map: this.map,
+        map,
         position: chapter.coords,
         label: `${index + 1}`,
         title: chapter.title,
@@ -30,9 +23,15 @@ export default class ChaptersPage extends Component {
     })
   }
 
-  componentDidMount() {
-    this.initMap()
-    this.addMarkers()
+  mapProps = {
+    options: {
+      center: { lat: 51, lng: 10 },
+      zoom:
+        // checking that window is defined necessary for compiling on server
+        typeof window !== 'undefined' &&
+        5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
+    },
+    onMount: this.addMarkers,
   }
 
   render() {
@@ -42,14 +41,13 @@ export default class ChaptersPage extends Component {
       title: { title },
       body,
     } = page
-
     const { excerpt, html } = body && body.data
     return (
       <Layout pageTitle={title} path={location.pathname} description={excerpt}>
         <PageTitle>
           <h1>{title}</h1>
         </PageTitle>
-        <Map id="map" />
+        <Map id="chapterMap" {...this.mapProps} />
         <Chapters>
           {chapters.data.chapters.map(chapter => (
             <li key={chapter.url}>
