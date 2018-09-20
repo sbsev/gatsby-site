@@ -3,20 +3,18 @@ import styled from 'styled-components'
 const imageGrid = css => `
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
   margin: 2em 0;
-  h1, h2, h3, h4, h5, h6 {
+  h3 {
     grid-column: 1/-1;
+    text-align: center;
+    margin-bottom: 0;
   }
   p {
     text-align: center;
     margin: 0;
     img {
       width: 100%;
-    }
-    .gatsby-resp-image-wrapper {
-      border-radius: 50%;
-      overflow: hidden;
     }
     em {
       display: block;
@@ -33,11 +31,18 @@ const imageGrid = css => `
 
 const PageBody = styled.article`
   margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
+
+  .img-small {
+    max-width: 16em;
+    margin: auto;
+  }
+
   #heads,
   #alumni {
     ${imageGrid(`
       .gatsby-resp-image-wrapper {
         border-radius: 50%;
+        overflow: hidden;
       }
       img {
         border-radius: 50%;
@@ -49,12 +54,14 @@ const PageBody = styled.article`
     ${imageGrid()};
   }
 
-  .side-by-side {
+  .image-row {
     display: grid;
-    grid-gap: 1em;
-    margin: 2em 0;
+    grid-gap: 0.7em;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(10em, 40%);
+    > * {
+      overflow: hidden;
+      border-radius: ${props => props.theme.smallBorderRadius};
+    }
   }
 
   .multi-col-list ul,
