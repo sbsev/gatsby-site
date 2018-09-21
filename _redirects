@@ -1,0 +1,2 @@
+# Redirect old url to new url
+https://studenten-bilden-schueler.de/index.php/* https://studenten-bilden-schueler.de/:splat 301!
