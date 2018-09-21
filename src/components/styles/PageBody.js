@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import mediaQuery from '../../utils/mediaQuery'
+
 const imageGrid = css => `
   display: grid;
   grid-gap: 2em;
@@ -31,6 +33,9 @@ const imageGrid = css => `
 
 const PageBody = styled.article`
   margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
+  ${mediaQuery.minPhablet} {
+    text-align: justify;
+  }
 
   .img-small {
     max-width: 16em;
