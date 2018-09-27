@@ -25,7 +25,7 @@ const pageQuery = `{
 
 const queries = [
   {
-    pageQuery,
+    query: pageQuery,
     transformer: ({ data }) => data.pages.edges.map(({ node }) => node),
   },
 ]
