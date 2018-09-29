@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   position: relative;
 `
 
-const expandOnHover = css`
+const collapse = css`
   display: grid;
   visibility: hidden;
   opacity: 0;
@@ -43,7 +43,7 @@ export const Container = styled.div`
     ${alwaysShow};
   }
   ${mediaQuery.laptop} {
-    ${props => (props.expandOnHover ? expandOnHover : alwaysShow)};
+    ${props => (props.collapse ? collapse : alwaysShow)};
   }
 `
 

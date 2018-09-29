@@ -14,7 +14,7 @@ const Header = ({ site }) => (
         {site.title}
       </SiteTitle>
       <Nav />
-      <Social expandOnHover iconCss={navLinkStyle} />
+      <Social short collapse iconCss={navLinkStyle} />
     </Container>
   </Headroom>
 )

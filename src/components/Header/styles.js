@@ -8,7 +8,7 @@ import { navLinkStyle } from '../Nav/styles'
 export const Container = styled.div`
   background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: 5vmin;
+  grid-gap: calc(0.5em + 4vw);
   align-items: center;
   justify-content: space-between;
   grid-template-areas: 'nav title social';

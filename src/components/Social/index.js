@@ -4,11 +4,13 @@ import PropTypes from 'prop-types'
 
 import { Wrapper, Container, Toggle, Link, Icons } from './styles'
 
-const Social = ({ social, iconSize, containerCss, iconCss, expandOnHover }) => (
+const Social = ({ social, iconSize, containerCss, iconCss, collapse, short }) => (
   <Wrapper>
-    {expandOnHover && <Toggle size={iconSize} css={iconCss} />}
-    <Container {...{ expandOnHover }} css={containerCss}>
+    {collapse && <Toggle size={iconSize} css={iconCss} />}
+    <Container {...{ collapse }} css={containerCss}>
       {Object.keys(social).map(service => {
+        if (short && [`Email`, `Github`].includes(service))
+        return undefined
         const Icon = Icons[service]
         return (
           <Link key={service} href={social[service]} css={iconCss}>

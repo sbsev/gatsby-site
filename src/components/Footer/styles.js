@@ -56,7 +56,7 @@ export const PoweredBy = styled.div`
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: max-content;
-  grid-gap: 0.5em;
+  grid-gap: 1em;
   a {
     height: 1.5em;
     width: 1.5em;
