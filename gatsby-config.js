@@ -1,34 +1,6 @@
+const queries = require('./src/utils/algolia')
+
 require('dotenv').config()
-
-const pageQuery = `{
-  pages: allContentfulPage {
-    edges {
-      node {
-        objectID:id
-        slug
-        title {
-          title
-        }
-        body {
-          childMarkdownRemark {
-            excerpt
-            headings {
-              value
-              depth
-            }
-          }
-        }
-      }
-    }
-  }
-}`
-
-const queries = [
-  {
-    pageQuery,
-    transformer: ({ data }) => data.pages.edges.map(({ node }) => node),
-  },
-]
 
 module.exports = {
   siteMetadata: {
@@ -81,7 +53,6 @@ module.exports = {
       options: {
         appId: process.env.algoliaAppId,
         apiKey: process.env.algoliaApiKey,
-        indexName: process.env.algoliaIndexName,
         queries,
         chunkSize: 10000, // default: 1000
       },
