@@ -9,12 +9,12 @@ import { navLinkStyle } from '../Nav/styles'
 const Header = ({ site }) => (
   <Headroom>
     <Container>
-      <SiteTitle to="/" title={site.title} rel="home" styles={navLinkStyle}>
+      <SiteTitle to="/" title={site.title} rel="home">
         <Logo />
         {site.title}
       </SiteTitle>
       <Nav />
-      <Social expandOnHover iconCss={navLinkStyle} />
+      <Social short collapse iconCss={navLinkStyle} />
     </Container>
   </Headroom>
 )

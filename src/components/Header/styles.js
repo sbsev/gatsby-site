@@ -3,11 +3,12 @@ import { Link } from 'gatsby'
 
 import mediaQuery from '../../utils/mediaQuery'
 import LogoComp from '../../assets/logo'
+import { navLinkStyle } from '../Nav/styles'
 
 export const Container = styled.div`
   background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: 5vmin;
+  grid-gap: calc(0.5em + 4vw);
   align-items: center;
   justify-content: space-between;
   grid-template-areas: 'nav title social';
@@ -17,7 +18,6 @@ export const Container = styled.div`
   }
   ${mediaQuery.minLaptop} {
     grid-template-columns: auto 1fr auto;
-    grid-template-areas: 'title nav social';
   }
 `
 
@@ -28,8 +28,7 @@ export const SiteTitle = styled(Link)`
   grid-auto-flow: column;
   grid-gap: 1em;
   font-weight: bold;
-  ${props => props.styles};
-  white-space: nowrap;
+  ${navLinkStyle};
   ${mediaQuery.minTablet} {
     grid-auto-flow: column;
   }
@@ -41,6 +40,6 @@ export const Logo = styled(LogoComp)`
   object-fit: cover;
   object-position: top;
   border-radius: 50%;
-  background: white;
+  background: ${props => props.theme.mainWhite};
   border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.mainWhite};
 `

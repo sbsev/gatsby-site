@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   position: relative;
 `
 
-const expandOnHover = css`
+const collapse = css`
   display: grid;
   visibility: hidden;
   opacity: 0;
@@ -43,16 +43,21 @@ export const Container = styled.div`
     ${alwaysShow};
   }
   ${mediaQuery.laptop} {
-    ${props => (props.expandOnHover ? expandOnHover : alwaysShow)};
+    ${props => (props.collapse ? collapse : alwaysShow)};
   }
 `
 
 export const Toggle = styled(Share)`
   cursor: pointer;
   font-size: 1.7em;
+  ${props => props.css};
   ${mediaQuery.minLaptop} {
     display: none !important;
   }
+`
+
+export const Link = styled.a`
+  ${props => props.css};
 `
 
 export const Icons = {

@@ -2,12 +2,19 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import { Container, Copyright, FooterLinks, FooterLink } from './styles'
+import {
+  FooterContainer,
+  Copyright,
+  FooterLinks,
+  FooterLink,
+  Source,
+  PoweredBy,
+} from './styles'
 import Social from '../Social'
 import { navLinkStyle } from '../Nav/styles'
 
-const Footer = ({ copyright, links }) => (
-  <Container>
+const Footer = ({ copyright, source, links, poweredBy, logos }) => (
+  <FooterContainer>
     <Copyright>
       © {new Date().getFullYear()} - {copyright}
     </Copyright>
@@ -19,7 +26,16 @@ const Footer = ({ copyright, links }) => (
       ))}
     </FooterLinks>
     <Social iconCss={navLinkStyle} />
-  </Container>
+    <Source dangerouslySetInnerHTML={{ __html: source }} />
+    <PoweredBy>
+      Powered by:{' '}
+      {poweredBy.map(({ url, title }, index) => (
+        <a key={title} href={url}>
+          <img src={logos.edges[index].node.file.url} alt={title} />
+        </a>
+      ))}
+    </PoweredBy>
+  </FooterContainer>
 )
 
 Footer.propTypes = {
@@ -32,9 +48,27 @@ const query = graphql`
     footer: contentfulJson(title: { eq: "Footer" }) {
       data {
         copyright
+        source
         links {
           url
           title
+        }
+        poweredBy {
+          url
+          title
+        }
+      }
+    }
+    logos: allContentfulAsset(
+      filter: { title: { regex: "/Footer logo/" } }
+      sort: { fields: title }
+    ) {
+      edges {
+        node {
+          title
+          file {
+            url
+          }
         }
       }
     }
@@ -44,6 +78,8 @@ const query = graphql`
 export default props => (
   <StaticQuery
     query={query}
-    render={data => <Footer {...data.footer.data} {...props} />}
+    render={data => (
+      <Footer {...data.footer.data} logos={data.logos} {...props} />
+    )}
   />
 )

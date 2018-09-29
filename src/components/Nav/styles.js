@@ -23,7 +23,6 @@ export const Container = styled.nav`
   grid-area: nav;
   display: grid;
   grid-gap: 2vw;
-  grid-auto-columns: max-content;
   ${mediaQuery.netbook} {
     position: fixed;
     right: 100%;
@@ -33,12 +32,14 @@ export const Container = styled.nav`
     grid-gap: 1em;
     height: 100vh;
     min-width: 15vw;
+    grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-rows: max-content;
-    transform: translate(${props => (props.showNav ? `99%` : `0`)});
+    transform: translate(${props => (props.show ? `99%` : `0`)});
     transition: ${props => props.theme.mediumTrans};
   }
   ${mediaQuery.minNetbook} {
     grid-auto-flow: column;
+    grid-auto-columns: max-content;
     justify-self: end;
   }
   ${props => props.css};
@@ -48,11 +49,7 @@ export const NavEntry = styled.div`
   position: relative;
 `
 
-export const SubNav = styled.div`
-  position: absolute;
-  left: 0;
-  width: max-content;
-  display: none;
+const hover = css`
   ${NavEntry}:hover & {
     z-index: 2;
     display: grid;
@@ -62,6 +59,19 @@ export const SubNav = styled.div`
     background: ${props => props.theme.lightGreen};
     padding: 0.5em 1em;
     border-radius: ${props => props.theme.smallBorderRadius};
+  }
+`
+
+export const SubNav = styled.div`
+  position: absolute;
+  left: 0;
+  width: max-content;
+  display: none;
+  ${mediaQuery.netbook} {
+    ${props => props.show && hover};
+  }
+  ${mediaQuery.minNetbook} {
+    ${hover};
   }
 `
 

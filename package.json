@@ -2,11 +2,13 @@
   "private": true,
   "name": "studenten-bilden-schueler-homepage",
   "title": "Studenten bilden Schüler",
+  "description": "Gatsby Site powering the homepage and blog of the German student-run non-profit organisation Studenten bilden Schüler e.V.",
   "homepage": "https://studenten-bilden-schueler.de",
   "version": "1.0.0",
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
   "repository": "https://github.com/StudentenBildenSchueler/homepage",
   "dependencies": {
+<<<<<<< HEAD
     "babel-plugin-styled-components": "^1.6.4",
     "gatsby": "^2.0.0-rc.13",
     "gatsby-image": "next",
@@ -33,4 +35,41 @@
   "devDependencies": {
     "dotenv": "^6.0.0"
   }
+=======
+    "babel-plugin-styled-components": "^1.7.1",
+    "gatsby": "latest",
+    "gatsby-image": "latest",
+    "gatsby-plugin-catch-links": "latest",
+    "gatsby-plugin-google-analytics": "latest",
+    "gatsby-plugin-manifest": "latest",
+    "gatsby-plugin-netlify": "latest",
+    "gatsby-plugin-offline": "latest",
+    "gatsby-plugin-react-helmet": "latest",
+    "gatsby-plugin-sharp": "latest",
+    "gatsby-plugin-styled-components": "latest",
+    "gatsby-remark-embed-video": "^1.4.0",
+    "gatsby-remark-images-contentful": "latest",
+    "gatsby-remark-responsive-iframe": "latest",
+    "gatsby-remark-smartypants": "latest",
+    "gatsby-source-contentful": "latest",
+    "gatsby-transformer-remark": "latest",
+    "gatsby-transformer-sharp": "latest",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-headroom": "^2.2.2",
+    "react-helmet": "^5.2.0",
+    "styled-components": "^4.0.0-beta.5",
+    "styled-icons": "^3.0.0"
+  },
+  "keywords": [
+    "Studenten bilden Schüler e.V.",
+    "student-run nonprofit",
+    "education",
+    "nonprofit",
+    "equal opportunities",
+    "gatsby",
+    "styled-components",
+    "CSS grid"
+  ]
+>>>>>>> develop
 }

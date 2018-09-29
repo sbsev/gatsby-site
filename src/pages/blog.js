@@ -9,7 +9,9 @@ const Blog = ({ data, location }) => {
   const title = `Blog`
   return (
     <Layout pageTitle={title} path={location.pathname}>
-      <PageTitle text={title} />
+      <PageTitle>
+        <h1>{title}</h1>
+      </PageTitle>
       <PostList {...data} />
     </Layout>
   )

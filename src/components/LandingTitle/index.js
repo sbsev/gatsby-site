@@ -45,10 +45,11 @@ export default class LandingTitle extends Component {
   render() {
     const { hero } = this.state
     const { title, subtitle, images } = this.props
-    const image = images[hero].node
     return (
       <Container>
-        <Hero fluid={image.fluid} />
+        {images.map(({ node }, index) => (
+          <Hero key={index} active={index === hero} fluid={node.fluid} />
+        ))}
         <Title>
           <h1>{title}</h1>
           <h2>{subtitle}</h2>

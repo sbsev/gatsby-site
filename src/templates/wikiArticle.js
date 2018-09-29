@@ -17,7 +17,9 @@ const WikiArticleTemplate = ({ data, location }) => {
   return (
     <Layout pageTitle={title} path={path} description={excerpt}>
       <Breadcrumbs path={path} />
-      <PageTitle text={title} />
+      <PageTitle>
+        <h1>{title}</h1>
+      </PageTitle>
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
       <PageMeta {...data.article} />
     </Layout>

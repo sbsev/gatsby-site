@@ -1,13 +1,19 @@
 import React from 'react'
 import { withTheme } from 'styled-components'
 
-const Logo = ({ className, theme: { mainBlue, darkBlue, mainGreen } }) => (
+const Logo = ({
+  className,
+  width,
+  height,
+  theme: { mainBlue, darkBlue, mainGreen },
+}) => (
   <svg
     className={className}
     clipRule="evenodd"
     fillRule="evenodd"
     viewBox="0 0 132 166"
     xmlns="http://www.w3.org/2000/svg"
+    style={{ width, height }}
   >
     <g transform="translate(-4.328 -11.764)">
       <g fillRule="nonzero">

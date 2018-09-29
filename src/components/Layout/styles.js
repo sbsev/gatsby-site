@@ -42,9 +42,6 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
-  .gatsby-image-outer-wrapper {
-    display: contents;
-  }
 `
 
 export const Content = styled.main`

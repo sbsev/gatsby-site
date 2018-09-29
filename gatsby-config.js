@@ -57,6 +57,8 @@ module.exports = {
               wrapperStyle: `max-width: none !important;`,
             },
           },
+          `gatsby-remark-embed-video`,
+          `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
         ],
       },
@@ -73,6 +75,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+<<<<<<< HEAD
     {
       resolve: `gatsby-plugin-algolia`,
       options: {
@@ -83,5 +86,8 @@ module.exports = {
         chunkSize: 10000, // default: 1000
       },
     },
+=======
+    `gatsby-plugin-netlify`,
+>>>>>>> develop
   ],
 }

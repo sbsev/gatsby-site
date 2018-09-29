@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
+import mediaQuery from '../../utils/mediaQuery'
 export { default as Button } from '../styles/Button'
 
 export const Container = styled.div`
@@ -15,8 +16,8 @@ export const Container = styled.div`
 export const Title = styled.div`
   position: absolute;
   top: 50%;
-  transform: translate(-50%, -50%);
   left: 50%;
+  transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.5);
   color: ${props => props.theme.darkBlue};
   padding: 1em 1em 1.5em;
@@ -29,11 +30,19 @@ export const Title = styled.div`
     font-size: 1em;
     margin: 1.5em 0;
   }
+  ${mediaQuery.phablet} {
+    width: 80vw;
+  }
 `
 
 export const Hero = styled(Img)`
+  position: absolute !important;
   object-fit: cover;
   height: 100%;
+  width: 100%;
+  opacity: ${props => (props.active ? 1 : 0)};
+  visibility: ${props => (props.active ? `visible` : `hidden`)};
+  transition: 1.5s ease-in;
 `
 
 export const Dots = styled.div`
