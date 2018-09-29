@@ -5,6 +5,7 @@ import { Container, Logo, SiteTitle } from './styles'
 import Nav from '../Nav'
 import Social from '../Social'
 import { navLinkStyle } from '../Nav/styles'
+import Search from '../Search';
 
 const Header = ({ site }) => (
   <Headroom>
@@ -15,6 +16,7 @@ const Header = ({ site }) => (
       </SiteTitle>
       <Nav />
       <Social short collapse iconCss={navLinkStyle} />
+      <Search />
     </Container>
   </Headroom>
 )

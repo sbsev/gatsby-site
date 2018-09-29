@@ -11,13 +11,14 @@ export const Container = styled.div`
   grid-gap: calc(0.5em + 4vw);
   align-items: center;
   justify-content: space-between;
-  grid-template-areas: 'nav title social';
+  grid-template-areas: 'nav title search social';
   padding: 2vmin 3vmin;
   ${mediaQuery.minNetbook} {
-    grid-template-areas: 'title nav social';
+    grid-template-areas: 'title nav search social';
   }
   ${mediaQuery.minLaptop} {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
+    grid-template-areas: 'title nav search social';
   }
 `
 
