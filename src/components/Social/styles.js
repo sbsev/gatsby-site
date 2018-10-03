@@ -20,7 +20,7 @@ const collapse = css`
   background: ${props => props.theme.lightGreen};
   border-radius: ${props => props.theme.smallBorderRadius};
   padding: 1vmin;
-  font-size: 1.8em;
+  font-size: 1.3em;
   transition: ${props => props.theme.shortTrans};
   ${Wrapper}:hover & {
     visibility: visible;
@@ -38,7 +38,7 @@ const alwaysShow = css`
 
 export const Container = styled.div`
   display: grid;
-  grid-gap: 1.5vmin;
+  grid-gap: 0.5em;
   ${mediaQuery.minLaptop} {
     ${alwaysShow};
   }
@@ -49,7 +49,7 @@ export const Container = styled.div`
 
 export const Toggle = styled(Share)`
   cursor: pointer;
-  font-size: 1.7em;
+  font-size: 1.5em;
   ${props => props.css};
   ${mediaQuery.minLaptop} {
     display: none !important;
