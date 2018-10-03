@@ -11,13 +11,14 @@ export const Container = styled.div`
   grid-gap: calc(0.5em + 4vw);
   align-items: center;
   justify-content: space-between;
-  grid-template-areas: 'nav title social';
+  grid-template-areas: 'nav title social-search';
   padding: 2vmin 3vmin;
   ${mediaQuery.minNetbook} {
-    grid-template-areas: 'title nav social';
+    grid-template-areas: 'title nav social-search';
   }
   ${mediaQuery.minLaptop} {
     grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'title nav social-search';
   }
 `
 
@@ -42,4 +43,11 @@ export const Logo = styled(LogoComp)`
   border-radius: 50%;
   background: ${props => props.theme.mainWhite};
   border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.mainWhite};
+`
+
+export const SocialSearch = styled.div`
+  grid-area: social-search;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.5em;
 `

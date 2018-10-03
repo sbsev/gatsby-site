@@ -1,3 +1,7 @@
+const queries = require('./src/utils/algolia')
+
+require('dotenv').config()
+
 module.exports = {
   siteMetadata: {
     title: `Studenten bilden Schüler`,
@@ -43,6 +47,15 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.algoliaAppId,
+        apiKey: process.env.algoliaApiKey,
+        queries,
+        chunkSize: 10000, // default: 1000
+      },
+    },
     `gatsby-plugin-netlify`,
   ],
 }

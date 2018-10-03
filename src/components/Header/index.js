@@ -1,10 +1,11 @@
 import React from 'react'
 import Headroom from 'react-headroom'
 
-import { Container, Logo, SiteTitle } from './styles'
 import Nav from '../Nav'
 import Social from '../Social'
 import { navLinkStyle } from '../Nav/styles'
+import Search from '../Search'
+import { Container, Logo, SiteTitle, SocialSearch } from './styles'
 
 const Header = ({ site }) => (
   <Headroom>
@@ -14,7 +15,10 @@ const Header = ({ site }) => (
         {site.title}
       </SiteTitle>
       <Nav />
-      <Social short collapse iconCss={navLinkStyle} />
+      <SocialSearch>
+        <Social short collapse iconCss={navLinkStyle} />
+        <Search />
+      </SocialSearch>
     </Container>
   </Headroom>
 )
