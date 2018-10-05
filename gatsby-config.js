@@ -56,6 +56,12 @@ module.exports = {
         chunkSize: 10000, // default: 1000
       },
     },
+    {
+      resolve: `gatsby-plugin-favicon`,
+      options: {
+        logo: './src/assets/favicon.png',
+      },
+    },
     `gatsby-plugin-netlify`,
   ],
 }
