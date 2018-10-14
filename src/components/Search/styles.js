@@ -5,6 +5,45 @@ export const Root = styled.div`
   position: relative;
 `
 
+export const Input = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  color: ${props => props.theme.lightBlue};
+  border-radius: ${props => props.theme.smallBorderRadius};
+  transition: ${props => props.theme.shortTrans};
+  :focus-within {
+    background: ${props => props.theme.lightBlue};
+    color: ${props => props.theme.darkBlue};
+  }
+  input {
+    color: ${props => props.theme.darkBlue};
+    outline: none;
+    border: none;
+    font-size: 1em;
+    width: 0;
+    background: transparent;
+    appearance: textfield;
+    transition: ${props => props.theme.shortTrans};
+    margin-left: -1.8em;
+    padding-left: 1.8em;
+    cursor: pointer;
+    :focus {
+      cursor: text;
+      width: 7em;
+    }
+    ::placeholder {
+      color: ${props => props.theme.darkBlue};
+    }
+    ::-webkit-search-cancel-button {
+      display: none;
+    }
+  }
+  button {
+    display: none;
+  }
+`
+
 export const HitsWrapper = styled.div`
   display: ${props => (props.show ? `grid` : `none`)};
   position: absolute;
@@ -41,47 +80,9 @@ export const HitsWrapper = styled.div`
   }
 `
 
-export const Input = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  color: ${props => props.theme.lightBlue};
-  border-radius: ${props => props.theme.smallBorderRadius};
-  transition: ${props => props.theme.shortTrans};
-  :focus-within {
-    color: ${props => props.theme.darkBlue};
-    background: ${props => props.theme.lightBlue};
-  }
-  input {
-    outline: none;
-    border: none;
-    font-size: inherit;
-    width: 0;
-    background: transparent;
-    transition: ${props => props.theme.shortTrans};
-    margin-left: -2em;
-    padding-left: 2em;
-    padding-right: 0.5em;
-    cursor: pointer;
-    :focus {
-      cursor: text;
-      width: 7em;
-    }
-    ::placeholder {
-      color: ${props => props.theme.darkBlue};
-    }
-    ::-webkit-search-cancel-button {
-      display: none;
-    }
-  }
-  button {
-    display: none;
-  }
-`
-
 export const Loupe = styled(Search)`
-  width: 1.25em;
-  padding: 0.2em 0.5em;
+  width: 1em;
+  margin: 0.2em 0.4em;
   pointer-events: none;
 `
 
