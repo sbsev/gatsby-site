@@ -5,9 +5,9 @@ import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
 import { Calendar } from 'styled-icons/octicons/Calendar'
 import { Tags } from 'styled-icons/fa-solid/Tags'
 
-const PostHit = ({ hit }) => (
+const PostHit = clickHandler => ({ hit }) => (
   <div>
-    <Link to={`/blog/` + hit.slug}>
+    <Link to={`/blog/` + hit.slug} onClick={clickHandler}>
       <h3>
         <Highlight attribute="title" hit={hit} />
       </h3>
@@ -26,7 +26,9 @@ const PostHit = ({ hit }) => (
       <Tags size="1em" />
       &nbsp;
       {hit.categories.map(({ title, slug }) => (
-        <Link to={`/blog/` + slug}>{title}</Link>
+        <Link key={slug} to={`/blog/` + slug}>
+          {title}
+        </Link>
       ))}
     </p>
     <Highlight attribute="excerpt" hit={hit} />
