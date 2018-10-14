@@ -9,7 +9,7 @@ const pageQuery = `{
         }
         body {
           data: childMarkdownRemark {
-            excerpt
+            excerpt(pruneLength: 5000)
             headings {
               value
               depth
@@ -42,7 +42,7 @@ const postQuery = `{
         }
         body {
           data: childMarkdownRemark {
-            excerpt
+            excerpt(pruneLength: 5000)
             headings {
               value
               depth

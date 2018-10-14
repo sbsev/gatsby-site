@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import algoliasearch from 'algoliasearch/lite'
-import { InstantSearch, SearchBox, Index, Hits } from 'react-instantsearch-dom'
+import {
+  InstantSearch,
+  SearchBox,
+  Index,
+  Hits,
+  Stats,
+  connectStateResults,
+} from 'react-instantsearch-dom'
 import { Algolia } from 'styled-icons/fa-brands/Algolia'
 
 import { Root, HitsWrapper, Input, Loupe, By } from './styles'
@@ -15,23 +22,28 @@ const searchClient = algoliasearch(
 
 const events = ['mousedown', 'touchstart']
 
+const Results = connectStateResults(
+  ({ searchState: state, searchResults: results, children }) =>
+    results && results.nbHits ? children : `Keine Ergebnisse für ${state.query}`
+)
+
 export default class Search extends Component {
   state = { query: ``, showHits: false }
 
-  updateState = state => {
-    this.setState(state)
-  }
+  updateState = state => this.setState(state)
 
   enableHits = () => {
     this.setState({ showHits: true })
   }
 
+  disableHits = () => {
+    this.setState({ showHits: false })
+  }
+
   handleClickOutside = event => {
-    if (this.node) {
-      const node = ReactDOM.findDOMNode(this.node)
-      if (!node.contains(event.target)) {
-        this.setState({ showHits: false })
-      }
+    const node = ReactDOM.findDOMNode(this.node)
+    if (node && !node.contains(event.target)) {
+      this.setState({ showHits: false })
     }
   }
 
@@ -64,13 +76,22 @@ export default class Search extends Component {
           <Loupe />
         </Input>
         <HitsWrapper show={this.state.query.length > 0 && this.state.showHits}>
+          <Stats
+            translations={{
+              stats: (n, ms) => `${n} Ergebnis${n > 1 ? `se` : ``} in ${ms} ms`,
+            }}
+          />
           <Index indexName="Pages">
             <h2>Seiten</h2>
-            <Hits hitComponent={PageHit} />
+            <Results>
+              <Hits hitComponent={PageHit(this.disableHits)} />
+            </Results>
           </Index>
           <Index indexName="Posts">
-            <h2>Blog Posts</h2>
-            <Hits hitComponent={PostHit} />
+            <h2>Blog</h2>
+            <Results>
+              <Hits hitComponent={PostHit(this.disableHits)} />
+            </Results>
           </Index>
           <By>
             Powered by{' '}
