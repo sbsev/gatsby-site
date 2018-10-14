@@ -6,6 +6,7 @@ import {
   SearchBox,
   Index,
   Hits,
+  Stats,
   connectStateResults,
 } from 'react-instantsearch-dom'
 import { Algolia } from 'styled-icons/fa-brands/Algolia'
@@ -75,6 +76,11 @@ export default class Search extends Component {
           <Loupe />
         </Input>
         <HitsWrapper show={this.state.query.length > 0 && this.state.showHits}>
+          <Stats
+            translations={{
+              stats: (n, ms) => `${n} Ergebnis${n > 1 ? `se` : ``} in ${ms} ms`,
+            }}
+          />
           <Index indexName="Pages">
             <h2>Seiten</h2>
             <Results>
