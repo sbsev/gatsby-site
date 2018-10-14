@@ -61,7 +61,7 @@ export const HitsWrapper = styled.div`
     list-style: none;
     padding: 0;
   }
-  em {
+  mark {
     color: ${props => props.theme.lightBlue};
     background: ${props => props.theme.darkBlue};
     font-style: normal;
