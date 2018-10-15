@@ -2,7 +2,7 @@ const pageQuery = `{
   pages: allContentfulPage {
     edges {
       node {
-        id
+        objectID: id
         slug
         title {
           title
@@ -25,7 +25,7 @@ const postQuery = `{
   posts: allContentfulPost {
     edges {
       node {
-        id
+        objectID: id
         slug
         title {
           title
@@ -58,25 +58,25 @@ const queries = [
   {
     query: pageQuery,
     transformer: ({ data }) =>
-      data.pages.edges.map(({ node }) => ({
-        title: node.title.title,
-        slug: node.slug,
-        ...node.body.data,
-        objectID: node.id,
-      })),
+      data.pages.edges.map(
+        ({ node: { title, body, ...rest } }) =>
+          [`Fehler 404`].includes(title.title)
+            ? {}
+            : {
+                ...title,
+                ...body.data,
+                ...rest,
+              }
+      ),
     indexName: `Pages`,
   },
   {
     query: postQuery,
     transformer: ({ data }) =>
-      data.posts.edges.map(({ node }) => ({
-        title: node.title.title,
-        slug: node.slug,
-        date: node.date,
-        author: node.author,
-        categories: node.categories,
-        ...node.body.data,
-        objectID: node.id,
+      data.posts.edges.map(({ node: { title, body, ...rest } }) => ({
+        ...title,
+        ...body.data,
+        ...rest,
       })),
     indexName: `Posts`,
   },
