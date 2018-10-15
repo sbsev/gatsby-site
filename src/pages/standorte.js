@@ -11,15 +11,18 @@ import Chapters from '../components/styles/Chapters'
 export default class ChaptersPage extends Component {
   addMarkers = map => {
     this.props.data.chapters.data.chapters.forEach((chapter, index) => {
-      const marker = new window.google.maps.Marker({
-        map,
-        position: chapter.coords,
-        label: `${index + 1}`,
-        title: chapter.title,
-      })
-      marker.addListener('click', () => {
-        window.location.href = `/standorte` + chapter.url
-      })
+      if (!chapter.inactive) {
+        console.log(chapter)
+        const marker = new window.google.maps.Marker({
+          map,
+          position: !chapter.inactive && chapter.coords,
+          label: `${index + 1}`,
+          title: chapter.title,
+        })
+        marker.addListener('click', () => {
+          window.location.href = `/standorte` + chapter.url
+        })
+      }
     })
   }
 
@@ -49,11 +52,14 @@ export default class ChaptersPage extends Component {
         </PageTitle>
         <Map id="chapterMap" {...this.mapProps} />
         <Chapters>
-          {chapters.data.chapters.map(chapter => (
-            <li key={chapter.url}>
-              <Link to={`/standorte` + chapter.url}>{chapter.title}</Link>
-            </li>
-          ))}
+          {chapters.data.chapters.map(
+            chapter =>
+              !chapter.inactive && (
+                <li key={chapter.url}>
+                  <Link to={`/standorte` + chapter.url}>{chapter.title}</Link>
+                </li>
+              )
+          )}
         </Chapters>
         {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
         <PageMeta {...page} />
@@ -85,6 +91,7 @@ export const query = graphql`
             lat
             lng
           }
+          inactive
         }
       }
     }

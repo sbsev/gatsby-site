@@ -50,6 +50,8 @@ export default class Nav extends Component {
 
   render() {
     const { nav, chapters, css } = this.props
+    // create a true copy of nav to which to add chapters
+    // otherwise chapters will be added on every page navigation
     const assembledNav = JSON.parse(JSON.stringify(nav))
     assembledNav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
     return (
@@ -75,17 +77,20 @@ export default class Nav extends Component {
               </NavLink>
               {item.subNav && (
                 <SubNav show={this.state.show}>
-                  {item.subNav.map(subItem => (
-                    <NavLink
-                      key={subItem.url}
-                      to={item.url + subItem.url}
-                      title={subItem.title}
-                      span={subItem.span}
-                      onClick={this.toggleNav}
-                    >
-                      {subItem.title}
-                    </NavLink>
-                  ))}
+                  {item.subNav.map(
+                    subItem =>
+                      !subItem.inactive && (
+                        <NavLink
+                          key={subItem.url}
+                          to={item.url + subItem.url}
+                          title={subItem.title}
+                          span={subItem.span}
+                          onClick={this.toggleNav}
+                        >
+                          {subItem.title}
+                        </NavLink>
+                      )
+                  )}
                 </SubNav>
               )}
             </NavEntry>
