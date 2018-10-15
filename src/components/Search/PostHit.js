@@ -24,9 +24,9 @@ const PostHit = clickHandler => ({ hit }) => (
       <Highlight attribute="date" hit={hit} tagName="mark" />
       &emsp;
       <Tags size="1em" />
-      &nbsp;
       {hit.categories.map(({ title, slug }) => (
         <Link key={slug} to={`/blog/` + slug}>
+          &nbsp;
           {title}
         </Link>
       ))}
