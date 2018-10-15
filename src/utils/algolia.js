@@ -58,7 +58,11 @@ const queries = [
   {
     query: pageQuery,
     transformer: ({ data }) =>
-      data.pages.edges.map(({ node }) => ({
+      data.pages.edges.map(
+        ({ node }) =>
+          [`Fehler 404`].includes(node.title.title)
+            ? {}
+            : {
         title: node.title.title,
         slug: node.slug,
         ...node.body.data,
