@@ -24,6 +24,7 @@ const query = graphql`
         chapters {
           url
           title
+          inactive
         }
       }
     }
