@@ -10,18 +10,19 @@ import Chapters from '../components/styles/Chapters'
 
 export default class ChaptersPage extends Component {
   addMarkers = map => {
-    this.props.data.chapters.data.chapters.forEach((chapter, index) => {
+    let chapterCount = 1
+    this.props.data.chapters.data.chapters.forEach(chapter => {
       if (!chapter.inactive) {
-        console.log(chapter)
         const marker = new window.google.maps.Marker({
           map,
           position: !chapter.inactive && chapter.coords,
-          label: `${index + 1}`,
+          label: `${chapterCount}`,
           title: chapter.title,
         })
         marker.addListener('click', () => {
           window.location.href = `/standorte` + chapter.url
         })
+        ++chapterCount
       }
     })
   }
