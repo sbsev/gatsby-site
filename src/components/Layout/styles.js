@@ -42,6 +42,18 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
+  .btn {
+    background: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.mainWhite} !important;
+    border-radius: ${props => props.theme.smallBorderRadius};
+    padding: 0.4em 0.6em;
+    font-size: ${props => props.size};
+    transition: ${props => props.theme.shortTrans};
+    margin: 0 auto;
+    :hover {
+      background: ${props => props.theme.lightBlue};
+    }
+  }
 `
 
 export const Content = styled.main`
