@@ -45,9 +45,15 @@ export const query = graphql`
           html
         }
       }
-      subsections {
+      subsections: wiki_subsection {
         title
         slug
+        icon {
+          title
+          file {
+            url
+          }
+        }
       }
     }
     articles: allContentfulWikiArticle(

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link } from 'gatsby'
 
-import { List, Subsection } from './styles'
+import { List, Subsection, SubsectionIcon } from './styles'
 
 const SubsectionList = ({ sectionSlug, subsections, path = `` }) => {
   const subsectionSlug = path.split(`/`).pop()
@@ -15,6 +15,10 @@ const SubsectionList = ({ sectionSlug, subsections, path = `` }) => {
             active={subsection.slug === subsectionSlug}
           >
             <Link to={`/wiki/${sectionSlug}/${subsection.slug}`}>
+              <SubsectionIcon
+                src={subsection.icon.file.url}
+                alt={subsection.icon.title}
+              />
               {subsection.title}
             </Link>
           </Subsection>

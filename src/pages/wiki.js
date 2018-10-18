@@ -21,14 +21,20 @@ export default Wiki
 
 export const query = graphql`
   {
-    sections: allContentfulWikiSection(sort: { fields: [title], order: DESC }) {
+    sections: allContentfulWikiSection(sort: { fields: [title], order: ASC }) {
       edges {
         node {
           title
           slug
-          subsections {
+          subsections: wiki_subsection {
             title
             slug
+            icon {
+              title
+              file {
+                url
+              }
+            }
           }
           icon {
             title
