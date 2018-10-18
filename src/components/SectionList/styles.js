@@ -39,6 +39,10 @@ export const Section = styled.li`
   border-radius: ${props => props.theme.smallBorderRadius};
 `
 
+export const Subsection = styled.li`
+  position: relative;
+`
+
 export const SectionIcon = styled.img`
   position: absolute;
   width: 5em;
@@ -50,4 +54,11 @@ export const SectionIcon = styled.img`
     width: 3em;
     top: -3.75em;
   }
+`
+
+export const SubsectionIcon = styled.img`
+  position: absolute;
+  width: 1em;
+  left: -1.6em;
+  top: 0.4em;
 `
