@@ -9,8 +9,8 @@ import ArticleList from '../components/ArticleList'
 
 const WikiSubsectionTemplate = ({ data, location }) => {
   const { subsection, articles } = data
-  const { sections, description } = subsection
-  const { title, slug, subsections } = sections[0]
+  const { section, description } = subsection
+  const { title, slug, subsections } = section
   const path = location.pathname
   return (
     <Layout pageTitle={title} path={path} description={description.text}>
@@ -50,7 +50,7 @@ export const query = graphql`
           html
         }
       }
-      sections: wiki_section {
+      section {
         title
         slug
         subsections {

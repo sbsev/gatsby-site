@@ -24,7 +24,7 @@ const contentfulQuery = (contentType, fragment = ``) => `
 `
 
 const wikiSubsectionFragment = `
-  sections: wiki_section {
+  section {
     slug
   }
 `
@@ -73,7 +73,7 @@ const pagePath = node => {
     case `ContentfulWikiSection`:
       return `wiki/${node.slug}`
     case `ContentfulWikiSubsection`:
-      return `wiki/${node.sections[0].slug}/${node.slug}`
+      return `wiki/${node.section.slug}/${node.slug}`
     case `ContentfulWikiArticle`:
       if (!node.subsection) return `wiki/${node.section.slug}/${node.slug}`
       return `wiki/${node.section.slug}/${node.subsection.slug}/${node.slug}`
@@ -98,7 +98,7 @@ exports.createPages = ({ graphql, actions }) => {
       throw new Error(response.errors)
     }
     response.data.content.edges.forEach(({ node }) => {
-      // exclude pages that are stored locally in src/pages
+      // exclude pages defined in src/pages
       if (![`/`, `standorte`, `404`].includes(node.slug)) {
         createPage({
           path: pagePath(node),
