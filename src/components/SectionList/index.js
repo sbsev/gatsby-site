@@ -1,7 +1,13 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import { Container, Section, SectionIcon } from './styles'
+import {
+  Container,
+  Section,
+  Subsection,
+  SectionIcon,
+  SubsectionIcon,
+} from './styles'
 
 const SectionList = ({ sections }) => (
   <Container>
@@ -14,11 +20,15 @@ const SectionList = ({ sections }) => (
         {section.subsections && (
           <ol>
             {section.subsections.map(subsection => (
-              <li key={subsection.slug}>
+              <Subsection key={subsection.slug}>
                 <Link to={`/wiki/${section.slug}/${subsection.slug}`}>
+                  <SubsectionIcon
+                    src={subsection.icon.file.url}
+                    alt={subsection.icon.title}
+                  />
                   {subsection.title}
                 </Link>
-              </li>
+              </Subsection>
             ))}
           </ol>
         )}

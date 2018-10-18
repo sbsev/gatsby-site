@@ -14,7 +14,14 @@ export const Subsection = styled.p`
     active ? theme.mainBlue : theme.lightGray};
   border-radius: ${props => props.theme.smallBorderRadius};
   a {
+    display: flex;
+    align-items: center;
     color: ${({ theme, active }) =>
       active ? theme.mainWhite : theme.mainBlack};
   }
+`
+
+export const SubsectionIcon = styled.img`
+  width: 1em;
+  margin-right: 0.5em;
 `

@@ -53,9 +53,15 @@ export const query = graphql`
       section {
         title
         slug
-        subsections {
+        subsections: wiki_subsection {
           title
           slug
+          icon {
+            title
+            file {
+              url
+            }
+          }
         }
       }
     }
