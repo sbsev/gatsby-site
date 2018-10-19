@@ -1,13 +1,26 @@
 const path = require('path')
+const glob = require('glob')
+const _ = require('lodash')
 
-const pageTemplate = path.resolve('./src/templates/page.js')
-const postTemplate = path.resolve('./src/templates/post.js')
-const blogCategoryTemplate = path.resolve('./src/templates/blogCategory.js')
-const wikiSubsectionTemplate = path.resolve('./src/templates/wikiSubsection.js')
-const wikiSectionTemplate = path.resolve('./src/templates/wikiSection.js')
-const wikiArticleTemplate = path.resolve('./src/templates/wikiArticle.js')
+const templates = glob.sync('./src/templates/*.js', {
+  absolute: true,
+})
 
-const contentfulQuery = (contentType, fragment = ``) => `
+const fragments = {
+  page: ``,
+  post: ``,
+  blogCategory: ``,
+  wikiArticle: `
+    section { slug }
+    subsection { slug }
+  `,
+  wikiSection: ``,
+  wikiSubsection: `
+    section { slug }
+  `,
+}
+
+const contentfulQuery = (contentType, fragment) => `
   {
     content: allContentful${contentType} {
       edges {
@@ -23,47 +36,13 @@ const contentfulQuery = (contentType, fragment = ``) => `
   }
 `
 
-const wikiSubsectionFragment = `
-  section {
-    slug
+const pageSets = templates.map(template => {
+  const type = path.basename(template, `.js`)
+  return {
+    query: contentfulQuery(_.upperFirst(type), fragments[type]),
+    component: template,
   }
-`
-
-const wikiArticleFragment = `
-  section {
-    slug
-  }
-  subsection {
-    slug
-  }
-`
-
-const pageSets = [
-  {
-    query: contentfulQuery(`Page`),
-    component: pageTemplate,
-  },
-  {
-    query: contentfulQuery(`Post`),
-    component: postTemplate,
-  },
-  {
-    query: contentfulQuery(`BlogCategory`),
-    component: blogCategoryTemplate,
-  },
-  {
-    query: contentfulQuery(`WikiSection`),
-    component: wikiSectionTemplate,
-  },
-  {
-    query: contentfulQuery(`WikiSubsection`, wikiSubsectionFragment),
-    component: wikiSubsectionTemplate,
-  },
-  {
-    query: contentfulQuery(`WikiArticle`, wikiArticleFragment),
-    component: wikiArticleTemplate,
-  },
-]
+})
 
 const pagePath = node => {
   switch (node.internal.type) {
