@@ -7,6 +7,11 @@ import { navLinkStyle } from '../Nav/styles'
 import Search from '../Search'
 import { Container, Logo, SiteTitle } from './styles'
 
+const searchIndices = [
+  { name: `Pages`, title: `Seiten`, hitComp: `PageHit` },
+  { name: `Posts`, title: `Blog`, hitComp: `PostHit` },
+]
+
 const Header = ({ site }) => (
   <Headroom>
     <Container>
@@ -16,7 +21,7 @@ const Header = ({ site }) => (
       </SiteTitle>
       <Nav />
       <Social short collapse iconCss={navLinkStyle} />
-      <Search />
+      <Search collapse indices={searchIndices} />
     </Container>
   </Headroom>
 )
