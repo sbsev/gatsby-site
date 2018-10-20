@@ -1,46 +1,45 @@
 import styled from 'styled-components'
 import { Search } from 'styled-icons/fa-solid/Search'
+import Input from './SearchBox'
 
 export const Root = styled.div`
   position: relative;
-`
-
-export const Input = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  transition: ${props => props.theme.shortTrans};
+`
+
+export const Loupe = styled(Search)`
+  width: 1em;
+  margin: 0.3em;
+  pointer-events: none;
+  color: ${props => props.theme.lightBlue};
+`
+
+export const SearchBox = styled(Input)`
+  outline: none;
+  border: none;
+  font-size: 1em;
+  width: 0;
+  background: transparent;
+  transition: ${props => props.theme.shortTrans};
+  margin-left: -1.6em;
+  padding-left: 1.6em;
   color: ${props => props.theme.lightBlue};
   border-radius: ${props => props.theme.smallBorderRadius};
-  transition: ${props => props.theme.shortTrans};
-  :focus-within {
+  cursor: pointer;
+  :focus {
     background: ${props => props.theme.lightBlue};
     color: ${props => props.theme.darkBlue};
-  }
-  input {
-    color: ${props => props.theme.darkBlue};
-    outline: none;
-    border: none;
-    font-size: 1em;
-    width: 0;
-    background: transparent;
-    appearance: textfield;
-    transition: ${props => props.theme.shortTrans};
-    margin-left: -1.8em;
-    padding-left: 1.8em;
-    cursor: pointer;
-    :focus {
-      cursor: text;
-      width: 7em;
-    }
-    ::placeholder {
+    cursor: text;
+    width: 5em;
+    + ${Loupe} {
       color: ${props => props.theme.darkBlue};
     }
-    ::-webkit-search-cancel-button {
-      display: none;
-    }
   }
-  button {
-    display: none;
+  ::placeholder {
+    color: ${props => props.theme.darkBlue};
   }
 `
 
@@ -49,7 +48,8 @@ export const HitsWrapper = styled.div`
   position: absolute;
   right: 0;
   top: calc(100% + 0.5em);
-  width: calc(5em + 30vw);
+  width: calc(4em + 40vw);
+  max-width: 30em;
   background: ${props => props.theme.mainWhite};
   border-radius: ${props => props.theme.smallBorderRadius};
   max-height: 80vh;
@@ -78,12 +78,6 @@ export const HitsWrapper = styled.div`
   h3 {
     margin-bottom: 0.3em;
   }
-`
-
-export const Loupe = styled(Search)`
-  width: 1em;
-  margin: 0.2em 0.4em;
-  pointer-events: none;
 `
 
 export const By = styled.span`
