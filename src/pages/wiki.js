@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import PageTitle from '../components/PageTitle'
 import SectionList from '../components/SectionList'
+import Search from '../components/Search'
 
 const Wiki = ({ data, location }) => {
   const title = `Wiki`
@@ -12,6 +13,10 @@ const Wiki = ({ data, location }) => {
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
+      <Search
+        indices={[{ name: `Articles`, title: `Wiki`, hitComp: `ArticleHit` }]}
+        style={{ hits: { position: `static` } }}
+      />
       <SectionList {...data} />
     </Layout>
   )
