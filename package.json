@@ -8,7 +8,6 @@
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
   "repository": "https://github.com/StudentenBildenSchueler/homepage",
   "dependencies": {
-    "algoliasearch": "^3.30.0",
     "babel-plugin-styled-components": "^1.8.0",
     "gatsby": "2.0.22",
     "gatsby-image": "2.0.14",
