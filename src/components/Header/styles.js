@@ -8,17 +8,14 @@ import { navLinkStyle } from '../Nav/styles'
 export const Container = styled.div`
   background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: calc(0.5em + 4vw);
+  grid-gap: calc(0.5em + 1vw);
   align-items: center;
-  justify-content: space-between;
-  grid-template-areas: 'nav title social-search';
-  padding: 2vmin 3vmin;
+  justify-items: center;
+  grid-template-areas: 'nav title social search';
+  grid-template-columns: auto 1fr auto auto;
+  padding: calc(0.25em + 1vh) calc(0.25em + 1vw);
   ${mediaQuery.minNetbook} {
-    grid-template-areas: 'title nav social-search';
-  }
-  ${mediaQuery.minLaptop} {
-    grid-template-columns: auto 1fr auto;
-    grid-template-areas: 'title nav social-search';
+    grid-template-areas: 'title nav social search';
   }
 `
 
@@ -43,11 +40,4 @@ export const Logo = styled(LogoComp)`
   border-radius: 50%;
   background: ${props => props.theme.mainWhite};
   border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.mainWhite};
-`
-
-export const SocialSearch = styled.div`
-  grid-area: social-search;
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 0.5em;
 `
