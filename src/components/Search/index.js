@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import algoliasearch from 'algoliasearch/lite'
 import {
   InstantSearch,
-  SearchBox,
   Index,
   Hits,
   Stats,
@@ -11,14 +9,9 @@ import {
 } from 'react-instantsearch-dom'
 import { Algolia } from 'styled-icons/fa-brands/Algolia'
 
-import { Root, HitsWrapper, Input, Loupe, By } from './styles'
+import { Root, SearchBox, HitsWrapper, Loupe, By } from './styles'
 import PageHit from './PageHit'
 import PostHit from './PostHit'
-
-const searchClient = algoliasearch(
-  'T0ZLKGU1XK',
-  '2bba2dc22c305d8a0472c4a76690093e'
-)
 
 const events = ['mousedown', 'touchstart']
 
@@ -62,23 +55,19 @@ export default class Search extends Component {
   render() {
     return (
       <InstantSearch
+        appId="T0ZLKGU1XK"
+        apiKey="2bba2dc22c305d8a0472c4a76690093e"
         indexName="Pages"
-        searchClient={searchClient}
         onSearchStateChange={this.updateState}
         root={{ Root }}
         ref={node => (this.node = node)}
       >
-        <Input>
-          <SearchBox
-            translations={{ placeholder: `Suche` }}
-            onFocus={this.enableHits}
-          />
-          <Loupe />
-        </Input>
+        <SearchBox onFocus={this.enableHits} />
+        <Loupe />
         <HitsWrapper show={this.state.query.length > 0 && this.state.showHits}>
           <Stats
             translations={{
-              stats: (n, ms) => `${n} Ergebnis${n > 1 ? `se` : ``} in ${ms} ms`,
+              stats: n => `${n} Ergebnis${n > 1 ? `se` : ``}`,
             }}
           />
           <Index indexName="Pages">
