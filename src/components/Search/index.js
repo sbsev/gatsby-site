@@ -9,9 +9,8 @@ import {
 } from 'react-instantsearch-dom'
 import { Algolia } from 'styled-icons/fa-brands/Algolia'
 
-import { Root, SearchBox, HitsWrapper, Loupe, By } from './styles'
-import PageHit from './PageHit'
-import PostHit from './PostHit'
+import { Root, SearchBox, HitsWrapper, By } from './styles'
+import * as hitComps from './hits'
 
 const events = ['mousedown', 'touchstart']
 
@@ -53,6 +52,8 @@ export default class Search extends Component {
   }
 
   render() {
+    const { query, showHits } = this.state
+    const { indices, style, collapse } = this.props
     return (
       <InstantSearch
         appId="T0ZLKGU1XK"
@@ -62,26 +63,26 @@ export default class Search extends Component {
         root={{ Root }}
         ref={node => (this.node = node)}
       >
-        <SearchBox onFocus={this.enableHits} />
-        <Loupe />
-        <HitsWrapper show={this.state.query.length > 0 && this.state.showHits}>
+        <SearchBox collapse={collapse} onFocus={this.enableHits} />
+        <HitsWrapper
+          show={query.length > 0 && showHits}
+          {...style && style.hits}
+        >
           <Stats
             translations={{
               stats: n => `${n} Ergebnis${n > 1 ? `se` : ``}`,
             }}
           />
-          <Index indexName="Pages">
-            <h2>Seiten</h2>
-            <Results>
-              <Hits hitComponent={PageHit(this.disableHits)} />
-            </Results>
-          </Index>
-          <Index indexName="Posts">
-            <h2>Blog</h2>
-            <Results>
-              <Hits hitComponent={PostHit(this.disableHits)} />
-            </Results>
-          </Index>
+          {indices.map(index => (
+            <Index key={index.name} indexName={index.name}>
+              <h2>{index.title}</h2>
+              <Results>
+                <Hits
+                  hitComponent={hitComps[index.hitComp](this.disableHits)}
+                />
+              </Results>
+            </Index>
+          ))}
           <By>
             Powered by{' '}
             <a href="https://www.algolia.com">
