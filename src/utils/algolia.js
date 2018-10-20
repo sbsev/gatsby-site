@@ -54,6 +54,37 @@ const postQuery = `{
   }
 }`
 
+const articleQuery = `{
+  articles: allContentfulWikiArticle {
+    edges {
+      node {
+        objectID: id
+        slug
+        title {
+          title
+        }
+        section {
+          title
+          slug
+        }
+        subsection {
+          title
+          slug
+        }
+        body {
+          data: childMarkdownRemark {
+            excerpt(pruneLength: 5000)
+            headings {
+              value
+              depth
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+
 const queries = [
   {
     query: pageQuery,
@@ -79,6 +110,16 @@ const queries = [
         ...rest,
       })),
     indexName: `Posts`,
+  },
+  {
+    query: articleQuery,
+    transformer: ({ data }) =>
+      data.articles.edges.map(({ node: { title, body, ...rest } }) => ({
+        ...title,
+        ...body.data,
+        ...rest,
+      })),
+    indexName: `Articles`,
   },
 ]
 
