@@ -1,34 +1,29 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Search } from 'styled-icons/fa-solid/Search'
 import Input from './SearchBox'
 
 export const Root = styled.div`
   position: relative;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  transition: ${props => props.theme.shortTrans};
+  display: grid;
+  justify-items: center;
+  width: max-content;
+  justify-self: center;
+  grid-gap: 1em;
 `
 
 export const Loupe = styled(Search)`
   width: 1em;
   margin: 0.3em;
   pointer-events: none;
-  color: ${props => props.theme.lightBlue};
 `
 
-export const SearchBox = styled(Input)`
-  outline: none;
-  border: none;
-  font-size: 1em;
+const collapse = css`
   width: 0;
-  background: transparent;
-  transition: ${props => props.theme.shortTrans};
-  margin-left: -1.6em;
-  padding-left: 1.6em;
-  color: ${props => props.theme.lightBlue};
-  border-radius: ${props => props.theme.smallBorderRadius};
   cursor: pointer;
+  color: ${props => props.theme.lightBlue};
+  + ${Loupe} {
+    color: ${props => props.theme.lightBlue};
+  }
   :focus {
     background: ${props => props.theme.lightBlue};
     color: ${props => props.theme.darkBlue};
@@ -43,9 +38,31 @@ export const SearchBox = styled(Input)`
   }
 `
 
+const expand = css`
+  background: ${props => props.theme.lightGray};
+  width: 6em;
+`
+
+export const SearchBox = styled(Input)`
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  input {
+    outline: none;
+    border: none;
+    font-size: 1em;
+    background: transparent;
+    transition: ${props => props.theme.shortTrans};
+    margin-left: -1.6em;
+    padding-left: 1.6em;
+    border-radius: ${props => props.theme.smallBorderRadius};
+    ${props => (props.collapse ? collapse : expand)};
+  }
+`
+
 export const HitsWrapper = styled.div`
   display: ${props => (props.show ? `grid` : `none`)};
-  position: absolute;
+  position: ${props => props.position || `absolute`};
   right: 0;
   top: calc(100% + 0.5em);
   width: calc(4em + 40vw);
