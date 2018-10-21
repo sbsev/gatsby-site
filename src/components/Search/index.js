@@ -15,8 +15,8 @@ import * as hitComps from './hits'
 const events = ['mousedown', 'touchstart']
 
 const Results = connectStateResults(
-  ({ searchState: state, searchResults: results, children }) =>
-    results && results.nbHits ? children : `Keine Ergebnisse für ${state.query}`
+  ({ searchState: state, searchResults: res, children }) =>
+    res && res.nbHits ? children : `Keine Ergebnisse für ${state.query}`
 )
 
 export default class Search extends Component {
@@ -58,7 +58,7 @@ export default class Search extends Component {
       <InstantSearch
         appId="T0ZLKGU1XK"
         apiKey="2bba2dc22c305d8a0472c4a76690093e"
-        indexName="Pages"
+        indexName={indices[0].name}
         onSearchStateChange={this.updateState}
         root={{ Root }}
         ref={node => (this.node = node)}
