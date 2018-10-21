@@ -46,10 +46,6 @@ export const query = graphql`
     }
     created: createdAt(formatString: "D. MMMM YYYY", locale: "de")
     updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
-    authors {
-      name
-      email
-    }
     section {
       title
       slug
