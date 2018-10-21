@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Highlight, Snippet } from 'react-instantsearch-dom'
 import { Link } from 'gatsby'
 import { FileDirectory } from 'styled-icons/octicons/FileDirectory'
@@ -14,11 +14,17 @@ const ArticleHit = clickHandler => ({ hit }) => (
     <div>
       <FileDirectory size="1em" />
       {` `}
-      <Link to={hit.section.slug}>{hit.section.title}</Link>
-      &emsp;
-      <FileSubmodule size="1em" />
-      {` `}
-      <Link to={hit.subsection.slug}>{hit.subsection.title}</Link>
+      <Link to={`/wiki/` + hit.section.slug}>{hit.section.title}</Link>
+      {hit.subsection && (
+        <Fragment>
+          &emsp;
+          <FileSubmodule size="1em" />
+          {` `}
+          <Link to={`/wiki/${hit.section.slug}/${hit.subsection.slug}`}>
+            {hit.subsection.title}
+          </Link>
+        </Fragment>
+      )}
     </div>
     <Snippet attribute="excerpt" hit={hit} tagName="mark" />
   </div>
