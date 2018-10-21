@@ -53,7 +53,7 @@ export default class Search extends Component {
 
   render() {
     const { query, showHits } = this.state
-    const { indices, style, collapse } = this.props
+    const { indices, collapse, hitsAsGrid } = this.props
     return (
       <InstantSearch
         appId="T0ZLKGU1XK"
@@ -66,20 +66,18 @@ export default class Search extends Component {
         <SearchBox collapse={collapse} onFocus={this.enableHits} />
         <HitsWrapper
           show={query.length > 0 && showHits}
-          {...style && style.hits}
+          hitsAsGrid={hitsAsGrid}
         >
           <Stats
             translations={{
-              stats: n => `${n} Ergebnis${n > 1 ? `se` : ``}`,
+              stats: n => `${n} Ergebnis${n !== 1 ? `se` : ``}`,
             }}
           />
-          {indices.map(index => (
-            <Index key={index.name} indexName={index.name}>
-              <h2>{index.title}</h2>
+          {indices.map(({ name, title, hitComp }) => (
+            <Index key={name} indexName={name}>
+              {title && <h2>{title}</h2>}
               <Results>
-                <Hits
-                  hitComponent={hitComps[index.hitComp](this.disableHits)}
-                />
+                <Hits hitComponent={hitComps[hitComp](this.disableHits)} />
               </Results>
             </Index>
           ))}
