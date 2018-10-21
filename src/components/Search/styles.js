@@ -5,9 +5,6 @@ import Input from './SearchBox'
 export const Root = styled.div`
   position: relative;
   display: grid;
-  justify-items: center;
-  width: max-content;
-  justify-self: center;
   grid-gap: 1em;
 `
 
@@ -60,29 +57,16 @@ export const SearchBox = styled(Input)`
   }
 `
 
-export const HitsWrapper = styled.div`
-  display: ${props => (props.show ? `grid` : `none`)};
-  position: ${props => props.position || `absolute`};
+const list = css`
+  position: absolute;
   right: 0;
   top: calc(100% + 0.5em);
   width: calc(4em + 40vw);
   max-width: 30em;
+  box-shadow: 0 0 5px 0;
+  padding: 0.7em 1em 0.4em;
   background: ${props => props.theme.mainWhite};
   border-radius: ${props => props.theme.smallBorderRadius};
-  max-height: 80vh;
-  overflow: scroll;
-  padding: 0.7em 1em 0.4em;
-  box-shadow: 0 0 5px 0;
-  * {
-    margin-top: 0;
-    list-style: none;
-    padding: 0;
-  }
-  mark {
-    color: ${props => props.theme.lightBlue};
-    background: ${props => props.theme.darkBlue};
-    font-style: normal;
-  }
   > * + * {
     padding-top: 1em;
     border-top: 2px solid ${props => props.theme.darkGray};
@@ -91,6 +75,37 @@ export const HitsWrapper = styled.div`
     margin-top: 0.7em;
     padding-top: 0.7em;
     border-top: 1px solid ${props => props.theme.lightGray};
+  }
+`
+
+const grid = css`
+  ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
+    grid-gap: 1em;
+    li {
+      padding: 0.3em 0.5em;
+      background: ${props => props.theme.veryLightGray};
+      border-radius: ${props => props.theme.smallBorderRadius};
+    }
+  }
+`
+
+export const HitsWrapper = styled.div`
+  display: ${props => (props.show ? `grid` : `none`)};
+  max-height: 80vh;
+  overflow: scroll;
+  ${props => (props.hitsAsGrid ? grid : list)};
+  * {
+    margin-top: 0;
+    padding: 0;
+  }
+  ul {
+    list-style: none;
+  }
+  mark {
+    color: ${props => props.theme.lightBlue};
+    background: ${props => props.theme.darkBlue};
   }
   h3 {
     margin-bottom: 0.3em;
