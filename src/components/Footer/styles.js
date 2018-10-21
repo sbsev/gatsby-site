@@ -5,13 +5,13 @@ import Link from '../Link'
 
 export const FooterDiv = styled.footer`
   background: ${props => props.theme.darkBlue};
-  padding: 5vmin;
+  padding: 5vh 5vw;
   color: ${props => props.theme.lightBlue};
   display: grid;
   text-align: center;
   align-items: center;
   justify-items: center;
-  grid-gap: 5vh 3vw;
+  grid-gap: 7vh 5vw;
   grid-template-areas:
     'social'
     'copyright'
