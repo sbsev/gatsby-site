@@ -14,8 +14,8 @@ const Wiki = ({ data, location }) => {
         <h1>{title}</h1>
       </PageTitle>
       <Search
-        indices={[{ name: `Articles`, title: `Wiki`, hitComp: `ArticleHit` }]}
-        style={{ hits: { position: `static` } }}
+        hitsAsGrid
+        indices={[{ name: `Articles`, hitComp: `ArticleHit` }]}
       />
       <SectionList {...data} />
     </Layout>
