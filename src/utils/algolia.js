@@ -100,6 +100,7 @@ const queries = [
               }
       ),
     indexName: `Pages`,
+    settings: { attributesToSnippet: [`excerpt:20`] },
   },
   {
     query: postQuery,
@@ -110,6 +111,7 @@ const queries = [
         ...rest,
       })),
     indexName: `Posts`,
+    settings: { attributesToSnippet: [`excerpt:20`] },
   },
   {
     query: articleQuery,
@@ -120,6 +122,7 @@ const queries = [
         ...rest,
       })),
     indexName: `Articles`,
+    settings: { attributesToSnippet: [`excerpt:20`] },
   },
 ]
 
