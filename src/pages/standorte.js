@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { graphql, Link } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import Map from '../components/Map'
 import PageBody from '../components/styles/PageBody'
@@ -47,7 +47,7 @@ export default class ChaptersPage extends Component {
     } = page
     const { excerpt, html } = body && body.data
     return (
-      <Layout pageTitle={title} path={location.pathname} description={excerpt}>
+      <Global pageTitle={title} path={location.pathname} description={excerpt}>
         <PageTitle>
           <h1>{title}</h1>
         </PageTitle>
@@ -64,7 +64,7 @@ export default class ChaptersPage extends Component {
         </Chapters>
         {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
         <PageMeta {...page} />
-      </Layout>
+      </Global>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import Breadcrumbs from '../components/Breadcrumbs'
 import SubsectionList from '../components/SubsectionList'
@@ -13,7 +13,7 @@ const WikiSubsectionTemplate = ({ data, location }) => {
   const { title, slug, subsections } = section
   const path = location.pathname
   return (
-    <Layout pageTitle={title} path={path} description={description.text}>
+    <Global pageTitle={title} path={path} description={description.text}>
       <Breadcrumbs path={path} />
       <PageTitle>
         <h1>{title}</h1>
@@ -33,7 +33,7 @@ const WikiSubsectionTemplate = ({ data, location }) => {
         />
       )}
       {articles && <ArticleList articles={articles} />}
-    </Layout>
+    </Global>
   )
 }
 
