@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import Breadcrumbs from '../components/Breadcrumbs'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/styles/PageBody'
@@ -15,14 +15,14 @@ const WikiArticleTemplate = ({ data, location }) => {
   const { html, excerpt } = body.data
   const path = location.pathname
   return (
-    <Layout pageTitle={title} path={path} description={excerpt}>
+    <Global pageTitle={title} path={path} description={excerpt}>
       <Breadcrumbs path={path} />
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
       <PageBody dangerouslySetInnerHTML={{ __html: html }} />
       <PageMeta {...data.article} />
-    </Layout>
+    </Global>
   )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import Logo from '../assets/logo'
 import PageBody from '../components/styles/PageBody'
@@ -14,14 +14,14 @@ const PageNotFound = ({ data: { page }, location }) => {
   } = page
   const { excerpt, html } = body && body.data
   return (
-    <Layout pageTitle={title} path={location.pathname} description={excerpt}>
+    <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle>
         <Logo width="calc(5em + 5vw)" />
         <h1>{title}</h1>
       </PageTitle>
       {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
       <PageMeta {...page} />
-    </Layout>
+    </Global>
   )
 }
 
