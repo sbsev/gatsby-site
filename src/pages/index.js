@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import LandingTitle from '../components/LandingTitle'
 import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
@@ -15,13 +15,13 @@ const LandingPage = ({ data, location }) => {
   } = page
   const { excerpt, html } = body && body.data
   return (
-    <Layout pageTitle={title} path={location.pathname} description={excerpt}>
+    <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <LandingTitle {...{ title, subtitle, images: images.edges }} />
       {html && (
         <PageBody isLanding dangerouslySetInnerHTML={{ __html: html }} />
       )}
       <PageMeta {...page} />
-    </Layout>
+    </Global>
   )
 }
 
