@@ -107,6 +107,9 @@ export const HitsWrapper = styled.div`
     color: ${props => props.theme.lightBlue};
     background: ${props => props.theme.darkBlue};
   }
+  h2 {
+    margin: 0.5em 0;
+  }
   h3 {
     margin-bottom: 0.3em;
   }
