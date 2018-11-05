@@ -5,7 +5,7 @@ import mediaQuery from '../../utils/mediaQuery'
 import LogoComp from '../../assets/logo'
 import { navLinkStyle } from '../Nav/styles'
 
-export const Container = styled.div`
+export const Container = styled.header`
   background: ${props => props.theme.darkBlue};
   display: grid;
   grid-gap: calc(0.5em + 1vw);
