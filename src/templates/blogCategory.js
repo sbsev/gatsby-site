@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import PostList from '../components/PostList'
 
@@ -11,12 +11,12 @@ const blogCategoryTemplate = ({ data, location }) => {
   const { text } = activeCategory.description
   const path = location.pathname
   return (
-    <Layout pageTitle={title} path={path} description={text}>
+    <Global pageTitle={title} path={path} description={text}>
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
       <PostList {...data} />
-    </Layout>
+    </Global>
   )
 }
 

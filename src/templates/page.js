@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
@@ -14,13 +14,13 @@ const PageTemplate = ({ data, location }) => {
   const { excerpt, html } = body && body.data
   const path = location.pathname
   return (
-    <Layout pageTitle={title} path={path} description={excerpt}>
+    <Global pageTitle={title} path={path} description={excerpt}>
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
       {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
       <PageMeta {...data.page} />
-    </Layout>
+    </Global>
   )
 }
 

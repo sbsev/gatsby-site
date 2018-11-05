@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Layout from '../components/Layout'
+import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import SectionList from '../components/SectionList'
 import Search from '../components/Search'
@@ -9,7 +9,7 @@ import Search from '../components/Search'
 const Wiki = ({ data, location }) => {
   const title = `Wiki`
   return (
-    <Layout pageTitle={title} path={location.pathname}>
+    <Global pageTitle={title} path={location.pathname}>
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
@@ -18,7 +18,7 @@ const Wiki = ({ data, location }) => {
         indices={[{ name: `Articles`, hitComp: `ArticleHit` }]}
       />
       <SectionList {...data} />
-    </Layout>
+    </Global>
   )
 }
 
