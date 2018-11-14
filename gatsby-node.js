@@ -1,6 +1,6 @@
 const path = require('path')
 const glob = require('glob')
-const _ = require('lodash')
+const lodash = require('lodash')
 
 const templates = glob.sync('./src/templates/*.js', {
   absolute: true,
@@ -39,7 +39,7 @@ const contentfulQuery = (contentType, fragment) => `
 const pageSets = templates.map(template => {
   const type = path.basename(template, `.js`)
   return {
-    query: contentfulQuery(_.upperFirst(type), fragments[type]),
+    query: contentfulQuery(lodash.upperFirst(type), fragments[type]),
     component: template,
   }
 })
@@ -78,7 +78,7 @@ exports.createPages = ({ graphql, actions }) => {
     }
     response.data.content.edges.forEach(({ node }) => {
       // exclude pages defined in src/pages
-      if (![`/`, `standorte`, `404`].includes(node.slug)) {
+      if (![`standorte`, `404`].includes(node.slug)) {
         createPage({
           path: pagePath(node),
           component,
