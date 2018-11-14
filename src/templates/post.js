@@ -32,7 +32,7 @@ export const query = graphql`
       email
       homepage
       photo {
-        fixed(width: 100) {
+        fixed(width: 50) {
           ...GatsbyContentfulFixed_withWebp
         }
       }
@@ -52,7 +52,7 @@ export const query = graphql`
       data: childMarkdownRemark {
         html
         timeToRead
-        excerpt(pruneLength: 250)
+        excerpt
       }
     }
   }
