@@ -2,39 +2,37 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 
-export const Title = styled.h1`
-  margin: 0.5em 0;
-  font-size: 1.5em;
+export const Post = styled.article`
+  background: ${props => props.theme.veryLightGray};
+  padding: 1em;
+  border-radius: ${props => props.theme.mediumBorderRadius};
+  flex: 1;
+  align-items: space-between;
 `
 
-export const TitleLink = styled(Link)`
-  text-decoration: none;
-  color: ${props => props.theme.mainBlue};
+export const Title = styled.h3`
+  margin: 0.5em 0;
 `
 
 export const Meta = styled.div`
-  font-size: 0.9em;
   display: grid;
-  grid: auto auto / max-content max-content;
   grid-gap: 0 1em;
-  span {
-    display: flex;
-    align-items: center;
-  }
-  a {
-    margin-left: 0.5em;
-  }
+  grid-template-areas:
+    'photo author'
+    'photo date'
+    'photo readtime';
+  grid-auto-columns: max-content;
 `
 
 export const AuthorPhoto = styled(Img)`
-  grid-row: 1 / -1;
   border-radius: 50%;
+  grid-area: photo;
 `
 
 export const Categories = styled.div`
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.8em;
+  padding: 0.5em 0;
 `
 
 export const Category = styled(Link)`
@@ -45,8 +43,9 @@ export const Category = styled(Link)`
 `
 
 export const FeaturedImage = styled(Img)`
-  width: 50%;
-  transform: translate(50%);
-  max-height: 20vmax;
-  border-radius: ${props => props.theme.mediumBorderRadius};
+  max-height: 25vmax;
+  margin: -1em;
+  margin-bottom: initial;
+  border-top-left-radius: ${props => props.theme.mediumBorderRadius};
+  border-top-right-radius: ${props => props.theme.mediumBorderRadius};
 `

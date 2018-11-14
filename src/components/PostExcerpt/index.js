@@ -1,15 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 
 import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
 import { Email } from 'styled-icons/material/Email'
 import { ExternalLinkAlt } from 'styled-icons/fa-solid/ExternalLinkAlt'
-import { Calendar as Date } from 'styled-icons/octicons/Calendar'
+import { Calendar } from 'styled-icons/octicons/Calendar'
 import { Timer } from 'styled-icons/material/Timer'
 
 import {
+  Post,
   Title,
-  TitleLink,
   Meta,
   Categories,
   Category,
@@ -21,36 +22,41 @@ const PostExcerpt = ({ post, iconSize }) => {
   const { featuredImage, slug, title, author, date, categories, body } = post
   const { timeToRead, excerpt } = body.data
   return (
-    <article>
+    <Post>
       {featuredImage && (
-        <FeaturedImage fluid={featuredImage.fluid} alt={featuredImage.title} />
+        <Link to={'/blog/' + slug}>
+          <FeaturedImage
+            fluid={featuredImage.fluid}
+            alt={featuredImage.title}
+          />
+        </Link>
       )}
       <Title>
-        <TitleLink to={'/blog/' + slug}>{title.title}</TitleLink>
+        <Link to={'/blog/' + slug}>{title.title}</Link>
       </Title>
       <Meta>
         <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
-        <span>
-          <span>
-            <UserEdit size={iconSize} /> &nbsp; {author.name}
-          </span>
+        <div>
+          <UserEdit size={iconSize} /> &nbsp;{author.name}
           {author.homepage && (
             <a href={author.homepage}>
+              &nbsp;
               <ExternalLinkAlt size={iconSize} />
             </a>
           )}
           {author.email && (
             <a href={`mailto:${author.email}`}>
-              <Email size={iconSize} />
+              &nbsp; <Email size={iconSize} />
             </a>
           )}
-        </span>
-        <span>
-          <Date size={iconSize} /> &nbsp; {date} &nbsp; | &nbsp;{' '}
-          <Timer size={iconSize} /> &nbsp; {timeToRead} Min Lesezeit
-        </span>
+        </div>
+        <div>
+          <Calendar size={iconSize} /> &nbsp;{date}
+        </div>
+        <div>
+          <Timer size={iconSize} /> &nbsp;{timeToRead} Min Lesezeit
+        </div>
       </Meta>
-      <p dangerouslySetInnerHTML={{ __html: excerpt }} />
       <Categories>
         <span>Kategorien: </span>
         {categories.map(category => (
@@ -59,7 +65,8 @@ const PostExcerpt = ({ post, iconSize }) => {
           </Category>
         ))}
       </Categories>
-    </article>
+      <span dangerouslySetInnerHTML={{ __html: excerpt }} />
+    </Post>
   )
 }
 
