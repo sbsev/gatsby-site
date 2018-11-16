@@ -1,32 +1,17 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-import { Posts, Post } from './styles'
+import Masonry from '../Masonry'
 import PostExcerpt from '../PostExcerpt'
+import { Container } from './styles'
 
-export default class PostList extends Component {
-  state = { spans: [], rowHeight: 50 }
+const PostList = ({ posts }) => (
+  <Container>
+    <Masonry>
+      {posts.map(({ node }) => (
+        <PostExcerpt key={node.slug} post={node} />
+      ))}
+    </Masonry>
+  </Container>
+)
 
-  componentDidMount() {
-    const posts = document.getElementById('posts')
-    const spans = []
-    Array.from(posts.children).forEach(child => {
-      spans.push(
-        Math.ceil(child.children[0].clientHeight / this.state.rowHeight) + 1
-      )
-    })
-    this.setState({ spans })
-  }
-
-  render() {
-    const { rowHeight, spans } = this.state
-    return (
-      <Posts id="posts" rowHeight={rowHeight}>
-        {this.props.posts.map(({ node }, i) => (
-          <Post key={node.slug} span={spans[i]}>
-            <PostExcerpt post={node} />
-          </Post>
-        ))}
-      </Posts>
-    )
-  }
-}
+export default PostList
