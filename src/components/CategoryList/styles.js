@@ -5,10 +5,13 @@ import mediaQuery from '../../utils/mediaQuery'
 
 export const Container = styled.div`
   ${mediaQuery.minTablet} {
-    grid-column: 4 !important;
+    grid-column: 4;
     grid-row: 2;
   }
   margin-bottom: 5vmin;
+  h2 {
+    margin-top: 0;
+  }
 `
 
 export const CategoryIcon = styled.img`
