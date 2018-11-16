@@ -9,9 +9,9 @@ const Category = ({ category: { title, slug, icon } }) => (
   </CategoryLink>
 )
 
-const CategoryList = ({ title, categories }) => (
+const CategoryList = ({ title = `Kategorien`, categories }) => (
   <Container>
-    <h1>{title}</h1>
+    <h2>{title}</h2>
     <List>
       {categories.map(category => (
         <Category key={category.node.slug} category={category.node} />
