@@ -17,7 +17,7 @@ const CategoryTemplate = ({ data, location, title }) => {
   }
   return (
     <Global pageTitle={title} path={path} description={active.description.text}>
-      <PageTitle>
+      <PageTitle cols="2 / -2">
         <h1>{title}</h1>
       </PageTitle>
       <CategoryList categories={categories.edges} />

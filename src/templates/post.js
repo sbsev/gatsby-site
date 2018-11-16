@@ -41,7 +41,7 @@ export const query = graphql`
       title
       slug
     }
-    date(formatString: "D. MMMM YYYY", locale: "de")
+    date(formatString: "D. MMM YYYY", locale: "de")
     featuredImage {
       fluid {
         ...GatsbyContentfulFluid_withWebp
