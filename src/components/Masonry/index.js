@@ -3,17 +3,26 @@ import React, { Component } from 'react'
 import { Parent, Child } from './styles'
 
 export default class Masonry extends Component {
-  state = { spans: [], rowHeight: 35, ref: React.createRef() }
+  state = { spans: [], rowHeight: 40, ref: React.createRef() }
 
-  componentDidMount() {
+  computeSpans() {
     const { rowHeight, ref } = this.state
     const spans = []
     Array.from(ref.current.children).forEach(child => {
       const span = Math.ceil(child.clientHeight / rowHeight)
-      spans.push(span)
+      spans.push(span + 1)
       child.style.height = span * rowHeight + `px`
     })
     this.setState({ spans })
+  }
+
+  componentDidMount() {
+    this.computeSpans()
+    window.addEventListener('resize', this.computeSpans)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.computeSpans)
   }
 
   render() {
