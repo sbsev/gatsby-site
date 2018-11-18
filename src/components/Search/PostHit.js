@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Highlight, Snippet } from 'react-instantsearch-dom'
 import { Link } from 'gatsby'
 import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
@@ -12,7 +12,7 @@ const PostHit = clickHandler => ({ hit }) => (
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h3>
     </Link>
-    <p>
+    <div>
       <UserEdit size="1em" />
       &nbsp;
       <a href={`mailto:` + hit.author.email}>
@@ -24,13 +24,14 @@ const PostHit = clickHandler => ({ hit }) => (
       <Highlight attribute="date" hit={hit} tagName="mark" />
       &emsp;
       <Tags size="1em" />
-      {hit.categories.map(({ title, slug }) => (
-        <Link key={slug} to={`/blog/` + slug}>
-          &nbsp;
-          {title}
-        </Link>
+      &nbsp;
+      {hit.categories.map(({ title, slug }, index) => (
+        <Fragment key={slug}>
+          {!!index && ', '}
+          <Link to={`blog/` + slug}>{title}</Link>
+        </Fragment>
       ))}
-    </p>
+    </div>
     <Snippet attribute="excerpt" hit={hit} tagName="mark" />
   </div>
 )
