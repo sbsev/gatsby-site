@@ -7,10 +7,13 @@ export const Post = styled.article`
   background: ${props => props.theme.veryLightGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
   border: 1px solid ${props => props.theme.lightGray};
-  overflow: scroll;
-  > div {
+  overflow: hidden;
+  > main {
     padding: 1em;
     display: grid;
+  }
+  a:first-child {
+    height: min-content;
   }
 `
 
