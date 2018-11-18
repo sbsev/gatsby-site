@@ -30,7 +30,7 @@ const postQuery = `{
         title {
           title
         }
-        date(formatString: "D. MMMM YYYY", locale: "de")
+        date(formatString: "D. MMM YYYY", locale: "de")
         author {
           name
           email
@@ -89,15 +89,14 @@ const queries = [
   {
     query: pageQuery,
     transformer: ({ data }) =>
-      data.pages.edges.map(
-        ({ node: { title, body, ...rest } }) =>
-          [`Fehler 404`].includes(title.title)
-            ? {}
-            : {
-                ...title,
-                ...body.data,
-                ...rest,
-              }
+      data.pages.edges.map(({ node: { title, body, ...rest } }) =>
+        [`Fehler 404`].includes(title.title)
+          ? {}
+          : {
+              ...title,
+              ...body.data,
+              ...rest,
+            }
       ),
     indexName: `Pages`,
     settings: { attributesToSnippet: [`excerpt:20`] },
