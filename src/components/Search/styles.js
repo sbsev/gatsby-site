@@ -68,7 +68,7 @@ const list = css`
   background: ${props => props.theme.mainWhite};
   border-radius: ${props => props.theme.smallBorderRadius};
   > * + * {
-    padding-top: 1em;
+    padding-top: 1em !important;
     border-top: 2px solid ${props => props.theme.darkGray};
   }
   li + li {
@@ -107,8 +107,12 @@ export const HitsWrapper = styled.div`
     color: ${props => props.theme.lightBlue};
     background: ${props => props.theme.darkBlue};
   }
+  header {
+    display: flex;
+    justify-content: space-between;
+  }
   h2 {
-    margin: 0.5em 0;
+    margin: 0 0 0.5em;
   }
   h3 {
     margin-bottom: 0.3em;
