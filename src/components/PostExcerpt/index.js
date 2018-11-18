@@ -21,7 +21,7 @@ const PostExcerpt = ({ post, iconSize }) => {
           <Img fluid={featuredImage.fluid} alt={featuredImage.title} />
         </Link>
       )}
-      <div>
+      <main>
         <Title>
           <Link to={'/blog/' + slug}>{title.title}</Link>
         </Title>
@@ -58,7 +58,7 @@ const PostExcerpt = ({ post, iconSize }) => {
           ))}
         </div>
         <span dangerouslySetInnerHTML={{ __html: excerpt }} />
-      </div>
+      </main>
     </Post>
   )
 }
