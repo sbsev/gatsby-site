@@ -4,7 +4,6 @@ import {
   InstantSearch,
   Index,
   Hits,
-  Stats,
   connectStateResults,
 } from 'react-instantsearch-dom'
 import { Algolia } from 'styled-icons/fa-brands/Algolia'
@@ -17,6 +16,11 @@ const events = ['mousedown', 'touchstart']
 const Results = connectStateResults(
   ({ searchState: state, searchResults: res, children }) =>
     res && res.nbHits ? children : `Keine Ergebnisse für ${state.query}`
+)
+
+const Stats = connectStateResults(
+  ({ searchResults: res }) =>
+    res && `${res.nbHits} Ergebnis${res.nbHits !== 1 ? `se` : ``}`
 )
 
 export default class Search extends Component {
@@ -68,14 +72,12 @@ export default class Search extends Component {
           show={query.length > 0 && showHits}
           hitsAsGrid={hitsAsGrid}
         >
-          <Stats
-            translations={{
-              stats: n => `${n} Ergebnis${n !== 1 ? `se` : ``}`,
-            }}
-          />
           {indices.map(({ name, title, hitComp }) => (
             <Index key={name} indexName={name}>
-              {title && <h2>{title}</h2>}
+              <header>
+                {title && <h2>{title}</h2>}
+                <Stats />
+              </header>
               <Results>
                 <Hits hitComponent={hitComps[hitComp](this.disableHits)} />
               </Results>
