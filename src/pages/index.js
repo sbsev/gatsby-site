@@ -42,7 +42,7 @@ export const query = graphql`
           html
         }
       }
-      updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
+      updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
     }
     images: allContentfulAsset(
       filter: { file: { fileName: { regex: "/stock/" } } }
