@@ -44,8 +44,8 @@ export const query = graphql`
         }
       }
     }
-    created: createdAt(formatString: "D. MMMM YYYY", locale: "de")
-    updated: updatedAt(formatString: "D. MMMM YYYY", locale: "de")
+    created: createdAt(formatString: "D. MMM YYYY", locale: "de")
+    updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
     section {
       title
       slug
