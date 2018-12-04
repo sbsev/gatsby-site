@@ -1,9 +1,13 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import { Container, NavEntry, SubNav, NavLink, Toggle } from './styles'
+import { NavContainer, NavEntry, SubNav, NavLink, Toggle } from './styles'
 
-const events = ['mousedown', 'touchstart']
+const events = [
+  { event: `mousedown`, handler: `ClickOutside` },
+  { event: `touchstart`, handler: `ClickOutside` },
+  { event: `scroll`, handler: `Scroll` },
+]
 
 export default class Nav extends Component {
   static propTypes = {
@@ -12,82 +16,91 @@ export default class Nav extends Component {
         node: PropTypes.shape({
           title: PropTypes.string.isRequired,
           slug: PropTypes.string.isRequired,
+          subNav: PropTypes.arrayOf({
+            title: PropTypes.string.isRequired,
+            slug: PropTypes.string.isRequired,
+          }),
         }),
       })
     ),
   }
-  state = { show: false }
+  state = {
+    showNav: false,
+    ref: React.createRef(),
+    showSubNav: false,
+  }
 
   toggleNav = () => {
-    this.setState({ show: !this.state.show })
+    this.setState({ showNav: !this.state.showNav })
+  }
+
+  toggleSubNav = index => () => {
+    const { showSubNav } = this.state
+    this.setState({ showSubNav: index === showSubNav ? false : index })
   }
 
   handleClickOutside = event => {
-    if (this.node && !this.node.contains(event.target) && this.state.show) {
+    if (this.node && !this.node.contains(event.target) && this.state.showNav) {
       this.toggleNav()
     }
   }
 
   handleScroll = () => {
-    if (this.state.show) {
+    if (this.state.showNav) {
       this.toggleNav()
     }
   }
 
   componentDidMount() {
-    events.forEach(event =>
-      document.addEventListener(event, this.handleClickOutside)
+    events.forEach(({ event, handler }) =>
+      document.addEventListener(event, this[`handle` + handler])
     )
-    document.addEventListener(`scroll`, this.handleScroll)
   }
 
   componentWillUnmount() {
-    events.forEach(event =>
-      document.removeEventListener(event, this.handleClickOutside)
+    events.forEach(({ event, handler }) =>
+      document.removeEventListener(event, this[`handle` + handler])
     )
-    document.removeEventListener(`scroll`, this.handleScroll)
   }
 
   render() {
-    const { nav, chapters, css } = this.props
-    // create a true copy of nav to which to add chapters
-    // otherwise chapters will be added on every page navigation
+    const { showNav, ref, showSubNav } = this.state
+    const { nav, chapters } = this.props
+    // clone nav and merge chapters
+    // merging chapters without cloning results in chapters compounding on every page navigation
     const assembledNav = JSON.parse(JSON.stringify(nav))
     assembledNav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
     return (
       <Fragment>
         <Toggle onClick={this.toggleNav}>&#9776;</Toggle>
-        <Container
-          role="navigation"
-          css={css}
-          ref={node => (this.node = node)}
-          show={this.state.show}
-        >
+        <NavContainer role="navigation" ref={ref} showNav={showNav}>
           <Toggle inside onClick={this.toggleNav}>
             &times;
           </Toggle>
-          {assembledNav.map(item => (
-            <NavEntry key={item.url}>
+          {assembledNav.map(({ url, title, subNav }, index) => (
+            <NavEntry key={url}>
               <NavLink
                 activeClassName="active"
-                to={item.url}
-                title={item.title}
+                to={url}
+                as={subNav && showSubNav !== index && `span`}
+                title={title}
+                onClick={this.toggleSubNav(index)}
               >
-                {item.title} {item.subNav && <span>&#9662;</span>}
+                {title} {subNav && <span>&#9662;</span>}
               </NavLink>
-              {item.subNav && (
-                <SubNav show={this.state.show}>
-                  {item.subNav.map(
-                    subItem =>
-                      !subItem.inactive && (
+              {subNav && (
+                <SubNav showNav={showNav && showSubNav === index}>
+                  {subNav.map(
+                    item =>
+                      !item.inactive && (
                         <NavLink
-                          key={subItem.url}
-                          to={item.url + subItem.url}
-                          title={subItem.title}
-                          span={subItem.span}
+                          key={item.url}
+                          to={url + item.url}
+                          title={item.title}
+                          span={item.span}
                           onClick={this.toggleNav}
                         >
-                          {subItem.title}
+                          {item.title}
                         </NavLink>
                       )
                   )}
@@ -95,7 +108,7 @@ export default class Nav extends Component {
               )}
             </NavEntry>
           ))}
-        </Container>
+        </NavContainer>
       </Fragment>
     )
   }
