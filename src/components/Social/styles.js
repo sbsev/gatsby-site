@@ -33,7 +33,7 @@ const alwaysShow = css`
   align-items: end;
   grid-auto-columns: max-content;
   grid-area: social;
-  ${props => props.css};
+  ${props => props.styles};
 `
 
 export const Container = styled.div`
@@ -50,14 +50,14 @@ export const Container = styled.div`
 export const Toggle = styled(Share)`
   cursor: pointer;
   font-size: 1.3em;
-  ${props => props.css};
+  ${props => props.styles};
   ${mediaQuery.minLaptop} {
     display: none !important;
   }
 `
 
 export const Link = styled.a`
-  ${props => props.css};
+  ${props => props.styles};
 `
 
 export const Icons = {
