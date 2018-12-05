@@ -10,7 +10,6 @@ export const Root = styled.div`
 
 export const Loupe = styled(Search)`
   width: 1em;
-  margin: 0.3em;
   pointer-events: none;
 `
 
@@ -50,10 +49,13 @@ export const SearchBox = styled(Input)`
     font-size: 1em;
     background: transparent;
     transition: ${props => props.theme.shortTrans};
-    margin-left: -1.6em;
-    padding-left: 1.6em;
+    margin-left: ${props => (props.focussed ? `-1.6em` : `-1em`)};
+    padding-left: ${props => (props.focussed ? `1.6em` : `1em`)};
     border-radius: ${props => props.theme.smallBorderRadius};
     ${props => (props.collapse ? collapse : expand)};
+  }
+  input + svg {
+    margin: ${props => props.focussed && `0.3em`};
   }
 `
 
