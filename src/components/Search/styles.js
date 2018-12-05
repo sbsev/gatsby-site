@@ -112,11 +112,18 @@ export const HitsWrapper = styled.div`
   header {
     display: flex;
     justify-content: space-between;
-  }
-  h2 {
-    margin: 0 0 0.5em;
+    margin-bottom: 0.3em;
+    h3 {
+      color: ${props => props.theme.mainWhite};
+      background: ${props => props.theme.darkBlue};
+      padding: 0.1em 0.4em;
+      border-radius: ${props => props.theme.smallBorderRadius};
+    }
   }
   h3 {
+    margin: 0 0 0.5em;
+  }
+  h4 {
     margin-bottom: 0.3em;
   }
 `
