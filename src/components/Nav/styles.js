@@ -12,10 +12,10 @@ export const navLinkStyle = css`
   }
   &.${props => props.activeClassName} {
     border-bottom: ${({ theme }) =>
-      theme.mediumBorder + ` solid ` + theme.lightBlue};
+      theme.smallBorder + ` solid ` + theme.lightBlue};
     :hover {
       border-bottom: ${({ theme }) =>
-        theme.mediumBorder + ` solid ` + theme.mainWhite};
+        theme.smallBorder + ` solid ` + theme.mainWhite};
     }
   }
 `
@@ -24,8 +24,8 @@ export const NavContainer = styled.nav`
   grid-area: nav;
   display: grid;
   grid-gap: 2vw;
-  overflow-y: scroll;
   ${mediaQuery.netbook} {
+    overflow-y: scroll;
     position: fixed;
     right: 100%;
     z-index: 2;
@@ -42,16 +42,15 @@ export const NavContainer = styled.nav`
   ${mediaQuery.minNetbook} {
     grid-auto-flow: column;
     grid-auto-columns: max-content;
-    justify-self: end;
+    justify-self: start;
   }
-  ${props => props.css};
 `
 
 export const NavEntry = styled.div`
   position: relative;
 `
 
-const showSubNav = css`
+const subNavVisibleStyle = css`
   display: grid;
   visibility: visible;
   opacity: 1;
@@ -70,41 +69,14 @@ export const SubNav = styled.div`
   grid-template-columns: ${props =>
     props.children.length >= 10 ? `1fr 1fr` : `1fr`};
   ${mediaQuery.netbook} {
-    ${props => props.showNav && showSubNav + `position: static;`};
+    ${props => props.showNav && subNavVisibleStyle + `position: static;`};
   }
   ${mediaQuery.minNetbook} {
     ${NavEntry}:hover & {
-      left: 0;
-      z-index: 2;
-      ${showSubNav}
+      ${subNavVisibleStyle}
     }
   }
 `
-// const hover = css`
-//   ${NavEntry}:hover & {
-//     z-index: 2;
-//     display: grid;
-//     grid-template-columns: ${props =>
-//       props.children.length >= 10 ? `1fr 1fr` : `1fr`};
-//     grid-gap: 0 1em;
-//     background: ${props => props.theme.lightGreen};
-//     padding: 0.5em 1em;
-//     border-radius: ${props => props.theme.smallBorderRadius};
-//   }
-// `
-
-// export const SubNav = styled.div`
-//   position: absolute;
-//   left: 0;
-//   width: max-content;
-//   display: none;
-//   ${mediaQuery.netbook} {
-//     ${props => props.show && hover};
-//   }
-//   ${mediaQuery.minNetbook} {
-//     ${hover};
-//   }
-// `
 
 const span = css`
   grid-column: 1/-1;
