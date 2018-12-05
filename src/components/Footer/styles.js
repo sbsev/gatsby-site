@@ -43,7 +43,7 @@ export const FooterLinks = styled.div`
 `
 
 export const FooterLink = styled(Link)`
-  ${props => props.css};
+  ${props => props.styles};
 `
 
 export const Source = styled.span`
