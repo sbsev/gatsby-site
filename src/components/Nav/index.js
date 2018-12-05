@@ -34,9 +34,14 @@ const query = graphql`
 export default props => (
   <StaticQuery
     query={query}
-    render={({ nav, chapters }) => (
-      <Nav nav={nav.data.nav} chapters={chapters.data.chapters} {...props} />
-    )}
+    render={({ nav, chapters }) => {
+      // clone nav and merge chapters
+      // merging chapters without cloning results in chapters compounding on every page navigation
+      nav = JSON.parse(JSON.stringify(nav.data.nav))
+      chapters = chapters.data.chapters.filter(chapter => !chapter.inactive)
+      nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
+      return <Nav nav={nav} {...props} />
+    }}
   />
 )
 
