@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
+import React, { Component, createRef } from 'react'
 import {
   InstantSearch,
   Index,
@@ -24,22 +23,21 @@ const Stats = connectStateResults(
 )
 
 export default class Search extends Component {
-  state = { query: ``, showHits: false }
+  state = { query: ``, focussed: false, ref: createRef() }
 
   updateState = state => this.setState(state)
 
-  enableHits = () => {
-    this.setState({ showHits: true })
+  focus = () => {
+    this.setState({ focussed: true })
   }
 
   disableHits = () => {
-    this.setState({ showHits: false })
+    this.setState({ focussed: false })
   }
 
   handleClickOutside = event => {
-    const node = ReactDOM.findDOMNode(this.node)
-    if (node && !node.contains(event.target)) {
-      this.setState({ showHits: false })
+    if (!this.state.ref.current.contains(event.target)) {
+      this.setState({ focussed: false })
     }
   }
 
@@ -56,7 +54,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { query, showHits } = this.state
+    const { query, focussed, ref } = this.state
     const { indices, collapse, hitsAsGrid } = this.props
     return (
       <InstantSearch
@@ -64,12 +62,11 @@ export default class Search extends Component {
         apiKey="2bba2dc22c305d8a0472c4a76690093e"
         indexName={indices[0].name}
         onSearchStateChange={this.updateState}
-        root={{ Root }}
-        ref={node => (this.node = node)}
+        root={{ Root, props: { ref } }}
       >
-        <SearchBox collapse={collapse} onFocus={this.enableHits} />
+        <SearchBox onFocus={this.focus} {...{ collapse, focussed }} />
         <HitsWrapper
-          show={query.length > 0 && showHits}
+          show={query.length > 0 && focussed}
           hitsAsGrid={hitsAsGrid}
         >
           {indices.map(({ name, title, hitComp }) => (
