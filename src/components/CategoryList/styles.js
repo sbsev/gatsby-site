@@ -27,8 +27,8 @@ export const CategoryIcon = styled.img`
 export const CategoryLink = styled(Link)`
   display: flex;
   align-items: center;
-  &.${props => props.activeClassName} {
-    color: ${props => props.theme.lightBlue};
+  &.active {
+    color: ${props => props.theme.darkYellow};
   }
 `
 
