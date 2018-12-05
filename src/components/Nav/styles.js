@@ -1,22 +1,25 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
 
 import mediaQuery from '../../utils/mediaQuery'
 
+const isPartiallyActive = className => ({ isPartiallyCurrent }) =>
+  isPartiallyCurrent ? { className: className + ' active' } : null
+
+const PartiallyActiveLink = props => (
+  <Link getProps={isPartiallyActive(props.className)} {...props} />
+)
+
 export const navLinkStyle = css`
   color: ${props => props.theme.lightBlue};
   transition: ${props => props.theme.shortTrans};
   cursor: pointer;
-  :hover {
-    color: ${props => props.theme.mainWhite};
+  &.active {
+    color: ${props => props.theme.darkYellow};
   }
-  &.${props => props.activeClassName} {
-    border-bottom: ${({ theme }) =>
-      theme.smallBorder + ` solid ` + theme.lightBlue};
     :hover {
-      border-bottom: ${({ theme }) =>
-        theme.smallBorder + ` solid ` + theme.mainWhite};
-    }
+    color: ${props => props.theme.lightGreen};
   }
 `
 
@@ -84,12 +87,15 @@ const span = css`
   border-top: 1px solid ${props => props.theme.mainWhite};
 `
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(PartiallyActiveLink)`
   ${navLinkStyle};
   ${SubNav} & {
     color: ${props => props.theme.mainWhite};
     :hover {
       color: ${props => props.theme.darkBlue};
+    }
+    &.active {
+      color: ${props => props.theme.lightBlue};
     }
     ${props => props.span && span};
   }
