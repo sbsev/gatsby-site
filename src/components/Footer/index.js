@@ -20,7 +20,7 @@ const Footer = ({ copyright, source, links, poweredBy, logos }) => (
     </Copyright>
     <FooterLinks>
       {links.map(link => (
-        <FooterLink css={navLinkStyle} key={link.url} to={link.url}>
+        <FooterLink styles={navLinkStyle} key={link.url} to={link.url}>
           {link.title}
         </FooterLink>
       ))}
