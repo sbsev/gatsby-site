@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import { NavContainer, NavEntry, SubNav, NavLink, Toggle } from './styles'
 
 const events = [
-  { event: `mousedown`, handler: `ClickOutside` },
-  { event: `touchstart`, handler: `ClickOutside` },
-  { event: `scroll`, handler: `Scroll` },
+  { event: `mousedown`, handler: `handleClickOutside` },
+  { event: `touchstart`, handler: `handleClickOutside` },
+  { event: `scroll`, handler: `handleScroll` },
 ]
 
 export default class Nav extends Component {
@@ -31,7 +31,7 @@ export default class Nav extends Component {
   }
 
   toggleNav = () => {
-    this.setState({ showNav: !this.state.showNav })
+    this.setState({ showNav: !this.state.showNav, showSubNav: false })
   }
 
   toggleSubNav = index => () => {
@@ -40,7 +40,8 @@ export default class Nav extends Component {
   }
 
   handleClickOutside = event => {
-    if (this.node && !this.node.contains(event.target) && this.state.showNav) {
+    const { ref, showNav } = this.state
+    if (!ref.current.contains(event.target) && showNav) {
       this.toggleNav()
     }
   }
@@ -53,13 +54,13 @@ export default class Nav extends Component {
 
   componentDidMount() {
     events.forEach(({ event, handler }) =>
-      document.addEventListener(event, this[`handle` + handler])
+      document.addEventListener(event, this[handler])
     )
   }
 
   componentWillUnmount() {
     events.forEach(({ event, handler }) =>
-      document.removeEventListener(event, this[`handle` + handler])
+      document.removeEventListener(event, this[`` + handler])
     )
   }
 
@@ -82,7 +83,7 @@ export default class Nav extends Component {
               <NavLink
                 activeClassName="active"
                 to={url}
-                as={subNav && showSubNav !== index && `span`}
+                as={subNav && showNav && showSubNav !== index && `span`}
                 title={title}
                 onClick={this.toggleSubNav(index)}
               >
