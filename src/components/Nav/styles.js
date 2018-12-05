@@ -36,7 +36,7 @@ export const NavContainer = styled.nav`
     min-width: 15vw;
     grid-auto-columns: minmax(max-content, 1fr);
     grid-auto-rows: max-content;
-    transform: translate(${props => (props.showNav ? `100%` : `0`)});
+    transform: translate(${props => (props.showNav ? `99%` : `0`)});
     transition: ${props => props.theme.mediumTrans};
   }
   ${mediaQuery.minNetbook} {
@@ -61,7 +61,6 @@ export const SubNav = styled.div`
   width: max-content;
   border-radius: ${props => props.theme.smallBorderRadius};
   grid-gap: 0.5em;
-  background: ${props => props.theme.mainGray};
   opacity: 0;
   position: absolute;
   transition: opacity 0.25s;
@@ -70,10 +69,12 @@ export const SubNav = styled.div`
     props.children.length >= 10 ? `1fr 1fr` : `1fr`};
   ${mediaQuery.netbook} {
     ${props => props.showNav && subNavVisibleStyle + `position: static;`};
+    background: ${props => props.theme.mainGray};
   }
   ${mediaQuery.minNetbook} {
     ${NavEntry}:hover & {
-      ${subNavVisibleStyle}
+      ${subNavVisibleStyle};
+      background: ${props => props.theme.lightGreen};
     }
   }
 `

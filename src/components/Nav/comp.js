@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+import { DownArrow } from 'styled-icons/boxicons-regular/DownArrow'
 
 import { NavContainer, NavEntry, SubNav, NavLink, Toggle } from './styles'
 
@@ -60,17 +61,12 @@ export default class Nav extends Component {
 
   componentWillUnmount() {
     events.forEach(({ event, handler }) =>
-      document.removeEventListener(event, this[`` + handler])
+      document.removeEventListener(event, this[handler])
     )
   }
 
   render() {
     const { showNav, ref, showSubNav } = this.state
-    const { nav, chapters } = this.props
-    // clone nav and merge chapters
-    // merging chapters without cloning results in chapters compounding on every page navigation
-    const assembledNav = JSON.parse(JSON.stringify(nav))
-    assembledNav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
     return (
       <Fragment>
         <Toggle onClick={this.toggleNav}>&#9776;</Toggle>
@@ -78,7 +74,7 @@ export default class Nav extends Component {
           <Toggle inside onClick={this.toggleNav}>
             &times;
           </Toggle>
-          {assembledNav.map(({ url, title, subNav }, index) => (
+          {this.props.nav.map(({ url, title, subNav }, index) => (
             <NavEntry key={url}>
               <NavLink
                 activeClassName="active"
@@ -87,24 +83,21 @@ export default class Nav extends Component {
                 title={title}
                 onClick={this.toggleSubNav(index)}
               >
-                {title} {subNav && <span>&#9662;</span>}
+                {title} {subNav && <DownArrow size="0.5em" />}
               </NavLink>
               {subNav && (
                 <SubNav showNav={showNav && showSubNav === index}>
-                  {subNav.map(
-                    item =>
-                      !item.inactive && (
-                        <NavLink
-                          key={item.url}
-                          to={url + item.url}
-                          title={item.title}
-                          span={item.span}
-                          onClick={this.toggleNav}
-                        >
-                          {item.title}
-                        </NavLink>
-                      )
-                  )}
+                  {subNav.map(item => (
+                    <NavLink
+                      key={item.url}
+                      to={url + item.url}
+                      title={item.title}
+                      span={item.span}
+                      onClick={this.toggleNav}
+                    >
+                      {item.title}
+                    </NavLink>
+                  ))}
                 </SubNav>
               )}
             </NavEntry>
