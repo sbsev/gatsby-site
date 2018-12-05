@@ -5,15 +5,15 @@ import mediaQuery from '../../utils/mediaQuery'
 import LogoComp from '../../assets/logo'
 import { navLinkStyle } from '../Nav/styles'
 
-export const Container = styled.header`
+export const HeaderContainer = styled.header`
   background: ${props => props.theme.darkBlue};
   display: grid;
-  grid-gap: calc(0.5em + 1vw);
+  grid-gap: calc(1em + 1vw);
   align-items: center;
   justify-items: center;
   grid-template-areas: 'nav title social search';
   grid-template-columns: auto 1fr auto auto;
-  padding: calc(0.25em + 1vh) calc(0.25em + 1vw);
+  padding: calc(0.25em + 1vh) calc(1em + 1vw);
   ${mediaQuery.minNetbook} {
     grid-template-areas: 'title nav social search';
   }
