@@ -18,7 +18,7 @@ export const navLinkStyle = css`
   &.active {
     color: ${props => props.theme.darkYellow};
   }
-    :hover {
+  :hover {
     color: ${props => props.theme.lightGreen};
   }
 `
@@ -54,22 +54,22 @@ export const NavEntry = styled.div`
 `
 
 const subNavVisibleStyle = css`
-  display: grid;
-  visibility: visible;
   opacity: 1;
+  pointer-events: initial;
 `
 
 export const SubNav = styled.div`
   display: grid;
   width: max-content;
   border-radius: ${props => props.theme.smallBorderRadius};
-  grid-gap: 0.5em;
+  grid-gap: 0.2em 0.5em;
   opacity: 0;
   position: absolute;
-  transition: opacity 0.25s;
-  padding: 0.7em 1em;
+  transition: all 0.4s;
+  padding: 0.5em 0.7em;
   grid-template-columns: ${props =>
     props.children.length >= 10 ? `1fr 1fr` : `1fr`};
+  pointer-events: none;
   ${mediaQuery.netbook} {
     ${props => props.showNav && subNavVisibleStyle + `position: static;`};
     background: ${props => props.theme.mainGray};
@@ -85,6 +85,7 @@ export const SubNav = styled.div`
 const span = css`
   grid-column: 1/-1;
   border-top: 1px solid ${props => props.theme.mainWhite};
+  padding-top: 0.2em;
 `
 
 export const NavLink = styled(PartiallyActiveLink)`
