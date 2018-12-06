@@ -56,6 +56,7 @@ export const NavEntry = styled.div`
 const subNavVisibleStyle = css`
   opacity: 1;
   pointer-events: initial;
+  background: ${props => props.theme.mainGray};
 `
 
 export const SubNav = styled.div`
@@ -72,12 +73,10 @@ export const SubNav = styled.div`
   pointer-events: none;
   ${mediaQuery.netbook} {
     ${props => props.showNav && subNavVisibleStyle + `position: static;`};
-    background: ${props => props.theme.mainGray};
   }
   ${mediaQuery.minNetbook} {
     ${NavEntry}:hover & {
       ${subNavVisibleStyle};
-      background: ${props => props.theme.lightGreen};
     }
   }
 `
@@ -93,7 +92,7 @@ export const NavLink = styled(PartiallyActiveLink)`
   ${SubNav} & {
     color: ${props => props.theme.mainWhite};
     :hover {
-      color: ${props => props.theme.darkBlue};
+      color: ${props => props.theme.lightGreen};
     }
     &.active {
       color: ${props => props.theme.lightBlue};
