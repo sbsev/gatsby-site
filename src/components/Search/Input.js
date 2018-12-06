@@ -1,17 +1,17 @@
 import React from 'react'
 import { connectSearchBox } from 'react-instantsearch-dom'
 
-import { Loupe } from './styles'
+import { Loupe, Form, InputField } from './styles'
 
-export default connectSearchBox(({ refine, onFocus, className }) => (
-  <form className={className}>
-    <input
+export default connectSearchBox(({ refine, ...rest }) => (
+  <Form>
+    <InputField
       type="text"
       placeholder="Suche"
       aria-label="Suche"
       onChange={e => refine(e.target.value)}
-      onFocus={onFocus}
+      {...rest}
     />
     <Loupe />
-  </form>
+  </Form>
 ))
