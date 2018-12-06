@@ -54,7 +54,7 @@ Nav.propTypes = {
         PropTypes.shape({
           url: PropTypes.string.isRequired,
           title: PropTypes.string.isRequired,
-          span: PropTypes.bool,
+          span: PropTypes.string,
         })
       ),
     })
