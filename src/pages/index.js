@@ -8,12 +8,10 @@ import PageMeta from '../components/PageMeta'
 
 const LandingPage = ({ data, location }) => {
   const { images, page } = data
-  const {
-    title: { title },
-    subtitle: { subtitle },
-    body,
-  } = page
+  let { title, subtitle, body } = page
   const { excerpt, html } = body && body.data
+  title = title.title
+  subtitle = subtitle.data.html
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <LandingTitle {...{ title, subtitle, images: images.edges }} />
@@ -34,7 +32,9 @@ export const query = graphql`
         title
       }
       subtitle {
-        subtitle
+        data: childMarkdownRemark {
+          html
+        }
       }
       body {
         data: childMarkdownRemark {
