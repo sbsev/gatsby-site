@@ -63,7 +63,7 @@ export default class Nav extends Component {
             <NavEntry key={url}>
               <NavLink
                 activeClassName="active"
-                to={url}
+                to={url || subNav[0].url}
                 as={subNav && showNav && showSubNav !== index && `span`}
                 title={title}
                 onClick={showNav ? this.toggleSubNav(index) : null}
