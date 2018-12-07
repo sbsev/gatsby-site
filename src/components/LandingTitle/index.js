@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { Container, Hero, Title, Button, Dots, Dot } from './styles'
+import { Container, Hero, Title, Dots, Dot } from './styles'
 
 export default class LandingTitle extends Component {
   static propTypes = {
@@ -26,7 +26,7 @@ export default class LandingTitle extends Component {
     })
   }
 
-  setHero = index => {
+  setHero = index => () => {
     clearInterval(this.interval)
     this.interval = setInterval(() => this.incrementHero(), this.props.speed)
     this.setState({
@@ -52,16 +52,11 @@ export default class LandingTitle extends Component {
         ))}
         <Title>
           <h1>{title}</h1>
-          <h2>{subtitle}</h2>
-          <Button to="/standorte">Standorte</Button>
+          <div dangerouslySetInnerHTML={{ __html: subtitle }} />
         </Title>
         <Dots>
           {Array.apply(null, { length: images.length }).map((el, ind) => (
-            <Dot
-              key={ind}
-              active={hero === ind}
-              onClick={() => this.setHero(ind)}
-            />
+            <Dot key={ind} active={hero === ind} onClick={this.setHero(ind)} />
           ))}
         </Dots>
       </Container>
