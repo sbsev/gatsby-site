@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import Img from 'gatsby-image'
 
 import mediaQuery from '../../utils/mediaQuery'
-export { default as Button } from '../styles/Button'
 
 export const Container = styled.div`
   grid-column: 1 / -1 !important;
