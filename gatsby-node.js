@@ -7,20 +7,16 @@ const templates = glob.sync('./src/templates/*.js', {
 })
 
 const fragments = {
-  page: ``,
-  post: ``,
-  blogCategory: ``,
   wikiArticle: `
     section { slug }
     subsection { slug }
   `,
-  wikiSection: ``,
   wikiSubsection: `
     section { slug }
   `,
 }
 
-const contentfulQuery = (contentType, fragment) => `
+const contentfulQuery = (contentType, fragment = ``) => `
   {
     content: allContentful${contentType} {
       edges {
