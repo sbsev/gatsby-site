@@ -13,7 +13,7 @@ export const Container = styled.ol`
   > li {
     position: relative;
     margin-top: 6em;
-    ${mediaQuery.phone} {
+    ${mediaQuery.maxPhone} {
       margin-top: 3.75em;
     }
   }
@@ -50,7 +50,7 @@ export const SectionIcon = styled.img`
   left: 0;
   right: 0;
   margin: auto;
-  ${mediaQuery.phone} {
+  ${mediaQuery.maxPhone} {
     width: 3em;
     top: -3.75em;
   }

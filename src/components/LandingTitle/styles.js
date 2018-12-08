@@ -29,7 +29,7 @@ export const Title = styled.div`
     font-size: 1em;
     margin: 1.5em 0;
   }
-  ${mediaQuery.phablet} {
+  ${mediaQuery.maxPhablet} {
     width: 80vw;
   }
 `
