@@ -36,7 +36,7 @@ export const FooterLinks = styled.div`
   display: grid;
   grid-gap: 3vmin;
   grid-auto-flow: column;
-  ${mediaQuery.phone} {
+  ${mediaQuery.maxPhone} {
     grid-template-rows: auto auto;
     justify-items: center;
   }
