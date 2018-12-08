@@ -43,7 +43,7 @@ export const Container = styled.div`
   ${mediaQuery.minLaptop} {
     ${alwaysShow};
   }
-  ${mediaQuery.laptop} {
+  ${mediaQuery.maxLaptop} {
     ${props => (props.collapse ? collapse : alwaysShow)};
   }
 `
