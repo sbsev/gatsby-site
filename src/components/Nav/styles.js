@@ -27,7 +27,7 @@ export const NavContainer = styled.nav`
   grid-area: nav;
   display: grid;
   grid-gap: 2vw;
-  ${mediaQuery.netbook} {
+  ${mediaQuery.maxNetbook} {
     overflow-y: scroll;
     position: fixed;
     right: 100%;
@@ -71,7 +71,7 @@ export const SubNav = styled.div`
   grid-template-columns: ${props =>
     props.children.length >= 10 ? `1fr 1fr` : `1fr`};
   pointer-events: none;
-  ${mediaQuery.netbook} {
+  ${mediaQuery.maxNetbook} {
     ${props => props.showNav && subNavVisibleStyle + `position: static;`};
   }
   ${mediaQuery.minNetbook} {
