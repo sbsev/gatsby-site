@@ -2,6 +2,8 @@ const queries = require('./src/utils/algolia')
 
 require('dotenv').config()
 
+console.log('process.env :', process.env)
+
 module.exports = {
   siteMetadata: {
     title: `Studenten bilden Schüler`,
