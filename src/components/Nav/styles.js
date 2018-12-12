@@ -1,14 +1,16 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
+import { Close } from 'styled-icons/material/Close'
+import { Menu } from 'styled-icons/feather/Menu'
 
 import mediaQuery from '../../utils/mediaQuery'
 
-const isPartiallyActive = className => ({ isPartiallyCurrent }) =>
+const partlyActive = className => ({ isPartiallyCurrent }) =>
   isPartiallyCurrent ? { className: className + ' active' } : null
 
-const PartiallyActiveLink = props => (
-  <Link getProps={isPartiallyActive(props.className)} {...props} />
+const PartlyActiveLink = props => (
+  <Link getProps={partlyActive(props.className)} {...props} />
 )
 
 export const navLinkStyle = css`
@@ -53,10 +55,11 @@ export const NavEntry = styled.div`
   position: relative;
 `
 
-const subNavVisibleStyle = css`
+const subNavVisible = css`
   opacity: 1;
   pointer-events: initial;
   background: ${props => props.theme.mainGray};
+  position: static;
 `
 
 export const SubNav = styled.div`
@@ -68,15 +71,17 @@ export const SubNav = styled.div`
   position: absolute;
   transition: all 0.4s;
   padding: 0.5em 0.7em;
+  ${props => console.log(props)}
   grid-template-columns: ${props =>
-    props.children.length >= 10 ? `1fr 1fr` : `1fr`};
+    props.children[1].length >= 10 ? `1fr 1fr` : `1fr`};
   pointer-events: none;
   ${mediaQuery.maxNetbook} {
-    ${props => props.showNav && subNavVisibleStyle + `position: static;`};
+    ${props => props.showNav && subNavVisible};
   }
   ${mediaQuery.minNetbook} {
     ${NavEntry}:hover & {
-      ${subNavVisibleStyle};
+      ${subNavVisible};
+      position: absolute;
     }
   }
 `
@@ -87,7 +92,7 @@ const span = css`
   padding-top: 0.2em;
 `
 
-export const NavLink = styled(PartiallyActiveLink)`
+export const NavLink = styled(PartlyActiveLink)`
   ${navLinkStyle};
   ${SubNav} & {
     color: ${props => props.theme.mainWhite};
@@ -101,23 +106,30 @@ export const NavLink = styled(PartiallyActiveLink)`
   }
 `
 
+const subNavToggle = css`
+  border-radius: 30% 30% 0 0;
+  background: ${props => props.theme.mainGray};
+`
+
 const inNavToggle = css`
   position: absolute;
-  top: 0.3em;
-  right: 0.5em;
+  top: ${props => (props.subNav ? `0` : `0.3em`)};
+  right: ${props => (props.subNav ? `0` : `0.5em`)};
+  ${props => props.subNav && subNavToggle}
 `
 
 const inHeaderToggle = css`
   grid-area: 1 / 1 / 1 / 1;
 `
 
-export const Toggle = styled.span`
-  font-size: 1.8em;
+export const Toggle = styled.span.attrs({
+  size: `1.7em`,
+  as: props => (props.asMenu ? Menu : Close),
+})`
   cursor: pointer;
-  width: max-content;
+  ${props => (props.asMenu ? inHeaderToggle : inNavToggle)};
+  ${navLinkStyle};
   ${mediaQuery.minNetbook} {
     display: none;
   }
-  ${props => (props.inside ? inNavToggle : inHeaderToggle)};
-  ${navLinkStyle};
 `
