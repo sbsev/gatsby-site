@@ -54,11 +54,9 @@ export default class Nav extends Component {
     const { showNav, ref, showSubNav } = this.state
     return (
       <Fragment>
-        <Toggle onClick={this.toggleNav}>&#9776;</Toggle>
+        <Toggle onClick={this.toggleNav} asMenu />
         <NavContainer role="navigation" ref={ref} showNav={showNav}>
-          <Toggle inside onClick={this.toggleNav}>
-            &times;
-          </Toggle>
+          <Toggle onClick={this.toggleNav} />
           {this.props.nav.map(({ url, title, subNav }, index) => (
             <NavEntry key={url}>
               <NavLink
@@ -72,6 +70,7 @@ export default class Nav extends Component {
               </NavLink>
               {subNav && (
                 <SubNav showNav={showNav && showSubNav === index}>
+                  <Toggle subNav onClick={this.toggleSubNav(index)} />
                   {subNav.map(item => (
                     <NavLink
                       key={item.url}
