@@ -71,7 +71,6 @@ export const SubNav = styled.div`
   position: absolute;
   transition: all 0.4s;
   padding: 0.5em 0.7em;
-  ${props => console.log(props)}
   grid-template-columns: ${props =>
     props.children[1].length >= 10 ? `1fr 1fr` : `1fr`};
   pointer-events: none;
@@ -122,10 +121,10 @@ const inHeaderToggle = css`
   grid-area: 1 / 1 / 1 / 1;
 `
 
-export const Toggle = styled.span.attrs({
+export const Toggle = styled(Close).attrs(props => ({
   size: `1.7em`,
-  as: props => (props.asMenu ? Menu : Close),
-})`
+  as: props.asMenu && Menu,
+}))`
   cursor: pointer;
   ${props => (props.asMenu ? inHeaderToggle : inNavToggle)};
   ${navLinkStyle};
