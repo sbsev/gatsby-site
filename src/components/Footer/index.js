@@ -31,7 +31,7 @@ const Footer = ({ copyright, source, links, poweredBy, logos }) => (
       Powered by:{' '}
       {poweredBy.map(({ url, title }, index) => (
         <a key={title} href={url}>
-          <img src={logos.edges[index].node.file.url} alt={title} />
+          <img src={logos[index].node.file.url} alt={title} />
         </a>
       ))}
     </PoweredBy>
@@ -63,7 +63,7 @@ const query = graphql`
       filter: { title: { regex: "/Footer logo/" } }
       sort: { fields: title }
     ) {
-      edges {
+      logos: edges {
         node {
           title
           file {
@@ -78,8 +78,8 @@ const query = graphql`
 export default props => (
   <StaticQuery
     query={query}
-    render={data => (
-      <Footer {...data.footer.data} logos={data.logos} {...props} />
+    render={({ footer, logos }) => (
+      <Footer {...footer.data} {...logos} {...props} />
     )}
   />
 )
