@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'gatsby'
 
 import { ArticleGrid, Article } from './styles'
 
 const ArticleList = ({ articles }) => (
-  <Fragment>
+  <>
     <h2>Artikel</h2>
     <ArticleGrid>
       {articles.edges.map(({ node: article }) => {
@@ -26,7 +26,7 @@ const ArticleList = ({ articles }) => (
         )
       })}
     </ArticleGrid>
-  </Fragment>
+  </>
 )
 
 export default ArticleList

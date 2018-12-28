@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'gatsby'
 
 import { List, Subsection, SubsectionIcon } from './styles'
@@ -6,7 +6,7 @@ import { List, Subsection, SubsectionIcon } from './styles'
 const SubsectionList = ({ sectionSlug, subsections, path = `` }) => {
   const subsectionSlug = path.split(`/`).pop()
   return (
-    <Fragment>
+    <>
       <h2>Unterpunkte</h2>
       <List>
         {subsections.map(subsection => (
@@ -24,7 +24,7 @@ const SubsectionList = ({ sectionSlug, subsections, path = `` }) => {
           </Subsection>
         ))}
       </List>
-    </Fragment>
+    </>
   )
 }
 
