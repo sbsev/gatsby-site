@@ -72,9 +72,7 @@ export default class ChaptersPage extends Component {
 export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "standorte" }) {
-      title {
-        title
-      }
+      title
       body {
         data: childMarkdownRemark {
           excerpt
