@@ -4,9 +4,7 @@ const pageQuery = `{
       node {
         objectID: id
         slug
-        title {
-          title
-        }
+        title
         body {
           data: childMarkdownRemark {
             excerpt(pruneLength: 5000)
@@ -27,9 +25,7 @@ const postQuery = `{
       node {
         objectID: id
         slug
-        title {
-          title
-        }
+        title
         date(formatString: "D. MMM YYYY", locale: "de")
         author {
           name
@@ -60,9 +56,7 @@ const articleQuery = `{
       node {
         objectID: id
         slug
-        title {
-          title
-        }
+        title
         section {
           title
           slug
@@ -89,11 +83,10 @@ const queries = [
   {
     query: pageQuery,
     transformer: ({ data }) =>
-      data.pages.edges.map(({ node: { title, body, ...rest } }) =>
-        [`Fehler 404`].includes(title.title)
+      data.pages.edges.map(({ node: { body, ...rest } }) =>
+        [`Fehler 404`].includes(rest.title)
           ? {}
           : {
-              ...title,
               ...body.data,
               ...rest,
             }
@@ -104,8 +97,7 @@ const queries = [
   {
     query: postQuery,
     transformer: ({ data }) =>
-      data.posts.edges.map(({ node: { title, body, ...rest } }) => ({
-        ...title,
+      data.posts.edges.map(({ node: { body, ...rest } }) => ({
         ...body.data,
         ...rest,
       })),
@@ -115,8 +107,7 @@ const queries = [
   {
     query: articleQuery,
     transformer: ({ data }) =>
-      data.articles.edges.map(({ node: { title, body, ...rest } }) => ({
-        ...title,
+      data.articles.edges.map(({ node: { body, ...rest } }) => ({
         ...body.data,
         ...rest,
       })),

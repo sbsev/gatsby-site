@@ -21,7 +21,7 @@ const PostTitle = ({ post }) => {
       {featuredImage && (
         <FeaturedImage fluid={featuredImage.fluid} alt={featuredImage.title} />
       )}
-      <Title>{title.title}</Title>
+      <Title>{title}</Title>
       <Author>
         <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
         <div>
