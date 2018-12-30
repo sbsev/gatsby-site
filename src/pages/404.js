@@ -30,9 +30,7 @@ export default PageNotFound
 export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "404" }) {
-      title {
-        title
-      }
+      title
       subtitle {
         subtitle
       }

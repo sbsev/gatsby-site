@@ -24,9 +24,7 @@ export default PostTemplate
 export const query = graphql`
   fragment postFields on ContentfulPost {
     slug
-    title {
-      title
-    }
+    title
     author {
       name
       email

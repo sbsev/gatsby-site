@@ -30,9 +30,7 @@ export default WikiArticleTemplate
 
 export const query = graphql`
   fragment articleFields on ContentfulWikiArticle {
-    title {
-      title
-    }
+    title
     slug
     body {
       data: childMarkdownRemark {
