@@ -29,9 +29,7 @@ export default PageTemplate
 export const query = graphql`
   query($slug: String!) {
     page: contentfulPage(slug: { eq: $slug }) {
-      title {
-        title
-      }
+      title
       slug
       body {
         data: childMarkdownRemark {

@@ -10,7 +10,6 @@ const LandingPage = ({ data, location }) => {
   const { images, page } = data
   let { title, subtitle, body } = page
   const { excerpt, html } = body && body.data
-  title = title.title
   subtitle = subtitle.data.html
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
@@ -28,9 +27,7 @@ export default LandingPage
 export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "/" }) {
-      title {
-        title
-      }
+      title
       subtitle {
         data: childMarkdownRemark {
           html

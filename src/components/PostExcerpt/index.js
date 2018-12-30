@@ -23,7 +23,7 @@ const PostExcerpt = ({ post, iconSize }) => {
       )}
       <main>
         <Title>
-          <Link to={'/blog/' + slug}>{title.title}</Link>
+          <Link to={'/blog/' + slug}>{title}</Link>
         </Title>
         <Meta>
           <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
