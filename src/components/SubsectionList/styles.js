@@ -10,14 +10,12 @@ export const List = styled.div`
 
 export const Subsection = styled.p`
   padding: 0.2em 0.5em;
-  background: ${({ theme, active }) =>
-    active ? theme.mainBlue : theme.lightGray};
+  background: ${({ theme, active }) => (active ? theme.blue : theme.lightGray)};
   border-radius: ${props => props.theme.smallBorderRadius};
   a {
     display: flex;
     align-items: center;
-    color: ${({ theme, active }) =>
-      active ? theme.mainWhite : theme.mainBlack};
+    color: ${({ theme, active }) => (active ? theme.white : theme.black)};
   }
 `
 

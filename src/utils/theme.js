@@ -1,24 +1,24 @@
 const theme = {
-  mainBlue: `#003e90`,
+  blue: `#003e90`,
   darkBlue: `#003056`,
   lightBlue: `#00aaff`,
 
-  mainGreen: `#6e9f23`,
+  green: `#6e9f23`,
   darkGreen: `#008c65`,
   lightGreen: `#00d69b`,
 
-  mainYellow: `#f9ff00`,
+  yellow: `#f9ff00`,
   darkYellow: `#ffca35`,
   veryDarkYellow: `#e8ab00`,
   lightYellow: `#fbff6c`,
 
-  mainGray: `#464849`,
+  gray: `#464849`,
   lightGray: `#d8d8d8`,
   veryLightGray: `#efefef`,
   darkGray: `#2a2c30`,
 
-  mainWhite: `white`,
-  mainBlack: `black`,
+  white: `white`,
+  black: `black`,
 
   maxWidth: `40em`,
 

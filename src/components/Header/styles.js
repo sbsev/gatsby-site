@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'gatsby'
 
 import mediaQuery from '../../utils/mediaQuery'
-import LogoComp from '../../assets/logo'
+import Owl from '../../assets/logo'
 import { navLinkStyle } from '../Nav/styles'
 
 export const HeaderContainer = styled.header`
@@ -32,12 +32,12 @@ export const SiteTitle = styled(Link)`
   }
 `
 
-export const Logo = styled(LogoComp)`
+export const Logo = styled(Owl)`
   height: 3em;
   width: 3em;
   object-fit: cover;
   object-position: top;
   border-radius: 50%;
-  background: ${props => props.theme.mainWhite};
-  border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.mainWhite};
+  background: ${props => props.theme.white};
+  border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.white};
 `
