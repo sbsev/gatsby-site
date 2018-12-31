@@ -48,5 +48,8 @@
     "Algolia search",
     "fluid typography",
     "CSS grid"
-  ]
+  ],
+  "devDependencies": {
+    "contentful-management": "^5.4.0"
+  }
 }
