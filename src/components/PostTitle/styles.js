@@ -17,7 +17,7 @@ export const Container = styled.header`
 `
 
 export const Title = styled.h1`
-  color: ${props => props.theme.mainBlue};
+  color: ${props => props.theme.blue};
 `
 
 export const Author = styled.div`

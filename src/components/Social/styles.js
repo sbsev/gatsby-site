@@ -18,7 +18,7 @@ const collapse = css`
   opacity: 0;
   position: absolute;
   background: ${props => props.theme.darkBlue};
-  border: 1px solid ${props => props.theme.mainWhite};
+  border: 1px solid ${props => props.theme.white};
   border-radius: ${props => props.theme.smallBorderRadius};
   padding: 1vmin;
   font-size: 1.3em;
@@ -62,8 +62,13 @@ export const Link = styled.a`
 `
 
 export const Icons = {
-  Email,
-  Youtube,
+  Email: styled(Email)`
+    vertical-align: -0.15em;
+    transform: scale(1, 1.2);
+  `,
+  Youtube: styled(Youtube)`
+    vertical-align: -0.18em;
+  `,
   Linkedin,
   Facebook,
   Github,
