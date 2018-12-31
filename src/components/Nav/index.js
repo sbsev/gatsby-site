@@ -19,10 +19,13 @@ const query = graphql`
         }
       }
     }
-    chapters: allContentfulChapter(filter: { active: { eq: true } }) {
+    chapters: allContentfulChapter(
+      filter: { active: { eq: true } }
+      sort: { fields: title, order: ASC }
+    ) {
       edges {
         node {
-          name
+          title
           slug
         }
       }
@@ -38,7 +41,7 @@ export default props => (
       // merging chapters without cloning: results in chapters compounding on every page navigation
       nav = JSON.parse(JSON.stringify(nav.data.nav))
       chapters = chapters.edges.map(({ node }) => ({
-        title: node.name,
+        title: node.title,
         url: node.slug,
       }))
       nav.find(el => el.url === `standorte`).subNav.unshift(...chapters)
