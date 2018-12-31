@@ -4,16 +4,16 @@ import PropTypes from 'prop-types'
 
 import { Wrapper, Container, Toggle, Link, Icons } from './styles'
 
-const Social = ({ social, iconSize, iconCss, collapse, short }) => (
+const Social = ({ social, size = `1em`, iconCss, collapse, short }) => (
   <Wrapper>
-    {collapse && <Toggle size={iconSize} styles={iconCss} />}
+    {collapse && <Toggle size={size} styles={iconCss} />}
     <Container {...{ collapse }}>
       {Object.keys(social).map(service => {
         if (short && [`Email`, `Github`].includes(service)) return undefined
         const Icon = Icons[service]
         return (
           <Link key={service} href={social[service]} styles={iconCss}>
-            <Icon size={iconSize} />
+            <Icon size={size} />
           </Link>
         )
       })}
@@ -24,7 +24,7 @@ const Social = ({ social, iconSize, iconCss, collapse, short }) => (
 const query = graphql`
   {
     social: contentfulJson(title: { eq: "Social" }) {
-      data {
+      social: data {
         Email
         Facebook
         Github
@@ -38,15 +38,11 @@ const query = graphql`
 export default props => (
   <StaticQuery
     query={query}
-    render={data => <Social social={data.social.data} {...props} />}
+    render={data => <Social {...data.social} {...props} />}
   />
 )
 
 Social.propTypes = {
   social: PropTypes.object.isRequired,
-  iconSize: PropTypes.string.isRequired,
-}
-
-Social.defaultProps = {
-  iconSize: `1em`,
+  size: PropTypes.string,
 }
