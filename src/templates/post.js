@@ -6,10 +6,7 @@ import PostTitle from '../components/PostTitle'
 import PageBody from '../components/styles/PageBody'
 
 const PostTemplate = ({ data, location }) => {
-  const {
-    title: { title },
-    body,
-  } = data.post
+  const { title, body } = data.post
   const { html, excerpt } = body.data
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
