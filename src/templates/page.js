@@ -7,10 +7,7 @@ import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const PageTemplate = ({ data, location }) => {
-  const {
-    title: { title },
-    body,
-  } = data.page
+  const { title, body } = data.page
   const { excerpt, html } = body && body.data
   const path = location.pathname
   return (

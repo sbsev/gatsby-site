@@ -8,10 +8,7 @@ import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const WikiArticleTemplate = ({ data, location }) => {
-  const {
-    title: { title },
-    body,
-  } = data.article
+  const { title, body } = data.article
   const { html, excerpt } = body.data
   const path = location.pathname
   return (

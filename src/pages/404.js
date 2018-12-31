@@ -8,10 +8,7 @@ import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
 const PageNotFound = ({ data: { page }, location }) => {
-  const {
-    title: { title },
-    body,
-  } = page
+  const { title, body } = page
   const { excerpt, html } = body && body.data
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
