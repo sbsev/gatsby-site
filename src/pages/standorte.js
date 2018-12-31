@@ -16,7 +16,7 @@ export default class ChaptersPage extends Component {
         map,
         position: node.coords,
         label: `${chapterCount}`,
-        title: node.name,
+        title: node.title,
       })
       marker.addListener('click', () => {
         window.location.href = `/standorte/` + node.slug
@@ -40,7 +40,7 @@ export default class ChaptersPage extends Component {
     const { data, location } = this.props
     const { page, chapters } = data
     const { title, body } = page
-    const { excerpt, html } = body && body.data
+    const { excerpt, html } = body.data
     return (
       <Global pageTitle={title} path={location.pathname} description={excerpt}>
         <PageTitle>
@@ -50,7 +50,7 @@ export default class ChaptersPage extends Component {
         <Chapters>
           {chapters.edges.map(({ node }) => (
             <li key={node.slug}>
-              <Link to={`/standorte/` + node.slug}>{node.name}</Link>
+              <Link to={`/standorte/` + node.slug}>{node.title}</Link>
             </li>
           ))}
         </Chapters>
@@ -73,10 +73,13 @@ export const query = graphql`
       }
       updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
     }
-    chapters: allContentfulChapter(filter: { active: { eq: true } }) {
+    chapters: allContentfulChapter(
+      filter: { active: { eq: true } }
+      sort: { fields: title, order: ASC }
+    ) {
       edges {
         node {
-          name
+          title
           slug
           coords {
             lat
