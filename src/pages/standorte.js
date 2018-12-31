@@ -11,19 +11,17 @@ import Chapters from '../components/styles/Chapters'
 export default class ChaptersPage extends Component {
   addMarkers = map => {
     let chapterCount = 1
-    this.props.data.chapters.data.chapters.forEach(chapter => {
-      if (!chapter.inactive) {
-        const marker = new window.google.maps.Marker({
-          map,
-          position: !chapter.inactive && chapter.coords,
-          label: `${chapterCount}`,
-          title: chapter.title,
-        })
-        marker.addListener('click', () => {
-          window.location.href = `/standorte` + chapter.url
-        })
-        ++chapterCount
-      }
+    this.props.data.chapters.edges.forEach(({ node }) => {
+      const marker = new window.google.maps.Marker({
+        map,
+        position: node.coords,
+        label: `${chapterCount}`,
+        title: node.name,
+      })
+      marker.addListener('click', () => {
+        window.location.href = `/standorte/` + node.slug
+      })
+      ++chapterCount
     })
   }
 
@@ -41,10 +39,7 @@ export default class ChaptersPage extends Component {
   render() {
     const { data, location } = this.props
     const { page, chapters } = data
-    const {
-      title: { title },
-      body,
-    } = page
+    const { title, body } = page
     const { excerpt, html } = body && body.data
     return (
       <Global pageTitle={title} path={location.pathname} description={excerpt}>
@@ -53,14 +48,11 @@ export default class ChaptersPage extends Component {
         </PageTitle>
         <Map id="chapterMap" {...this.mapProps} />
         <Chapters>
-          {chapters.data.chapters.map(
-            chapter =>
-              !chapter.inactive && (
-                <li key={chapter.url}>
-                  <Link to={`/standorte` + chapter.url}>{chapter.title}</Link>
-                </li>
-              )
-          )}
+          {chapters.edges.map(({ node }) => (
+            <li key={node.slug}>
+              <Link to={`/standorte/` + node.slug}>{node.name}</Link>
+            </li>
+          ))}
         </Chapters>
         {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
         <PageMeta {...page} />
@@ -81,16 +73,15 @@ export const query = graphql`
       }
       updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
     }
-    chapters: contentfulJson(title: { eq: "Standorte" }) {
-      data {
-        chapters {
-          url
-          title
+    chapters: allContentfulChapter(filter: { active: { eq: true } }) {
+      edges {
+        node {
+          name
+          slug
           coords {
             lat
-            lng
+            lng: lon
           }
-          inactive
         }
       }
     }

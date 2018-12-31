@@ -19,12 +19,11 @@ const query = graphql`
         }
       }
     }
-    chapters: contentfulJson(title: { eq: "Standorte" }) {
-      data {
-        chapters {
-          url
-          title
-          inactive
+    chapters: allContentfulChapter(filter: { active: { eq: true } }) {
+      edges {
+        node {
+          name
+          slug
         }
       }
     }
@@ -36,10 +35,13 @@ export default props => (
     query={query}
     render={({ nav, chapters }) => {
       // clone nav and merge chapters
-      // merging chapters without cloning results in chapters compounding on every page navigation
+      // merging chapters without cloning: results in chapters compounding on every page navigation
       nav = JSON.parse(JSON.stringify(nav.data.nav))
-      chapters = chapters.data.chapters.filter(chapter => !chapter.inactive)
-      nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
+      chapters = chapters.edges.map(({ node }) => ({
+        title: node.name,
+        url: node.slug,
+      }))
+      nav.find(el => el.url === `standorte`).subNav.unshift(...chapters)
       return <Nav nav={nav} {...props} />
     }}
   />
