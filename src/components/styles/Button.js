@@ -5,7 +5,7 @@ import Link from '../Link'
 
 const Button = styled(Link)`
   background: ${props => props.theme.darkBlue};
-  color: ${props => props.theme.mainWhite} !important;
+  color: ${props => props.theme.white} !important;
   border-radius: ${props => props.theme.smallBorderRadius};
   padding: 0.4em 0.6em;
   font-size: ${props => props.size};

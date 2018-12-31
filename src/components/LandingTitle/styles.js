@@ -52,7 +52,7 @@ export const Dots = styled.div`
   display: grid;
   grid-gap: 1vw;
   grid-auto-flow: column;
-  color: ${props => props.theme.mainWhite};
+  color: ${props => props.theme.white};
 `
 
 export const Dot = styled.div`
@@ -62,7 +62,7 @@ export const Dot = styled.div`
   background: rgba(0, 0, 0, 0.5);
   background: ${props => props.active && props.theme.lightGreen};
   transition: ${props => props.theme.mediumTrans};
-  border: ${({ theme }) => theme.smallBorder + ` solid ` + theme.mainWhite};
+  border: ${({ theme }) => theme.smallBorder + ` solid ` + theme.white};
   :hover {
     color: ${props => props.theme.lightBlue};
     background: ${props => props.theme.darkBlue};
