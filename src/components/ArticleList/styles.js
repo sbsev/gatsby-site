@@ -12,7 +12,7 @@ export const Article = styled.div`
     padding: 0.2em 0.5em;
     background: ${props => props.theme.lightGray};
     border-radius: ${props => props.theme.smallBorderRadius};
-    color: ${props => props.theme.mainBlue};
+    color: ${props => props.theme.blue};
   }
   h6 {
     margin-top: 0.2em;
