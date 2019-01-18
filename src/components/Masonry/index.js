@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 
 import { Parent, Child } from './styles'
 
@@ -8,13 +8,16 @@ export default class Masonry extends Component {
     colWidth: `17em`,
   }
 
-  state = { spans: [], ref: React.createRef() }
+  state = { spans: [] }
+  ref = createRef()
+  reducer = (acc, node) => acc + node.scrollHeight
 
   computeSpans = () => {
     const { rowHeight } = this.props
     const spans = []
-    Array.from(this.state.ref.current.children).forEach(child => {
-      const span = Math.ceil(child.clientHeight / rowHeight)
+    Array.from(this.ref.current.children).forEach(child => {
+      const childHeight = Array.from(child.children).reduce(this.reducer, 0)
+      const span = Math.ceil(childHeight / rowHeight)
       spans.push(span + 1)
       child.style.height = span * rowHeight + `px`
     })
@@ -23,16 +26,16 @@ export default class Masonry extends Component {
 
   componentDidMount() {
     this.computeSpans()
-    window.addEventListener('resize', this.computeSpans)
+    window.addEventListener(`resize`, this.computeSpans)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.computeSpans)
+    window.removeEventListener(`resize`, this.computeSpans)
   }
 
   render() {
     return (
-      <Parent ref={this.state.ref} {...this.props}>
+      <Parent ref={this.ref} {...this.props}>
         {this.props.children.map((child, i) => (
           <Child key={i} span={this.state.spans[i]}>
             {child}

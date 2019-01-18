@@ -1,6 +1,4 @@
-import React, { Component } from 'react'
-
-import { MapContainer } from './styles'
+import React, { Component } from "react"
 
 export default class Map extends Component {
   onLoad = () => {
@@ -27,6 +25,7 @@ export default class Map extends Component {
   }
 
   render() {
-    return <MapContainer css={this.props.css} id={this.props.id} />
+    const mapCss = `height: 70vh; ${this.props.css}`
+    return <div css={mapCss} id={this.props.id} />
   }
 }

@@ -17,13 +17,13 @@ const PostExcerpt = ({ post, iconSize }) => {
   return (
     <Post>
       {featuredImage && (
-        <Link to={'/blog/' + slug}>
+        <Link to={`blog/` + slug}>
           <Img fluid={featuredImage.fluid} alt={featuredImage.title} />
         </Link>
       )}
       <main>
         <Title>
-          <Link to={'/blog/' + slug}>{title}</Link>
+          <Link to={`blog/` + slug}>{title}</Link>
         </Title>
         <Meta>
           <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
@@ -52,7 +52,7 @@ const PostExcerpt = ({ post, iconSize }) => {
           <span>Kategorien: </span>
           {categories.map((category, index) => (
             <Fragment key={category.slug}>
-              {!!index && ', '}
+              {!!index && `, `}
               <Link to={`blog/` + category.slug}>{category.title}</Link>
             </Fragment>
           ))}
@@ -89,5 +89,5 @@ PostExcerpt.propTypes = {
 }
 
 PostExcerpt.defaultProps = {
-  iconSize: '1em',
+  iconSize: `1em`,
 }
