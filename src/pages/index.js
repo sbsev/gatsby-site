@@ -6,7 +6,7 @@ import LandingTitle from '../components/LandingTitle'
 import PageBody from '../components/styles/PageBody'
 import PageMeta from '../components/PageMeta'
 
-const LandingPage = ({ data, location }) => {
+const IndexPage = ({ data, location }) => {
   const { images, page } = data
   let { title, subtitle, body } = page
   const { excerpt, html } = body && body.data
@@ -22,7 +22,7 @@ const LandingPage = ({ data, location }) => {
   )
 }
 
-export default LandingPage
+export default IndexPage
 
 export const query = graphql`
   {

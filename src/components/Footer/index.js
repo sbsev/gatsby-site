@@ -2,33 +2,27 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import {
-  FooterDiv,
-  Copyright,
-  FooterLinks,
-  FooterLink,
-  Source,
-  PoweredBy,
-} from './styles'
+import Link from '../Link'
+import { FooterDiv, FooterLinks, Source, PoweredBy } from './styles'
 import Social from '../Social'
 import { navLinkStyle } from '../Nav/styles'
 
 const Footer = ({ copyright, source, links, poweredBy, logos }) => (
   <FooterDiv>
-    <Copyright>
+    <div>
       © {new Date().getFullYear()} - {copyright}
-    </Copyright>
+    </div>
     <FooterLinks>
       {links.map(link => (
-        <FooterLink styles={navLinkStyle} key={link.url} to={link.url}>
+        <Link css={navLinkStyle} key={link.url} to={link.url}>
           {link.title}
-        </FooterLink>
+        </Link>
       ))}
     </FooterLinks>
     <Social iconCss={navLinkStyle} />
     <Source dangerouslySetInnerHTML={{ __html: source }} />
     <PoweredBy>
-      Powered by:{' '}
+      Powered by:{` `}
       {poweredBy.map(({ url, title }, index) => (
         <a key={title} href={url}>
           <img src={logos[index].node.file.url} alt={title} />

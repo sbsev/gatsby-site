@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 import mediaQuery from '../../utils/mediaQuery'
-import Link from '../Link'
 
 export const FooterDiv = styled.footer`
   background: ${props => props.theme.darkBlue};
@@ -13,8 +12,8 @@ export const FooterDiv = styled.footer`
   justify-items: center;
   grid-gap: 7vh 5vw;
   grid-template-areas:
-    'social'
     'copyright'
+    'social'
     'links';
   ${mediaQuery.minTablet} {
     justify-content: space-around;
@@ -27,10 +26,6 @@ export const FooterDiv = styled.footer`
   }
 `
 
-export const Copyright = styled.div`
-  grid-area: copyright;
-`
-
 export const FooterLinks = styled.div`
   grid-area: links;
   display: grid;
@@ -38,12 +33,7 @@ export const FooterLinks = styled.div`
   grid-auto-flow: column;
   ${mediaQuery.maxPhone} {
     grid-template-rows: auto auto;
-    justify-items: center;
   }
-`
-
-export const FooterLink = styled(Link)`
-  ${props => props.styles};
 `
 
 export const Source = styled.span`

@@ -16,10 +16,10 @@ module.exports = {
   plugins: ['react'],
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
-    'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'backtick', { avoidEscape: true }],
-    'react/prop-types': 'off',
     semi: ['error', 'never'],
+    'linebreak-style': ['error', 'unix'],
+    'react/prop-types': 'off',
     'react/display-name': 'off',
   },
   settings: {

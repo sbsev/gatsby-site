@@ -16,7 +16,7 @@ const Header = ({ site }) => (
   <Headroom>
     <HeaderContainer>
       <SiteTitle to="/" title={site.title} rel="home">
-        <Logo />
+        <Logo alt={site.title} />
         {site.title}
       </SiteTitle>
       <Nav />

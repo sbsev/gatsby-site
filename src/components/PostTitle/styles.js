@@ -34,7 +34,7 @@ export const Meta = styled.div`
   margin: 2em 0;
   padding: 0 1em;
   color: ${props => props.theme.lightBlue};
-  border: ${({ theme }) => theme.mediumBorder + ' solid ' + theme.darkBlue};
+  border: ${({ theme }) => theme.mediumBorder + ` solid ` + theme.darkBlue};
   border-radius: ${props => props.theme.largeBorderRadius};
   display: flex;
   align-items: center;

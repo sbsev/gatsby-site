@@ -18,7 +18,7 @@ export default class ChaptersPage extends Component {
         label: `${chapterCount}`,
         title: node.title,
       })
-      marker.addListener('click', () => {
+      marker.addListener(`click`, () => {
         window.location.href = `/standorte/` + node.slug
       })
       ++chapterCount
@@ -30,7 +30,7 @@ export default class ChaptersPage extends Component {
       center: { lat: 51, lng: 10 },
       zoom:
         // checking that window is defined necessary for compiling on server
-        typeof window !== 'undefined' &&
+        typeof window !== `undefined` &&
         5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
     },
     onMount: this.addMarkers,

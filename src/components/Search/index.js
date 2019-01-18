@@ -11,7 +11,7 @@ import { Root, HitsWrapper, By } from './styles'
 import Input from './Input'
 import * as hitComps from './hits'
 
-const events = ['mousedown', 'touchstart']
+const events = [`mousedown`, `touchstart`]
 
 const Results = connectStateResults(
   ({ searchState: state, searchResults: res, children }) =>
@@ -58,8 +58,8 @@ export default class Search extends Component {
     const { indices, collapse, hitsAsGrid } = this.props
     return (
       <InstantSearch
-        appId="T0ZLKGU1XK"
-        apiKey="2bba2dc22c305d8a0472c4a76690093e"
+        appId={process.env.GATSBY_ALGOLIA_APP_ID}
+        apiKey={process.env.GATSBY_ALGOLIA_SEARCH_KEY}
         indexName={indices[0].name}
         onSearchStateChange={this.updateState}
         root={{ Root, props: { ref } }}
@@ -81,7 +81,7 @@ export default class Search extends Component {
             </Index>
           ))}
           <By>
-            Powered by{' '}
+            Powered by{` `}
             <a href="https://www.algolia.com">
               <Algolia size="1em" /> Algolia
             </a>
