@@ -1,8 +1,8 @@
-const path = require('path')
-const glob = require('glob')
-const lodash = require('lodash')
+const path = require(`path`)
+const glob = require(`glob`)
+const lodash = require(`lodash`)
 
-const templates = glob.sync('./src/templates/*.js', {
+const templates = glob.sync(`./src/templates/*.js`, {
   absolute: true,
 })
 
@@ -68,10 +68,7 @@ exports.createPages = ({ graphql, actions }) => {
 
   pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
-    if (response.errors) {
-      console.error(response.errors)
-      throw new Error(response.errors)
-    }
+    if (response.errors) throw new Error(response.errors)
     response.data.content.edges.forEach(({ node }) => {
       // exclude pages defined in src/pages
       if (![`standorte`, `404`].includes(node.slug)) {

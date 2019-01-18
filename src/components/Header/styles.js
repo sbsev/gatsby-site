@@ -39,5 +39,5 @@ export const Logo = styled(Owl)`
   object-position: top;
   border-radius: 50%;
   background: ${props => props.theme.white};
-  border: ${({ theme }) => theme.smallBorder + ' solid ' + theme.white};
+  border: ${({ theme }) => theme.smallBorder + ` solid ` + theme.white};
 `

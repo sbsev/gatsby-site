@@ -27,7 +27,7 @@ const PostHit = clickHandler => ({ hit }) => (
       &nbsp;
       {hit.categories.map(({ title, slug }, index) => (
         <Fragment key={slug}>
-          {!!index && ', '}
+          {!!index && `, `}
           <Link to={`blog/` + slug}>{title}</Link>
         </Fragment>
       ))}
