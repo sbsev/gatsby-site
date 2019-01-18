@@ -13,14 +13,14 @@ export default class Map extends Component {
 
   componentDidMount() {
     if (!window.google) {
-      const script = document.createElement('script')
-      script.type = 'text/javascript'
-      script.src = `https://maps.google.com/maps/api/js?key=AIzaSyCPz8qabi9lzSvFzG3S-WiSNJwxMDTi6OM`
-      const headScript = document.getElementsByTagName('script')[0]
+      const script = document.createElement(`script`)
+      script.type = `text/javascript`
+      script.src = `https://maps.google.com/maps/api/js?key=${
+        process.env.GATSBY_GOOGLE_MAPS_API_KEY
+      }`
+      const headScript = document.getElementsByTagName(`script`)[0]
       headScript.parentNode.insertBefore(script, headScript)
-      script.addEventListener('load', () => {
-        this.onLoad()
-      })
+      script.addEventListener(`load`, this.onLoad)
     } else {
       this.onLoad()
     }
