@@ -1,8 +1,8 @@
-const contentful = require('contentful-management')
+const contentful = require(`contentful-management`)
+require(`dotenv`).config()
 
 const client = contentful.createClient({
-  accessToken:
-    'CFPAT-73ab1c829b7e1bfc3fc0dea99658828c5e0778b3abc41e9cce2a5f5bd062ee0e',
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 })
 
 // // Create chapter entries from former chapter JSON
@@ -38,8 +38,9 @@ const client = contentful.createClient({
 
 // Get entries
 client
-  .getSpace('gi9muc70s4ub')
-  .then(space => space.getEnvironment('master'))
-  .then(env => env.getEntries({ content_type: 'chapter' }))
+  .getSpace(process.env.CONTENTFUL_SPACE_ID)
+  .then(space => space.getEnvironment(`master`))
+  .then(env => env.getEntries({ content_type: `chapter` }))
+  /* eslint-disable no-console */
   .then(console.log)
   .catch(console.error)
