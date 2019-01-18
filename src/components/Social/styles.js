@@ -17,8 +17,7 @@ const collapse = css`
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  background: ${props => props.theme.darkBlue};
-  border: 1px solid ${props => props.theme.white};
+  background: ${props => props.theme.gray};
   border-radius: ${props => props.theme.smallBorderRadius};
   padding: 1vmin;
   font-size: 1.3em;
@@ -51,14 +50,9 @@ export const Container = styled.div`
 export const Toggle = styled(Share)`
   cursor: pointer;
   font-size: 1.3em;
-  ${props => props.styles};
   ${mediaQuery.minLaptop} {
-    display: none !important;
+    display: none;
   }
-`
-
-export const Link = styled.a`
-  ${props => props.styles};
 `
 
 export const Icons = {

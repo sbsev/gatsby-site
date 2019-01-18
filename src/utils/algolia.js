@@ -87,9 +87,9 @@ const queries = [
         [`Fehler 404`].includes(rest.title)
           ? {}
           : {
-              ...body.data,
-              ...rest,
-            }
+            ...body.data,
+            ...rest,
+          }
       ),
     indexName: `Pages`,
     settings: { attributesToSnippet: [`excerpt:20`] },

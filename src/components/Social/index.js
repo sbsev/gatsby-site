@@ -2,19 +2,19 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 
-import { Wrapper, Container, Toggle, Link, Icons } from './styles'
+import { Wrapper, Container, Toggle, Icons } from './styles'
 
 const Social = ({ social, size = `1em`, iconCss, collapse, short }) => (
   <Wrapper>
-    {collapse && <Toggle size={size} styles={iconCss} />}
+    {collapse && <Toggle size={size} css={iconCss} />}
     <Container {...{ collapse }}>
       {Object.keys(social).map(service => {
         if (short && [`Email`, `Github`].includes(service)) return undefined
         const Icon = Icons[service]
         return (
-          <Link key={service} href={social[service]} styles={iconCss}>
+          <a key={service} href={social[service]} css={iconCss}>
             <Icon size={size} />
-          </Link>
+          </a>
         )
       })}
     </Container>
