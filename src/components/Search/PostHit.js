@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react'
-import { Highlight, Snippet } from 'react-instantsearch-dom'
-import { Link } from 'gatsby'
-import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
-import { Calendar } from 'styled-icons/octicons/Calendar'
-import { Tags } from 'styled-icons/fa-solid/Tags'
+import React, { Fragment } from "react"
+import { Highlight, Snippet } from "react-instantsearch-dom"
+import { Link } from "gatsby"
+import { UserEdit } from "styled-icons/fa-solid/UserEdit"
+import { Calendar } from "styled-icons/octicons/Calendar"
+import { Tags } from "styled-icons/fa-solid/Tags"
 
 const PostHit = clickHandler => ({ hit }) => (
   <div>
@@ -25,10 +25,10 @@ const PostHit = clickHandler => ({ hit }) => (
       &emsp;
       <Tags size="1em" />
       &nbsp;
-      {hit.categories.map(({ title, slug }, index) => (
-        <Fragment key={slug}>
+      {hit.tags.map(({ title }, index) => (
+        <Fragment key={title}>
           {!!index && `, `}
-          <Link to={`blog/` + slug}>{title}</Link>
+          {title}
         </Fragment>
       ))}
     </div>
