@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react"
 
 import {
   Container,
-  FeaturedImage,
+  Cover,
   Title,
   Author,
   AuthorPhoto,
@@ -12,15 +12,13 @@ import {
   Email,
   Date,
   Timer,
-} from './styles'
+} from "./styles"
 
 const PostTitle = ({ post }) => {
-  const { featuredImage, title, author, date, body } = post
+  const { cover, title, author, date, body } = post
   return (
     <Container>
-      {featuredImage && (
-        <FeaturedImage fluid={featuredImage.fluid} alt={featuredImage.title} />
-      )}
+      {cover && <Cover fluid={cover.fluid} alt={cover.title} />}
       <Title>{title}</Title>
       <Author>
         <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
@@ -40,7 +38,8 @@ const PostTitle = ({ post }) => {
         </div>
       </Author>
       <Meta>
-        <Date size="1em" /> &nbsp; {date} &nbsp; | &nbsp; <Timer size="1em" />{` `}
+        <Date size="1em" /> &nbsp; {date} &nbsp; | &nbsp; <Timer size="1em" />
+        {` `}
         &nbsp; {body.data.timeToRead} Min Lesezeit
       </Meta>
     </Container>
