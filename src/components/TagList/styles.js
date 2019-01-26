@@ -1,7 +1,6 @@
-import styled from 'styled-components'
-import { Link } from 'gatsby'
+import styled from "styled-components"
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from "../../utils/mediaQuery"
 
 export const Container = styled.div`
   ${mediaQuery.minTablet} {
@@ -14,7 +13,17 @@ export const Container = styled.div`
   }
 `
 
-export const CategoryIcon = styled.img`
+export const Tag = styled.button`
+  display: flex;
+  align-items: center;
+  color: ${props => props.active && props.theme.darkYellow};
+  font-size: 0.8em;
+  cursor: pointer;
+  outline: none;
+  border: none;
+`
+
+export const TagIcon = styled.img`
   height: 1.75em;
   width: 1.75em;
   min-width: 1.75em;
@@ -22,14 +31,6 @@ export const CategoryIcon = styled.img`
   background: ${props => props.theme.lightGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
   padding: 0.2em;
-`
-
-export const CategoryLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  &.active {
-    color: ${props => props.theme.darkYellow};
-  }
 `
 
 export const List = styled.div`
