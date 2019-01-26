@@ -40,7 +40,7 @@ export const Meta = styled.div`
   align-items: center;
 `
 
-export const FeaturedImage = styled(Img)`
+export const Cover = styled(Img)`
   width: 100%;
   max-height: 30vmax;
   object-fit: cover;

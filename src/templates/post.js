@@ -32,12 +32,12 @@ export const query = graphql`
         }
       }
     }
-    categories {
+    tags {
       title
       slug
     }
     date(formatString: "D. MMM YYYY", locale: "de")
-    featuredImage {
+    cover {
       fluid {
         ...GatsbyContentfulFluid_withWebp
       }
