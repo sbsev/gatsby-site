@@ -43,8 +43,7 @@ const pageSets = templates.map(template => {
 const pagePath = node => {
   switch (node.internal.type) {
     case `ContentfulPost`:
-    case `ContentfulBlogCategory`:
-      return `blog/` + node.slug
+      return `/blog/` + node.slug
     case `ContentfulWikiSection`:
       return `wiki/${node.slug}`
     case `ContentfulWikiSubsection`:
