@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import Img from 'gatsby-image'
+import styled from "styled-components"
+import Img from "gatsby-image"
 
 export const Post = styled.article`
   height: 100%;
@@ -17,17 +17,17 @@ export const Post = styled.article`
   }
 `
 
-export const Title = styled.h3`
-  margin: 0;
+export const Title = styled.h2`
+  margin-top: 0;
 `
 
 export const Meta = styled.div`
   display: grid;
   grid-gap: 0 1em;
   grid-template-areas:
-    'photo author'
-    'photo date'
-    'photo readtime';
+    "photo author"
+    "photo date"
+    "photo readtime";
   grid-template-columns: max-content 1fr;
   margin-bottom: 0.5em;
 `
@@ -35,4 +35,16 @@ export const Meta = styled.div`
 export const AuthorPhoto = styled(Img)`
   border-radius: 50%;
   grid-area: photo;
+`
+
+export const Tag = styled.button`
+  color: ${props => props.active && props.theme.white};
+  background: ${props => props.active && props.theme.darkBlue};
+  font-size: 0.9em;
+  margin-bottom: 0.2em;
+  cursor: pointer;
+  outline: none;
+  border: none;
+
+  border-radius: ${props => props.theme.smallBorderRadius};
 `
