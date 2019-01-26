@@ -32,7 +32,7 @@ const postQuery = `{
           email
           homepage
         }
-        categories {
+        tags {
           title
           slug
         }
