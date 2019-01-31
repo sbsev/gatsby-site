@@ -6,7 +6,7 @@ import PageTitle from '../components/PageTitle'
 import SectionList from '../components/SectionList'
 import Search from '../components/Search'
 
-const Wiki = ({ data, location }) => {
+const WikiPage = ({ data, location }) => {
   const title = `Wiki`
   return (
     <Global pageTitle={title} path={location.pathname}>
@@ -22,7 +22,7 @@ const Wiki = ({ data, location }) => {
   )
 }
 
-export default Wiki
+export default WikiPage
 
 export const query = graphql`
   {
