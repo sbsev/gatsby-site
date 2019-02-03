@@ -34,7 +34,7 @@ export const Container = styled.ol`
 `
 
 export const Section = styled.li`
-  background: ${props => props.theme.veryLightGray};
+  background: ${props => props.theme.lighterGray};
   padding: 0.5em;
   border-radius: ${props => props.theme.smallBorderRadius};
 `
