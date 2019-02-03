@@ -18,7 +18,7 @@ const ArticleList = ({ articles }) => (
             </Link>
             <h6>Inhaltsverzeichnis</h6>
             <ul>
-              {body.data.headings.map(heading => (
+              {body.remark.headings.map(heading => (
                 <li key={heading.value}>{heading.value}</li>
               ))}
             </ul>

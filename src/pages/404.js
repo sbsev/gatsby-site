@@ -1,15 +1,15 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import Logo from '../assets/logo'
-import PageBody from '../components/styles/PageBody'
-import PageMeta from '../components/PageMeta'
+import Global from "../components/Global"
+import PageTitle from "../components/PageTitle"
+import Logo from "../assets/logo"
+import PageBody from "../components/styles/PageBody"
+import PageMeta from "../components/PageMeta"
 
 const PageNotFound = ({ data: { page }, location }) => {
   const { title, body } = page
-  const { excerpt, html } = body && body.data
+  const { excerpt, html } = body && body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle>
@@ -32,7 +32,7 @@ export const query = graphql`
         subtitle
       }
       body {
-        data: childMarkdownRemark {
+        remark: childMarkdownRemark {
           excerpt
           html
         }
