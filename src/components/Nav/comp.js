@@ -74,7 +74,7 @@ export default class Nav extends Component {
                   {subNav.map(item => (
                     <NavLink
                       key={item.url}
-                      to={`${url}/${item.url}`}
+                      to={url + item.url}
                       title={item.title}
                       span={item.span}
                       onClick={this.toggleNav}

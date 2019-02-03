@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 
 const PageHit = clickHandler => ({ hit }) => (
   <div>
-    <Link to={hit.slug} onClick={clickHandler}>
+    <Link to={`/` + hit.slug} onClick={clickHandler}>
       <h4>
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
