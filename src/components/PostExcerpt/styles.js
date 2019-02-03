@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 export const Post = styled.article`
   height: 100%;
   display: grid;
-  background: ${props => props.theme.veryLightGray};
+  background: ${props => props.theme.lighterGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
   border: 1px solid ${props => props.theme.lightGray};
   overflow: hidden;
