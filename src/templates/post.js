@@ -1,13 +1,13 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PostTitle from '../components/PostTitle'
-import PageBody from '../components/styles/PageBody'
+import Global from "../components/Global"
+import PostTitle from "../components/PostTitle"
+import PageBody from "../components/styles/PageBody"
 
 const PostTemplate = ({ data, location }) => {
   const { title, body } = data.post
-  const { html, excerpt } = body.data
+  const { html, excerpt } = body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PostTitle {...data} />
@@ -44,7 +44,7 @@ export const query = graphql`
       title
     }
     body {
-      data: childMarkdownRemark {
+      remark: childMarkdownRemark {
         html
         timeToRead
         excerpt

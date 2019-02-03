@@ -38,7 +38,7 @@ const mapProps = chapters => ({
 const ChaptersPage = ({ data, location }) => {
   const { page, chapters } = data
   const { title, body } = page
-  const { excerpt, html } = body.data
+  const { excerpt, html } = body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle>
@@ -65,7 +65,7 @@ export const query = graphql`
     page: contentfulPage(slug: { eq: "standorte" }) {
       title
       body {
-        data: childMarkdownRemark {
+        remark: childMarkdownRemark {
           excerpt
           html
         }
