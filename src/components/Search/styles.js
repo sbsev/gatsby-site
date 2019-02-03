@@ -39,7 +39,7 @@ const collapse = css`
 `
 
 const expand = css`
-  background: ${props => props.theme.veryLightGray};
+  background: ${props => props.theme.lighterGray};
   width: 6em;
   margin-left: -1.6em;
   padding-left: 1.6em;
@@ -92,7 +92,7 @@ const grid = css`
     grid-gap: 1em;
     li {
       padding: 0.3em 0.5em;
-      background: ${props => props.theme.veryLightGray};
+      background: ${props => props.theme.lighterGray};
       border-radius: ${props => props.theme.smallBorderRadius};
     }
   }
