@@ -5,7 +5,7 @@ import Img from "gatsby-image"
 
 import { UserEdit } from "styled-icons/fa-solid/UserEdit"
 import { Email } from "styled-icons/material/Email"
-import { ExternalLinkAlt } from "styled-icons/fa-solid/ExternalLinkAlt"
+import { Link as LinkIcon } from "styled-icons/boxicons-regular/Link"
 import { Calendar } from "styled-icons/octicons/Calendar"
 import { Timer } from "styled-icons/material/Timer"
 
@@ -13,7 +13,7 @@ import { Post, Title, Meta, AuthorPhoto, Tag } from "./styles"
 
 const PostExcerpt = ({ post, activeTag, setTag }) => {
   const { cover, slug, title, author, date, tags, body } = post
-  const { timeToRead, excerpt } = body.data
+  const { timeToRead, excerpt } = body.remark
   return (
     <Post>
       {cover && cover.fluid && (
@@ -30,15 +30,20 @@ const PostExcerpt = ({ post, activeTag, setTag }) => {
           <div>
             <UserEdit size="1em" /> &nbsp;{author.name}
             {author.homepage && (
-              <a href={author.homepage}>
+              <>
                 &nbsp;
-                <ExternalLinkAlt size="1em" />
-              </a>
+                <a href={author.homepage}>
+                  <LinkIcon size="1em" />
+                </a>
+              </>
             )}
             {author.email && (
-              <a href={`mailto:${author.email}`}>
-                &nbsp; <Email size="1em" />
-              </a>
+              <>
+                &nbsp;
+                <a href={`mailto:${author.email}`}>
+                  <Email size="1em" />
+                </a>
+              </>
             )}
           </div>
           <div>
