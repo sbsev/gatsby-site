@@ -1,11 +1,11 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import Breadcrumbs from '../components/Breadcrumbs'
-import SubsectionList from '../components/SubsectionList'
-import ArticleList from '../components/ArticleList'
+import Global from "../components/Global"
+import PageTitle from "../components/PageTitle"
+import Breadcrumbs from "../components/Breadcrumbs"
+import SubsectionList from "../components/SubsectionList"
+import ArticleList from "../components/ArticleList"
 
 const WikiSectionTemplate = ({ data, location }) => {
   const { section, articles } = data
@@ -20,7 +20,7 @@ const WikiSectionTemplate = ({ data, location }) => {
       {description && (
         <div
           dangerouslySetInnerHTML={{
-            __html: description.data.html,
+            __html: description.remark.html,
           }}
         />
       )}
@@ -41,7 +41,7 @@ export const query = graphql`
       slug
       description {
         text: description
-        data: childMarkdownRemark {
+        remark: childMarkdownRemark {
           html
         }
       }

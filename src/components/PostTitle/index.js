@@ -40,7 +40,7 @@ const PostTitle = ({ post }) => {
       <Meta>
         <Date size="1em" /> &nbsp; {date} &nbsp; | &nbsp; <Timer size="1em" />
         {` `}
-        &nbsp; {body.data.timeToRead} Min Lesezeit
+        &nbsp; {body.remark.timeToRead} Min Lesezeit
       </Meta>
     </Container>
   )

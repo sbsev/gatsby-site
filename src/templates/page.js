@@ -1,14 +1,14 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import PageBody from '../components/styles/PageBody'
-import PageMeta from '../components/PageMeta'
+import Global from "../components/Global"
+import PageTitle from "../components/PageTitle"
+import PageBody from "../components/styles/PageBody"
+import PageMeta from "../components/PageMeta"
 
 const PageTemplate = ({ data, location }) => {
-  const { title, body } = data.page
-  const { excerpt, html } = body && body.data
+  const { title, body, updated } = data.page
+  const { excerpt, html } = body && body.remark
   const path = location.pathname
   return (
     <Global pageTitle={title} path={path} description={excerpt}>
@@ -16,7 +16,7 @@ const PageTemplate = ({ data, location }) => {
         <h1>{title}</h1>
       </PageTitle>
       {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
-      <PageMeta {...data.page} />
+      {updated && <PageMeta updated={updated} />}
     </Global>
   )
 }
@@ -29,7 +29,7 @@ export const query = graphql`
       title
       slug
       body {
-        data: childMarkdownRemark {
+        remark: childMarkdownRemark {
           excerpt
           html
         }
