@@ -42,9 +42,9 @@ export default props => (
       nav = JSON.parse(JSON.stringify(nav.data.nav))
       chapters = chapters.edges.map(({ node }) => ({
         title: node.title,
-        url: node.slug,
+        url: `/` + node.slug,
       }))
-      nav.find(el => el.url === `standorte`).subNav.unshift(...chapters)
+      nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
       return <Nav nav={nav} {...props} />
     }}
   />
