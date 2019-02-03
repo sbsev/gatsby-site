@@ -1,15 +1,15 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import Breadcrumbs from '../components/Breadcrumbs'
-import PageTitle from '../components/PageTitle'
-import PageBody from '../components/styles/PageBody'
-import PageMeta from '../components/PageMeta'
+import Global from "../components/Global"
+import Breadcrumbs from "../components/Breadcrumbs"
+import PageTitle from "../components/PageTitle"
+import PageBody from "../components/styles/PageBody"
+import PageMeta from "../components/PageMeta"
 
 const WikiArticleTemplate = ({ data, location }) => {
   const { title, body } = data.article
-  const { html, excerpt } = body.data
+  const { html, excerpt } = body.remark
   const path = location.pathname
   return (
     <Global pageTitle={title} path={path} description={excerpt}>
@@ -30,7 +30,7 @@ export const query = graphql`
     title
     slug
     body {
-      data: childMarkdownRemark {
+      remark: childMarkdownRemark {
         html
         excerpt
         headings {

@@ -6,7 +6,7 @@ const pageQuery = `{
         slug
         title
         body {
-          data: childMarkdownRemark {
+          remark: childMarkdownRemark {
             excerpt(pruneLength: 5000)
             headings {
               value
@@ -37,7 +37,7 @@ const postQuery = `{
           slug
         }
         body {
-          data: childMarkdownRemark {
+          remark: childMarkdownRemark {
             excerpt(pruneLength: 5000)
             headings {
               value
@@ -66,7 +66,7 @@ const articleQuery = `{
           slug
         }
         body {
-          data: childMarkdownRemark {
+          remark: childMarkdownRemark {
             excerpt(pruneLength: 5000)
             headings {
               value
@@ -87,7 +87,7 @@ const queries = [
         [`Fehler 404`].includes(rest.title)
           ? {}
           : {
-            ...body.data,
+            ...body.remark,
             ...rest,
           }
       ),
@@ -98,7 +98,7 @@ const queries = [
     query: postQuery,
     transformer: ({ data }) =>
       data.posts.edges.map(({ node: { body, ...rest } }) => ({
-        ...body.data,
+        ...body.remark,
         ...rest,
       })),
     indexName: `Posts`,
@@ -108,7 +108,7 @@ const queries = [
     query: articleQuery,
     transformer: ({ data }) =>
       data.articles.edges.map(({ node: { body, ...rest } }) => ({
-        ...body.data,
+        ...body.remark,
         ...rest,
       })),
     indexName: `Articles`,

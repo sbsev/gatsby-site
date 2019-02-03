@@ -1,16 +1,16 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import LandingTitle from '../components/LandingTitle'
-import PageBody from '../components/styles/PageBody'
-import PageMeta from '../components/PageMeta'
+import Global from "../components/Global"
+import LandingTitle from "../components/LandingTitle"
+import PageBody from "../components/styles/PageBody"
+import PageMeta from "../components/PageMeta"
 
 const IndexPage = ({ data, location }) => {
   const { images, page } = data
   let { title, subtitle, body } = page
-  const { excerpt, html } = body && body.data
-  subtitle = subtitle.data.html
+  const { excerpt, html } = body && body.remark
+  subtitle = subtitle.remark.html
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <LandingTitle {...{ title, subtitle, images: images.edges }} />
@@ -29,12 +29,12 @@ export const query = graphql`
     page: contentfulPage(slug: { eq: "/" }) {
       title
       subtitle {
-        data: childMarkdownRemark {
+        remark: childMarkdownRemark {
           html
         }
       }
       body {
-        data: childMarkdownRemark {
+        remark: childMarkdownRemark {
           excerpt
           html
         }
