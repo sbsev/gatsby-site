@@ -12,8 +12,8 @@ export const Post = styled.article`
     padding: 1em;
     display: grid;
   }
-  a:first-child {
-    height: min-content;
+  a:first-child .gatsby-image-wrapper {
+    height: 11em;
   }
 `
 
