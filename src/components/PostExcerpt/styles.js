@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 export const Post = styled.article`
   height: 100%;
   display: grid;
-  background: ${props => props.theme.lighterGray};
+  background: ${props => props.theme.lightestGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
   border: 1px solid ${props => props.theme.lightGray};
   overflow: hidden;
@@ -38,13 +38,12 @@ export const AuthorPhoto = styled(Img)`
 `
 
 export const Tag = styled.button`
-  color: ${props => props.active && props.theme.white};
-  background: ${props => props.active && props.theme.darkBlue};
+  color: white;
+  background: ${({ active, theme }) => (active ? theme.blue : theme.lightBlue)};
   font-size: 0.9em;
   margin-bottom: 0.2em;
   cursor: pointer;
   outline: none;
   border: none;
-
   border-radius: ${props => props.theme.smallBorderRadius};
 `
