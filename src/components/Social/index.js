@@ -7,7 +7,7 @@ import { Wrapper, Container, Toggle, Icons } from './styles'
 const Social = ({ social, size = `1em`, iconCss, collapse, short }) => (
   <Wrapper>
     {collapse && <Toggle size={size} css={iconCss} />}
-    <Container {...{ collapse }}>
+    <Container collapse={collapse}>
       {Object.keys(social).map(service => {
         if (short && [`Email`, `Github`].includes(service)) return undefined
         const Icon = Icons[service]
