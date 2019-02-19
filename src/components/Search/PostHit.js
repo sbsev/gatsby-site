@@ -27,7 +27,7 @@ const PostHit = clickHandler => ({ hit }) => (
       &nbsp;
       {hit.tags.map(({ title }, index) => (
         <Fragment key={title}>
-          {!!index && `, `}
+          {index > 0 && `, `}
           {title}
         </Fragment>
       ))}
