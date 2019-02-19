@@ -57,7 +57,7 @@ const PostExcerpt = ({ post, activeTag, setTag }) => {
           <span>Tags: </span>
           {tags.map(({ title }, index) => (
             <Fragment key={title}>
-              {!!index && `, `}
+              {index > 0 && `, `}
               <Tag active={activeTag === title} onClick={() => setTag(title)}>
                 {title}
               </Tag>

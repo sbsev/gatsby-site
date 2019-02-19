@@ -1,15 +1,15 @@
-import React, { Component, createRef } from 'react'
+import React, { Component, createRef } from "react"
 import {
   InstantSearch,
   Index,
   Hits,
   connectStateResults,
-} from 'react-instantsearch-dom'
-import { Algolia } from 'styled-icons/fa-brands/Algolia'
+} from "react-instantsearch-dom"
+import { Algolia } from "styled-icons/fa-brands/Algolia"
 
-import { Root, HitsWrapper, By } from './styles'
-import Input from './Input'
-import * as hitComps from './hits'
+import { Root, HitsWrapper, By } from "./styles"
+import Input from "./Input"
+import * as hitComps from "./hits"
 
 const events = [`mousedown`, `touchstart`]
 
@@ -71,10 +71,12 @@ export default class Search extends Component {
         >
           {indices.map(({ name, title, hitComp }) => (
             <Index key={name} indexName={name}>
-              <header>
-                <h3>{title}</h3>
-                <Stats />
-              </header>
+              {title && (
+                <header>
+                  <h3>{title}</h3>
+                  <Stats />
+                </header>
+              )}
               <Results>
                 <Hits hitComponent={hitComps[hitComp](this.disableHits)} />
               </Results>
