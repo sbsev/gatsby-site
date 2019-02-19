@@ -3,13 +3,17 @@ import { StaticQuery, graphql } from "gatsby"
 
 import { CookieConsentContainer } from "./styles"
 
-const CookieConsent = ({ timeout = 5, cookieConsent }) => {
-  const { message, button } = cookieConsent.data
-  const userConsentedPreviously = document.cookie.includes(`cookieConsent=true`)
-  const [visible, setVisible] = useState(userConsentedPreviously ? false : true)
+const CookieConsent = ({ text, timeout = 5, userConsented = false }) => {
+  const { message, button } = text
+  if (
+    typeof document !== `undefined` &&
+    document.cookie.includes(`cookieConsent=true`)
+  )
+    userConsented = true
+  const [visible, setVisible] = useState(userConsented ? false : true)
   const handleConsent = () => {
     setVisible(false)
-    if (document) document.cookie = `cookieConsent=true`
+    document.cookie = `cookieConsent=true`
   }
   setTimeout(handleConsent, timeout * 1000)
   return (
@@ -22,8 +26,8 @@ const CookieConsent = ({ timeout = 5, cookieConsent }) => {
 
 const query = graphql`
   {
-    cookieConsent: contentfulJson(title: { eq: "Cookie Consent" }) {
-      data {
+    text: contentfulJson(title: { eq: "Cookie Consent" }) {
+      text: data {
         message
         button
       }
@@ -34,6 +38,6 @@ const query = graphql`
 export default props => (
   <StaticQuery
     query={query}
-    render={data => <CookieConsent {...data} {...props} />}
+    render={data => <CookieConsent {...data.text} {...props} />}
   />
 )
