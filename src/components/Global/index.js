@@ -19,7 +19,7 @@ const Global = ({ children, site, ...rest }) => (
       <Header site={site.meta} />
       <Content>{children}</Content>
       <Footer />
-      <Scroll to="top" position="fixed" justify="right" showBelow={2000} />
+      <Scroll to="top" position="fixed" align="right" showBelow={2000} />
       <CookieConsent />
     </>
   </ThemeProvider>
