@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 
 import Global from "../components/Global"
 import PostTitle from "../components/PostTitle"
-import PageBody from "../components/styles/PageBody"
+import PageBody from "../components/PageBody"
 
 const PostTemplate = ({ data, location }) => {
   const { title, body } = data.post
@@ -11,7 +11,7 @@ const PostTemplate = ({ data, location }) => {
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PostTitle {...data} />
-      <PageBody dangerouslySetInnerHTML={{ __html: html }} />
+      <PageBody html={html} />
     </Global>
   )
 }

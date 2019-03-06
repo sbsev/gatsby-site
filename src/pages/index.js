@@ -3,21 +3,17 @@ import { graphql } from "gatsby"
 
 import Global from "../components/Global"
 import LandingTitle from "../components/LandingTitle"
-import PageBody from "../components/styles/PageBody"
-import PageMeta from "../components/PageMeta"
+import PageBody from "../components/PageBody"
 
 const IndexPage = ({ data, location }) => {
-  const { images, page } = data
+  const { images, page, updatedAt } = data
   let { title, subtitle, body } = page
   const { excerpt, html } = body && body.remark
   subtitle = subtitle.remark.html
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <LandingTitle {...{ title, subtitle, images: images.edges }} />
-      {html && (
-        <PageBody isLanding dangerouslySetInnerHTML={{ __html: html }} />
-      )}
-      <PageMeta {...page} />
+      <PageBody html={html} updated={updatedAt} />
     </Global>
   )
 }
@@ -39,7 +35,7 @@ export const query = graphql`
           html
         }
       }
-      updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
+      updatedAt(formatString: "D. MMM YYYY", locale: "de")
     }
     images: allContentfulAsset(
       filter: { file: { fileName: { regex: "/stock/" } } }
