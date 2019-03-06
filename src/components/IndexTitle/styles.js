@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import Img from 'gatsby-image'
+import styled from "styled-components"
+import Img from "gatsby-image"
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from "../../utils/mediaQuery"
 
 export const Container = styled.div`
   grid-column: 1 / -1 !important;
@@ -17,20 +17,34 @@ export const Title = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.5);
-  color: ${props => props.theme.darkBlue};
-  padding: 1em 1em 1.5em;
+  background: rgba(0, 0, 0, 0.5);
+  color: ${props => props.theme.white};
+  padding: 1em;
   border-radius: ${props => props.theme.mediumBorderRadius};
+  width: calc(6em + 50vw);
+  max-width: 35em;
   h1 {
     margin-top: 0;
-    font-size: 1.5em;
   }
-  h2 {
-    font-size: 1em;
-    margin: 1.5em 0;
+  h5 {
+    margin-bottom: 0;
   }
-  ${mediaQuery.maxPhablet} {
-    width: 80vw;
+  div > div {
+    display: grid;
+    grid-gap: 1em;
+    span {
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: ${props => props.theme.mediumBorderRadius};
+      padding: 0 1em;
+      display: grid;
+      align-content: space-between;
+    }
+  }
+  ${mediaQuery.minPhablet} {
+    div > div {
+      grid-template-columns: repeat(3, auto);
+      grid-gap: 0 1em;
+    }
   }
 `
 
