@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from "../../utils/mediaQuery"
 
 const imageGrid = css => `
   display: grid;
@@ -31,7 +31,7 @@ const imageGrid = css => `
   ${css}
 `
 
-const PageBody = styled.article`
+export const BodyContainer = styled.main`
   margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
   ${mediaQuery.minPhablet} {
     text-align: justify;
@@ -77,4 +77,7 @@ const PageBody = styled.article`
   }
 `
 
-export default PageBody
+export const Updated = styled.time`
+  text-align: right;
+  font-size: 0.5em;
+`
