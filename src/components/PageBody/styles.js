@@ -31,8 +31,7 @@ const imageGrid = css => `
   ${css}
 `
 
-const PageBody = styled.article`
-  margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
+export const BodyContainer = styled.main`
   ${mediaQuery.minPhablet} {
     text-align: justify;
   }
@@ -77,4 +76,7 @@ const PageBody = styled.article`
   }
 `
 
-export default PageBody
+export const Updated = styled.time`
+  text-align: right;
+  font-size: 0.5em;
+`
