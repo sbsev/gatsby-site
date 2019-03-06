@@ -3,20 +3,17 @@ import { graphql } from "gatsby"
 
 import Global from "../components/Global"
 import PageTitle from "../components/PageTitle"
-import PageBody from "../components/styles/PageBody"
-import PageMeta from "../components/PageMeta"
+import PageBody from "../components/PageBody"
 
 const PageTemplate = ({ data, location }) => {
-  const { title, body, updated } = data.page
+  const { title, body, updatedAt } = data.page
   const { excerpt, html } = body && body.remark
-  const path = location.pathname
   return (
-    <Global pageTitle={title} path={path} description={excerpt}>
+    <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
-      {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
-      {updated && <PageMeta updated={updated} />}
+      <PageBody html={html} updated={updatedAt} />
     </Global>
   )
 }
@@ -34,7 +31,7 @@ export const query = graphql`
           html
         }
       }
-      updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
+      updatedAt(formatString: "D. MMM YYYY", locale: "de")
     }
   }
 `
