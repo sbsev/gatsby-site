@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from "react"
+import PropTypes from "prop-types"
 
-import { Container, Hero, Title, Dots, Dot } from './styles'
+import { Container, Hero, Title, Dots, Dot } from "./styles"
 
-export default class LandingTitle extends Component {
+export default class IndexTitle extends Component {
   static propTypes = {
     images: PropTypes.arrayOf(
       PropTypes.shape({
