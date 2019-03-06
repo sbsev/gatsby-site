@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Global from "../components/Global"
-import LandingTitle from "../components/LandingTitle"
+import IndexTitle from "../components/IndexTitle"
 import PageBody from "../components/PageBody"
 
 const IndexPage = ({ data, location }) => {
@@ -12,7 +12,7 @@ const IndexPage = ({ data, location }) => {
   subtitle = subtitle.remark.html
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <LandingTitle {...{ title, subtitle, images: images.edges }} />
+      <IndexTitle {...{ title, subtitle, images: images.edges }} />
       <PageBody html={html} updated={updatedAt} />
     </Global>
   )
