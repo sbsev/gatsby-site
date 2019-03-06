@@ -4,11 +4,10 @@ import { graphql } from "gatsby"
 import Global from "../components/Global"
 import PageTitle from "../components/PageTitle"
 import Logo from "../assets/logo"
-import PageBody from "../components/styles/PageBody"
-import PageMeta from "../components/PageMeta"
+import PageBody from "../components/PageBody"
 
-const PageNotFound = ({ data: { page }, location }) => {
-  const { title, body } = page
+const PageNotFound = ({ data, location }) => {
+  const { title, body } = data.page
   const { excerpt, html } = body && body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
@@ -16,8 +15,7 @@ const PageNotFound = ({ data: { page }, location }) => {
         <Logo width="calc(5em + 5vw)" />
         <h1>{title}</h1>
       </PageTitle>
-      {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
-      <PageMeta {...page} />
+      <PageBody dangerouslySetInnerHTML={{ __html: html }} />
     </Global>
   )
 }

@@ -4,11 +4,10 @@ import { graphql } from "gatsby"
 import Global from "../components/Global"
 import Breadcrumbs from "../components/Breadcrumbs"
 import PageTitle from "../components/PageTitle"
-import PageBody from "../components/styles/PageBody"
-import PageMeta from "../components/PageMeta"
+import PageBody from "../components/PageBody"
 
 const WikiArticleTemplate = ({ data, location }) => {
-  const { title, body } = data.article
+  const { title, body, updatedAt } = data.article
   const { html, excerpt } = body.remark
   const path = location.pathname
   return (
@@ -17,8 +16,7 @@ const WikiArticleTemplate = ({ data, location }) => {
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
-      <PageBody dangerouslySetInnerHTML={{ __html: html }} />
-      <PageMeta {...data.article} />
+      <PageBody html={html} updated={updatedAt} />
     </Global>
   )
 }
@@ -39,8 +37,7 @@ export const query = graphql`
         }
       }
     }
-    created: createdAt(formatString: "D. MMM YYYY", locale: "de")
-    updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
+    updatedAt(formatString: "D. MMM YYYY", locale: "de")
     section {
       title
       slug

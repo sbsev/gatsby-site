@@ -4,8 +4,7 @@ import { graphql, Link } from "gatsby"
 import Global from "../components/Global"
 import PageTitle from "../components/PageTitle"
 import Map from "../components/Map"
-import PageBody from "../components/styles/PageBody"
-import PageMeta from "../components/PageMeta"
+import PageBody from "../components/PageBody"
 import Chapters from "../components/styles/Chapters"
 
 const addMarkers = chapters => map => {
@@ -37,7 +36,7 @@ const mapProps = chapters => ({
 
 const ChaptersPage = ({ data, location }) => {
   const { page, chapters } = data
-  const { title, body } = page
+  const { title, body, updatedAt } = page
   const { excerpt, html } = body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
@@ -52,8 +51,7 @@ const ChaptersPage = ({ data, location }) => {
           </li>
         ))}
       </Chapters>
-      {html && <PageBody dangerouslySetInnerHTML={{ __html: html }} />}
-      <PageMeta {...page} />
+      <PageBody html={html} updated={updatedAt} />
     </Global>
   )
 }
@@ -70,7 +68,7 @@ export const query = graphql`
           html
         }
       }
-      updated: updatedAt(formatString: "D. MMM YYYY", locale: "de")
+      updatedAt(formatString: "D. MMM YYYY", locale: "de")
     }
     chapters: allContentfulChapter(
       filter: { active: { eq: true } }
