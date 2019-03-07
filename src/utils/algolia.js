@@ -34,7 +34,6 @@ const postQuery = `{
         }
         tags {
           title
-          slug
         }
         body {
           remark: childMarkdownRemark {
@@ -87,9 +86,9 @@ const queries = [
         [`Fehler 404`].includes(rest.title)
           ? {}
           : {
-            ...body.remark,
-            ...rest,
-          }
+              ...body.remark,
+              ...rest,
+            }
       ),
     indexName: `Pages`,
     settings: { attributesToSnippet: [`excerpt:20`] },
