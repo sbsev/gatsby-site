@@ -1,7 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
 
-import mediaQuery, { screenSize } from '../../utils/mediaQuery'
-import typography from '../../utils/typography'
+import mediaQuery, { screenSize } from "../../utils/mediaQuery"
+import typography from "../../utils/typography"
 
 const { phone, desktop } = screenSize
 const {
@@ -53,17 +53,5 @@ export const GlobalStyle = createGlobalStyle`
     :hover {
       background: ${props => props.theme.lightBlue};
     }
-  }
-`
-
-export const Content = styled.main`
-  flex: 1;
-  margin: 5vh 0;
-  display: grid;
-  grid-gap: 3vmin;
-  grid-template-columns: 1fr 1fr minmax(auto, ${props => props.theme.maxWidth}) 1fr 1fr;
-  grid-auto-rows: max-content;
-  > * {
-    grid-column: 3;
   }
 `
