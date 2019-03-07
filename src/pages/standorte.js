@@ -43,15 +43,16 @@ const ChaptersPage = ({ data, location }) => {
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
-      <Map id="chapterMap" {...mapProps(chapters.edges)} />
-      <Chapters>
-        {chapters.edges.map(({ node }) => (
-          <li key={node.slug}>
-            <Link to={`/standorte/` + node.slug}>{node.title}</Link>
-          </li>
-        ))}
-      </Chapters>
-      <PageBody html={html} updated={updatedAt} />
+      <PageBody html={html} updated={updatedAt}>
+        <Map id="chapterMap" {...mapProps(chapters.edges)} />
+        <Chapters>
+          {chapters.edges.map(({ node }) => (
+            <li key={node.slug}>
+              <Link to={`/standorte/` + node.slug}>{node.title}</Link>
+            </li>
+          ))}
+        </Chapters>
+      </PageBody>
     </Global>
   )
 }
