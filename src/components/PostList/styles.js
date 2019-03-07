@@ -10,7 +10,8 @@ export const PostListContainer = styled.div`
   line-height: 1.4em;
   height: max-content;
   grid-column: 2/4;
-  ${mediaQuery.maxTablet} {
-    grid-column: 3/4;
+  grid-row: 1;
+  ${mediaQuery.maxPhablet} {
+    grid-row: 2;
   }
 `
