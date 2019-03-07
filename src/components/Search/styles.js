@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
-import { Search } from 'styled-icons/fa-solid/Search'
+import styled, { css } from "styled-components"
+import { Search } from "styled-icons/fa-solid/Search"
 
 export const Root = styled.div`
   position: relative;
@@ -120,7 +120,7 @@ export const HitsWrapper = styled.div`
     margin-bottom: 0.3em;
     h3 {
       color: ${props => props.theme.white};
-      background: ${props => props.theme.veryDarkYellow};
+      background: ${props => props.theme.orange};
       padding: 0.1em 0.4em;
       border-radius: ${props => props.theme.smallBorderRadius};
     }
