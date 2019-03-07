@@ -1,13 +1,19 @@
-import React from "react"
+import React, { useState } from 'react'
 
-import { Container, List, TagIcon, Tag } from "./styles"
+import { TagGrid, Toggle, Tag, TagsIcon, TagIcon } from './styles'
 
-const TagList = ({ tags, activeTag, setTag }) => (
-  <Container>
-    <h2>Tags</h2>
-    <List>
+export default function TagList({ tags, activeTag, setTag }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <TagGrid open={open}>
+      <h2>
+        <TagsIcon size="1em" />
+        &nbsp; Tags
+        <Toggle open={open} onClick={() => setOpen(!open)} />
+      </h2>
       {tags.map(({ node: { title, icon } }) => (
         <Tag
+          open={open}
           key={title}
           active={activeTag === title}
           onClick={() => setTag(title)}
@@ -16,8 +22,6 @@ const TagList = ({ tags, activeTag, setTag }) => (
           {title}
         </Tag>
       ))}
-    </List>
-  </Container>
-)
-
-export default TagList
+    </TagGrid>
+  )
+}
