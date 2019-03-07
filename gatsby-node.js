@@ -56,7 +56,7 @@ const pagePath = node => {
   }
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage, createRedirect } = actions
 
   createRedirect({
