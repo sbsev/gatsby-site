@@ -7,8 +7,9 @@ import Helmet from "../Helmet"
 import Header from "../Header"
 import Footer from "../Footer"
 import theme from "../../utils/theme"
-import { Content, GlobalStyle } from "./styles"
 import Scroll from "../Scroll"
+
+import { GlobalStyle } from "./styles"
 
 const Global = ({ children, site, ...rest }) => (
   <ThemeProvider theme={theme}>
@@ -16,7 +17,7 @@ const Global = ({ children, site, ...rest }) => (
       <Helmet site={site.meta} {...rest} />
       <GlobalStyle />
       <Header site={site.meta} />
-      <Content>{children}</Content>
+      {children}
       <Footer />
       <Scroll to="top" position="fixed" justify="right" showBelow={2000} />
     </>
