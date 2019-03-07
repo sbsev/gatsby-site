@@ -33,6 +33,15 @@ const imageGrid = css => `
 
 export const BodyContainer = styled.main`
   margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
+  flex: 1;
+  margin: calc(3em + 3vh) 0;
+  display: grid;
+  grid-gap: 0 4vw;
+  grid-template-columns: 1fr 1fr minmax(auto, ${props => props.theme.maxWidth}) 1fr 1fr;
+  grid-auto-rows: max-content;
+  > * {
+    grid-column: 3;
+  }
   ${mediaQuery.minPhablet} {
     text-align: justify;
   }
