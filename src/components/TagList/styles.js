@@ -1,40 +1,68 @@
 import styled from "styled-components"
+export { Tags as TagsIcon } from "styled-icons/fa-solid/Tags"
+import { ToggleOff } from "styled-icons/fa-solid/ToggleOff"
+import { ToggleOn } from "styled-icons/fa-solid/ToggleOn"
 
 import mediaQuery from "../../utils/mediaQuery"
 
-export const Container = styled.div`
-  ${mediaQuery.minTablet} {
-    grid-column: 4;
-    grid-row: 2;
-  }
-  margin-bottom: 5vmin;
+export const TagGrid = styled.div`
+  display: grid;
+  grid-gap: 0.8em;
+  grid-column: 4;
+  height: max-content;
   h2 {
-    margin-top: 0;
+    margin: 0;
+  }
+  ${mediaQuery.maxPhablet} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 0 2em;
+    grid-column: 2/-2;
+    h2 {
+      width: 100%;
+      margin-bottom: 1em;
+      text-align: center;
+    }
   }
 `
 
 export const Tag = styled.button`
-  display: flex;
-  align-items: center;
-  color: ${props => props.active && props.theme.darkYellow};
-  font-size: 0.8em;
-  cursor: pointer;
+  font-size: 1em;
   outline: none;
   border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: max-content;
+  white-space: nowrap;
+  color: ${props => props.theme.darkGray};
+  border-radius: ${props => props.theme.smallBorderRadius};
+  background: ${({ active, theme }) => active && theme.orange};
+  ${mediaQuery.maxPhablet} {
+    padding: 0.1em 0.5em 0.2em;
+    margin: 0 1em 1em 0;
+    transition: ${props => props.theme.mediumTrans};
+    visibility: ${props => (props.open ? `visible` : `hidden`)};
+    margin-bottom: ${props => (props.open ? `1em` : `-2em`)};
+    opacity: ${props => (props.open ? 1 : 0)};
+  }
 `
 
 export const TagIcon = styled.img`
-  height: 1.75em;
-  width: 1.75em;
-  min-width: 1.75em;
-  margin-right: 0.7em;
-  background: ${props => props.theme.lightGray};
+  height: 1.5em;
+  width: 1.5em;
+  margin-right: 0.4em;
   border-radius: ${props => props.theme.mediumBorderRadius};
-  padding: 0.2em;
 `
 
-export const List = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
-  grid-gap: 1em;
+export const Toggle = styled(ToggleOff).attrs(props => ({
+  as: props.open && ToggleOn,
+  size: `1em`,
+}))`
+  margin-left: 0.5em;
+  cursor: pointer;
+  ${mediaQuery.minPhablet} {
+    display: none;
+  }
 `
