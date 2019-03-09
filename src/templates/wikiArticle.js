@@ -24,29 +24,6 @@ const WikiArticleTemplate = ({ data, location }) => {
 export default WikiArticleTemplate
 
 export const query = graphql`
-  fragment articleFields on ContentfulWikiArticle {
-    title
-    slug
-    body {
-      remark: childMarkdownRemark {
-        html
-        excerpt
-        headings {
-          value
-          depth
-        }
-      }
-    }
-    updatedAt(formatString: "D. MMM YYYY", locale: "de")
-    section {
-      title
-      slug
-    }
-    subsection {
-      title
-      slug
-    }
-  }
   query($slug: String!) {
     article: contentfulWikiArticle(slug: { eq: $slug }) {
       ...articleFields
