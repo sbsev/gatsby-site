@@ -43,6 +43,9 @@ export const BodyContainer = styled.main`
   ${mediaQuery.minPhablet} {
     text-align: justify;
   }
+  p > img {
+    max-width: 100%;
+  }
 
   .img-small {
     max-width: 16em;
