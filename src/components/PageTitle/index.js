@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from "react"
 
-import Caption from "../styles/Caption"
+import Slideshow from "../Slideshow"
 import { PageTitleContainer, Title, Img } from "./styles"
 
-const PageTitle = ({ children, img, backdrop, className, fillToBottom }) => {
+const PageTitle = ({ children, images, backdrop, className, fillToBottom }) => {
   const ref = useRef()
   if (fillToBottom) {
     const fillAvailHeight = () =>
@@ -17,19 +17,16 @@ const PageTitle = ({ children, img, backdrop, className, fillToBottom }) => {
   }
   return (
     <PageTitleContainer ref={ref} className={className}>
-      <Img {...img} />
-      <Title backdrop={backdrop || (img && img.backdrop)}>{children}</Title>
-      {img && (img.caption || img.credit) && (
-        <Caption showOnHoverParent={PageTitleContainer}>
-          <span dangerouslySetInnerHTML={{ __html: img.caption }} />
-          {img.caption && img.credit && ` | `}
-          {img.credit && (
-            <span>
-              Credit: <a href={img.url}>{img.credit}</a>
-            </span>
-          )}
-        </Caption>
+      {images && images.length > 1 ? (
+        <Slideshow topDots>
+          {images.map(({ title, fluid }) => (
+            <Img key={title} fluid={fluid} />
+          ))}
+        </Slideshow>
+      ) : (
+        <Img fluid={images && images[0].fluid} />
       )}
+      <Title backdrop={backdrop}>{children}</Title>
     </PageTitleContainer>
   )
 }
