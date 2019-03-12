@@ -9,12 +9,7 @@ export const query = graphql`
       }
     }
     cover {
-      title
-      img {
-        fluid {
-          ...GatsbyContentfulFluid_withWebp
-        }
-      }
+      ...slideFields
     }
     body {
       remark: childMarkdownRemark {
