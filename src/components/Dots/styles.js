@@ -7,7 +7,7 @@ export const DotsContainer = styled.div`
   grid-auto-flow: column;
   justify-self: center;
   position: absolute;
-  ${props => (props.topDots ? `top` : `bottom`)}: 1em;
+  ${props => props.dots || `bottom`}: 1em;
   margin: auto;
   left: 50%;
   transform: translate(-50%);

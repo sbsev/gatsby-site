@@ -40,12 +40,12 @@ export default class Slideshow extends Component {
 
   render() {
     const { current } = this.state
-    const { children, delay, topDots } = this.props
+    const { children, delay, dots } = this.props
     const dotProps = {
       current,
       length: children.length,
       onClick: this.jumpTo,
-      topDots,
+      dots,
     }
     return (
       <SlideContainer>
