@@ -3,6 +3,11 @@ import { graphql } from "gatsby"
 export const query = graphql`
   fragment slideFields on ContentfulSlide {
     title
+    subtitle {
+      remark: childMarkdownRemark {
+        html
+      }
+    }
     showText
     textBg
     img {
