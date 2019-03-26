@@ -4,9 +4,8 @@ import { graphql } from "gatsby"
 import Global from "../components/Global"
 import PageTitle from "../components/PageTitle"
 import Scroll from "../components/Scroll"
-import PageBody from "../components/PageBody"
 
-import { Title, Subtitle } from "../components/styles/IndexPage"
+import PageBody from "../components/PageBody"
 
 const IndexPage = ({ data, location }) => {
   const { page, updatedAt } = data
@@ -15,18 +14,15 @@ const IndexPage = ({ data, location }) => {
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle
-        images={cover && cover.map(({ title, img }) => ({ title, ...img }))}
+        images={cover.map(({ img, ...rest }) => ({ ...img, ...rest }))}
         fillToBottom
-        dots="top"
+        textBg
       >
-        <Title>
-          <h1>{title}</h1>
-          <Subtitle
-            dangerouslySetInnerHTML={{
-              __html: subtitle && subtitle.remark.html,
-            }}
-          />
-        </Title>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: subtitle.remark.html,
+          }}
+        />
         <Scroll direction="down" to={1} />
       </PageTitle>
       <PageBody html={html} updated={updatedAt} />
