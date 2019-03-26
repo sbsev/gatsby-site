@@ -12,29 +12,44 @@ export const PageTitleContainer = styled.hgroup`
   overflow: hidden;
 `
 
-const backdrop = css`
-  > * {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: ${props => props.theme.smallBorderRadius};
-    justify-self: center;
-    padding: 0.1em 0.4em;
-  }
+const textBg = css`
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: ${props => props.theme.smallBorderRadius};
+  justify-self: center;
+  padding: 0.1em 0.4em;
 `
 
 export const Title = styled.div`
   text-align: center;
   font-size: calc(1em + 0.5vw);
   margin: 1em;
-  ${props => props.backdrop && backdrop};
+  max-width: 30em;
+  ${props => props.textBg && textBg};
+  > * {
+    margin: 0.1em 0.2em;
+  }
+  p a {
+    background: ${props => props.theme.orange};
+    color: ${props => props.theme.white} !important;
+    border-radius: ${props => props.theme.smallBorderRadius};
+    padding: 0.3em 0.6em;
+    transition: ${props => props.theme.shortTrans};
+    display: inline-block;
+    :hover {
+      background: ${props => props.theme.lightGreen};
+    }
+  }
 `
 
 export const Img = styled(Image).attrs(
   ({ fluid, src }) => !fluid && { as: (src && `img`) || `div` }
 )`
   position: absolute !important;
-  z-index: -1;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  z-index: -1;
   background: ${({ theme }) => `linear-gradient(
     10deg,
     ${theme.lightGreen} 0%,
