@@ -43,7 +43,6 @@ module.exports = {
         trackingId: process.env.GA_TRACKING_ID,
       },
     },
-    `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -62,6 +61,8 @@ module.exports = {
         logo: `./src/assets/favicon.png`,
       },
     },
+    `gatsby-plugin-offline`,
     `gatsby-plugin-netlify`,
+    `gatsby-plugin-netlify-cache`,
   ],
 }
