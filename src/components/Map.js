@@ -1,15 +1,13 @@
-import React, { Component } from "react"
+import React, { useEffect, useRef } from "react"
 
-export default class Map extends Component {
-  onLoad = () => {
-    const map = new window.google.maps.Map(
-      document.getElementById(this.props.id),
-      this.props.options
-    )
-    this.props.onMount(map)
+export default function Map({ options, onMount, className }) {
+  const props = { ref: useRef(), className }
+  const onLoad = () => {
+    const map = new window.google.maps.Map(props.ref.current, options)
+    onMount && onMount(map)
   }
 
-  componentDidMount() {
+  useEffect(() => {
     if (!window.google) {
       const script = document.createElement(`script`)
       script.type = `text/javascript`
@@ -18,14 +16,10 @@ export default class Map extends Component {
       }`
       const headScript = document.getElementsByTagName(`script`)[0]
       headScript.parentNode.insertBefore(script, headScript)
-      script.addEventListener(`load`, this.onLoad)
-    } else {
-      this.onLoad()
-    }
-  }
+      script.addEventListener(`load`, onLoad)
+      return () => script.removeEventListener(`load`, onLoad)
+    } else onLoad()
+  })
 
-  render() {
-    const mapCss = `height: 70vh; ${this.props.css}`
-    return <div css={mapCss} id={this.props.id} />
-  }
+  return <div css="height: 70vh; margin: 1em 0;" {...props} />
 }
