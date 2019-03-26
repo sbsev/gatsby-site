@@ -56,10 +56,8 @@ const pagePath = node => {
   }
 }
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions
-
-  createRedirect({
+exports.createPages = ({ graphql, actions }) => {
+  actions.createRedirect({
     fromPath: `/index.php/*`,
     toPath: `/:splat`,
     isPermanent: true,
@@ -71,7 +69,7 @@ exports.createPages = async ({ graphql, actions }) => {
     response.data.content.edges.forEach(({ node }) => {
       // exclude pages defined in src/pages
       if (![`standorte`, `404`].includes(node.slug)) {
-        createPage({
+        actions.createPage({
           path: pagePath(node),
           component,
           context: {
