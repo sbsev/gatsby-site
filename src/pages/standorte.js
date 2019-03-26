@@ -1,25 +1,23 @@
-import React from "react"
-import { graphql, Link } from "gatsby"
+import React from 'react'
+import { graphql, Link } from 'gatsby'
 
-import Global from "../components/Global"
-import PageTitle from "../components/PageTitle"
-import Map from "../components/Map"
-import PageBody from "../components/PageBody"
-import Chapters from "../components/styles/Chapters"
+import Global from '../components/Global'
+import PageTitle from '../components/PageTitle'
+import Map from '../components/Map'
+import PageBody from '../components/PageBody'
+import Grid from '../components/styles/Grid'
 
 const addMarkers = chapters => map => {
-  let chapterCount = 1
-  chapters.forEach(({ node }) => {
+  chapters.forEach(({ node }, index) => {
     const marker = new window.google.maps.Marker({
       map,
       position: node.coords,
-      label: `${chapterCount}`,
+      label: `${index + 1}`,
       title: node.title,
     })
     marker.addListener(`click`, () => {
       window.location.href = `/standorte/` + node.slug
     })
-    ++chapterCount
   })
 }
 
@@ -27,7 +25,7 @@ const mapProps = chapters => ({
   options: {
     center: { lat: 51, lng: 10 },
     zoom:
-      // checking that window is defined necessary for compiling on server
+      // checking for window so as not to throw during server-side rendering
       typeof window !== `undefined` &&
       5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
   },
@@ -44,14 +42,14 @@ const ChaptersPage = ({ data, location }) => {
         <h1>{title}</h1>
       </PageTitle>
       <PageBody html={html} updated={updatedAt}>
-        <Map id="chapterMap" {...mapProps(chapters.edges)} />
-        <Chapters>
+        <Map {...mapProps(chapters.edges)} />
+        <Grid gap="0 2em" as="ol" minWidth="8em">
           {chapters.edges.map(({ node }) => (
             <li key={node.slug}>
               <Link to={`/standorte/` + node.slug}>{node.title}</Link>
             </li>
           ))}
-        </Chapters>
+        </Grid>
       </PageBody>
     </Global>
   )

@@ -37,7 +37,7 @@ const BlogPage = ({ data, location }) => {
       </PageTitle>
       <PageBody>
         <TagList tags={tags.edges} activeTag={tag} setTag={handleTagClick} />
-        <PostList inBlog posts={filteredPosts} />
+        <PostList posts={filteredPosts} />
       </PageBody>
     </Global>
   )
