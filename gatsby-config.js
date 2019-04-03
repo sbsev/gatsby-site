@@ -26,6 +26,7 @@ module.exports = {
             options: {
               maxWidth: 1200,
               linkImagesToOriginal: false,
+              withWebp: true,
               wrapperStyle: `
                 border-radius: 0.5em;
                 overflow: hidden;

@@ -1,8 +1,8 @@
-import styled from "styled-components"
+import styled, { css } from 'styled-components'
 
-import mediaQuery from "../../utils/mediaQuery"
+import mediaQuery from '../../utils/mediaQuery'
 
-const imageGrid = css => `
+const imageGrid = css`
   display: grid;
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
@@ -24,11 +24,10 @@ const imageGrid = css => `
     }
     strong {
       display: block;
-      font-weight: 200;
+      font-weight: lighter;
       font-size: 0.9em;
     }
   }
-  ${css}
 `
 
 export const BodyContainer = styled.main`
@@ -48,29 +47,24 @@ export const BodyContainer = styled.main`
   p > img {
     max-width: 100%;
   }
-
   .img-small {
     max-width: 16em;
     margin: auto;
   }
-
   #heads,
   #alumni {
-    ${imageGrid(`
-      .gatsby-resp-image-wrapper {
-        border-radius: 50%;
-        overflow: hidden;
-      }
-      img {
-        border-radius: 50%;
-      }
-    `)};
+    ${imageGrid};
+    .gatsby-resp-image-wrapper {
+      border-radius: 50% !important;
+      overflow: hidden;
+    }
+    img {
+      border-radius: 50%;
+    }
   }
-
   #partners {
-    ${imageGrid()};
+    ${imageGrid};
   }
-
   .image-row {
     display: grid;
     grid-gap: 0.7em;
@@ -80,7 +74,6 @@ export const BodyContainer = styled.main`
       border-radius: ${props => props.theme.smallBorderRadius};
     }
   }
-
   .multi-col-list ul,
   .multi-col-list ol {
     display: grid;
