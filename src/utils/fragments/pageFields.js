@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from 'gatsby'
 
 export const query = graphql`
   fragment pageFields on ContentfulPage {
@@ -11,6 +11,7 @@ export const query = graphql`
     cover {
       ...slideFields
     }
+    titleHeight
     body {
       remark: childMarkdownRemark {
         excerpt

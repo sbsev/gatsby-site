@@ -1,12 +1,12 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect } from 'react'
 
-import Slideshow from "../Slideshow"
-import { PageTitleContainer, Title, Img } from "./styles"
+import Slideshow from '../Slideshow'
+import { PageTitleContainer, Title, Img } from './styles'
 
 const PageTitle = ({ children, images, className, ...rest }) => {
-  const { fillToBottom, textBg, slideDuration, transDuration } = rest
+  const { fillToBottom, textBg, durations, height } = rest
   const ref = useRef()
-  if (fillToBottom) {
+  if (fillToBottom || height === -1) {
     const fillAvailHeight = () =>
       (ref.current.style.height =
         window.innerHeight - ref.current.offsetTop + `px`)
@@ -18,8 +18,9 @@ const PageTitle = ({ children, images, className, ...rest }) => {
   }
   const [index, setIndex] = useState(0)
   const current = images && images[index]
+  const containerProps = { ref, className, minHeight: height > 0 && height }
   return (
-    <PageTitleContainer ref={ref} className={className}>
+    <PageTitleContainer {...containerProps}>
       <Title textBg={textBg || (current && current.textBg)}>
         {children}
         {current && current.subtitle && (
@@ -31,9 +32,7 @@ const PageTitle = ({ children, images, className, ...rest }) => {
         )}
       </Title>
       {images && images.length > 1 ? (
-        <Slideshow
-          {...{ images, index, setIndex, slideDuration, transDuration }}
-        />
+        <Slideshow {...{ images, index, setIndex, durations }} />
       ) : (
         <Img fluid={images && images[0].fluid} />
       )}
