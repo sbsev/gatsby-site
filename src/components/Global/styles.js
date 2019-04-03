@@ -1,7 +1,7 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from 'styled-components'
 
-import mediaQuery, { screenSize } from "../../utils/mediaQuery"
-import typography from "../../utils/typography"
+import mediaQuery, { screenSize } from '../../utils/mediaQuery'
+import typography from '../../utils/typography'
 
 const { phone, desktop } = screenSize
 const {
@@ -37,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
       color: ${props => props.theme.lightBlue};
     }
   }
-  #___gatsby > * {
+  div[role="group"][tabindex] {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
