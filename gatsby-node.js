@@ -43,7 +43,7 @@ const pageSets = templates.map(template => {
 const pagePath = node => {
   switch (node.internal.type) {
     case `ContentfulPost`:
-      return `/blog/` + node.slug
+      return `blog/` + node.slug
     case `ContentfulWikiSection`:
       return `wiki/${node.slug}`
     case `ContentfulWikiSubsection`:
@@ -52,23 +52,24 @@ const pagePath = node => {
       if (!node.subsection) return `wiki/${node.section.slug}/${node.slug}`
       return `wiki/${node.section.slug}/${node.subsection.slug}/${node.slug}`
     default:
+      if (node.slug === `404`) return `404.html`
       return node.slug
   }
 }
 
-exports.createPages = ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   actions.createRedirect({
     fromPath: `/index.php/*`,
     toPath: `/:splat`,
     isPermanent: true,
   })
 
-  pageSets.forEach(async ({ query, component }) => {
+  await pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
     if (response.errors) throw new Error(response.errors)
     response.data.content.edges.forEach(({ node }) => {
       // exclude pages defined in src/pages
-      if (![`standorte`, `404`].includes(node.slug)) {
+      if (![`/`, `standorte`, `anmeldung`].includes(node.slug)) {
         actions.createPage({
           path: pagePath(node),
           component,
