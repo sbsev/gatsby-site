@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components"
-import Image from "gatsby-image"
+import styled, { css } from 'styled-components'
+import Image from 'gatsby-image'
 
 export const PageTitleContainer = styled.hgroup`
   position: relative;
@@ -7,7 +7,7 @@ export const PageTitleContainer = styled.hgroup`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: ${props => props.theme.minHeight || `60vh`};
   flex: 1; /* for filling height between header and footer on 404 page */
   overflow: hidden;
 `
@@ -28,15 +28,23 @@ export const Title = styled.div`
   > * {
     margin: 0.1em 0.2em;
   }
-  p a {
-    background: ${props => props.theme.orange};
-    color: ${props => props.theme.white} !important;
-    border-radius: ${props => props.theme.smallBorderRadius};
-    padding: 0.3em 0.6em;
-    transition: ${props => props.theme.shortTrans};
-    display: inline-block;
+  a {
+    color: ${props => props.theme.orange};
     :hover {
-      background: ${props => props.theme.lightGreen};
+      color: ${props => props.theme.lightGreen};
+    }
+    /* button styles */
+    em strong {
+      font-style: normal;
+      background: ${props => props.theme.orange};
+      color: ${props => props.theme.white} !important;
+      border-radius: ${props => props.theme.smallBorderRadius};
+      padding: 0.3em 0.6em;
+      transition: ${props => props.theme.shortTrans};
+      display: inline-block;
+      :hover {
+        background: ${props => props.theme.lightGreen};
+      }
     }
   }
 `
