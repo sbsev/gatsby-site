@@ -1,8 +1,8 @@
-const min = width => `@media only screen and (min-width: ${width}em)`
-const max = width => `@media only screen and (max-width: ${width}em)`
+const min = width => `only screen and (min-width: ${width}em)`
+const max = width => `only screen and (max-width: ${width}em)`
 
-export const screenSize = {
-  // screen sizes in em units
+// screen sizes in em units
+export const screens = {
   phone: 30,
   phablet: 40,
   tablet: 50,
@@ -11,20 +11,20 @@ export const screenSize = {
   desktop: 100,
 }
 
-const mediaQuery = {
-  maxPhone: max(screenSize.phone),
-  maxPhablet: max(screenSize.phablet),
-  maxTablet: max(screenSize.tablet),
-  maxNetbook: max(screenSize.netbook),
-  maxLaptop: max(screenSize.laptop),
-  maxDesktop: max(screenSize.desktop),
+const mediaQuery = {}
 
-  minPhone: min(screenSize.phone),
-  minPhablet: min(screenSize.phablet),
-  minTablet: min(screenSize.tablet),
-  minNetbook: min(screenSize.netbook),
-  minLaptop: min(screenSize.laptop),
-  minDesktop: min(screenSize.desktop),
+for (const key of Object.keys(screens)) {
+  const Key = key[0].toUpperCase() + key.substr(1)
+  for (const [fn, name] of [
+    [min, `min`],
+    [max, `max`],
+  ]) {
+    // css query
+    const query = fn(screens[key])
+    mediaQuery[name + Key] = `@media ` + query
+    // js query (see window.matchMedia)
+    mediaQuery[name + Key + `Js`] = query
+  }
 }
 
 export default mediaQuery
