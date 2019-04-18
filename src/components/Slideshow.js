@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
-import { useTransition, useSpring, animated } from 'react-spring'
-import Img from 'gatsby-image'
+import React, { useEffect } from "react"
+import { useTransition, useSpring, animated } from "react-spring"
+import Img from "gatsby-image"
 
 const KenBurns = ({ index, duration, children }) => {
   const props = useSpring({
@@ -48,7 +48,7 @@ export default function Slideshow({ images, index, setIndex, ...rest }) {
       }}
     >
       <KenBurns index={index} duration={slideDuration * 1000}>
-        <Img fluid={item.fluid} />
+        <Img fluid={item.fluid} css="height: 100%;" />
       </KenBurns>
     </animated.div>
   ))
