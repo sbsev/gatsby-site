@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components"
 
-const Caption = styled.figcaption`
+export const Caption = styled.figcaption`
   position: absolute;
   bottom: 0;
   right: 1em;
@@ -29,5 +29,3 @@ const Caption = styled.figcaption`
       }
     `}
 `
-
-export default Caption

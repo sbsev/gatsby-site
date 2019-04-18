@@ -5,7 +5,7 @@ import Global from "../components/Global"
 import PageTitle from "../components/PageTitle"
 import Map from "../components/Map"
 import PageBody from "../components/PageBody"
-import Grid from "../components/styles/Grid"
+import { Grid } from "../components/styles"
 
 const addMarkers = chapters => map => {
   chapters.forEach(({ node }, index) => {
