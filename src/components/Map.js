@@ -21,5 +21,6 @@ export default function Map({ options, onMount, className }) {
     } else onLoad()
   })
 
-  return <div css="height: 70vh; margin: 1em 0;" {...props} />
+  const mapCss = `height: 70vh; margin: 1em 0; border-radius: 0.5em;`
+  return <div css={mapCss} {...props} />
 }
