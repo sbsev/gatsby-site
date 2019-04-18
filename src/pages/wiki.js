@@ -1,10 +1,11 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import SectionList from '../components/SectionList'
-import Search from '../components/Search'
+import Global from "../components/Global"
+import PageTitle from "../components/PageTitle"
+import PageBody from "../components/PageBody"
+import SectionList from "../components/SectionList"
+import Search from "../components/Search"
 
 const WikiPage = ({ data, location }) => {
   const title = `Wiki`
@@ -13,11 +14,13 @@ const WikiPage = ({ data, location }) => {
       <PageTitle>
         <h1>{title}</h1>
       </PageTitle>
-      <Search
-        hitsAsGrid
-        indices={[{ name: `Articles`, hitComp: `ArticleHit` }]}
-      />
-      <SectionList {...data} />
+      <PageBody>
+        <Search
+          hitsAsGrid
+          indices={[{ name: `Articles`, hitComp: `ArticleHit` }]}
+        />
+        <SectionList {...data} />
+      </PageBody>
     </Global>
   )
 }
