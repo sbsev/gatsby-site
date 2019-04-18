@@ -58,24 +58,17 @@ const pagePath = node => {
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  actions.createRedirect({
-    fromPath: `/index.php/*`,
-    toPath: `/:splat`,
-    isPermanent: true,
-  })
-
   await pageSets.forEach(async ({ query, component }) => {
     const response = await graphql(query)
     if (response.errors) throw new Error(response.errors)
-    response.data.content.edges.forEach(({ node }) => {
+    await response.data.content.edges.forEach(edge => {
       // exclude pages defined in src/pages
-      if (![`/`, `standorte`, `anmeldung`].includes(node.slug)) {
+      const { slug } = edge.node
+      if (![`/`, `standorte`, `anmeldung`].includes(slug)) {
         actions.createPage({
-          path: pagePath(node),
+          path: pagePath(edge.node),
           component,
-          context: {
-            slug: node.slug,
-          },
+          context: { slug },
         })
       }
     })
