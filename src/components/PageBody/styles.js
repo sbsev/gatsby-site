@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components"
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from "../../utils/mediaQuery"
 
 const imageGrid = css`
   display: grid;
@@ -30,7 +30,7 @@ const imageGrid = css`
   }
 `
 
-export const BodyContainer = styled.main`
+export const Body = styled.main`
   margin-top: ${props => props.isLanding && `calc(2em + 3vh)`};
   flex: 1;
   margin: calc(3em + 3vh) 0;
