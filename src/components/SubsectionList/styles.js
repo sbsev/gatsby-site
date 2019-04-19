@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
 export const List = styled.div`
   display: grid;
@@ -15,7 +15,7 @@ export const Subsection = styled.p`
   a {
     display: flex;
     align-items: center;
-    color: ${({ theme, active }) => (active ? theme.white : theme.black)};
+    color: ${props => (props.active ? `white` : `black`)};
   }
 `
 
