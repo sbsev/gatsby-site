@@ -30,7 +30,7 @@ const imageGrid = css`
   }
 `
 
-export const BodyContainer = styled.main`
+export const Body = styled.main`
   margin: calc(3em + 3vh) 0;
   display: grid;
   grid-gap: 0 4vw;
