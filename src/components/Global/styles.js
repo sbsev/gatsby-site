@@ -43,7 +43,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   .btn {
     background: ${props => props.theme.darkBlue};
-    color: ${props => props.theme.white} !important;
+    color: white !important;
     border-radius: ${props => props.theme.smallBorderRadius};
     padding: 0.4em 0.6em;
     font-size: ${props => props.size};
