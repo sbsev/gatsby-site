@@ -1,11 +1,11 @@
-import React from 'react'
-import Headroom from 'react-headroom'
+import React from "react"
+import Headroom from "react-headroom"
 
-import Nav from '../Nav'
-import Social from '../Social'
-import { navLinkStyle } from '../Nav/styles'
-import Search from '../Search'
-import { HeaderContainer, Logo, SiteTitle } from './styles'
+import Nav from "../Nav"
+import Social from "../Social"
+import { navLinkStyle } from "../Nav"
+import Search from "../Search"
+import { HeaderContainer, Logo, SiteTitle } from "./styles"
 
 const searchIndices = [
   { name: `Pages`, title: `Seiten`, hitComp: `PageHit` },
@@ -21,7 +21,7 @@ const Header = ({ site }) => (
       </SiteTitle>
       <Nav />
       <Social short collapse iconCss={navLinkStyle} />
-      <Search collapse indices={searchIndices} />
+      <Search collapse indices={searchIndices} iconCss={navLinkStyle} />
     </HeaderContainer>
   </Headroom>
 )
