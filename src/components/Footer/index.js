@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import Link from '../Link'
 import { FooterDiv, FooterLinks, Source, PoweredBy } from './styles'
 import Social from '../Social'
-import { navLinkStyle } from '../Nav/styles'
+import { navLinkStyle } from '../Nav'
 
 const Footer = ({ copyright, source, links, poweredBy, logos }) => (
   <FooterDiv>
