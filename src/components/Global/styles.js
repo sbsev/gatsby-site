@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from "styled-components"
 
-import mediaQuery, { screenSize } from '../../utils/mediaQuery'
-import typography from '../../utils/typography'
+import mediaQuery from "../../utils/mediaQuery"
+import typography from "../../utils/typography"
 
-const { phone, desktop } = screenSize
+const { phone, desktop } = mediaQuery.screens
 const {
   fonts,
   minFontSize,
@@ -44,7 +44,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   .btn {
     background: ${props => props.theme.darkBlue};
-    color: ${props => props.theme.white} !important;
+    color: white !important;
     border-radius: ${props => props.theme.smallBorderRadius};
     padding: 0.4em 0.6em;
     font-size: ${props => props.size};
