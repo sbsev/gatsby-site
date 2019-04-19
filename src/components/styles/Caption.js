@@ -6,7 +6,7 @@ export const Caption = styled.figcaption`
   right: 1em;
   font-size: 0.8em;
   transition: ${props => props.theme.shortTrans};
-  color: ${props => props.theme.white};
+  color: white;
   padding: 0.1em 0.5em;
   background: rgba(0, 0, 0, 0.7);
   border-radius: ${props => (props.theme.mediumBorderRadius + ` `).repeat(2)} 0
