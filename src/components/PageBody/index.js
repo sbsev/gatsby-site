@@ -1,13 +1,13 @@
 import React from "react"
 
-import { BodyContainer, Updated } from "./styles"
+import { Body, Updated } from "./styles"
 
 const PageBody = ({ children, html, updated }) => (
-  <BodyContainer>
+  <Body>
     {children}
     <div dangerouslySetInnerHTML={{ __html: html }} />
     {updated && <Updated>Zuletzt bearbeitet: {updated}</Updated>}
-  </BodyContainer>
+  </Body>
 )
 
 export default PageBody
