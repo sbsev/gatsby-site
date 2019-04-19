@@ -1,11 +1,11 @@
-import React from 'react'
-import { StaticQuery, graphql } from 'gatsby'
-import PropTypes from 'prop-types'
+import React from "react"
+import { StaticQuery, graphql } from "gatsby"
+import PropTypes from "prop-types"
 
-import Link from '../Link'
-import { FooterContainer, FooterLinks, Source, PoweredBy } from './styles'
-import Social from '../Social'
-import { navLinkStyle } from '../Nav/styles'
+import Link from "../Link"
+import { FooterContainer, FooterLinks, Source, PoweredBy } from "./styles"
+import Social from "../Social"
+import { navLinkStyle } from "../Nav"
 
 const Footer = ({ copyright, source, links, poweredBy, logos }) => (
   <FooterContainer>
