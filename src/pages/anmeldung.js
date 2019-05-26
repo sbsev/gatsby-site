@@ -28,7 +28,7 @@ const handleButtonClick = setForm => form => () => {
 const embedResizeHandler = ref => event =>
   event.data &&
   event.data.key === `airtableEmbedContentDidResize` &&
-  (ref.current.height = event.data.height)
+  (ref.current.height = event.data.height + 100)
 
 const SignupPage = ({ data, location }) => {
   const { title, cover, body } = data.page
