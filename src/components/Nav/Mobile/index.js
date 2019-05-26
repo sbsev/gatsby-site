@@ -2,7 +2,7 @@ import React, { memo, useState, useRef, useEffect } from "react"
 import { useSpring, animated } from "react-spring"
 import ResizeObserver from "resize-observer-polyfill"
 
-import { Item, Children, Icons, MobileNavDiv, Menu, NavLink } from "./styles"
+import { useClickOutside } from "../../../utils/hooks"
 
 export const useSize = (ref, quantity) => {
   const [size, setSize] = useState(0)
@@ -48,20 +48,8 @@ const Tree = memo(({ text, url, children }) => {
 export default function MobileNav({ nav }) {
   const ref = useRef()
   const [open, setOpen] = useState(false)
-
   const toggleNav = () => setOpen(!open)
-
-  const handleClickOutside = event =>
-    !ref.current.contains(event.target) && open && toggleNav()
-
-  useEffect(() => {
-    document.addEventListener(`mousedown`, handleClickOutside)
-    document.addEventListener(`touchstart`, handleClickOutside)
-    return () => {
-      document.removeEventListener(`mousedown`, handleClickOutside)
-      document.removeEventListener(`touchstart`, handleClickOutside)
-    }
-  })
+  useClickOutside(ref, toggleNav)
   return (
     <>
       <Menu onClick={toggleNav} />
