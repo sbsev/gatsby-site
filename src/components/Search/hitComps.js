@@ -32,7 +32,7 @@ export const PostHit = clickHandler => ({ hit }) => (
       <Tags size="1em" />
       &nbsp;
       {hit.tags.map((tag, index) => (
-        <Fragment key={tag}>
+        <Fragment key={tag.slug}>
           {index > 0 && `, `}
           {tag.title}
         </Fragment>
