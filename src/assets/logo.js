@@ -1,7 +1,7 @@
-import React from 'react'
-import { withTheme } from 'styled-components'
+import React from "react"
+import { withTheme } from "styled-components"
 
-const Logo = ({ theme: { white, blue, darkBlue, green }, ...rest }) => (
+const Logo = ({ theme: { blue, darkBlue, green }, ...rest }) => (
   <svg {...rest} viewBox="0 0 132 166">
     <path
       d="m126.898 40.026c-7.556 7.474-18.276 12.313-28.855 10.755 13.011-1.956 24.322-11.821 30.514-23.046 1.644-2.981-3.862-.849-4.756.775-5.967 10.822-17.006 19.55-30.004 18.233-1.247-.125-3.57 1.702-4.175 3.008-1.727 1.029-3.256 2.975-1.971 3.486 14.972 5.955 31.48-1.186 42.22-11.811 2.942-2.91-.932-3.419-2.973-1.4z"
@@ -31,7 +31,7 @@ const Logo = ({ theme: { white, blue, darkBlue, green }, ...rest }) => (
     <circle
       cx="40.434"
       cy="72.359"
-      fill={white}
+      fill="white"
       r="23.483"
       stroke={blue}
       strokeWidth="2"
@@ -39,7 +39,7 @@ const Logo = ({ theme: { white, blue, darkBlue, green }, ...rest }) => (
     <circle
       cx="92.032"
       cy="72.359"
-      fill={white}
+      fill="white"
       r="23.484"
       stroke={blue}
       strokeWidth="2"
@@ -48,7 +48,7 @@ const Logo = ({ theme: { white, blue, darkBlue, green }, ...rest }) => (
       d="m14.352 107.31s41.231-16.11 0 56.794"
       fill={blue}
       fillRule="nonzero"
-      stroke={white}
+      stroke="white"
       strokeLinecap="round"
       strokeWidth="2"
     />
@@ -56,7 +56,7 @@ const Logo = ({ theme: { white, blue, darkBlue, green }, ...rest }) => (
       d="m118.113 107.31s-41.23-16.11 0 56.794"
       fill={blue}
       fillRule="nonzero"
-      stroke={white}
+      stroke="white"
       strokeLinecap="round"
       strokeWidth="2"
     />
