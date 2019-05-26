@@ -30,7 +30,7 @@ const collapse = css`
   cursor: pointer;
   color: ${props => props.theme.lightBlue};
   + ${SearchIcon} {
-    color: ${props => props.theme.lightBlue};
+    color: white;
   }
   ${props => props.focus && focus}
   margin-left: ${props => (props.focus ? `-1.6em` : `-1em`)};

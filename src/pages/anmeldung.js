@@ -30,7 +30,7 @@ const embedResizeHandler = ref => event =>
   event.data.key === `airtableEmbedContentDidResize` &&
   (ref.current.height = event.data.height + 100)
 
-const SignupPage = ({ data, location }) => {
+export default function SignupPage({ data, location }) {
   const { title, cover, body } = data.page
   const { excerpt } = body.remark
   const [urlForm, chapter] = parseUrlParams(location.search)
@@ -68,8 +68,6 @@ const SignupPage = ({ data, location }) => {
     </Global>
   )
 }
-
-export default SignupPage
 
 export const query = graphql`
   {
