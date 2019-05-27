@@ -42,7 +42,9 @@ export const Body = styled.main`
     grid-column: 3;
   }
   ${mediaQuery.minPhablet} {
-    text-align: justify;
+    p {
+      text-align: justify;
+    }
   }
   p > img {
     max-width: 100%;
