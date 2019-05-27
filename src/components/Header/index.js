@@ -13,7 +13,7 @@ const searchIndices = [
 ]
 
 const Header = ({ site }) => (
-  <Headroom>
+  <Headroom css="z-index: 3;">
     <HeaderContainer>
       <SiteTitle to="/" title={site.title} rel="home">
         <Logo alt={site.title} />
