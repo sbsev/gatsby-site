@@ -9,7 +9,7 @@ export const query = graphql`
       email
       homepage
       photo {
-        fixed(width: 50) {
+        fixed(width: 80) {
           ...GatsbyContentfulFixed_withWebp
         }
       }
@@ -20,10 +20,9 @@ export const query = graphql`
     }
     date(formatString: "D. MMM YYYY", locale: "de")
     cover {
-      fluid {
+      fluid(maxWidth: 1800) {
         ...GatsbyContentfulFluid_withWebp
       }
-      title
     }
     body {
       remark: childMarkdownRemark {
