@@ -1,10 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useEffect } from "react"
 
-import Slideshow from '../Slideshow'
-import { PageTitleContainer, Title, Img } from './styles'
+import { PageTitleContainer, Title, Img } from "./styles"
 
-const PageTitle = ({ children, images, className, ...rest }) => {
-  const { fillToBottom, textBg, durations, height } = rest
+export default function PageTitle({ children, cover, ...rest }) {
+  const { fillToBottom, height, className, background } = rest
   const ref = useRef()
   if (fillToBottom || height === -1) {
     const fillAvailHeight = () =>
@@ -16,28 +15,11 @@ const PageTitle = ({ children, images, className, ...rest }) => {
       return () => window.removeEventListener(`resize`, fillAvailHeight)
     })
   }
-  const [index, setIndex] = useState(0)
-  const current = images && images[index]
   const containerProps = { ref, className, minHeight: height > 0 && height }
   return (
     <PageTitleContainer {...containerProps}>
-      <Title textBg={textBg || (current && current.textBg)}>
-        {children}
-        {current && current.subtitle && (
-          <div
-            dangerouslySetInnerHTML={{
-              __html: current.subtitle.remark.html,
-            }}
-          />
-        )}
-      </Title>
-      {images && images.length > 1 ? (
-        <Slideshow {...{ images, index, setIndex, durations }} />
-      ) : (
-        <Img fluid={images && images[0].fluid} />
-      )}
+      <Title>{children}</Title>
+      <Img {...cover}>{background}</Img>
     </PageTitleContainer>
   )
 }
-
-export default PageTitle
