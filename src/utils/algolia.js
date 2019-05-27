@@ -49,37 +49,9 @@ const postQuery = `{
   }
 }`
 
-const articleQuery = `{
-  articles: allContentfulWikiArticle {
-    edges {
-      node {
-        objectID: id
-        slug
-        title
-        section {
-          title
-          slug
-        }
-        subsection {
-          title
-          slug
-        }
-        body {
-          remark: childMarkdownRemark {
-            excerpt(pruneLength: 5000)
-            headings {
-              value
-              depth
-            }
-          }
-        }
-      }
-    }
-  }
-}`
-
 const queries = [
   {
+    indexName: `Pages`,
     query: pageQuery,
     transformer: ({ data }) =>
       data.pages.edges.map(({ node: { body, ...rest } }) =>
@@ -90,27 +62,16 @@ const queries = [
               ...rest,
             }
       ),
-    indexName: `Pages`,
     settings: { attributesToSnippet: [`excerpt:20`] },
   },
   {
+    indexName: `Posts`,
     query: postQuery,
     transformer: ({ data }) =>
       data.posts.edges.map(({ node: { body, ...rest } }) => ({
         ...body.remark,
         ...rest,
       })),
-    indexName: `Posts`,
-    settings: { attributesToSnippet: [`excerpt:20`] },
-  },
-  {
-    query: articleQuery,
-    transformer: ({ data }) =>
-      data.articles.edges.map(({ node: { body, ...rest } }) => ({
-        ...body.remark,
-        ...rest,
-      })),
-    indexName: `Articles`,
     settings: { attributesToSnippet: [`excerpt:20`] },
   },
 ]
