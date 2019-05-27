@@ -9,9 +9,10 @@ export const query = graphql`
       }
     }
     cover {
-      ...slideFields
+      fluid(maxWidth: 1800) {
+        ...GatsbyContentfulFluid_withWebp
+      }
     }
-    titleHeight
     body {
       remark: childMarkdownRemark {
         excerpt
