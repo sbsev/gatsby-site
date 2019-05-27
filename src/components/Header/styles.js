@@ -14,6 +14,7 @@ export const HeaderContainer = styled.header`
   grid-template-areas: "nav title social search";
   grid-template-columns: auto 1fr auto auto;
   padding: calc(0.25em + 1vh) calc(1em + 1vw);
+  font-weight: bold;
   ${mediaQuery.minNetbook} {
     grid-template-areas: "title nav social search";
   }
@@ -25,7 +26,6 @@ export const SiteTitle = styled(Link)`
   align-items: center;
   grid-auto-flow: column;
   grid-gap: 1em;
-  font-weight: bold;
   ${navLinkStyle};
   ${mediaQuery.minTablet} {
     grid-auto-flow: column;
