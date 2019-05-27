@@ -9,7 +9,6 @@ export const query = graphql`
       }
     }
     showText
-    textBg
     img {
       fluid(maxWidth: 1800) {
         ...GatsbyContentfulFluid_withWebp
