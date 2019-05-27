@@ -1,28 +1,29 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from "../../utils/mediaQuery"
 
 export const FooterDiv = styled.footer`
   background: ${props => props.theme.darkBlue};
   padding: 5vh 5vw;
-  color: ${props => props.theme.lightBlue};
+  color: white;
+  font-weight: bold;
   display: grid;
   text-align: center;
   align-items: center;
   justify-items: center;
   grid-gap: 7vh 5vw;
   grid-template-areas:
-    'copyright'
-    'social'
-    'links';
+    "copyright"
+    "social"
+    "links";
   ${mediaQuery.minTablet} {
     justify-content: space-around;
     grid-template-areas:
-      'copyright social'
-      'links links';
+      "copyright social"
+      "links links";
   }
   ${mediaQuery.minLaptop} {
-    grid-template-areas: 'copyright links social';
+    grid-template-areas: "copyright links social";
   }
 `
 
