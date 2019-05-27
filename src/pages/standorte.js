@@ -32,13 +32,13 @@ const mapProps = chapters => ({
   onMount: addMarkers(chapters),
 })
 
-const ChaptersPage = ({ data, location }) => {
+export default function ChaptersPage({ data, location }) {
   const { page, chapters } = data
-  const { title, body, updatedAt } = page
+  const { title, body, updatedAt, cover } = page
   const { excerpt, html } = body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle>
+      <PageTitle cover={cover}>
         <h1>{title}</h1>
       </PageTitle>
       <PageBody html={html} updated={updatedAt}>
@@ -55,12 +55,15 @@ const ChaptersPage = ({ data, location }) => {
   )
 }
 
-export default ChaptersPage
-
 export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "standorte" }) {
       title
+      cover {
+        fluid(maxWidth: 1800) {
+          ...GatsbyContentfulFluid_withWebp
+        }
+      }
       body {
         remark: childMarkdownRemark {
           excerpt
