@@ -38,9 +38,11 @@ export const Body = styled.main`
   grid-auto-rows: max-content;
   > * {
     grid-column: 3;
-  }
-  ${mediaQuery.minPhablet} {
-    text-align: justify;
+    ${mediaQuery.minPhablet} {
+      > p {
+        text-align: justify;
+      }
+    }
   }
   p > img {
     max-width: 100%;
