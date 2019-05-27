@@ -3,13 +3,8 @@ import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 
-import { UserEdit } from "styled-icons/fa-solid/UserEdit"
-import { Email } from "styled-icons/material/Email"
-import { Link as LinkIcon } from "styled-icons/boxicons-regular/Link"
-import { Calendar } from "styled-icons/octicons/Calendar"
-import { Timer } from "styled-icons/material/Timer"
-
-import { Post, Title, Meta, AuthorPhoto, Tag } from "./styles"
+import PostMeta from "../PostMeta"
+import { Post, Title, Tag } from "./styles"
 
 const PostExcerpt = ({ post, activeTag, setTag }) => {
   const { cover, slug, title, author, date, tags, body } = post
@@ -18,41 +13,14 @@ const PostExcerpt = ({ post, activeTag, setTag }) => {
     <Post>
       {cover && cover.fluid && (
         <Link to={`/blog/` + slug}>
-          <Img fluid={cover.fluid} alt={cover.title} />
+          <Img fluid={cover.fluid} alt={cover.title} css="height: 15em;" />
         </Link>
       )}
       <main>
         <Title>
           <Link to={`/blog/` + slug}>{title}</Link>
         </Title>
-        <Meta>
-          <AuthorPhoto fixed={author.photo.fixed} alt={author.name} />
-          <div>
-            <UserEdit size="1em" /> &nbsp;{author.name}
-            {author.homepage && (
-              <>
-                &nbsp;
-                <a href={author.homepage}>
-                  <LinkIcon size="1em" />
-                </a>
-              </>
-            )}
-            {author.email && (
-              <>
-                &nbsp;
-                <a href={`mailto:${author.email}`}>
-                  <Email size="1em" />
-                </a>
-              </>
-            )}
-          </div>
-          <div>
-            <Calendar size="1em" /> &nbsp;{date}
-          </div>
-          <div>
-            <Timer size="1em" /> &nbsp;{timeToRead} Min Lesezeit
-          </div>
-        </Meta>
+        <PostMeta {...{ author, date, timeToRead }} />
         <div>
           <span>Tags: </span>
           {tags.map(({ title }, index) => (
