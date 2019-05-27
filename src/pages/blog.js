@@ -15,7 +15,7 @@ const filterPostsByTag = (tag, posts) =>
 const readActiveTagFromUrl = urlParams =>
   urlParams.replace(/.*tag=([^&]+).*/, `$1`)
 
-const BlogPage = ({ data, location }) => {
+export default function BlogPage({ data, location }) {
   const { posts, tags, cover } = data
   const urlTag = readActiveTagFromUrl(location.search)
   const [tag, setTag] = useState(urlTag || `alle`)
@@ -29,10 +29,9 @@ const BlogPage = ({ data, location }) => {
       tag === `alle` ? `/blog` : `/blog?tag=${tag}`
     )
   }
-
   return (
     <Global pageTitle="Blog" path={location.pathname}>
-      <PageTitle images={[cover.img]}>
+      <PageTitle cover={cover}>
         <h1>Blog</h1>
       </PageTitle>
       <PageBody>
@@ -42,8 +41,6 @@ const BlogPage = ({ data, location }) => {
     </Global>
   )
 }
-
-export default BlogPage
 
 export const query = graphql`
   {
@@ -67,8 +64,10 @@ export const query = graphql`
         }
       }
     }
-    cover: contentfulSlide(title: { eq: "Blog" }) {
-      ...slideFields
+    cover: contentfulAsset(title: { eq: "Scrabble Blog" }) {
+      fluid(maxWidth: 1800) {
+        ...GatsbyContentfulFluid_withWebp
+      }
     }
   }
 `
