@@ -39,6 +39,8 @@ export const Tag = styled.button`
   color: ${props => props.theme.darkGray};
   border-radius: ${props => props.theme.smallBorderRadius};
   background: ${({ active, theme }) => active && theme.orange};
+  box-shadow: 0 0 0.5em ${props => props.theme.lighterGray};
+  border: 1px solid ${props => props.theme.lightGray};
   ${mediaQuery.maxPhablet} {
     padding: 0.1em 0.5em 0.2em;
     margin: 0 1em 1em 0;
@@ -50,10 +52,8 @@ export const Tag = styled.button`
 `
 
 export const TagIcon = styled.img`
-  height: 1.5em;
   width: 1.5em;
   margin-right: 0.4em;
-  border-radius: ${props => props.theme.mediumBorderRadius};
 `
 
 export const Toggle = styled(ToggleOff).attrs(props => ({
