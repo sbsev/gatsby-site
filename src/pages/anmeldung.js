@@ -49,9 +49,7 @@ export default function SignupPage({ data, location }) {
   })
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle
-        images={cover && cover.map(({ img, ...rest }) => ({ ...img, ...rest }))}
-      >
+      <PageTitle cover={cover}>
         <h1>{title}</h1>
       </PageTitle>
       <PageBody>
