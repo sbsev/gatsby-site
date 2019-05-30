@@ -1,27 +1,47 @@
-import styled from "styled-components"
 import { animated } from "react-spring"
-import { ThMenu } from "styled-icons/typicons/ThMenu"
-
-import { KeyboardArrowUp as Less } from "styled-icons/material/KeyboardArrowUp"
+import styled, { css } from "styled-components"
+import { Close } from "styled-icons/material/Close"
 import { KeyboardArrowDown as More } from "styled-icons/material/KeyboardArrowDown"
 import { KeyboardArrowRight as Arrow } from "styled-icons/material/KeyboardArrowRight"
-
+import { KeyboardArrowUp as Less } from "styled-icons/material/KeyboardArrowUp"
+import { ThMenu } from "styled-icons/typicons/ThMenu"
+import mediaQuery from "../../../utils/mediaQuery"
 import { NavLink } from "../styles"
 
 export { NavLink }
 
-export const Icons = { More, Less, Arrow }
+const iconCss = css`
+  width: 1em;
+  margin-right: 0.2em;
+  cursor: pointer;
+  vertical-align: -0.15em;
+`
+
+export const Icons = {
+  More: styled(More)`
+    ${iconCss};
+    color: ${props => props.theme.lightGreen};
+  `,
+  Less: styled(Less)`
+    ${iconCss};
+    color: ${props => props.theme.lightBlue};
+  `,
+  Arrow: styled(Arrow)`
+    ${iconCss};
+  `,
+}
 
 export const MobileNavDiv = styled.nav`
   position: fixed;
+  z-index: 1; /* places nav on top of search and social icon in header */
   top: 0;
   overflow: scroll;
   -webkit-overflow-scrolling: touch;
-  height: 100vh;
+  height: 120vh;
   background: rgba(0, 0, 0, 0.85);
   padding: 8vmin 8vmin 8vmin 6vmin;
   box-sizing: border-box;
-  font-size: calc(1em + 2vmin);
+  font-size: 1.6em;
   color: white;
   right: 100%;
   display: grid;
@@ -29,19 +49,16 @@ export const MobileNavDiv = styled.nav`
   min-width: 20vw;
   grid-auto-columns: max-content;
   grid-auto-rows: max-content;
-  transform: translate(${props => (props.open ? `99%` : `0`)});
+  transform: translate(${props => (props.open ? `100%` : `0`)});
   transition: ${props => props.theme.shortTrans};
-`
-export const Item = styled.div`
-  a {
-    color: white;
+  ${mediaQuery.maxNetbook} {
+    max-width: 13em;
   }
-  /* target arrow icons prefixing links */
-  svg:first-child {
-    width: 1em;
-    margin-right: 0.2em;
-    cursor: pointer;
-    vertical-align: -0.15em;
+  ${mediaQuery.maxPhone} {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: initial;
   }
 `
 
@@ -66,4 +83,14 @@ export const Menu = styled(NavLink).attrs({
   cursor: pointer;
   transform: scale(1.7, 1.3);
   margin: 0 0.3em;
+`
+
+export const Closer = styled(Close)`
+  position: absolute;
+  top: 0.8em;
+  right: 1em;
+  width: 1.5em;
+  ${mediaQuery.minPhone} {
+    display: none;
+  }
 `
