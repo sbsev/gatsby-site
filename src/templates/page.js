@@ -1,20 +1,17 @@
-import React from 'react'
-import { graphql } from 'gatsby'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import PageBody from '../components/PageBody'
+import Global from "../components/Global"
+import PageTitle from "../components/PageTitle"
+import PageBody from "../components/PageBody"
 
-const PageTemplate = ({ data, location }) => {
+export default function PageTemplate({ data, location }) {
   const { page, updatedAt } = data
-  const { title, subtitle, cover, body, titleHeight } = page
+  const { title, subtitle, cover, body } = page
   const { excerpt, html } = (body && body.remark) || { excerpt: ``, html: `` }
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle
-        height={titleHeight}
-        images={cover && cover.map(({ img, ...rest }) => ({ ...img, ...rest }))}
-      >
+      <PageTitle cover={cover}>
         <h1>{title}</h1>
         {subtitle && (
           <div
@@ -28,8 +25,6 @@ const PageTemplate = ({ data, location }) => {
     </Global>
   )
 }
-
-export default PageTemplate
 
 export const query = graphql`
   query($slug: String!) {

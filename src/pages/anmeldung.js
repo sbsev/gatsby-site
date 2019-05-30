@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react'
-import { graphql } from 'gatsby'
+import React, { useRef, useState, useEffect } from "react"
+import { graphql } from "gatsby"
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import PageBody from '../components/PageBody'
-import ButtonGroup from '../components/styles/ButtonGroup'
+import Global from "../components/Global"
+import PageTitle from "../components/PageTitle"
+import PageBody from "../components/PageBody"
+import { ButtonGroup } from "../components/styles"
 
 const forms = {
   students: `shr4s9vHgtEfQ9bSN`,
@@ -28,9 +28,9 @@ const handleButtonClick = setForm => form => () => {
 const embedResizeHandler = ref => event =>
   event.data &&
   event.data.key === `airtableEmbedContentDidResize` &&
-  (ref.current.height = event.data.height)
+  (ref.current.height = event.data.height + 100)
 
-const SignupPage = ({ data, location }) => {
+export default function SignupPage({ data, location }) {
   const { title, cover, body } = data.page
   const { excerpt } = body.remark
   const [urlForm, chapter] = parseUrlParams(location.search)
@@ -49,9 +49,7 @@ const SignupPage = ({ data, location }) => {
   })
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle
-        images={cover && cover.map(({ img, ...rest }) => ({ ...img, ...rest }))}
-      >
+      <PageTitle cover={cover}>
         <h1>{title}</h1>
       </PageTitle>
       <PageBody>
@@ -68,8 +66,6 @@ const SignupPage = ({ data, location }) => {
     </Global>
   )
 }
-
-export default SignupPage
 
 export const query = graphql`
   {

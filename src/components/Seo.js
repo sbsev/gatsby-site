@@ -1,8 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+import React from "react"
+import PropTypes from "prop-types"
+import { Helmet } from "react-helmet"
 
-const Head = ({ site, pageTitle, path, description, children }) => {
+export default function Seo({ site, pageTitle, path, ...rest }) {
+  const { description, children } = rest
   const title = pageTitle ? `${pageTitle} | ${site.title}` : site.title
   const pageUrl = path ? site.url + path : site.url
   const desc = description || site.description
@@ -10,7 +11,7 @@ const Head = ({ site, pageTitle, path, description, children }) => {
     <Helmet>
       <title>{title}</title>
       <meta property="og:type" content="website" />
-      <html lang="de" />
+      <html lang="en" />
       {pageTitle && <meta property="og:title" content={pageTitle} />}
       <meta property="og:url" content={pageUrl} />
       <meta property="og:description" content={desc} />
@@ -20,9 +21,7 @@ const Head = ({ site, pageTitle, path, description, children }) => {
   )
 }
 
-export default Head
-
-Head.propTypes = {
+Seo.propTypes = {
   site: PropTypes.shape({
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

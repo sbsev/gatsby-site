@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export default styled.div`
+export const ButtonGroup = styled.div`
   margin: 2em auto;
   border-radius: ${props => props.theme.mediumBorderRadius};
   overflow: hidden;
@@ -9,7 +9,7 @@ export default styled.div`
     border: none;
     outline: none;
     background: ${props => props.theme.blue};
-    color: ${props => props.theme.white} !important;
+    color: white !important;
     padding: 0.2em 0.6em;
     width: max-content;
     font-size: ${props => props.size};

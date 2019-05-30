@@ -1,12 +1,12 @@
 import styled, { css } from "styled-components"
 
-const Caption = styled.figcaption`
+export const Caption = styled.figcaption`
   position: absolute;
   bottom: 0;
   right: 1em;
   font-size: 0.8em;
   transition: ${props => props.theme.shortTrans};
-  color: ${props => props.theme.white};
+  color: white;
   padding: 0.1em 0.5em;
   background: rgba(0, 0, 0, 0.7);
   border-radius: ${props => (props.theme.mediumBorderRadius + ` `).repeat(2)} 0
@@ -29,5 +29,3 @@ const Caption = styled.figcaption`
       }
     `}
 `
-
-export default Caption

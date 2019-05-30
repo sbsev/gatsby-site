@@ -2,23 +2,24 @@ import styled from "styled-components"
 import { ArrowDownCircle as Down } from "styled-icons/feather/ArrowDownCircle"
 import { ArrowUpCircle as Up } from "styled-icons/feather/ArrowUpCircle"
 
-export const Arrow = styled(Down).attrs(({ direction, size }) => ({
-  as: direction === `up` && Up,
-  size,
+export const Arrow = styled(Down).attrs(props => ({
+  as: props.direction === `up` && Up,
 }))`
-  ${({ theme, show, size }) => `
   z-index: 2;
-  background: ${theme.lightGreen};
-  color: ${theme.white};
-  border-radius: 50%;
-  transition: ${theme.shortTrans};
+  background: ${props => props.theme.lightGreen} !important;
+  border-radius: 50% !important;
+  padding: 0 !important;
+  color: white;
+  transition: ${props => props.theme.shortTrans};
   position: absolute;
-  bottom: 0.5em;
-  opacity: ${show ? 1 : 0};
-  visibility: ${show ? `visible` : `hidden`};
+  bottom: 1em;
+  right: calc(50vw - ${props => props.size} / 2);
+  opacity: ${props => (props.show ? 1 : 0)};
+  visibility: ${props => (props.show ? `visible` : `hidden`)};
+  width: ${props => props.size};
+  height: ${props => props.size};
   :hover {
     transform: scale(1.15);
-    background: ${theme.orange};
+    background: ${props => props.theme.orange};
   }
-  right: calc(50vw - ${size} / 2);`}
 `
