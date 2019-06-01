@@ -20,6 +20,9 @@ export const Title = styled.div`
   justify-self: center;
   padding: 0.1em 0.4em;
   z-index: 2;
+  a {
+    color: ${props => props.theme.lightGreen};
+  }
   > * {
     background: rgba(0, 0, 0, 0.7);
     border-radius: ${props => props.theme.smallBorderRadius};

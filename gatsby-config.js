@@ -7,7 +7,7 @@ module.exports = {
     title: `Studenten bilden Schüler`,
     description: `German student-run nonprofit initiative`,
     author: `Janosh Riebesell`,
-    siteUrl: `https://studenten-bilden-schueler.de`,
+    url: `https://studenten-bilden-schueler.de`,
   },
   plugins: [
     {
