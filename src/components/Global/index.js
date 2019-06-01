@@ -33,7 +33,7 @@ const query = graphql`
     site {
       meta: siteMetadata {
         title
-        url: siteUrl
+        url
         description
       }
     }
