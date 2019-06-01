@@ -10,6 +10,7 @@ const inExcerpt = css`
     "photo readtime";
   grid-template-columns: max-content 1fr;
   margin-bottom: 0.5em;
+  align-items: center;
 `
 
 const inTitle = css`
@@ -19,7 +20,7 @@ const inTitle = css`
   width: max-content;
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.8em;
+  font-size: 0.9em;
   > * {
     display: flex;
     align-items: center;
@@ -28,8 +29,8 @@ const inTitle = css`
     margin-right: 1em;
   }
   .gatsby-image-wrapper {
-    width: 2.5em !important;
-    height: 2.5em !important;
+    width: 2.5em;
+    height: 2.5em;
   }
 `
 
@@ -40,4 +41,6 @@ export const Meta = styled.div`
 export const AuthorPhoto = styled(Img)`
   border-radius: 50%;
   grid-area: photo;
+  width: 4em;
+  height: 4em;
 `
