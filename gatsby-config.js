@@ -7,7 +7,7 @@ module.exports = {
     title: `Studenten bilden Schüler`,
     description: `German student-run non-profit providing free tutoring to improve educational equity`,
     author: `Janosh Riebesell`,
-    siteUrl: `https://studenten-bilden-schueler.de`,
+    url: `https://studenten-bilden-schueler.de`,
   },
   plugins: [
     {
