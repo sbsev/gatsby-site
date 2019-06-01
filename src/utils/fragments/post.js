@@ -9,8 +9,8 @@ export const query = graphql`
       email
       homepage
       photo {
-        fixed(width: 80) {
-          ...GatsbyContentfulFixed_withWebp
+        fluid(maxWidth: 200) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
     }
