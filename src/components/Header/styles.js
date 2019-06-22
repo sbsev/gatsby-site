@@ -35,9 +35,8 @@ export const SiteTitle = styled(Link)`
 export const Logo = styled(Owl)`
   height: 3em;
   width: 3em;
-  object-fit: cover;
   object-position: top;
   border-radius: 50%;
   background: white;
-  border: ${({ theme }) => theme.smallBorder + ` solid white`};
+  padding: 0.1em;
 `

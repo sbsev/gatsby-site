@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-console */
 const contentful = require(`contentful-management`)
 require(`dotenv`).config()
 
@@ -151,7 +153,6 @@ const createPeople = () =>
           })
         )
     })
-    /* eslint-disable no-console */
     .then(console.log)
     .catch(console.error)
 
@@ -168,7 +169,6 @@ const getPeople = () =>
         remits: item.fields.remits.de[0].sys,
       }))
     )
-    /* eslint-disable no-console */
     .then(console.log)
     .catch(console.error)
 
@@ -180,7 +180,6 @@ const publishDraftPeople = () =>
       env.getEntries({ content_type: contentTypes.person, changed: true })
     )
     .then(({ items }) => items.map(person => person.publish()))
-    /* eslint-disable no-console */
     .then(console.log)
     .catch(console.error)
 
@@ -194,7 +193,6 @@ const getRemits = () =>
       items.forEach(item => (remitsObj[item.fields.title.de] = item.sys.id))
       return remitsObj
     })
-    /* eslint-disable no-console */
     .then(console.log)
     .catch(console.error)
 
@@ -208,7 +206,6 @@ const getChapters = () =>
       items.forEach(item => (chaptersObj[item.fields.title.de] = item.sys.id))
       return chaptersObj
     })
-    /* eslint-disable no-console */
     .then(console.log)
     .catch(console.error)
 
