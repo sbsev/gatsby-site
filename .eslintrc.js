@@ -25,7 +25,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module",
   },
-  plugins: ["react"],
+  plugins: ["react", "react-hooks"],
   rules: {
     indent: ["error", 2, { SwitchCase: 1 }],
     quotes: ["error", "backtick", { avoidEscape: true }],
@@ -33,6 +33,9 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     "react/prop-types": "off",
     "react/display-name": "off",
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
   },
   settings: {
     react: {
