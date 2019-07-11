@@ -34,7 +34,6 @@ const pagePath = node => {
     case `ContentfulPost`:
       return `blog/` + node.slug
     default:
-      if (node.slug === `404`) return `404.html`
       return node.slug
   }
 }
