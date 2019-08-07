@@ -1,5 +1,7 @@
 # [Studenten bilden Schüler e.V.](https://studenten-bilden-schueler.de)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bc8ffc70-0bae-4463-bd69-7a98ec1c0746/deploy-status)](https://app.netlify.com/sites/studenten-bilden-schueler/deploys)
+
 This repo powers the [Gatsby](https://gatsbyjs.org) site hosted at [studenten-bilden-schueler.de](https://studenten-bilden-schueler.de). It is maintained by [Janosh Riebesell](https://janosh.io) ([Mail](mailto:janosh.riebesell@studenten-bilden-schueler.de), [GitHub](https://github.com/janosh)).
 
 Studenten bilden Schüler e.V. is a student-run nonprofit initiative with chapters located in university towns all over Germany. Our mission is to provide free tutoring to refugees and children from underprivileged families.
@@ -11,7 +13,10 @@ To get this site running locally, you need [`git`](https://git-scm.com), [`gatsb
 1. Clone the repo to your machine and change into its directory.
 
     ```sh
-    git clone https://github.com/StudentenBildenSchueler/sbs-homepage && sbs-homepage
+    git clone https://github.com/StudentenBildenSchueler/sbs-homepage
+    && sbs-homepage
+    && git config core.hooksPath src/utils/gitHooks
+    && chmod +x src/utils/gitHooks/pre-commit
     ```
 
 2. Install dependencies.
