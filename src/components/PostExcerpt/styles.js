@@ -1,8 +1,10 @@
-import styled from "styled-components"
+import Img from 'gatsby-image'
+import styled from 'styled-components'
 
 export const Post = styled.article`
   height: 100%;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 0 1em ${props => props.theme.lightGray};
   border-radius: ${props => props.theme.mediumBorderRadius};
   border: 1px solid ${props => props.theme.lightGray};
@@ -11,6 +13,14 @@ export const Post = styled.article`
     padding: 1em;
     display: grid;
   }
+`
+
+export const Cover = styled(Img).attrs(
+  ({ fluid, src }) => !fluid && { as: src ? `img` : `div` }
+)`
+  height: calc(10em + 4vh);
+  width: 100%;
+  object-fit: cover;
 `
 
 export const Title = styled.h2`

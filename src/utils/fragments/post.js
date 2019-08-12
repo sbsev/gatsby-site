@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from 'gatsby'
 
 export const query = graphql`
   fragment postFields on ContentfulPost {
@@ -20,9 +20,7 @@ export const query = graphql`
     }
     date(formatString: "D. MMM YYYY", locale: "de")
     cover {
-      fluid(maxWidth: 1800) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      ...image
     }
     body {
       remark: childMarkdownRemark {

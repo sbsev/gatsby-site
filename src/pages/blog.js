@@ -1,11 +1,11 @@
-import React, { useState } from "react"
-import { graphql } from "gatsby"
+import React, { useState } from 'react'
+import { graphql } from 'gatsby'
 
-import Global from "../components/Global"
-import PageTitle from "../components/PageTitle"
-import PageBody from "../components/PageBody"
-import TagList from "../components/TagList"
-import PostList from "../components/PostList"
+import Global from '../components/Global'
+import PageTitle from '../components/PageTitle'
+import PageBody from '../components/PageBody'
+import TagList from '../components/TagList'
+import PostList from '../components/PostList'
 
 const filterPostsByTag = (tag, posts) =>
   tag === `alle`
@@ -66,9 +66,7 @@ export const query = graphql`
       }
     }
     cover: contentfulAsset(title: { eq: "Scrabble Blog" }) {
-      fluid(maxWidth: 1800) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      ...image
     }
   }
 `
