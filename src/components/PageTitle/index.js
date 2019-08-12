@@ -15,7 +15,7 @@ export default function PageTitle({ children, cover, ...rest }) {
     }
   }, [fillToBottom, height])
   const containerProps = { ref, className, minHeight: height > 0 && height }
-  if (cover.fluid && !cover.fluid.src) {
+  if (cover && cover.fluid && !cover.fluid.src) {
     cover.src = cover.file.url
     delete cover.fluid
   }

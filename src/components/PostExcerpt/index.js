@@ -7,7 +7,7 @@ import { Cover, Post, Tag, Title } from './styles'
 const PostExcerpt = ({ post, activeTag, setTag }) => {
   const { cover, slug, title, author, date, tags, body } = post
   const { timeToRead, excerpt } = body.remark
-  if (cover.fluid && !cover.fluid.src) {
+  if (cover && cover.fluid && !cover.fluid.src) {
     cover.src = cover.file.url
     delete cover.fluid
   }
