@@ -1,19 +1,21 @@
-import React, { Fragment } from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
-import Img from "gatsby-image"
-
-import PostMeta from "../PostMeta"
-import { Post, Title, Tag } from "./styles"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
+import PostMeta from '../PostMeta'
+import { Cover, Post, Tag, Title } from './styles'
 
 const PostExcerpt = ({ post, activeTag, setTag }) => {
   const { cover, slug, title, author, date, tags, body } = post
   const { timeToRead, excerpt } = body.remark
+  if (cover.fluid && !cover.fluid.src) {
+    cover.src = cover.file.url
+    delete cover.fluid
+  }
   return (
     <Post>
-      {cover && cover.fluid && (
+      {cover && (
         <Link to={`/blog/` + slug}>
-          <Img fluid={cover.fluid} alt={cover.title} css="height: 15em;" />
+          <Cover {...cover} alt={cover.title} css="height: 15em;" />
         </Link>
       )}
       <main>

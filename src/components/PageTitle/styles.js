@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import Image from "gatsby-image"
+import Image from 'gatsby-image'
+import styled from 'styled-components'
 
 export const PageTitleContainer = styled.hgroup`
   position: relative;
@@ -38,6 +38,7 @@ export const Img = styled(Image).attrs(
   width: 100%;
   height: 100%;
   z-index: 1;
+  object-fit: cover;
   background: ${({ theme }) => `linear-gradient(
     10deg,
     ${theme.lightGreen} 0%,

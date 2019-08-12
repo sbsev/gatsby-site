@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from 'gatsby'
 
 export const query = graphql`
   fragment postFields on ContentfulPost {
@@ -22,6 +22,9 @@ export const query = graphql`
     cover {
       fluid(maxWidth: 1800) {
         ...GatsbyContentfulFluid_withWebp
+      }
+      file {
+        url
       }
     }
     body {
