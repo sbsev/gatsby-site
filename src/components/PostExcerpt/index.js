@@ -1,25 +1,24 @@
-import React, { Fragment } from "react"
-import PropTypes from "prop-types"
-import { Link } from "gatsby"
-import Img from "gatsby-image"
+import { Link } from 'gatsby'
+import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
+import PostMeta from '../PostMeta'
+import { Cover, Post, Tag } from './styles'
 
-import PostMeta from "../PostMeta"
-import { Post, Title, Tag } from "./styles"
-
-const PostExcerpt = ({ post, activeTag, setTag }) => {
+export default function PostExcerpt({ post, activeTag, setTag }) {
   const { cover, slug, title, author, date, tags, body } = post
   const { timeToRead, excerpt } = body.remark
+  if (cover && !cover.fluid) cover.src = cover.file.url
   return (
     <Post>
-      {cover && cover.fluid && (
+      {cover && (
         <Link to={`/blog/` + slug}>
-          <Img fluid={cover.fluid} alt={cover.title} css="height: 15em;" />
+          <Cover {...cover} alt={cover.title} css="height: 15em;" />
         </Link>
       )}
       <main>
-        <Title>
-          <Link to={`/blog/` + slug}>{title}</Link>
-        </Title>
+        <h2>
+          <Link to={slug}>{title}</Link>
+        </h2>
         <PostMeta {...{ author, date, timeToRead }} />
         <div>
           <span>Tags: </span>
@@ -37,8 +36,6 @@ const PostExcerpt = ({ post, activeTag, setTag }) => {
     </Post>
   )
 }
-
-export default PostExcerpt
 
 PostExcerpt.propTypes = {
   post: PropTypes.shape({

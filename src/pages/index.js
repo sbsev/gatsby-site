@@ -1,12 +1,12 @@
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import React from "react"
-import styled from "styled-components"
-import Global from "../components/Global"
-import PageBody from "../components/PageBody"
-import PageTitle from "../components/PageTitle"
-import Scroll from "../components/Scroll"
-import Slideshow from "../components/Slideshow"
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import React from 'react'
+import styled from 'styled-components'
+import Global from '../components/Global'
+import PageBody from '../components/PageBody'
+import PageTitle from '../components/PageTitle'
+import Scroll from '../components/Scroll'
+import Slideshow from '../components/Slideshow'
 
 const Content = styled.div`
   text-align: center;
@@ -89,7 +89,7 @@ export const query = graphql`
     }
     slideshow: contentfulSlideshow(title: { eq: "Landing Page" }) {
       slides {
-        ...slideFields
+        ...image
       }
     }
   }
