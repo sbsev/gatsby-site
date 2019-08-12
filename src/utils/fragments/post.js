@@ -19,9 +19,7 @@ export const query = graphql`
     }
     date(formatString: "D. MMM YYYY", locale: "de")
     cover {
-      fluid(maxWidth: 1800) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+      ...image
     }
     body {
       remark: childMarkdownRemark {

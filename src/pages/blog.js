@@ -64,10 +64,8 @@ export const query = graphql`
         }
       }
     }
-    cover: contentfulAsset(title: { eq: "Scrabble Blog" }) {
-      fluid(maxWidth: 1800) {
-        ...GatsbyContentfulFluid_withWebp
-      }
+    cover: contentfulAsset(title: { eq: "Blog Banner" }) {
+      ...image
     }
   }
 `
