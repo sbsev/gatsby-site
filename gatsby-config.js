@@ -37,12 +37,6 @@ module.exports = {
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GA_TRACKING_ID,
-      },
-    },
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
