@@ -1,8 +1,8 @@
-import React, { Fragment } from "react"
-import { Highlight, Snippet } from "react-instantsearch-dom"
-import { Link } from "gatsby"
-import { Calendar } from "styled-icons/octicons/Calendar"
-import { Tags } from "styled-icons/fa-solid/Tags"
+import { Link } from 'gatsby'
+import React, { Fragment } from 'react'
+import { Highlight, Snippet } from 'react-instantsearch-dom'
+import { Tags } from 'styled-icons/fa-solid/Tags'
+import { Calendar } from 'styled-icons/octicons/Calendar'
 
 export const PageHit = clickHandler => ({ hit }) => (
   <div>
@@ -17,7 +17,7 @@ export const PageHit = clickHandler => ({ hit }) => (
 
 export const PostHit = clickHandler => ({ hit }) => (
   <div>
-    <Link to={`/blog` + hit.slug} onClick={clickHandler}>
+    <Link to={`/blog/` + hit.slug} onClick={clickHandler}>
       <h4>
         <Highlight attribute="title" hit={hit} tagName="mark" />
       </h4>
