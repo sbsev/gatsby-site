@@ -38,7 +38,7 @@ const alwaysShow = css`
 
 export const Container = styled.div`
   display: grid;
-  grid-gap: 0.5em;
+  grid-gap: 0.8em;
   ${mediaQuery.minLaptop} {
     ${alwaysShow};
   }

@@ -1,21 +1,21 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import { ThemeProvider } from "styled-components"
-import PropTypes from "prop-types"
-
-import Seo from "../Seo"
-import Header from "../Header"
-import Footer from "../Footer"
-import theme from "../../utils/theme"
-import Scroll from "../Scroll"
-
-import { GlobalStyle } from "./styles"
+import { graphql, StaticQuery } from 'gatsby'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { ThemeProvider } from 'styled-components'
+import theme from '../../utils/theme'
+import BrowserCheck from '../BrowserCheck'
+import Footer from '../Footer'
+import Header from '../Header'
+import Scroll from '../Scroll'
+import Seo from '../Seo'
+import { GlobalStyle } from './styles'
 
 const Global = ({ children, site, ...rest }) => (
   <ThemeProvider theme={theme}>
     <>
       <Seo site={site.meta} {...rest} />
       <GlobalStyle />
+      <BrowserCheck />
       <Header site={site.meta} />
       {children}
       <Footer />
