@@ -1,7 +1,13 @@
 import React, { useEffect, useRef } from 'react'
-import { Img, PageTitleDiv, Title } from './styles'
+import { PageTitleDiv, Title } from './styles'
+import ImageCopyright from '../ImageCopyright'
 
-export default function PageTitle({ children, cover, ...rest }) {
+export default function PageTitle({
+  children,
+  cover,
+  coverCopyright,
+  ...rest
+}) {
   const { fillToBottom, height, className, background } = rest
   const ref = useRef()
   useEffect(() => {
@@ -19,7 +25,11 @@ export default function PageTitle({ children, cover, ...rest }) {
   return (
     <PageTitleDiv {...containerProps}>
       <Title>{children}</Title>
-      <Img {...cover}>{background}</Img>
+      <ImageCopyright
+        cover={cover}
+        background={background}
+        copyright={coverCopyright}
+      />
     </PageTitleDiv>
   )
 }
