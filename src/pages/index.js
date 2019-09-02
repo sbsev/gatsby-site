@@ -1,12 +1,12 @@
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
-import React from "react"
-import styled from "styled-components"
-import Global from "../components/Global"
-import PageBody from "../components/PageBody"
-import PageTitle from "../components/PageTitle"
-import Scroll from "../components/Scroll"
-import Slideshow from "../components/Slideshow"
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import React from 'react'
+import styled from 'styled-components'
+import Global from '../components/Global'
+import PageBody from '../components/PageBody'
+import PageTitle from '../components/PageTitle'
+import Scroll from '../components/Scroll'
+import Slideshow from '../components/Slideshow'
 
 const Content = styled.div`
   text-align: center;
@@ -70,11 +70,15 @@ const bg = (slides, subtitle) => (
 
 export default function IndexPage({ data, location }) {
   const { page, slideshow, updatedAt } = data
-  const { title, subtitle, body } = page
+  const { title, subtitle, body, coverCopyright } = page
   const { excerpt, html } = body && body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle fillToBottom background={bg(slideshow.slides, subtitle)}>
+      <PageTitle
+        fillToBottom
+        background={bg(slideshow.slides, subtitle)}
+        coverCopyright={coverCopyright}
+      >
         <Scroll direction="down" to={1} css="bottom: 2em;" />
       </PageTitle>
       <PageBody html={html} updated={updatedAt} />
@@ -86,6 +90,7 @@ export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "/" }) {
       ...pageFields
+      coverCopyright
     }
     slideshow: contentfulSlideshow(title: { eq: "Landing Page" }) {
       slides {

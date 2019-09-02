@@ -56,15 +56,15 @@ export const GlobalStyle = createGlobalStyle`
       background: ${props => props.theme.lightBlue};
     }
     ${[`blue`, `green`, `yellow`]
-    .map(
-      color =>
-        `&.${color} {
+      .map(
+        color =>
+          `&.${color} {
           background: ${theme[color]};
           :hover {
             background: ${theme[`light` + titleCase(color)]};
           }
         }`
-    )
-    .join(`\n`)}
+      )
+      .join(`\n`)}
   }
 `
