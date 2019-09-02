@@ -39,4 +39,5 @@ export const Logo = styled(Owl)`
   border-radius: 50%;
   background: white;
   padding: 0.1em;
+  margin: 0px;
 `
