@@ -34,11 +34,11 @@ const mapProps = chapters => ({
 
 export default function ChaptersPage({ data, location }) {
   const { page, chapters } = data
-  const { title, body, updatedAt, cover } = page
+  const { title, cover, coverCopyright, body, updatedAt } = page
   const { excerpt, html } = body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle cover={cover}>
+      <PageTitle cover={cover} coverCopyright={coverCopyright}>
         <h1>{title}</h1>
       </PageTitle>
       <PageBody html={html} updated={updatedAt}>
@@ -64,6 +64,7 @@ export const query = graphql`
           ...GatsbyContentfulFluid_withWebp
         }
       }
+      coverCopyright
       body {
         remark: childMarkdownRemark {
           excerpt
