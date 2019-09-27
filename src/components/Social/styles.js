@@ -5,6 +5,8 @@ import { Youtube } from 'styled-icons/fa-brands/Youtube'
 import { LinkedinIn as Linkedin } from 'styled-icons/fa-brands/LinkedinIn'
 import { FacebookF as Facebook } from 'styled-icons/fa-brands/FacebookF'
 import { Github } from 'styled-icons/fa-brands/Github'
+import { Instagram } from 'styled-icons/fa-brands/Instagram'
+import { Twitter } from 'styled-icons/fa-brands/Twitter'
 
 import mediaQuery from '../../utils/mediaQuery'
 
@@ -66,4 +68,6 @@ export const Icons = {
   Linkedin,
   Facebook,
   Github,
+  Instagram,
+  Twitter,
 }

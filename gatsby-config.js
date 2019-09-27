@@ -33,7 +33,16 @@ module.exports = {
               `,
             },
           },
-          `gatsby-remark-embed-video`,
+          {
+            resolve: `gatsby-remark-embed-video`,
+            urlOverrides: [
+              {
+                id: `youtube`,
+                embedURL: videoId =>
+                  `https://www.youtube-nocookie.com/embed/${videoId}`,
+              },
+            ],
+          },
           `gatsby-remark-responsive-iframe`,
           `gatsby-remark-smartypants`,
         ],
