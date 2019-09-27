@@ -2,6 +2,30 @@ const queries = require(`./src/utils/algolia`)
 
 require(`dotenv`).config()
 
+const remarkPlugins = [
+  {
+    resolve: `gatsby-remark-images-contentful`,
+    options: {
+      maxWidth: 1200,
+      linkImagesToOriginal: false,
+      withWebp: true,
+    },
+  },
+  {
+    resolve: `gatsby-remark-embed-video`,
+    options: {
+      urlOverrides: [
+        {
+          id: `youtube`,
+          embedURL: videoId => `https://www.youtube-nocookie.com/embed/${videoId}`,
+        },
+      ],
+    },
+  },
+  `gatsby-remark-responsive-iframe`,
+  `gatsby-remark-smartypants`,
+]
+
 module.exports = {
   siteMetadata: {
     title: `Studenten bilden Schüler`,
@@ -20,19 +44,7 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [
-          {
-            resolve: `gatsby-remark-images-contentful`,
-            options: {
-              maxWidth: 2500,
-              linkImagesToOriginal: false,
-              wrapperStyle: `max-width: none !important;`,
-            },
-          },
-          `gatsby-remark-embed-video`,
-          `gatsby-remark-responsive-iframe`,
-          `gatsby-remark-smartypants`,
-        ],
+        plugins: remarkPlugins,
       },
     },
     `gatsby-plugin-catch-links`,
