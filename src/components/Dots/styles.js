@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components'
 
 export const DotsContainer = styled.div`
   grid-area: dots;
@@ -18,7 +18,7 @@ export const Dot = styled.div`
   height: ${props => props.size};
   width: ${props => props.size};
   background: rgba(0, 0, 0, 0.5);
-  background: ${props => props.active && props.theme.lightGreen};
+  background: ${props => props.active && props.theme.lighterGreen};
   transition: ${props => props.theme.mediumTrans};
   border: 1px solid white;
   :hover {

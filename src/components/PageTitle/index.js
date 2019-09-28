@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { Img, PageTitleContainer, Title } from './styles'
+import { Img, PageTitleDiv, Title } from './styles'
 
 export default function PageTitle({ children, cover, ...rest }) {
   const { fillToBottom, height, className, background } = rest
@@ -17,9 +17,9 @@ export default function PageTitle({ children, cover, ...rest }) {
   const containerProps = { ref, className, minHeight: height > 0 && height }
   if (cover && !cover.fluid) cover.src = cover.file.url
   return (
-    <PageTitleContainer {...containerProps}>
+    <PageTitleDiv {...containerProps}>
       <Title>{children}</Title>
       <Img {...cover}>{background}</Img>
-    </PageTitleContainer>
+    </PageTitleDiv>
   )
 }
