@@ -1,11 +1,10 @@
-import styled, { css } from "styled-components"
-
-import mediaQuery from "../../utils/mediaQuery"
+import styled, { css } from 'styled-components'
+import mediaQuery from '../../utils/mediaQuery'
 
 const imageGrid = css`
   display: grid;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fill, minmax(8em, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
   margin: 2em 0;
   h3 {
     grid-column: 1/-1;
