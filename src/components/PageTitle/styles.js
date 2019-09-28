@@ -1,7 +1,7 @@
 import Image from 'gatsby-image'
 import styled from 'styled-components'
 
-export const PageTitleContainer = styled.hgroup`
+export const PageTitleDiv = styled.hgroup`
   position: relative;
   color: white;
   display: flex;
@@ -17,11 +17,10 @@ export const Title = styled.div`
   font-size: calc(1em + 0.5vw);
   margin: 1em;
   max-width: 30em;
-  justify-self: center;
   padding: 0.1em 0.4em;
   z-index: 2;
   a {
-    color: ${props => props.theme.lightGreen};
+    color: ${props => props.theme.lighterGreen};
   }
   > * {
     background: rgba(0, 0, 0, 0.7);
@@ -41,7 +40,7 @@ export const Img = styled(Image).attrs(
   object-fit: cover;
   background: ${({ theme }) => `linear-gradient(
     10deg,
-    ${theme.lightGreen} 0%,
+    ${theme.lighterGreen} 0%,
     ${theme.darkBlue} 50%,
     ${theme.lightBlue} 100%
   )`};

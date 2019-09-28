@@ -1,11 +1,12 @@
-const theme = {
+export const colors = {
   blue: `#003e90`,
   darkBlue: `#003056`,
   lightBlue: `#00aaff`,
 
   green: `#89ba17`,
   darkGreen: `#008c65`,
-  lightGreen: `#00d69b`,
+  lightGreen: `#95d500`,
+  lighterGreen: `#00d69b`,
 
   yellow: `#f9ff00`,
   darkYellow: `#ffca35`,
@@ -17,7 +18,9 @@ const theme = {
   lighterGray: `#efefef`,
   lightestGray: `#f6f6f6`,
   darkGray: `#2a2c30`,
+}
 
+export const measures = {
   maxWidth: `40em`,
 
   smallBorder: `0.1em`,
@@ -32,5 +35,7 @@ const theme = {
   mediumTrans: `0.6s`,
   longTrans: `1s`,
 }
+
+const theme = { ...colors, ...measures }
 
 export default theme
