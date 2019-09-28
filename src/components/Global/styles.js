@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components'
 import mediaQuery, { screens } from '../../utils/mediaQuery'
 import typography from '../../utils/typography'
+import theme from '../../utils/theme'
+import { titleCase } from '../../utils'
 
 const { phone, desktop } = screens
 const {
@@ -31,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
-    color: ${props => props.theme.blue};
+    color: ${theme.blue};
     :hover {
       color: ${props => props.theme.lightBlue};
     }
@@ -52,5 +54,16 @@ export const GlobalStyle = createGlobalStyle`
     :hover {
       background: ${props => props.theme.lightBlue};
     }
+    ${[`blue`, `green`, `yellow`]
+      .map(
+        color =>
+          `&.${color} {
+        background: ${theme[color]};
+        :hover {
+          background: ${theme[`light` + titleCase(color)]};
+        }
+      }`
+      )
+      .join(`\n`)}
   }
 `
