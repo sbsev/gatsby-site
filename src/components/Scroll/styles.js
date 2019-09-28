@@ -1,12 +1,12 @@
-import styled from "styled-components"
-import { ArrowDownCircle as Down } from "styled-icons/feather/ArrowDownCircle"
-import { ArrowUpCircle as Up } from "styled-icons/feather/ArrowUpCircle"
+import styled from 'styled-components'
+import { ArrowDownCircle as Down } from 'styled-icons/feather/ArrowDownCircle'
+import { ArrowUpCircle as Up } from 'styled-icons/feather/ArrowUpCircle'
 
 export const Arrow = styled(Down).attrs(props => ({
   as: props.direction === `up` && Up,
 }))`
   z-index: 2;
-  background: ${props => props.theme.lightGreen} !important;
+  background: ${props => props.theme.lighterGreen} !important;
   border-radius: 50% !important;
   padding: 0 !important;
   color: white;
