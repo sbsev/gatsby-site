@@ -44,7 +44,8 @@
     "contentful-management": "^5.11.2",
     "eslint": "^6.4.0",
     "eslint-plugin-react": "^7.14.3",
-    "eslint-plugin-react-hooks": "^2.0.1"
+    "eslint-plugin-react-hooks": "^2.0.1",
+    "prettier": "^1.18.2"
   },
   "scripts": {
     "dev": "gatsby develop -o -H 0.0.0.0",
@@ -73,5 +74,10 @@
   ],
   "resolutions": {
     "sharp": "0.22.1"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true
   }
 }
