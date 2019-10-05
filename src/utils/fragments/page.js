@@ -1,4 +1,4 @@
-import { graphql } from "gatsby"
+import { graphql } from 'gatsby'
 
 export const query = graphql`
   fragment pageFields on ContentfulPage {
@@ -11,6 +11,11 @@ export const query = graphql`
     cover {
       fluid(maxWidth: 1800) {
         ...GatsbyContentfulFluid_withWebp
+      }
+    }
+    caption {
+      remark: childMarkdownRemark {
+        html
       }
     }
     body {
