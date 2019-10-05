@@ -5,7 +5,7 @@ import Global from '../components/Global'
 import PageTitle from '../components/PageTitle'
 import Map from '../components/Map'
 import PageBody from '../components/PageBody'
-import Grid from '../components/styles/Grid'
+import { Grid } from '../components/styles'
 
 const addMarkers = chapters => map => {
   chapters.forEach(({ node }, index) => {
@@ -34,11 +34,11 @@ const mapProps = chapters => ({
 
 export default function ChaptersPage({ data, location }) {
   const { page, chapters } = data
-  const { title, cover, coverCopyright, body, updatedAt } = page
+  const { title, cover, caption, body, updatedAt } = page
   const { excerpt, html } = body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle cover={cover} coverCopyright={coverCopyright}>
+      <PageTitle cover={cover} caption={caption}>
         <h1>{title}</h1>
       </PageTitle>
       <PageBody html={html} updated={updatedAt}>
@@ -58,20 +58,7 @@ export default function ChaptersPage({ data, location }) {
 export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "standorte" }) {
-      title
-      cover {
-        fluid(maxWidth: 1800) {
-          ...GatsbyContentfulFluid_withWebp
-        }
-      }
-      coverCopyright
-      body {
-        remark: childMarkdownRemark {
-          excerpt
-          html
-        }
-      }
-      updatedAt(formatString: "D. MMM YYYY", locale: "de")
+      ...pageFields
     }
     chapters: allContentfulChapter(
       filter: { active: { eq: true } }
