@@ -1,6 +1,7 @@
-import styled, { css } from "styled-components"
+import styled, { css } from 'styled-components'
 
 export const Caption = styled.figcaption`
+  z-index: 2;
   position: absolute;
   bottom: 0;
   right: 1em;
@@ -17,6 +18,9 @@ export const Caption = styled.figcaption`
     :hover {
       color: ${props => props.theme.orange};
     }
+  }
+  > p:first-child {
+    margin: 0;
   }
   ${props =>
     props.showOnHoverParent &&
