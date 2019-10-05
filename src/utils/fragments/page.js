@@ -16,6 +16,11 @@ export const query = graphql`
         html
       }
     }
+    caption {
+      remark: childMarkdownRemark {
+        html
+      }
+    }
     body {
       remark: childMarkdownRemark {
         excerpt
