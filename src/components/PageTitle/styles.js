@@ -1,3 +1,4 @@
+import Image from 'gatsby-image'
 import styled from 'styled-components'
 
 export const PageTitleDiv = styled.hgroup`
@@ -6,9 +7,8 @@ export const PageTitleDiv = styled.hgroup`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 65vh;
-  flex: 1; /* for filling height between header and footer on 404 page */
-  overflow: hidden;
+  min-height: 60vh;
+  flex: 1; /* For filling height between header and footer on 404 page */
 `
 
 export const Title = styled.div`
@@ -24,7 +24,21 @@ export const Title = styled.div`
   > * {
     background: rgba(0, 0, 0, 0.7);
     border-radius: ${props => props.theme.smallBorderRadius};
-    justify-self: center;
     padding: 0.1em 0.4em;
   }
+`
+
+export const Img = styled(Image).attrs(
+  ({ fluid, src }) => !fluid && { as: src ? `img` : `div` }
+)`
+  position: absolute !important;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: ${({ theme }) => `linear-gradient(
+    10deg,
+    ${theme.lighterGreen} 0%,
+    ${theme.darkBlue} 50%,
+    ${theme.lightBlue} 100%
+  )`};
 `
