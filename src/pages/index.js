@@ -70,14 +70,14 @@ const bg = (slides, subtitle) => (
 
 export default function IndexPage({ data, location }) {
   const { page, slideshow, updatedAt } = data
-  const { title, subtitle, body, coverCopyright } = page
+  const { title, subtitle, body, caption } = page
   const { excerpt, html } = body && body.remark
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle
         fillToBottom
         background={bg(slideshow.slides, subtitle)}
-        coverCopyright={coverCopyright}
+        caption={caption}
       >
         <Scroll direction="down" to={1} css="bottom: 2em;" />
       </PageTitle>
@@ -90,7 +90,6 @@ export const query = graphql`
   {
     page: contentfulPage(slug: { eq: "/" }) {
       ...pageFields
-      coverCopyright
     }
     slideshow: contentfulSlideshow(title: { eq: "Landing Page" }) {
       slides {
