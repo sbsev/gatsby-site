@@ -12,24 +12,32 @@ To get this site running locally, you need [`git`](https://git-scm.com), [`gatsb
 
 1. Clone the repo to your machine and change into its directory.
 
-    ```sh
-    git clone https://github.com/StudentenBildenSchueler/sbs-homepage
-    && sbs-homepage
-    && git config core.hooksPath src/utils/gitHooks
-    && chmod +x src/utils/gitHooks/pre-commit
-    ```
+   ```sh
+   git clone https://github.com/StudentenBildenSchueler/sbs-homepage
+   && sbs-homepage
+   && git config core.hooksPath src/utils/gitHooks
+   && chmod -R u+x src/utils/gitHooks
+   ```
 
 2. Install dependencies.
 
-    ```sh
-    yarn
-    ```
+   ```sh
+   yarn
+   ```
 
-3. Start the dev server.
+3. Copy `.env.example` file and rename it `.env`.
 
-    ```sh
-    gatsby develop
-    ```
+   ```sh
+   cp .env.example .env
+   ```
+
+   Then open `.env` and insert your [Contentful space ID and access token](https://contentful.com/developers/docs/references/authentication). Those are found in the settings menu of your Contentful space under 'API keys'.
+
+4. Start the dev server.
+
+   ```sh
+   gatsby develop
+   ```
 
 ## Deployment
 
@@ -39,18 +47,18 @@ The easiest way to get this site published is as follows:
 2. Install the [`netlify-cli`](https://netlify.com/docs/cli).
 3. Login to your account.
 
-    ```sh
-    netlify login
-    ```
+   ```sh
+   netlify login
+   ```
 
 4. Connect your GitHub repo with your netlify account for [continuous deployment](https://netlify.com/docs/cli/#continuous-deployment).
 
-    ```sh
-    netlify init
-    ```
+   ```sh
+   netlify init
+   ```
 
 5. Finally deploy the site with
 
-    ```sh
-    netlify deploy
-    ```
+   ```sh
+   netlify deploy
+   ```
