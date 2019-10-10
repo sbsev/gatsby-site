@@ -23,7 +23,15 @@ To get this site running locally, you need [`git`](https://git-scm.com), [`gatsb
     yarn
     ```
 
-3. Start the dev server.
+3. Copy `.env.example` file and rename it `.env`.
+
+    ```sh
+    cp .env.example .env
+    ```
+
+    Then open `.env` and insert your [Contentful space ID and access token](https://www.contentful.com/developers/docs/references/authentication). Those are found in the settings menu of your Contentful space under 'API keys'.
+
+4. Start the dev server.
 
     ```sh
     gatsby develop
