@@ -15,7 +15,7 @@ const query = graphql`
 `
 
 function getBrowser() {
-  // Adapted from https://stackoverflow.com/a/53149880/4034025.
+  // Adapted from https://stackoverflow.com/a/53149880.
   if (typeof window === `undefined`) return {}
   const ua = navigator.userAgent
   const nameRegex = /(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i
