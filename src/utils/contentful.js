@@ -15,17 +15,17 @@ const contentTypes = {
 }
 
 const remitsObj = {
-  "Bereich Schüler": `3ybUw5CuVDEUVlPpIXFe2o`,
-  "Bereich Werbung": `5exXIke6fVaIcw7J0UwaVr`,
+  'Bereich Schüler': `3ybUw5CuVDEUVlPpIXFe2o`,
+  'Bereich Werbung': `5exXIke6fVaIcw7J0UwaVr`,
   Rechtliches: `1cPkDSwTtmEQw9FbeYh4Mp`,
   Standortbetreuung: `27vwDJpxvou7rpcdtrOHmv`,
   Finanzen: `4hU4elsfwhidQBG7HyhvLk`,
-  "Bereich Studenten": `76EQV8eBOiXo3j9bZ5nufX`,
+  'Bereich Studenten': `76EQV8eBOiXo3j9bZ5nufX`,
   Öffentlichkeitsarbeit: `1kxzQ60YPTHZeYOkKbAzhn`,
   Mitgliederverwaltung: `6XWs2RZ9g8vCY2s8vBHmIJ`,
   Fundraising: `5CTeYl2gLQUprtEdQXkMRB`,
   IT: `2Q0v3tDnxhNfU0PtCTWFZo`,
-  "Stellv. Vorsitz": `3eFJHmdoXIrxtivLRdb0sX`,
+  'Stellv. Vorsitz': `3eFJHmdoXIrxtivLRdb0sX`,
   Vorsitz: `6c5EARdwrF6fndz9ArTN4U`,
 }
 
@@ -64,10 +64,7 @@ const createPeople = () =>
         .map(item => {
           const body = item.fields.body.de
           const title = item.fields.title.de
-          if (
-            body.includes(`<span id="heads">`) &&
-            title !== `Bundesvorstand`
-          ) {
+          if (body.includes(`<span id="heads">`) && title !== `Bundesvorstand`) {
             let index = -1
             if (!body.split(`[1]:`)[1]) return undefined
             const refs = body

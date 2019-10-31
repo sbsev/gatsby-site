@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import { DotsContainer, Dot } from "./styles"
+import { DotsContainer, Dot } from './styles'
 
 const Dots = ({ length, current, onClick, size = `0.8em`, dots }) => (
   <DotsContainer dots={dots}>

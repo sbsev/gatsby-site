@@ -1,12 +1,12 @@
-import React from "react"
+import React from 'react'
 
-import { UserEdit } from "styled-icons/fa-solid/UserEdit"
-import { Email } from "styled-icons/material/Email"
-import { Link } from "styled-icons/boxicons-regular/Link"
-import { Calendar } from "styled-icons/octicons/Calendar"
-import { Timer } from "styled-icons/material/Timer"
+import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
+import { Email } from 'styled-icons/material/Email'
+import { Link } from 'styled-icons/boxicons-regular/Link'
+import { Calendar } from 'styled-icons/octicons/Calendar'
+import { Timer } from 'styled-icons/material/Timer'
 
-import { Meta, AuthorPhoto } from "./styles"
+import { Meta, AuthorPhoto } from './styles'
 
 export default function PostExcerpt({ timeToRead, author, date, inTitle }) {
   return (
