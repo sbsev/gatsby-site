@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react"
-import { StaticQuery, graphql } from "gatsby"
-import PropTypes from "prop-types"
+import React, { useState, useEffect } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import PropTypes from 'prop-types'
 
-import mediaQuery from "../../utils/mediaQuery"
+import mediaQuery from '../../utils/mediaQuery'
 
-import MobileNav from "./Mobile"
-import DesktopNav from "./Desktop"
+import MobileNav from './Mobile'
+import DesktopNav from './Desktop'
 
-export { navLinkStyle, NavLink } from "./styles"
+export { navLinkStyle, NavLink } from './styles'
 
 const Nav = props => {
   if (typeof window !== `undefined`) {
     const query = window.matchMedia(mediaQuery.maxNetbookJs)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [mobile, setMobile] = useState(query.matches ? true : false)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       const handleMatch = mq => setMobile(mq.matches ? true : false)
       query.addListener(handleMatch)
