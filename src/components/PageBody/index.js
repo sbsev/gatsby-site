@@ -1,6 +1,6 @@
-import React from "react"
+import React from 'react'
 
-import { Body, Updated } from "./styles"
+import { Body, Updated } from './styles'
 
 const PageBody = ({ children, html, updated }) => (
   <Body>

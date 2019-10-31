@@ -1,13 +1,13 @@
-import styled, { css } from "styled-components"
-import Img from "gatsby-image"
+import styled, { css } from 'styled-components'
+import Img from 'gatsby-image'
 
 const inExcerpt = css`
   display: grid;
   grid-gap: 0 1em;
   grid-template-areas:
-    "photo author"
-    "photo date"
-    "photo readtime";
+    'photo author'
+    'photo date'
+    'photo readtime';
   grid-template-columns: max-content 1fr;
   margin-bottom: 0.5em;
   align-items: center;

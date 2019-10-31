@@ -12,8 +12,7 @@ const filterPostsByTag = (tag, posts) =>
     ? posts
     : posts.filter(({ node }) => node.tags.map(tag => tag.slug).includes(tag))
 
-const readActiveTagFromUrl = urlParams =>
-  urlParams.replace(/.*tag=([^&]+).*/, `$1`)
+const readActiveTagFromUrl = urlParams => urlParams.replace(/.*tag=([^&]+).*/, `$1`)
 
 export default function BlogPage({ data, location }) {
   const { posts, tags, cover } = data

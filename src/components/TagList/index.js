@@ -1,6 +1,6 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 
-import { TagGrid, Toggle, Tag, TagsIcon, TagIcon } from "./styles"
+import { TagGrid, Toggle, Tag, TagsIcon, TagIcon } from './styles'
 
 const TagList = ({ tags, activeTag, setTag }) => {
   const [open, setOpen] = useState(false)

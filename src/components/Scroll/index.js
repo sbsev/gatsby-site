@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 
-import { Arrow } from "./styles"
+import { Arrow } from './styles'
 
 export default function Scroll({ direction = `up`, by, to, ...rest }) {
   const { showBelow, className, size = `calc(0.6em + 30px)` } = rest

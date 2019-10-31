@@ -5,13 +5,19 @@ import theme from '../../utils/theme'
 import { titleCase } from '../../utils'
 
 const { phone, desktop } = screens
-const {
-  fonts,
-  minFontSize,
-  maxFontSize,
-  minLineHeight,
-  maxLineHeight,
-} = typography
+const { fonts, minFontSize, maxFontSize, minLineHeight, maxLineHeight } = typography
+
+const btnColors = [`blue`, `green`, `yellow`]
+  .map(
+    color =>
+      `&.${color} {
+      background: ${theme[color]};
+      :hover {
+        background: ${theme[`light` + titleCase(color)]};
+      }
+    }`
+  )
+  .join(`\n`)
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -54,16 +60,6 @@ export const GlobalStyle = createGlobalStyle`
     :hover {
       background: ${props => props.theme.lightBlue};
     }
-    ${[`blue`, `green`, `yellow`]
-      .map(
-        color =>
-          `&.${color} {
-        background: ${theme[color]};
-        :hover {
-          background: ${theme[`light` + titleCase(color)]};
-        }
-      }`
-      )
-      .join(`\n`)}
+    ${btnColors}
   }
 `
