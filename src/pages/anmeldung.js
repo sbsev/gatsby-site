@@ -1,10 +1,10 @@
-import React, { useRef, useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import React, { useRef, useState, useEffect } from 'react'
+import { graphql } from 'gatsby'
 
-import Global from "../components/Global"
-import PageTitle from "../components/PageTitle"
-import PageBody from "../components/PageBody"
-import { ButtonGroup } from "../components/styles"
+import Global from '../components/Global'
+import PageTitle from '../components/PageTitle'
+import PageBody from '../components/PageBody'
+import { ButtonGroup } from '../components/styles'
 
 const forms = {
   students: `shr4s9vHgtEfQ9bSN`,
@@ -40,9 +40,7 @@ export default function SignupPage({ data, location }) {
     window.addEventListener(`message`, embedResizeHandler(ref))
     return () => window.removeEventListener(`message`, embedResizeHandler(ref))
   })
-  const iFrameSrc = `https://airtable.com/embed/${
-    forms[form]
-  }?prefill_Standort=${chapter}`
+  const iFrameSrc = `https://airtable.com/embed/${forms[form]}?prefill_Standort=${chapter}`
   const buttonProps = formName => ({
     className: form === formName ? `active` : null,
     onClick: handleButtonClick(setForm)(formName),

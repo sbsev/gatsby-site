@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from 'react'
 
-import Dots from "../Dots"
-import { Slides, Slide } from "./styles"
+import Dots from '../Dots'
+import { Slides, Slide } from './styles'
 
 export default function Slideshow({ children, ...rest }) {
   const { duration = 5, showDots = true, content } = rest
