@@ -50,30 +50,28 @@ const postQuery = `{
   }
 }`
 
+const flatten = arr =>
+  arr.map(({ node: { body, ...rest } }) => ({
+    ...body.remark,
+    ...rest,
+  }))
+const settings = { attributesToSnippet: [`excerpt:20`] }
+
 const queries = [
   {
     indexName: `Pages`,
     query: pageQuery,
     transformer: ({ data }) =>
-      data.pages.edges.map(({ node: { body, ...rest } }) =>
-        [`Fehler 404`].includes(rest.title)
-          ? {}
-          : {
-            ...body.remark,
-            ...rest,
-          }
+      flatten(
+        data.pages.edges.filter(page => ![`Fehler 404`].includes(page.node.title))
       ),
-    settings: { attributesToSnippet: [`excerpt:20`] },
+    settings,
   },
   {
     indexName: `Posts`,
     query: postQuery,
-    transformer: ({ data }) =>
-      data.posts.edges.map(({ node: { body, ...rest } }) => ({
-        ...body.remark,
-        ...rest,
-      })),
-    settings: { attributesToSnippet: [`excerpt:20`] },
+    transformer: ({ data }) => flatten(data.posts.edges),
+    settings,
   },
 ]
 
