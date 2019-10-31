@@ -1,7 +1,7 @@
-import React from "react"
+import React from 'react'
 
-import Person from "../Person"
-import { Wrapper } from "./styles"
+import Person from '../Person'
+import { Wrapper } from './styles'
 
 const People = ({ people }) => (
   <Wrapper>

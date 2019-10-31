@@ -1,5 +1,5 @@
-import styled from "styled-components"
-import Image from "gatsby-image"
+import styled from 'styled-components'
+import Image from 'gatsby-image'
 
 export const PersonContainer = styled.div`
   text-align: center;

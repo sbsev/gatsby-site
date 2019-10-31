@@ -1,9 +1,9 @@
-import React from "react"
-import { CalendarDay } from "styled-icons/fa-solid/CalendarDay"
-import { Link } from "styled-icons/boxicons-regular/Link"
-import { Email } from "styled-icons/material/Email"
+import React from 'react'
+import { CalendarDay } from 'styled-icons/fa-solid/CalendarDay'
+import { Link } from 'styled-icons/boxicons-regular/Link'
+import { Email } from 'styled-icons/material/Email'
 
-import { PersonContainer, Details, Img, Remits, Name } from "./styles"
+import { PersonContainer, Details, Img, Remits, Name } from './styles'
 
 const Person = ({ name, remits, photo, bio, email, homepage, dateJoined }) => (
   <PersonContainer>

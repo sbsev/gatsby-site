@@ -1,7 +1,7 @@
 import React from 'react'
 
 import PostExcerpt from '../PostExcerpt'
-import Grid from '../styles/Grid'
+import { Grid } from '../styles'
 import { PostListContainer } from './styles'
 
 const PostList = ({ posts, ...rest }) => (
