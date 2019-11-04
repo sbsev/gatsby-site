@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import ResizeObserver from 'resize-observer-polyfill'
-import { useClickOutside } from '../../../utils/hooks'
+import { useClickOutside } from 'utils/hooks'
 import { Children, Closer, Icons, Menu, MobileNavDiv, NavLink } from './styles'
 
 export const useSize = (ref, quantity) => {

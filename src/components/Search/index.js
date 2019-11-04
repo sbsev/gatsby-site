@@ -7,7 +7,7 @@ import {
 } from 'react-instantsearch-dom'
 import algoliasearch from 'algoliasearch/lite'
 
-import { useClickOutside } from '../../utils/hooks'
+import { useClickOutside } from 'utils/hooks'
 import { Root, HitsWrapper, PoweredBy } from './styles'
 import Input from './Input'
 import * as hitComps from './hitComps'
