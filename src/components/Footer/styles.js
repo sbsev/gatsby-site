@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from 'utils/mediaQuery'
 
 export const FooterContainer = styled.div`
   background: ${props => props.theme.darkBlue};

@@ -2,11 +2,11 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import React from 'react'
 import styled from 'styled-components'
-import Global from '../components/Global'
-import PageBody from '../components/PageBody'
-import PageTitle from '../components/PageTitle'
-import Scroll from '../components/Scroll'
-import Slideshow from '../components/Slideshow'
+import Global from 'components/Global'
+import PageBody from 'components/PageBody'
+import PageTitle from 'components/PageTitle'
+import Scroll from 'components/Scroll'
+import Slideshow from 'components/Slideshow'
 
 const Content = styled.div`
   text-align: center;
