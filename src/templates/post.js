@@ -1,10 +1,10 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import PostMeta from '../components/PostMeta'
-import PageBody from '../components/PageBody'
+import Global from 'components/Global'
+import PageTitle from 'components/PageTitle'
+import PostMeta from 'components/PostMeta'
+import PageBody from 'components/PageBody'
 
 export default function PostTemplate({ data, location }) {
   const { title, author, date, cover, body } = data.post

@@ -1,11 +1,11 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import Map from '../components/Map'
-import PageBody from '../components/PageBody'
-import { Grid } from '../components/styles'
+import Global from 'components/Global'
+import PageTitle from 'components/PageTitle'
+import Map from 'components/Map'
+import PageBody from 'components/PageBody'
+import { Grid } from 'components/styles'
 
 const addMarkers = chapters => map => {
   chapters.forEach(({ node }, index) => {
