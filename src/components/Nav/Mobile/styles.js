@@ -5,7 +5,7 @@ import { KeyboardArrowDown as More } from 'styled-icons/material/KeyboardArrowDo
 import { KeyboardArrowRight as Arrow } from 'styled-icons/material/KeyboardArrowRight'
 import { KeyboardArrowUp as Less } from 'styled-icons/material/KeyboardArrowUp'
 import { ThMenu } from 'styled-icons/typicons/ThMenu'
-import mediaQuery from '../../../utils/mediaQuery'
+import mediaQuery from 'utils/mediaQuery'
 import { NavLink } from '../styles'
 
 export { NavLink }

@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 import { Link } from 'gatsby'
 
-import mediaQuery from '../../utils/mediaQuery'
-import Owl from '../../assets/logo'
+import mediaQuery from 'utils/mediaQuery'
+import Owl from 'assets/logo'
 import { navLinkStyle } from '../Nav'
 
 export const HeaderContainer = styled.header`

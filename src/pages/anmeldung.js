@@ -1,10 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react'
 import { graphql } from 'gatsby'
 
-import Global from '../components/Global'
-import PageTitle from '../components/PageTitle'
-import PageBody from '../components/PageBody'
-import { ButtonGroup } from '../components/styles'
+import Global from 'components/Global'
+import PageTitle from 'components/PageTitle'
+import PageBody from 'components/PageBody'
+import { ButtonGroup } from 'components/styles'
 
 const forms = {
   students: `shr4s9vHgtEfQ9bSN`,
