@@ -68,4 +68,29 @@ export const GlobalStyle = createGlobalStyle`
     display: inline-block;
     vertical-align: middle;
   }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  table td, table th {
+    border: 1px solid ${props => props.theme.lightGray};
+    padding: 0.4em 0.8em;
+  }
+  tbody tr:nth-child(odd) {
+    background: ${props => props.theme.lightestGray};
+  }
+  div.scroll {
+    overflow: scroll;
+    margin: 1em auto;
+    border: 1px solid ${props => props.theme.lightGray};
+    border-width: 0 1px;
+    table td, table th {
+      :first-child {
+        border-left: none;
+      }
+      :last-child {
+        border-right: none;
+      }
+    }
+  }
 `
