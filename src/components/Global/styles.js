@@ -47,4 +47,10 @@ export const GlobalStyle = createGlobalStyle`
       background: ${props => props.theme.lightBlue};
     }
   }
+  .inline-img {
+    height: 1.6em;
+    width: 1.6em;
+    display: inline-block;
+    vertical-align: middle;
+  }
 `
