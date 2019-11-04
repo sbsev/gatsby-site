@@ -8,7 +8,7 @@ import { Github } from 'styled-icons/fa-brands/Github'
 import { Instagram } from 'styled-icons/fa-brands/Instagram'
 import { Twitter } from 'styled-icons/fa-brands/Twitter'
 
-import mediaQuery from '../../utils/mediaQuery'
+import mediaQuery from 'utils/mediaQuery'
 
 export const Wrapper = styled.div`
   position: relative;
