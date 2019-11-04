@@ -62,4 +62,10 @@ export const GlobalStyle = createGlobalStyle`
     }
     ${btnColors}
   }
+  .inline-img {
+    height: 1.6em;
+    width: 1.6em;
+    display: inline-block;
+    vertical-align: middle;
+  }
 `
