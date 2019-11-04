@@ -2,3 +2,7 @@
   from = "https://studenten-bilden-schueler.netlify.com/*"
   to = "https://studenten-bilden-schueler.de/:splat"
   force = true
+
+[build.environment]
+  NODE_VERSION = "12.12.0"
+  YARN_VERSION = "1.19.1"
