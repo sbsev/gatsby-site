@@ -8,8 +8,8 @@ import Search from '../Search'
 import { HeaderContainer, Logo, SiteTitle } from './styles'
 
 const searchIndices = [
-  { name: `Pages`, title: `Seiten`, hitComp: `PageHit` },
-  { name: `Posts`, title: `Blog`, hitComp: `PostHit` },
+  { name: `Pages`, title: `Seiten` },
+  { name: `Posts`, title: `Blog`, type: `postHit` },
 ]
 
 const Header = ({ site }) => (
