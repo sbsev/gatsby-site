@@ -1,20 +1,17 @@
-import React, { useState, createRef, useMemo } from 'react'
-import {
-  InstantSearch,
-  Index,
-  Hits,
-  connectStateResults,
-} from 'react-instantsearch-dom'
 import algoliasearch from 'algoliasearch/lite'
-
-import { useClickOutside } from 'utils/hooks'
-import { Root, HitsWrapper, PoweredBy } from './styles'
+import React, { createRef, useMemo, useState } from 'react'
+import { connectStateResults, Index, InstantSearch } from 'react-instantsearch-dom'
+import { useOnClickOutside } from 'utils/hooks'
+import Hits from './Hits'
 import Input from './Input'
-import * as hitComps from './hitComps'
+import { HitsWrapper, PoweredBy, Root } from './styles'
 
 const Results = connectStateResults(
-  ({ searchState: state, searchResults: res, children }) =>
-    res && res.nbHits > 0 ? children : `Keine Ergebnisse für '${state.query}'`
+  ({ searching, searchState: state, searchResults: res }) =>
+    (searching && <div>Suche läuft...</div>) ||
+    (res && res.nbHits === 0 && (
+      <div>Keine Ergebnisse für &apos;{state.query}&apos;</div>
+    ))
 )
 
 const Stats = connectStateResults(
@@ -25,7 +22,6 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
   const ref = createRef()
   const [query, setQuery] = useState(``)
   const [focus, setFocus] = useState(false)
-
   const appId = process.env.GATSBY_ALGOLIA_APP_ID
   const searchKey = process.env.GATSBY_ALGOLIA_SEARCH_KEY
   // useMemo prevents the searchClient from being recreated on every render.
@@ -34,8 +30,7 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
     appId,
     searchKey,
   ])
-  const focusFalse = () => setFocus(false)
-  useClickOutside(ref, focusFalse)
+  useOnClickOutside(ref, () => setFocus(false))
   return (
     <Root ref={ref}>
       <InstantSearch
@@ -45,15 +40,14 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
       >
         <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
         <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
-          {indices.map(({ name, title, hitComp }) => (
+          {indices.map(({ name, title, type }) => (
             <Index key={name} indexName={name}>
               <header>
                 <h3>{title}</h3>
                 <Stats />
               </header>
-              <Results>
-                <Hits hitComponent={hitComps[hitComp](focusFalse)} />
-              </Results>
+              <Results />
+              <Hits type={type} onClick={() => setFocus(false)} />
             </Index>
           ))}
           <PoweredBy />
