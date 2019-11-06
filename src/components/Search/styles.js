@@ -66,7 +66,12 @@ export const Form = styled.form`
   align-items: center;
 `
 
-const hitsList = css`
+export const HitsWrapper = styled.div`
+  display: ${props => (props.show ? `grid` : `none`)};
+  background: white;
+  max-height: 80vh;
+  overflow: scroll;
+  z-index: 2;
   position: absolute;
   right: 0;
   top: calc(100% + 0.5em);
@@ -74,63 +79,35 @@ const hitsList = css`
   max-width: 30em;
   box-shadow: 0 0 5px 0;
   padding: 0.7em 1em 0.4em;
-  background: white;
   border-radius: ${props => props.theme.smallBorderRadius};
-  > * + * {
-    padding-top: 1em !important;
-    border-top: 2px solid ${props => props.theme.darkGray};
-  }
-  li + li {
-    margin-top: 0.7em;
-    padding-top: 0.7em;
-    border-top: 1px solid ${props => props.theme.lightGray};
-  }
-`
-
-const hitsGrid = css`
-  ul {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(15em, 1fr));
-    grid-gap: 1em;
-    li {
-      padding: 0.3em 0.5em;
-      background: ${props => props.theme.lighterGray};
-      border-radius: ${props => props.theme.smallBorderRadius};
-    }
-  }
-`
-
-export const HitsWrapper = styled.div`
-  display: ${props => (props.show ? `grid` : `none`)};
-  max-height: 80vh;
-  overflow: scroll;
-  z-index: 2;
-  -webkit-overflow-scrolling: touch;
-  ${props => (props.asGrid ? hitsGrid : hitsList)};
   * {
     margin-top: 0;
-    padding: 0;
   }
-  ul {
-    list-style: none;
+  > div {
+    padding-top: 0.6em;
+  }
+  div + div {
+    margin-top: 0.6em;
+    border-top: 1px solid ${props => props.theme.lightGray};
   }
   mark {
-    color: ${props => props.theme.lightBlue};
-    background: ${props => props.theme.darkBlue};
+    color: ${props => props.theme.lighterBlue};
+    background: ${props => props.theme.darkerBlue};
   }
   header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 0.3em;
+    border-bottom: 2px solid ${props => props.theme.darkGray};
     h3 {
       color: white;
       background: ${props => props.theme.orange};
       padding: 0.1em 0.4em;
       border-radius: ${props => props.theme.smallBorderRadius};
+      margin-bottom: 0.3em;
     }
   }
-  h3 {
-    margin: 0 0 0.5em;
+  * + header {
+    padding-top: 1em;
   }
   h4 {
     margin-bottom: 0.3em;

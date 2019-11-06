@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import { animated, useSpring } from 'react-spring'
 import ResizeObserver from 'resize-observer-polyfill'
-import { useClickOutside } from 'utils/hooks'
+import { useOnClickOutside } from 'utils/hooks'
 import { Children, Closer, Icons, Menu, MobileNavDiv, NavLink } from './styles'
 
 export const useSize = (ref, quantity) => {
@@ -49,7 +49,7 @@ export default function MobileNav({ nav }) {
   const ref = useRef()
   const [open, setOpen] = useState(false)
   const toggleNav = () => setOpen(!open)
-  useClickOutside(ref, () => open && setOpen(false))
+  useOnClickOutside(ref, () => open && setOpen(false))
   return (
     <>
       <Menu onClick={toggleNav} />
