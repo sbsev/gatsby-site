@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { TagGrid, Toggle, Tag, TagsIcon, TagIcon } from './styles'
 
-const TagList = ({ tags, activeTag, setTag }) => {
+export default function TagList({ tags, activeTag, setTag }) {
   const [open, setOpen] = useState(false)
   return (
     <TagGrid open={open}>
@@ -25,5 +25,3 @@ const TagList = ({ tags, activeTag, setTag }) => {
     </TagGrid>
   )
 }
-
-export default TagList
