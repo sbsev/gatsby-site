@@ -4,10 +4,11 @@ import { graphql } from 'gatsby'
 import Global from 'components/Global'
 import PageTitle from 'components/PageTitle'
 import PageBody from 'components/PageBody'
+import Toc from 'components/Toc'
 
 export default function PageTemplate({ data, location }) {
   const { page, updatedAt } = data
-  const { title, subtitle, cover, caption, body } = page
+  const { title, subtitle, cover, caption, toc, body } = page
   const { excerpt, html } = (body && body.remark) || { excerpt: ``, html: `` }
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
@@ -21,7 +22,11 @@ export default function PageTemplate({ data, location }) {
           />
         )}
       </PageTitle>
-      {html && <PageBody html={html} updated={updatedAt} />}
+      {html && (
+        <PageBody html={html} updated={updatedAt}>
+          {toc && <Toc />}
+        </PageBody>
+      )}
     </Global>
   )
 }
