@@ -21,6 +21,7 @@ export const query = graphql`
         html
       }
     }
+    toc
     body {
       remark: childMarkdownRemark {
         excerpt
