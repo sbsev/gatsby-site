@@ -1,7 +1,7 @@
 import algoliasearch from 'algoliasearch/lite'
 import React, { createRef, useMemo, useState } from 'react'
 import { connectStateResults, Index, InstantSearch } from 'react-instantsearch-dom'
-import { useOnClickOutside } from 'utils/hooks'
+import { useOnClickOutside } from 'hooks'
 import Hits from './Hits'
 import Input from './Input'
 import { HitsWrapper, PoweredBy, Root } from './styles'
@@ -18,7 +18,7 @@ const Stats = connectStateResults(
   ({ searchResults: res }) => res && res.nbHits > 0 && `${res.nbHits} Treffer`
 )
 
-export default function Search({ indices, collapse, hitsAsGrid }) {
+export default function Search({ indices, collapse }) {
   const ref = createRef()
   const [query, setQuery] = useState(``)
   const [focus, setFocus] = useState(false)
@@ -39,7 +39,7 @@ export default function Search({ indices, collapse, hitsAsGrid }) {
         onSearchStateChange={({ query }) => setQuery(query)}
       >
         <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
-        <HitsWrapper show={query.length > 0 && focus} asGrid={hitsAsGrid}>
+        <HitsWrapper show={query.length > 0 && focus}>
           {indices.map(({ name, title, type }) => (
             <Index key={name} indexName={name}>
               <header>
