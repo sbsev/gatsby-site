@@ -24,6 +24,7 @@ const remarkPlugins = [
   },
   `gatsby-remark-responsive-iframe`,
   `gatsby-remark-smartypants`,
+  `gatsby-remark-autolink-headers`,
 ]
 
 module.exports = {
