@@ -36,15 +36,43 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
   .btn {
-    background: ${props => props.theme.darkBlue};
+    display: inline-block;
+    margin: 0.5em;
+    background: ${p => p.theme.darkBlue};
     color: white !important;
-    border-radius: ${props => props.theme.smallBorderRadius};
+    a {
+      color: white !important;
+    }
+    border-radius: 0.2em;
     padding: 0.4em 0.6em;
-    font-size: ${props => props.size};
-    transition: ${props => props.theme.shortTrans};
-    margin: 0 auto;
+    transition: 0.3s;
     :hover {
-      background: ${props => props.theme.lightBlue};
+      transform: scale(1.03);
+      background: ${p => p.theme.blue};
+    }
+    &.green {
+      background: ${p => p.theme.green};
+      :hover {
+        background: ${p => p.theme.lightGreen};
+      }
+    }
+    &.orange {
+      background: ${p => p.theme.orange};
+      :hover {
+        background: ${p => p.theme.lightOrange};
+      }
+    }
+    &.block {
+      display: block;
+      margin: 0 auto;
+      width: fit-content;
+    }
+    &.medium {
+      font-size: 1.4em;
+    }
+    &.large {
+      font-size: 1.6em;
+      margin: 1.2em auto;
     }
   }
   .inline-img {
