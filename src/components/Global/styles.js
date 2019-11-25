@@ -2,21 +2,12 @@ import { createGlobalStyle } from 'styled-components'
 import mediaQuery, { screens } from 'utils/mediaQuery'
 import typography from 'utils/typography'
 import theme from 'utils/theme'
-import { titleCase } from 'utils'
 
 const { phone, desktop } = screens
 const { fonts, minFontSize, maxFontSize, minLineHeight, maxLineHeight } = typography
 
 const btnColors = [`blue`, `green`, `yellow`]
-  .map(
-    color =>
-      `&.${color} {
-      background: ${theme[color]};
-      :hover {
-        background: ${theme[`light` + titleCase(color)]};
-      }
-    }`
-  )
+  .map(color => `&.${color} { background: ${theme[color]}; }`)
   .join(`\n`)
 
 export const GlobalStyle = createGlobalStyle`
@@ -58,9 +49,15 @@ export const GlobalStyle = createGlobalStyle`
     transition: ${props => props.theme.shortTrans};
     margin: 0 auto;
     :hover {
-      background: ${props => props.theme.lightBlue};
+      transform: scale(1.05);
     }
     ${btnColors}
+    .medium {
+      font-size: 1.4em;
+    }
+    .large {
+      font-size: 1.7em;
+    }
   }
   .inline-img {
     height: 1.6em;
