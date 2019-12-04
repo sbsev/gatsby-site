@@ -25,7 +25,7 @@ const mapProps = chapters => ({
   options: {
     center: { lat: 51, lng: 10 },
     zoom:
-      // checking for window so as not to throw during server-side rendering
+      // Checking for window so as not to throw during server-side rendering.
       typeof window !== `undefined` &&
       5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
   },
@@ -36,21 +36,24 @@ export default function ChaptersPage({ data, location }) {
   const { page, chapters } = data
   const { title, cover, caption, body, updatedAt } = page
   const { excerpt, html } = body.remark
+  const mainChildren = (
+    <>
+      <Map {...mapProps(chapters.edges)} />
+      <Grid gap="0 2em" as="ol" minWidth="8em">
+        {chapters.edges.map(({ node }) => (
+          <li key={node.slug}>
+            <Link to={`/standorte/` + node.slug}>{node.title}</Link>
+          </li>
+        ))}
+      </Grid>
+    </>
+  )
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle cover={cover} caption={caption}>
         <h1>{title}</h1>
       </PageTitle>
-      <PageBody html={html} updated={updatedAt}>
-        <Map {...mapProps(chapters.edges)} />
-        <Grid gap="0 2em" as="ol" minWidth="8em">
-          {chapters.edges.map(({ node }) => (
-            <li key={node.slug}>
-              <Link to={`/standorte/` + node.slug}>{node.title}</Link>
-            </li>
-          ))}
-        </Grid>
-      </PageBody>
+      <PageBody {...{ html, updatedAt, mainChildren }} />
     </Global>
   )
 }
