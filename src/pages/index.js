@@ -81,7 +81,7 @@ export default function IndexPage({ data, location }) {
       >
         <Scroll direction="down" to={1} css="bottom: 2em;" />
       </PageTitle>
-      <PageBody html={html} updated={updatedAt} />
+      <PageBody {...{ html, updatedAt }} />
     </Global>
   )
 }
