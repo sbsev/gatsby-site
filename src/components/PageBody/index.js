@@ -2,11 +2,14 @@ import React from 'react'
 
 import { Body, Updated } from './styles'
 
-const PageBody = ({ children, html, updated }) => (
+const PageBody = ({ children, mainChildren, html, updatedAt }) => (
   <Body>
     {children}
-    <main dangerouslySetInnerHTML={{ __html: html }} />
-    {updated && <Updated>Zuletzt bearbeitet: {updated}</Updated>}
+    <main>
+      {mainChildren}
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+      {updatedAt && <Updated>Zuletzt bearbeitet: {updatedAt}</Updated>}
+    </main>
   </Body>
 )
 
