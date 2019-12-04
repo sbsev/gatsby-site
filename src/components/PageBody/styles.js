@@ -83,6 +83,7 @@ export const Body = styled.div`
 `
 
 export const Updated = styled.time`
+  display: block;
   text-align: right;
-  font-size: 0.5em;
+  font-size: 0.8em;
 `
