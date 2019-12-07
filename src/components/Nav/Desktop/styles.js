@@ -1,8 +1,8 @@
 import styled from 'styled-components'
-
 import { fadeInOnHoverParent } from '../../styles'
 
 export { NavLink } from '..'
+export { DownArrow } from 'styled-icons/boxicons-solid/DownArrow'
 
 export const DesktopNavDiv = styled.nav`
   display: grid;
