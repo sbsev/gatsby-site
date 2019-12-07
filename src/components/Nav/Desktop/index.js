@@ -1,14 +1,13 @@
 import React from 'react'
-import { DownArrow } from 'styled-icons/boxicons-regular/DownArrow'
 
-import { NavEntry, SubNav, NavLink, DesktopNavDiv } from './styles'
+import { NavEntry, SubNav, NavLink, DesktopNavDiv, DownArrow } from './styles'
 
 export default ({ nav }) => (
   <DesktopNavDiv>
     {nav.map(({ url, title, subNav }) => (
       <NavEntry key={url}>
         <NavLink to={url || subNav[0].url} title={title}>
-          {title} {subNav && <DownArrow size="0.5em" />}
+          {title} {subNav && <DownArrow size="0.6em" />}
         </NavLink>
         {subNav && (
           <SubNav>
