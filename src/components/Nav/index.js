@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-
-import mediaQuery from 'utils/mediaQuery'
-
+import { useScreenQuery } from 'hooks'
 import MobileNav from './Mobile'
 import DesktopNav from './Desktop'
 
@@ -37,28 +35,19 @@ export default function Nav(props) {
       }
     }
   `)
-  // clone nav and merge chapters
-  // merging chapters without cloning: results in chapters compounding on every page navigation
+  // Clone nav and insert chapters.
+  // Merging chapters without cloning results in chapters compounding on every link click.
   chapters = chapters.edges.map(({ node }) => ({
     title: node.title,
     url: `/` + node.slug,
   }))
   nav = JSON.parse(JSON.stringify(nav.data.nav))
   nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
-  if (typeof window !== `undefined`) {
-    const query = window.matchMedia(mediaQuery.maxNetbookJs)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [mobile, setMobile] = useState(query.matches ? true : false)
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      const handleMatch = mq => setMobile(mq.matches ? true : false)
-      query.addListener(handleMatch)
-      return () => query.removeListener(handleMatch)
-    })
-    return mobile ? (
-      <MobileNav {...props} nav={nav} />
-    ) : (
-      <DesktopNav {...props} nav={nav} />
-    )
-  } else return null
+  const mobile = useScreenQuery(`maxNetbook`)
+  if (mobile) return <MobileNav nav={nav} {...props} />
+  // Only render DesktopNav if screen query is false.
+  if (mobile === false) return <DesktopNav nav={nav} {...props} />
+  // Render nothing in SSR to avoid showing DesktopNav on mobile
+  // on initial page load from cleared cache.
+  return null
 }
