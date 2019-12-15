@@ -1,36 +1,37 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import { Wrapper, Container, Toggle, Icons } from './styles'
+import { SocialDiv, Container, Toggle, Icons } from './styles'
 
-export default function Social({ size = `1em`, iconCss, collapse, short }) {
+export default function Social({ collapse, services, ...rest }) {
   const { social } = useStaticQuery(graphql`
     {
       social: contentfulJson(title: { eq: "Social" }) {
         data {
-          Email
           Facebook
           Github
           Linkedin
           Youtube
+          Instagram
         }
       }
     }
   `)
+  delete social.data.id
   return (
-    <Wrapper>
-      {collapse && <Toggle size={size} css={iconCss} />}
+    <SocialDiv {...rest}>
+      {collapse && <Toggle />}
       <Container collapse={collapse}>
-        {Object.keys(social.data).map(service => {
-          if (short && [`Email`, `Github`].includes(service)) return undefined
+        {Object.entries(social.data).map(([service, url]) => {
+          if (services && !services.includes(service)) return
           const Icon = Icons[service]
           return (
-            <a key={service} href={social[service]} css={iconCss}>
-              <Icon size={size} />
+            <a key={service} href={url} title={service}>
+              <Icon size="1.1em" />
             </a>
           )
         })}
       </Container>
-    </Wrapper>
+    </SocialDiv>
   )
 }
