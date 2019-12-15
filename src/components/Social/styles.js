@@ -1,17 +1,17 @@
 import styled, { css } from 'styled-components'
 import { Share } from 'styled-icons/material/Share'
-import { Email } from 'styled-icons/material/Email'
 import { Youtube } from 'styled-icons/fa-brands/Youtube'
-import { LinkedinIn as Linkedin } from 'styled-icons/fa-brands/LinkedinIn'
-import { FacebookF as Facebook } from 'styled-icons/fa-brands/FacebookF'
+import { Linkedin } from 'styled-icons/fa-brands/Linkedin'
+import { FacebookSquare as Facebook } from 'styled-icons/fa-brands/FacebookSquare'
 import { Github } from 'styled-icons/fa-brands/Github'
 import { Instagram } from 'styled-icons/fa-brands/Instagram'
 import { Twitter } from 'styled-icons/fa-brands/Twitter'
 
 import mediaQuery from 'utils/mediaQuery'
 
-export const Wrapper = styled.div`
+export const SocialDiv = styled.div`
   position: relative;
+  justify-self: end;
 `
 
 const collapse = css`
@@ -19,12 +19,12 @@ const collapse = css`
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  background: ${props => props.theme.gray};
+  background: ${props => props.theme.lighterGreen};
   border-radius: ${props => props.theme.smallBorderRadius};
   padding: 1vmin;
   font-size: 1.3em;
-  transition: ${props => props.theme.shortTrans};
-  ${Wrapper}:hover & {
+  transition: 0.3s;
+  ${SocialDiv}:hover & {
     visibility: visible;
     opacity: 1;
   }
@@ -49,7 +49,8 @@ export const Container = styled.div`
   }
 `
 
-export const Toggle = styled(Share)`
+export const Toggle = styled(Share).attrs({ size: `1em` })`
+  color: white;
   cursor: pointer;
   font-size: 1.3em;
   ${mediaQuery.minLaptop} {
@@ -58,13 +59,7 @@ export const Toggle = styled(Share)`
 `
 
 export const Icons = {
-  Email: styled(Email)`
-    vertical-align: -0.15em;
-    transform: scale(1, 1.2);
-  `,
-  Youtube: styled(Youtube)`
-    vertical-align: -0.18em;
-  `,
+  Youtube,
   Linkedin,
   Facebook,
   Github,
