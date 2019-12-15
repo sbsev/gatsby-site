@@ -1,11 +1,9 @@
 import { animated } from 'react-spring'
 import styled, { css } from 'styled-components'
 import { ThMenu } from 'styled-icons/typicons/ThMenu'
-import { NavLink } from '../styles'
 import { Close as Cross } from 'styled-icons/material/Close'
 import mediaQuery from 'utils/mediaQuery'
 
-export { NavLink }
 export { KeyboardArrowDown as ArrowDown } from 'styled-icons/material/KeyboardArrowDown'
 export { KeyboardArrowUp as ArrowUp } from 'styled-icons/material/KeyboardArrowUp'
 
@@ -61,19 +59,19 @@ export const Children = styled(animated.div)`
   }
 `
 
-const openedCss = css`
+const openerCss = css`
   position: fixed;
   bottom: 2vh;
   left: 0;
-  padding: 0.6em 0.9em 0.6em 0.4em;
-  background: ${props => props.theme.darkBlue};
+  padding: 0.5em 0.6em 0.5em 0.3em;
+  background: white;
   border-radius: 0 50% 50% 0;
   transform: translate(${props => (props.open ? `-100%` : 0)});
   border: 1px solid;
   border-left: none;
 `
 
-const closedCss = css`
+const closerCss = css`
   color: white;
   position: absolute;
   top: 1em;
@@ -82,15 +80,15 @@ const closedCss = css`
 
 export const NavToggle = styled(Cross).attrs(props => ({
   as: props.opener && ThMenu,
-  size: `1.5em`,
+  size: props.opener ? `1.3em` : `1.5em`,
 }))`
-  color: white;
-  transition: ${props => props.theme.shortTrans};
+  transition: 0.3s;
+  cursor: pointer;
   :hover {
     transform: scale(1.1);
   }
   ${mediaQuery.minLaptop} {
     display: none;
   }
-  ${props => (props.opener ? openedCss : closedCss)};
+  ${props => (props.opener ? openerCss : closerCss)};
 `

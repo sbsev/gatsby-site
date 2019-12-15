@@ -1,7 +1,5 @@
-import { graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery, Link } from 'gatsby'
 import React from 'react'
-import Link from '../Link'
-import { navLinkStyle } from '../Nav'
 import Social from '../Social'
 import { FooterDiv, FooterLinks, PoweredBy, Source } from './styles'
 
@@ -37,12 +35,12 @@ export default function Footer() {
       </div>
       <FooterLinks>
         {links.map(link => (
-          <Link css={navLinkStyle} key={link.url} to={link.url}>
+          <Link key={link.url} to={link.url}>
             {link.title}
           </Link>
         ))}
       </FooterLinks>
-      <Social iconCss={navLinkStyle} />
+      <Social css="font-size: 1.3em;" />
       <Source dangerouslySetInnerHTML={{ __html: source }} />
       <PoweredBy>
         Powered by:{` `}
