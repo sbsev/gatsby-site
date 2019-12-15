@@ -64,36 +64,40 @@ export const TocIcon = styled(BookContent)`
   margin-right: 0.2em;
 `
 
-const openedCss = css`
+const openerCss = css`
   position: fixed;
-  bottom: 1em;
+  bottom: calc(2vh + 4em);
+  ${mediaQuery.minNetbook} {
+    bottom: calc(1vh + 1em);
+  }
   left: 0;
   padding: 0.5em 0.6em 0.5em 0.3em;
-  background: ${props => props.theme.background};
+  background: white;
   z-index: 1;
-  box-shadow: 0 0 1em ${props => props.theme.shadowColor};
-  border: 1px solid ${props => props.theme.borderColor};
   border-radius: 0 50% 50% 0;
-  transform: translate(${props => (props.open ? `-100%` : 0)});
+  transform: translate(${props => (props.open ? `-150%` : 0)});
+  border: 1px solid ${props => props.theme.borderColor};
+  border-left: none;
 `
 
-const closedCss = css`
+const closerCss = css`
   margin-left: 1em;
   border: 1px solid ${props => props.theme.borderColor};
   border-radius: 50%;
 `
 
-export const Toggle = styled(Cross).attrs(props => ({
+export const TocToggle = styled(Cross).attrs(props => ({
   as: props.opener && BookContent,
-  size: props.size || `1.2em`,
+  size: props.opener ? `1.8em` : `1.5em`,
 }))`
   transition: ${props => props.theme.shortTrans};
   justify-self: end;
+  cursor: pointer;
   :hover {
     transform: scale(1.1);
   }
   ${mediaQuery.minLaptop} {
     display: none;
   }
-  ${props => (props.opener ? openedCss : closedCss)};
+  ${props => (props.opener ? openerCss : closerCss)};
 `
