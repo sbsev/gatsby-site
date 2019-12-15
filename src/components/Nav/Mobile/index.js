@@ -7,9 +7,9 @@ import {
   ArrowDown,
   Item,
   MobileNavDiv,
-  NavLink,
   NavToggle,
 } from './styles'
+import { NavLink } from '../styles'
 
 const Tree = memo(({ text, url, children }) => {
   const ref = useRef()

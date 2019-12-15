@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { NavEntry, SubNav, NavLink, DesktopNavDiv, DownArrow } from './styles'
+import { NavEntry, SubNav, DesktopNavDiv, DownArrow } from './styles'
+import { NavLink } from '../styles'
 
 export default ({ nav }) => (
   <DesktopNavDiv>

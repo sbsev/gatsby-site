@@ -25,6 +25,12 @@ export const FooterContainer = styled.div`
   ${mediaQuery.minLaptop} {
     grid-template-areas: 'copyright links social';
   }
+  a {
+    color: white;
+    :hover {
+      color: ${props => props.theme.lightBlue};
+    }
+  }
 `
 
 export const FooterLinks = styled.div`
@@ -51,5 +57,9 @@ export const PoweredBy = styled.div`
   a {
     height: 1.5em;
     width: 1.5em;
+    transition: 0.3s;
+    :hover {
+      transform: scale(1.1);
+    }
   }
 `
