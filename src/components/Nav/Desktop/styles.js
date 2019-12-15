@@ -1,17 +1,17 @@
 import styled from 'styled-components'
 import { fadeInOnHoverParent } from '../../styles'
 
-export { NavLink } from '..'
 export { DownArrow } from 'styled-icons/boxicons-solid/DownArrow'
 
+// Unfortunately can't accomodate expanding search box via overflow-x: scroll;
+// because of https://stackoverflow.com/a/6433475 as it will
+// include SubNavs in vertical scrolling, effectively hiding them.
 export const DesktopNavDiv = styled.nav`
   display: grid;
   grid-gap: calc(1em + 1vw);
   transition: ${props => props.theme.shortTrans};
   max-width: fill-available;
   grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  justify-self: start;
 `
 
 export const NavEntry = styled.div`

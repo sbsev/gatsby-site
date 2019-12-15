@@ -4,8 +4,6 @@ import { useScreenQuery } from 'hooks'
 import MobileNav from './Mobile'
 import DesktopNav from './Desktop'
 
-export { navLinkStyle, NavLink } from './styles'
-
 export default function Nav(props) {
   let { nav, chapters } = useStaticQuery(graphql`
     {
