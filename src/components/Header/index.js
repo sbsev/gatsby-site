@@ -3,7 +3,6 @@ import { Link } from 'gatsby'
 
 import Nav from '../Nav'
 import Social from '../Social'
-import { navLinkStyle } from '../Nav'
 import Search from '../Search'
 import { HeaderContainer, Logo } from './styles'
 
@@ -18,8 +17,8 @@ const Header = ({ site }) => (
       <Logo alt={site.title} css="vertical-align: bottom;" />
     </Link>
     <Nav />
-    <Social short collapse iconCss={navLinkStyle} />
-    <Search collapse indices={searchIndices} iconCss={navLinkStyle} />
+    <Social collapse services={[`Facebook`, `Linkedin`, `Instagram`]} />
+    <Search collapse indices={searchIndices} />
   </HeaderContainer>
 )
 

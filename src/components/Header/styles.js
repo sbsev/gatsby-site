@@ -17,12 +17,22 @@ export const HeaderContainer = styled.header`
   font-weight: bold;
   ${mediaQuery.minNetbook} {
     grid-template-areas: 'title nav social search';
-    grid-template-columns: auto 1fr auto auto;
+    grid-template-columns: auto auto 1fr auto;
+  }
+  a {
+    color: white;
+    transition: 0.3s;
+    &.active {
+      color: ${props => props.theme.orange};
+    }
+    :hover {
+      color: ${props => props.theme.lightBlue};
+    }
   }
 `
 
 export const Logo = styled(Owl)`
-  height: 3em;
+  height: 2.5em;
   border-radius: 50%;
   background: white;
   padding: 0.1em;
