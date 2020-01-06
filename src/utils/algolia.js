@@ -51,8 +51,9 @@ const postQuery = `{
 }`
 
 const flatten = arr =>
-  arr.map(({ node: { body, ...rest } }) => ({
+  arr.map(({ node: { body, slug, ...rest } }) => ({
     ...body.remark,
+    slug: (`/` + slug).replace(`//`, `/`),
     ...rest,
   }))
 const settings = { attributesToSnippet: [`excerpt:20`] }
