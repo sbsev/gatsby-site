@@ -30,30 +30,28 @@ const pageSets = templates.map(template => {
 })
 
 const pagePath = node => {
-  switch (node.internal.type) {
-    case `ContentfulPost`:
-      return `blog/` + node.slug
-    default:
-      return node.slug
-  }
+  if (node.internal.type === `ContentfulPost`) return `/blog/` + node.slug
+  return node.slug
 }
 
 exports.createPages = async ({ graphql, actions }) => {
-  await pageSets.forEach(async ({ query, component }) => {
-    const response = await graphql(query)
-    if (response.errors) throw new Error(response.errors)
-    await response.data.content.edges.forEach(edge => {
-      // exclude pages defined in src/pages
-      const { slug } = edge.node
-      if (![`/`, `standorte`, `anmeldung`].includes(slug)) {
-        actions.createPage({
-          path: pagePath(edge.node),
-          component,
-          context: { slug },
-        })
-      }
+  await Promise.all(
+    pageSets.map(async ({ query, component }) => {
+      const response = await graphql(query)
+      if (response.errors) throw new Error(response.errors)
+      response.data.content.edges.forEach(edge => {
+        // exclude pages defined in src/pages
+        const { slug } = edge.node
+        if (![`/`, `standorte`, `anmeldung`].includes(slug)) {
+          actions.createPage({
+            path: pagePath(edge.node),
+            component,
+            context: { slug },
+          })
+        }
+      })
     })
-  })
+  )
 }
 
 // Enable absolute imports from `src`.
