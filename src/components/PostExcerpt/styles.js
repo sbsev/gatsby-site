@@ -21,9 +21,7 @@ export const Post = styled.article`
 export const Cover = styled(Img).attrs(
   ({ fluid, src }) => !fluid && src && { as: `img` }
 )`
-  height: calc(10em + 4vh);
-  width: 100%;
-  object-fit: cover;
+  height: 15em;
 `
 
 export const Tag = styled.button`
