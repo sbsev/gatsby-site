@@ -206,4 +206,18 @@ const getChapters = () =>
     .then(console.log)
     .catch(console.error)
 
-publishDraftPeople()
+const searchPages = () =>
+  client
+    .getSpace(process.env.CONTENTFUL_SPACE_ID)
+    .then(space => space.getEnvironment(`master`))
+    .then(env => env.getEntries({ content_type: contentTypes.page }))
+    .then(({ items }) =>
+      items.filter(
+        item => item.fields.body && item.fields.body.de.includes(`image-row`)
+      )
+    )
+    .then(items => items.map(item => item.fields.title.de))
+    .then(console.log)
+    .catch(console.error)
+
+searchPages()

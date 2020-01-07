@@ -1,32 +1,33 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
 
-const imageGrid = css`
+const imageGrid = (mode = `auto-fill`, gap = `2em`, textFormat = true) => css`
   display: grid;
-  grid-gap: 2em;
-  grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
+  grid-gap: ${gap};
+  grid-template-columns: repeat(${mode}, minmax(7em, 1fr));
   margin: 2em 0;
-  h3 {
+  img {
+    width: 100%;
+  }
+  ${textFormat &&
+    `h3 {
     grid-column: 1/-1;
     text-align: center;
     margin-bottom: 0;
   }
-  p {
+  > p {
     text-align: center;
     margin: 0;
-    img {
-      width: 100%;
-    }
-    em {
+    > em {
       display: block;
       font-style: normal;
     }
-    strong {
+    > strong {
       display: block;
       font-weight: lighter;
       font-size: 0.9em;
     }
-  }
+  }`}
 `
 
 export const Body = styled.div`
@@ -36,7 +37,7 @@ export const Body = styled.div`
   grid-template-columns: 1fr 1fr minmax(8em, ${props => props.theme.maxWidth}) 1fr 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: dense;
-  main {
+  > main {
     grid-column: 3;
   }
   ${mediaQuery.minPhablet} {
@@ -53,7 +54,7 @@ export const Body = styled.div`
   }
   #heads,
   #alumni {
-    ${imageGrid};
+    ${imageGrid()};
     .gatsby-resp-image-wrapper {
       border-radius: 50% !important;
       overflow: hidden;
@@ -63,16 +64,10 @@ export const Body = styled.div`
     }
   }
   #partners {
-    ${imageGrid};
+    ${imageGrid()};
   }
-  .image-row {
-    display: grid;
-    grid-gap: 0.7em;
-    grid-auto-flow: column;
-    > * {
-      overflow: hidden;
-      border-radius: ${props => props.theme.smallBorderRadius};
-    }
+  .image-grid {
+    ${imageGrid(`auto-fit`, `1em`, false)};
   }
   .multi-col-list ul,
   .multi-col-list ol {
@@ -86,4 +81,5 @@ export const Updated = styled.time`
   display: block;
   text-align: right;
   font-size: 0.8em;
+  margin-top: 2em;
 `
