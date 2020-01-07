@@ -1,5 +1,4 @@
 import { Link } from 'gatsby'
-import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
 import PostMeta from '../PostMeta'
 import { Cover, Post, Tag, Title } from './styles'
@@ -11,13 +10,13 @@ export default function PostExcerpt({ post, activeTag, setTag }) {
   return (
     <Post>
       {cover && (
-        <Link to={`/blog/` + slug}>
-          <Cover {...cover} alt={cover.title} css="height: 15em;" />
+        <Link to={slug}>
+          <Cover {...cover} alt={cover.title} />
         </Link>
       )}
       <main>
         <Title>
-          <Link to={`/blog/` + slug}>{title}</Link>
+          <Link to={slug}>{title}</Link>
         </Title>
         <PostMeta {...{ author, date, timeToRead }} />
         <div>
@@ -35,26 +34,4 @@ export default function PostExcerpt({ post, activeTag, setTag }) {
       </main>
     </Post>
   )
-}
-
-PostExcerpt.propTypes = {
-  post: PropTypes.shape({
-    cover: PropTypes.object,
-    title: PropTypes.string.isRequired,
-    slug: PropTypes.string.isRequired,
-    author: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string,
-      homepage: PropTypes.string,
-      photo: PropTypes.object.isRequired,
-    }).isRequired,
-    date: PropTypes.string.isRequired,
-    tags: PropTypes.arrayOf(
-      PropTypes.shape({
-        slug: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-      })
-    ).isRequired,
-    body: PropTypes.object.isRequired,
-  }),
 }
