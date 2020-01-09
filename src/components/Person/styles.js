@@ -19,8 +19,8 @@ export const Details = styled.div`
   z-index: 2;
   max-width: 90vw;
   min-width: 15em;
-  border-radius: ${props => props.theme.mediumBorderRadius};
-  transition: ${props => props.theme.mediumTrans} ease-in-out;
+  border-radius: 0.5em;
+  transition: 0.6s ease-in-out;
   transition-delay: 0.3s;
   display: grid;
   grid-gap: 0.4em;
@@ -38,7 +38,7 @@ export const Details = styled.div`
 
 export const Img = styled(Image)`
   border-radius: 50%;
-  transition: ${props => props.theme.mediumTrans} ease-in-out;
+  transition: 0.6s ease-in-out;
   margin-bottom: 0.3em;
   :hover {
     transform: scale(1.05);

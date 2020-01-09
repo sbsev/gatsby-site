@@ -40,9 +40,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0.5em;
     background: ${p => p.theme.darkBlue};
     color: white !important;
-    a {
-      color: white !important;
-    }
     border-radius: 0.2em;
     padding: 0.4em 0.6em;
     transition: 0.3s;
