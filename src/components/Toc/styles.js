@@ -31,7 +31,7 @@ export const TocDiv = styled.div`
     ${props => props.open && openTocDiv};
     visibility: ${props => (props.open ? `visible` : `hidden`)};
     opacity: ${props => (props.open ? 1 : 0)};
-    transition: ${props => props.theme.shortTrans};
+    transition: 0.3s;
   }
   ${mediaQuery.minLaptop} {
     font-size: 0.85em;
@@ -90,7 +90,7 @@ export const TocToggle = styled(Cross).attrs(props => ({
   as: props.opener && BookContent,
   size: props.opener ? `1.8em` : `1.5em`,
 }))`
-  transition: ${props => props.theme.shortTrans};
+  transition: 0.3s;
   justify-self: end;
   cursor: pointer;
   :hover {

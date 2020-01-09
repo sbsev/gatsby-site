@@ -35,7 +35,7 @@ const Content = styled.div`
       color: white !important;
       border-radius: ${props => props.theme.smallBorderRadius};
       padding: 0.3em 0.6em;
-      transition: ${props => props.theme.shortTrans};
+      transition: 0.3s;
       display: inline-block;
       :hover {
         background: ${props => props.theme.lightGreen};

@@ -26,7 +26,7 @@ export const MobileNavDiv = styled.nav`
   grid-gap: 1em;
   grid-auto-rows: max-content;
   transform: translate(${props => (props.open ? `99%` : `0`)});
-  transition: ${props => props.theme.shortTrans};
+  transition: 0.3s;
   line-height: 1.4em;
   /* Needed to scroll past last element in case of overflow. */
   :after {

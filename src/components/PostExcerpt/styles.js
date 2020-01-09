@@ -6,7 +6,7 @@ export const Post = styled.article`
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 1em ${props => props.theme.lightGray};
-  border-radius: ${props => props.theme.mediumBorderRadius};
+  border-radius: 0.5em;
   border: 1px solid ${props => props.theme.lightGray};
   overflow: hidden;
   > main {
@@ -33,5 +33,5 @@ export const Tag = styled.button`
   cursor: pointer;
   outline: none;
   border: none;
-  border-radius: ${props => props.theme.smallBorderRadius};
+  border-radius: 0.2em;
 `
