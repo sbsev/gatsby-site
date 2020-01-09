@@ -14,9 +14,9 @@ const inExcerpt = css`
 `
 
 const inTitle = css`
-  margin: 1.3em auto;
+  margin: 3em auto 0 !important;
   justify-content: center;
-  max-width: 80vw;
+  max-width: 80vw !important;
   width: max-content;
   display: flex;
   flex-wrap: wrap;

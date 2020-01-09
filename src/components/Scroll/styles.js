@@ -5,19 +5,15 @@ import { ArrowUpCircle as Up } from 'styled-icons/feather/ArrowUpCircle'
 export const Arrow = styled(Down).attrs(props => ({
   as: props.direction === `up` && Up,
 }))`
-  z-index: 2;
-  background: ${props => props.theme.lighterGreen} !important;
-  border-radius: 50% !important;
-  padding: 0 !important;
-  color: white;
-  transition: 0.3s;
   position: absolute;
   bottom: 1em;
   right: calc(50vw - ${props => props.size} / 2);
+  background: ${props => props.theme.lighterGreen};
+  color: white;
+  border-radius: 50%;
+  transition: 0.3s;
   opacity: ${props => (props.show ? 1 : 0)};
   visibility: ${props => (props.show ? `visible` : `hidden`)};
-  width: ${props => props.size};
-  height: ${props => props.size};
   :hover {
     transform: scale(1.15);
     background: ${props => props.theme.orange};
