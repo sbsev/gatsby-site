@@ -37,14 +37,14 @@ export const Tag = styled.button`
   width: max-content;
   white-space: nowrap;
   color: ${props => props.theme.darkGray};
-  border-radius: ${props => props.theme.smallBorderRadius};
+  border-radius: 0.2em;
   background: ${({ active, theme }) => active && theme.orange};
   box-shadow: 0 0 0.5em ${props => props.theme.lighterGray};
   border: 1px solid ${props => props.theme.lightGray};
   ${mediaQuery.maxPhablet} {
     padding: 0.1em 0.5em 0.2em;
     margin: 0 1em 1em 0;
-    transition: ${props => props.theme.mediumTrans};
+    transition: 0.6s;
     visibility: ${props => (props.open ? `visible` : `hidden`)};
     margin-bottom: ${props => (props.open ? `1em` : `-2em`)};
     opacity: ${props => (props.open ? 1 : 0)};
