@@ -1,14 +1,12 @@
 import styled from 'styled-components'
 
-export const DotsContainer = styled.div`
+export const DotsDiv = styled.div`
   grid-area: dots;
   display: grid;
   grid-gap: 1vw;
   grid-auto-flow: column;
-  justify-self: center;
   position: absolute;
-  ${props => props.dots || `bottom`}: 1em;
-  margin: auto;
+  bottom: 1em;
   left: 50%;
   transform: translate(-50%);
 `
