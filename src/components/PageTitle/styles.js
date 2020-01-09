@@ -7,34 +7,34 @@ export const PageTitleDiv = styled.hgroup`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;
+  min-height: 70vh;
   flex: 1; /* For filling height between header and footer on 404 page */
+  overflow: hidden;
 `
 
 export const Title = styled.div`
   text-align: center;
+  position: absolute;
   font-size: calc(1em + 0.5vw);
   margin: 1em;
   max-width: 30em;
-  padding: 0.1em 0.4em;
-  z-index: 2;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0.5em;
+  padding: 0.4em 0.8em;
   a {
     color: ${props => props.theme.lighterGreen};
   }
   > * {
-    background: rgba(0, 0, 0, 0.7);
-    border-radius: ${props => props.theme.smallBorderRadius};
-    padding: 0.1em 0.4em;
+    margin: 0;
   }
 `
 
 export const Img = styled(Image).attrs(
-  ({ fluid, src }) => !fluid && { as: src ? `img` : `div` }
+  ({ fluid, src }) => !fluid && src && { as: `img` }
 )`
   position: absolute !important;
   width: 100%;
-  height: 100%;
-  z-index: 1;
+  height: ${({ as }) => as !== `img` && `100%`};
   background: ${({ theme }) => `linear-gradient(
     10deg,
     ${theme.lighterGreen} 0%,
