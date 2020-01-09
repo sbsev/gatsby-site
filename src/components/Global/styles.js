@@ -6,8 +6,13 @@ import theme from 'utils/theme'
 const { phone, desktop } = screens
 const { fonts, minFontSize, maxFontSize, minLineHeight, maxLineHeight } = typography
 
-const btnColors = [`blue`, `green`, `yellow`]
-  .map(color => `&.${color} { background: ${theme[color]}; }`)
+const btnColors = [`blue`, `green`, `orange`]
+  .map(
+    color =>
+      `&.${color} { background: ${theme[color]}; :hover { background: ${
+        theme[`light` + color.charAt(0).toUpperCase() + color.slice(1)]
+      } } }`
+  )
   .join(`\n`)
 
 export const GlobalStyle = createGlobalStyle`
@@ -43,10 +48,10 @@ export const GlobalStyle = createGlobalStyle`
   .btn {
     background: ${props => props.theme.darkBlue};
     color: white !important;
-    border-radius: ${props => props.theme.smallBorderRadius};
+    border-radius: 0.2em;
     padding: 0.4em 0.6em;
     font-size: ${props => props.size};
-    transition: ${props => props.theme.shortTrans};
+    transition: 0.3s;
     margin: 0 auto;
     :hover {
       transform: scale(1.05);

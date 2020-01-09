@@ -20,7 +20,7 @@ const collapse = css`
   opacity: 0;
   position: absolute;
   background: ${props => props.theme.lighterGreen};
-  border-radius: ${props => props.theme.smallBorderRadius};
+  border-radius: 0.2em;
   padding: 1vmin;
   font-size: 1.3em;
   transition: 0.3s;

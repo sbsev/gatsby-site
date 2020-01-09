@@ -9,8 +9,7 @@ export { DownArrow } from 'styled-icons/boxicons-solid/DownArrow'
 export const DesktopNavDiv = styled.nav`
   display: grid;
   grid-gap: calc(1em + 1vw);
-  transition: ${props => props.theme.shortTrans};
-  max-width: fill-available;
+  transition: 0.3s;
   grid-auto-flow: column;
 `
 
@@ -21,7 +20,7 @@ export const NavEntry = styled.div`
 export const SubNav = styled.div`
   display: grid;
   width: max-content;
-  border-radius: ${props => props.theme.smallBorderRadius};
+  border-radius: 0.2em;
   grid-gap: 0.5em 1em;
   position: absolute;
   transition: 0.3s;
