@@ -11,6 +11,7 @@ export const DesktopNavDiv = styled.nav`
   grid-gap: calc(1em + 1vw);
   transition: 0.3s;
   grid-auto-flow: column;
+  justify-self: start;
 `
 
 export const NavEntry = styled.div`

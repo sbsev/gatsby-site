@@ -1,22 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { DotsContainer, Dot } from './styles'
+import { DotsDiv, Dot } from './styles'
 
-const Dots = ({ length, current, onClick, size = `0.8em`, dots }) => (
-  <DotsContainer dots={dots}>
-    {Array.apply(null, { length }).map((dot, index) => (
-      <Dot
-        key={index}
-        active={index === current}
-        onClick={() => onClick(index)}
-        size={size}
-      />
-    ))}
-  </DotsContainer>
-)
-
-export default Dots
+export default function Dots({ length, current, onClick, size = `0.8em` }) {
+  return (
+    <DotsDiv>
+      {[...Array(length)].map((_, idx) => (
+        <Dot
+          key={idx}
+          active={idx === current}
+          onClick={() => onClick(idx)}
+          size={size}
+        />
+      ))}
+    </DotsDiv>
+  )
+}
 
 Dots.propTypes = {
   length: PropTypes.number.isRequired,
