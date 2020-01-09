@@ -1,26 +1,22 @@
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import { PageTitleDiv, Title, Img } from './styles'
 import { Caption } from '../styles'
+import Slideshow from '../Slideshow'
 
-export default function PageTitle({ children, cover, caption, ...rest }) {
-  const { fillToBottom, height, className, background } = rest
-  const ref = useRef()
-  useEffect(() => {
-    if (fillToBottom || height === -1) {
-      const fillAvailHeight = () =>
-        (ref.current.style.minHeight =
-          window.innerHeight - ref.current.offsetTop + `px`)
-      fillAvailHeight()
-      window.addEventListener(`resize`, fillAvailHeight)
-      return () => window.removeEventListener(`resize`, fillAvailHeight)
-    }
-  }, [fillToBottom, height])
-  const containerProps = { ref, className, minHeight: height > 0 && height }
+export default function PageTitle({ children, cover, caption, slideshow, ...rest }) {
   if (cover && !cover.fluid) cover.src = cover.file.url
   return (
-    <PageTitleDiv {...containerProps}>
+    <PageTitleDiv {...rest}>
+      {slideshow ? (
+        <Slideshow>
+          {slideshow.slides.map(({ title, fluid }) => (
+            <Img key={title} fluid={fluid} alt={title} style={{ height: `100%` }} />
+          ))}
+        </Slideshow>
+      ) : (
+        <Img {...cover} alt={cover.title} />
+      )}
       <Title>{children}</Title>
-      <Img {...cover}>{background}</Img>
       {caption && (
         <Caption
           showOnHoverParent={PageTitleDiv}

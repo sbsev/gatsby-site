@@ -38,6 +38,5 @@ export default function Scroll({ direction = `up`, by, to, ...rest }) {
     }
   })
 
-  const arrowProps = { show, direction, className, size }
-  return <Arrow onClick={handleClick} {...arrowProps} />
+  return <Arrow onClick={handleClick} {...{ show, direction, className, size }} />
 }

@@ -1,18 +1,13 @@
 import styled from 'styled-components'
 
 export const Slides = styled.div`
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-  z-index: 10;
   display: grid;
 `
 
 export const Slide = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  grid-area: 1 / 1;
+  height: 100vh;
+  width: 100vw;
   opacity: ${props => (props.active ? 1 : 0)};
   visibility: ${props => (props.active ? `visible` : `hidden`)};
   transition: 1s ease-in-out;

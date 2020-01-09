@@ -4,13 +4,14 @@ import mediaQuery from 'utils/mediaQuery'
 import Owl from 'assets/logo'
 
 export const HeaderContainer = styled.header`
-  z-index: 3;
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  width: fill-available;
+  z-index: 1;
   font-size: 1.2em;
-  background: ${props => props.theme.darkBlue};
   display: grid;
   grid-gap: calc(1em + 1vw);
   align-items: center;
-  justify-items: center;
   grid-template-areas: 'title social search';
   grid-template-columns: 1fr auto auto;
   padding: calc(0.25em + 1vh) calc(1em + 1vw);
