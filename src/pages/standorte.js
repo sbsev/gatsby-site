@@ -16,7 +16,7 @@ const addMarkers = chapters => map => {
       title: node.title,
     })
     marker.addListener(`click`, () => {
-      window.location.href = `/standorte/` + node.slug
+      window.location.href = node.slug
     })
   })
 }
@@ -42,7 +42,7 @@ export default function ChaptersPage({ data, location }) {
       <Grid gap="0 2em" as="ol" minWidth="8em">
         {chapters.edges.map(({ node }) => (
           <li key={node.slug}>
-            <Link to={`/standorte/` + node.slug}>{node.title}</Link>
+            <Link to={node.slug}>{node.title}</Link>
           </li>
         ))}
       </Grid>
@@ -60,7 +60,7 @@ export default function ChaptersPage({ data, location }) {
 
 export const query = graphql`
   {
-    page: contentfulPage(slug: { eq: "standorte" }) {
+    page: contentfulPage(slug: { eq: "/standorte" }) {
       ...pageFields
     }
     chapters: allContentfulChapter(
