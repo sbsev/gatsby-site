@@ -6,7 +6,7 @@ import { Calendar } from 'styled-icons/octicons/Calendar'
 import { connectHits } from 'react-instantsearch-dom'
 
 const postHit = hit => (
-  <div>
+  <div css="margin: 0.6em 0;">
     <Calendar size="1em" />
     &nbsp;
     <Highlight attribute="date" hit={hit} tagName="mark" />
@@ -27,9 +27,9 @@ export default connectHits(function HitComp({ type, hits, onClick }) {
   return hits.map(hit => (
     <div key={hit.objectID}>
       <Link to={hit.slug} onClick={onClick}>
-        <h4>
+        <h3>
           <Highlight attribute="title" hit={hit} tagName="mark" />
-        </h4>
+        </h3>
       </Link>
       {extend && extend(hit)}
       <Snippet attribute="excerpt" hit={hit} tagName="mark" />
