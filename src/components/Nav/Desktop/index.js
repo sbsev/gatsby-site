@@ -15,7 +15,7 @@ export default ({ nav }) => (
             {subNav.map(item => (
               <NavLink
                 key={item.url}
-                to={url + item.url}
+                to={item.url}
                 title={item.title}
                 span={item.span}
               >
