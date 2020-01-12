@@ -43,7 +43,7 @@ export default function Search({ indices, collapse }) {
           {indices.map(({ name, title, type }) => (
             <Index key={name} indexName={name}>
               <header>
-                <h3>{title}</h3>
+                <h2>{title}</h2>
                 <Stats />
               </header>
               <Results />
