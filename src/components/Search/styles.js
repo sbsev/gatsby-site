@@ -80,6 +80,9 @@ export const HitsWrapper = styled.div`
   box-shadow: 0 0 5px 0;
   padding: 0.7em 1em 0.4em;
   border-radius: 0.2em;
+  a {
+    color: ${props => props.theme.blue} !important;
+  }
   * {
     margin-top: 0;
   }
@@ -90,15 +93,11 @@ export const HitsWrapper = styled.div`
     margin-top: 0.6em;
     border-top: 1px solid ${props => props.theme.lightGray};
   }
-  mark {
-    color: ${props => props.theme.lighterBlue};
-    background: ${props => props.theme.darkerBlue};
-  }
   header {
     display: flex;
     justify-content: space-between;
     border-bottom: 2px solid ${props => props.theme.darkGray};
-    h3 {
+    h2 {
       color: white;
       background: ${props => props.theme.orange};
       padding: 0.1em 0.4em;
@@ -109,7 +108,7 @@ export const HitsWrapper = styled.div`
   * + header {
     padding-top: 1em;
   }
-  h4 {
+  h3 {
     margin-bottom: 0.3em;
   }
 `
