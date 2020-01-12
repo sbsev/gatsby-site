@@ -52,7 +52,7 @@ export default function MobileNav({ nav }) {
           <Tree key={url} url={url || subNav[0].url} text={title}>
             {subNav &&
               subNav.map(item => (
-                <Tree key={item.url} url={url + item.url} text={item.title} />
+                <Tree key={item.url} url={item.url} text={item.title} />
               ))}
           </Tree>
         ))}
