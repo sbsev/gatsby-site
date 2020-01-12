@@ -33,12 +33,12 @@ export default function Nav(props) {
       }
     }
   `)
-  // Clone nav and insert chapters.
-  // Merging chapters without cloning results in chapters compounding on every link click.
   chapters = chapters.edges.map(({ node }) => ({
     title: node.title,
-    url: `/` + node.slug,
+    url: node.slug,
   }))
+  // Clone nav and insert chapters.
+  // Merging chapters without cloning results in chapters compounding on every link click.
   nav = JSON.parse(JSON.stringify(nav.data.nav))
   nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
   const mobile = useScreenQuery(`maxNetbook`)
