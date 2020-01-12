@@ -33,9 +33,9 @@ export default connectHits(function HitComp({ type, hits, onClick }) {
   return hits.map(hit => (
     <div key={hit.objectID}>
       <Link to={hit.slug} onClick={onClick}>
-        <h4>
+        <h3>
           <Highlight attribute="title" hit={hit} tagName="mark" />
-        </h4>
+        </h3>
       </Link>
       {extend && extend(hit)}
       <Snippet attribute="excerpt" hit={hit} tagName="mark" />
