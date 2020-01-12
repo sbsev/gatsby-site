@@ -29,7 +29,8 @@ const mapProps = chapters => ({
       typeof window !== `undefined` &&
       5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
   },
-  onMount: addMarkers(chapters),
+  onMount: addMarkers,
+  onMountProps: chapters,
 })
 
 export default function ChaptersPage({ data, location }) {
