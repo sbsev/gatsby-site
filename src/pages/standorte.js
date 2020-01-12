@@ -60,7 +60,7 @@ export default function ChaptersPage({ data, location }) {
 
 export const query = graphql`
   {
-    page: contentfulPage(slug: { eq: "standorte" }) {
+    page: contentfulPage(slug: { eq: "/standorte" }) {
       ...pageFields
     }
     chapters: allContentfulChapter(
