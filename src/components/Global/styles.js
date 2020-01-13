@@ -46,16 +46,22 @@ export const GlobalStyle = createGlobalStyle`
     flex-direction: column;
   }
   .btn {
+    display: inline-block;
+    margin-top: 0.5em;
     background: ${props => props.theme.darkBlue};
     color: white !important;
     border-radius: 0.2em;
     padding: 0.4em 0.6em;
     font-size: ${props => props.size};
     transition: 0.3s;
-    margin: 0 auto;
     ${btnColors}
     a {
       color: white;
+    }
+    &.block {
+      display: block;
+      margin: 0 auto;
+      width: fit-content;
     }
     :hover {
       transform: scale(1.05);
