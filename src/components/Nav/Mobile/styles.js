@@ -59,29 +59,17 @@ export const Children = styled(animated.div)`
   }
 `
 
-const openerCss = css`
-  position: fixed;
-  bottom: 2vh;
-  left: 0;
-  padding: 0.5em 0.6em 0.5em 0.3em;
-  background: white;
-  border-radius: 0 50% 50% 0;
-  transform: translate(${props => (props.open ? `-100%` : 0)});
-  border: 1px solid;
-  border-left: none;
-`
-
 const closerCss = css`
-  color: white;
   position: absolute;
   top: 1em;
   right: 1.3em;
 `
 
-export const NavToggle = styled(Cross).attrs(props => ({
-  as: props.opener && ThMenu,
-  size: props.opener ? `1.3em` : `1.5em`,
+export const NavToggle = styled(ThMenu).attrs(props => ({
+  as: props.closer && Cross,
+  size: `1.4em`,
 }))`
+  color: white;
   transition: 0.3s;
   cursor: pointer;
   :hover {
@@ -90,5 +78,5 @@ export const NavToggle = styled(Cross).attrs(props => ({
   ${mediaQuery.minLaptop} {
     display: none;
   }
-  ${props => (props.opener ? openerCss : closerCss)};
+  ${props => props.closer && closerCss};
 `
