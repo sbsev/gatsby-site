@@ -13,7 +13,7 @@ const searchIndices = [
 
 const Header = ({ site }) => (
   <HeaderContainer>
-    <Link to="/" title={site.title} rel="home" css="justify-self: start;">
+    <Link to="/" title={site.title} rel="home" css="grid-area: title;">
       <Logo alt={site.title} css="vertical-align: bottom;" />
     </Link>
     <Nav />

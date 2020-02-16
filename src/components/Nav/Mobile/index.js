@@ -45,9 +45,9 @@ export default function MobileNav({ nav }) {
   useOnClickOutside(ref, () => open && setOpen(false))
   return (
     <>
-      <NavToggle opener open={open} onClick={() => setOpen(true)} />
+      <NavToggle open={open} onClick={() => setOpen(true)} />
       <MobileNavDiv ref={ref} open={open} onScroll={e => e.preventDefault()}>
-        <NavToggle open={open} onClick={() => setOpen(false)} />
+        <NavToggle closer open={open} onClick={() => setOpen(false)} />
         {nav.map(({ title, url, subNav }) => (
           <Tree key={url} url={url || subNav[0].url} text={title}>
             {subNav &&
