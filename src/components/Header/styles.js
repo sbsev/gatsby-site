@@ -10,9 +10,10 @@ export const HeaderContainer = styled.header`
   display: grid;
   grid-gap: calc(1em + 1vw);
   align-items: center;
-  grid-template-areas: 'title social search';
-  grid-template-columns: 1fr auto auto;
-  padding: calc(0.25em + 1vh) calc(1em + 1vw);
+  justify-items: center;
+  grid-template-areas: 'nav title social search';
+  grid-template-columns: auto 1fr auto auto;
+  padding: calc(0.2em + 1vh) calc(1em + 1vw);
   font-weight: bold;
   ${mediaQuery.minNetbook} {
     grid-template-areas: 'title nav social search';
@@ -30,7 +31,7 @@ export const HeaderContainer = styled.header`
 `
 
 export const Logo = styled(Owl)`
-  height: 2.5em;
+  height: 2.4em;
   border-radius: 50%;
   background: white;
   padding: 0.1em;

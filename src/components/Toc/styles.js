@@ -66,10 +66,7 @@ export const TocIcon = styled(BookContent)`
 
 const openerCss = css`
   position: fixed;
-  bottom: calc(2vh + 4em);
-  ${mediaQuery.minNetbook} {
-    bottom: calc(1vh + 1em);
-  }
+  bottom: calc(1vh + 1em);
   left: 0;
   padding: 0.5em 0.6em 0.5em 0.3em;
   background: white;
