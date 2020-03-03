@@ -100,4 +100,12 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
   }
+  .rcornerbox {
+    border-radius: 20px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: ${props => props.theme.darkBlue};
+    padding: 20px;
+    width: auto;
+  }
 `
