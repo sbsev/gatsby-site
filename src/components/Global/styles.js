@@ -40,10 +40,9 @@ export const GlobalStyle = createGlobalStyle`
       color: ${props => props.theme.lightBlue};
     }
   }
-  div[role="group"][tabindex] {
+  #gatsby-focus-wrapper {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    display: grid;
   }
   .btn {
     display: inline-block;
