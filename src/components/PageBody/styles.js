@@ -82,3 +82,9 @@ export const Updated = styled.time`
   font-size: 0.8em;
   margin-top: 2em;
 `
+
+export const Address = styled.address`
+  display: block;
+  text-align: right;
+  font-size: 0.8em;
+`
