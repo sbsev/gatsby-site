@@ -22,7 +22,7 @@ export default function PageTemplate({ data, location }) {
           />
         )}
       </PageTitle>
-      {html && <PageBody {...{ html, updatedAt }}>{toc && <Toc />}</PageBody>}
+      {html && <PageBody {...{ html, updatedAt, title }}>{toc && <Toc />}</PageBody>}
     </Global>
   )
 }
