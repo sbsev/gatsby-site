@@ -1,16 +1,23 @@
 import React from 'react'
 
-import { Body, Updated } from './styles'
+import { Body, Updated, Address } from './styles'
 
-const PageBody = ({ children, mainChildren, html, updatedAt }) => (
-  <Body>
-    {children}
-    <main>
-      {mainChildren}
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-      {updatedAt && <Updated>Zuletzt bearbeitet: {updatedAt}</Updated>}
-    </main>
-  </Body>
-)
-
-export default PageBody
+export default function PageBody(props) {
+  const { children, mainChildren, html, updatedAt, title } = props
+  const mailto = `mailto:it@studenten-bilden-schueler.de?subject=Feedback zu Seite "${title}"`
+  return (
+    <Body>
+      {children}
+      <main>
+        {mainChildren}
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+        {updatedAt && <Updated>Zuletzt bearbeitet: {updatedAt}</Updated>}
+        {title && (
+          <Address>
+            <a href={mailto}>War diese Seite hilfreich?</a>
+          </Address>
+        )}
+      </main>
+    </Body>
+  )
+}
