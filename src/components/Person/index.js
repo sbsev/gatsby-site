@@ -1,7 +1,7 @@
 import React from 'react'
-import { CalendarDay } from 'styled-icons/fa-solid/CalendarDay'
-import { Link } from 'styled-icons/boxicons-regular/Link'
-import { Email } from 'styled-icons/material/Email'
+import { CalendarDay } from 'styled-icons/fa-solid'
+import { Link } from 'styled-icons/boxicons-regular'
+import { Email } from 'styled-icons/material'
 
 import { PersonContainer, Details, Img, Remits, Name } from './styles'
 
