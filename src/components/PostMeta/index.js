@@ -1,10 +1,9 @@
 import React from 'react'
 
-import { UserEdit } from 'styled-icons/fa-solid/UserEdit'
-import { Email } from 'styled-icons/material/Email'
-import { Link } from 'styled-icons/boxicons-regular/Link'
-import { Calendar } from 'styled-icons/octicons/Calendar'
-import { Timer } from 'styled-icons/material/Timer'
+import { UserEdit } from 'styled-icons/fa-solid'
+import { Email, Timer } from 'styled-icons/material'
+import { Link } from 'styled-icons/boxicons-regular'
+import { Calendar } from 'styled-icons/octicons'
 
 import { Meta, AuthorPhoto } from './styles'
 

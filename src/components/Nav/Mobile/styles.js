@@ -1,11 +1,11 @@
 import { animated } from 'react-spring'
 import styled, { css } from 'styled-components'
-import { ThMenu } from 'styled-icons/typicons/ThMenu'
-import { Close as Cross } from 'styled-icons/material/Close'
+import { ThMenu } from 'styled-icons/typicons'
+import { Close as Cross } from 'styled-icons/material'
 import mediaQuery from 'utils/mediaQuery'
 
-export { KeyboardArrowDown as ArrowDown } from 'styled-icons/material/KeyboardArrowDown'
-export { KeyboardArrowUp as ArrowUp } from 'styled-icons/material/KeyboardArrowUp'
+export { KeyboardArrowDown as ArrowDown } from 'styled-icons/material'
+export { KeyboardArrowUp as ArrowUp } from 'styled-icons/material'
 
 export const MobileNavDiv = styled.nav`
   z-index: 1;

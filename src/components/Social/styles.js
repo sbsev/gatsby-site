@@ -1,11 +1,7 @@
 import styled, { css } from 'styled-components'
-import { Share } from 'styled-icons/material/Share'
-import { Youtube } from 'styled-icons/fa-brands/Youtube'
-import { Linkedin } from 'styled-icons/fa-brands/Linkedin'
-import { FacebookSquare as Facebook } from 'styled-icons/fa-brands/FacebookSquare'
-import { Github } from 'styled-icons/fa-brands/Github'
-import { Instagram } from 'styled-icons/fa-brands/Instagram'
-import { Twitter } from 'styled-icons/fa-brands/Twitter'
+import { Share } from 'styled-icons/material'
+import { Youtube, FacebookSquare as Facebook } from 'styled-icons/fa-brands'
+import { Github, Linkedin, Instagram, Twitter } from 'styled-icons/fa-brands'
 
 import mediaQuery from 'utils/mediaQuery'
 
