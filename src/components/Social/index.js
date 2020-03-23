@@ -3,27 +3,29 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { SocialDiv, Container, Toggle, Icons } from './styles'
 
-export default function Social({ collapse, services, ...rest }) {
+export default function Social({ collapse, className, ...display }) {
   const { social } = useStaticQuery(graphql`
     {
       social: contentfulJson(title: { eq: "Social" }) {
         data {
+          Kontakt
+          Instagram
           Facebook
           Github
-          Linkedin
           Youtube
-          Instagram
+          Linkedin
+          Xing
         }
       }
     }
   `)
   delete social.data.id
   return (
-    <SocialDiv {...rest}>
+    <SocialDiv className={className}>
       {collapse && <Toggle />}
       <Container collapse={collapse}>
         {Object.entries(social.data).map(([service, url]) => {
-          if (services && !services.includes(service)) return
+          if (!display[service]) return
           const Icon = Icons[service]
           return (
             <a key={service} href={url} title={service}>
