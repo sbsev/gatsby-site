@@ -40,7 +40,7 @@ export default function Footer() {
           </Link>
         ))}
       </FooterLinks>
-      <Social css="font-size: 1.3em;" />
+      <Social css="font-size: 1.3em;" Facebook Linkedin Youtube Instagram />
       <Source dangerouslySetInnerHTML={{ __html: source }} />
       <PoweredBy>
         Powered by:{` `}
