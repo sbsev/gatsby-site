@@ -4,5 +4,9 @@
   force = true
 
 [build.environment]
-  NODE_VERSION = "12.13.1"
+  NODE_VERSION = "13.12.0"
   YARN_VERSION = "1.22.4"
+
+[build]
+  publish = "public"
+  command = "gatsby build"
