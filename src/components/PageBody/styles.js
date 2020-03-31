@@ -74,6 +74,45 @@ export const Body = styled.div`
     grid-gap: 0 2em;
     grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
   }
+  .left-img-right-text-boxes {
+    > ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-gap: 1em;
+      > li {
+        display: grid;
+        grid-gap: 0 1em;
+        grid-template-columns: auto 1fr;
+        box-shadow: 0 0 5px gray;
+        border-radius: 1em;
+        padding: 0.8em;
+        > :first-child {
+          grid-column: 1;
+          grid-row: span 10;
+        }
+        > :not(:first-child) {
+          grid-column: 2;
+        }
+        p {
+          margin: 0;
+        }
+        em.block,
+        strong.block {
+          display: block;
+        }
+        em.block {
+          font-weight: lighter;
+        }
+        img:first-child,
+        .gatsby-resp-image-wrapper:first-child {
+          width: 7em;
+          border-radius: 0.5em;
+          overflow: hidden;
+        }
+      }
+    }
+  }
 `
 
 export const Updated = styled.time`
