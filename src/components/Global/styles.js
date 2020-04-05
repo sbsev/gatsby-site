@@ -32,7 +32,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   h1, h2, h3, h4, h5, h6 {
     line-height: initial;
+    /* margin-top: 1em; */
+    margin-bottom: 0.2em;
   }
+  ${[...Array(6)].map((_, idx) => `h${idx + 1} { font-size: ${2 - 0.2 * idx}em; }`)}
   a {
     text-decoration: none;
     color: ${theme.blue};
