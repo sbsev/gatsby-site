@@ -67,6 +67,7 @@ export const Form = styled.form`
 `
 
 export const HitsWrapper = styled.div`
+  font-size: 0.8em;
   display: ${props => (props.show ? `grid` : `none`)};
   background: white;
   max-height: 80vh;

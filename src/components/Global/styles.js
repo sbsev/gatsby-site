@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   h1, h2, h3, h4, h5, h6 {
     line-height: initial;
   }
+  ${[...Array(6)].map((_, idx) => `h${idx + 1} { font-size: ${2 - 0.2 * idx}em; }`)}
   a {
     text-decoration: none;
     color: ${props => props.theme.blue};
