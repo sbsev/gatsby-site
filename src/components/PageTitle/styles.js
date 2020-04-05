@@ -12,6 +12,7 @@ export const PageTitleDiv = styled.hgroup`
   overflow: hidden;
   flex: 1; /* For filling height between header and footer on 404 page */
   text-align: center;
+  box-shadow: 0 0 6px grey;
   font-size: calc(1em + 0.4vw);
   /* Exclude the cover image/slideshow. */
   > :not(:first-child) {
@@ -40,10 +41,4 @@ export const Img = styled(Image).attrs(
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: ${({ theme }) => `linear-gradient(
-    10deg,
-    ${theme.lighterGreen} 0%,
-    ${theme.darkBlue} 50%,
-    ${theme.lightBlue} 100%
-  )`};
 `
