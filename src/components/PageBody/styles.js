@@ -108,6 +108,34 @@ export const Main = styled.main`
       }
     }
   }
+  .full-width {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    &.bg {
+      padding: 0.5em calc(50vw - 50%);
+      color: white;
+      &.orange {
+        background: ${props => props.theme.orange};
+      }
+      &.yellow {
+        background: ${props => props.theme.yellow};
+      }
+      &.green {
+        background: ${props => props.theme.lighterGreen};
+      }
+      &.blue {
+        background: ${props => props.theme.blue};
+      }
+      &.light-blue {
+        background: ${props => props.theme.lightBlue};
+      }
+    }
+  }
 `
 
 export const Content = styled.div`
