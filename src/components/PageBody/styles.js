@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
+import { theme } from 'utils/theme'
 
 const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
   display: grid;
@@ -25,6 +26,17 @@ const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => cs
     font-weight: lighter;
   }
 `
+
+const bgColors = [
+  [`orange`],
+  [`yellow`],
+  [`lighterGreen`, `green`],
+  [`blue`],
+  [`lightBlue`, `light-blue`],
+  [`darkBlue`, `dark-blue`],
+]
+  .map(([color, name]) => `&.${name || color} { background: ${theme[color]}; }`)
+  .join(`\n`)
 
 export const Main = styled.main`
   margin: calc(3em + 3vh) 0;
@@ -104,6 +116,26 @@ export const Main = styled.main`
           width: 7em;
           border-radius: 0.5em;
           overflow: hidden;
+        }
+      }
+    }
+  }
+  .full-width {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    &.bg {
+      padding: 0.5em calc(50vw - 50%);
+      color: white;
+      ${bgColors}
+      &.blue a, &.light-blue a, &.dark-blue a {
+        color: ${p => p.theme.green};
+        :hover {
+          ${p => p.theme.lightGreen};
         }
       }
     }
