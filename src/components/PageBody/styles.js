@@ -1,72 +1,64 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
 
-const imageGrid = (gap = `2em`) => css`
+const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
   display: grid;
   grid-gap: ${gap};
-  grid-template-columns: repeat(auto-fill, minmax(7em, 1fr));
-  margin: 2em 0;
+  grid-template-columns: repeat(${fit}, minmax(${minWidth}, 1fr));
+  /* Prevent large images from overflowing. */
+  text-align: center;
   img {
     width: 100%;
   }
-  h3 {
+  /* prettier-ignore */
+  h1, h2, h3, h4, h5, h6 {
     grid-column: 1/-1;
-    text-align: center;
     margin-bottom: 0;
   }
-  > p {
+  em,
+  strong {
     text-align: center;
-    margin: 0;
-    > em {
-      display: block;
-      font-style: normal;
-    }
-    > strong {
-      display: block;
-      font-weight: lighter;
-      font-size: 0.9em;
-    }
+    display: block;
+    font-style: normal;
+  }
+  strong {
+    font-weight: lighter;
   }
 `
 
-export const Body = styled.div`
+export const Main = styled.main`
   margin: calc(3em + 3vh) 0;
   display: grid;
   grid-gap: 0 4vw;
   grid-template-columns: 1fr 1fr minmax(8em, ${props => props.theme.maxWidth}) 1fr 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: dense;
-  > main {
-    grid-column: 3;
-    ${mediaQuery.minPhablet} {
-      > p {
-        text-align: justify;
-      }
+  ${mediaQuery.minPhablet} {
+    > p {
+      text-align: justify;
     }
+  }
+  > * {
+    grid-column: 3;
   }
   p > img {
     max-width: 100%;
   }
-  .img-small {
-    max-width: 16em;
-    margin: auto;
-  }
-  #heads,
-  #alumni {
-    ${imageGrid()};
-    .gatsby-resp-image-wrapper {
-      border-radius: 50% !important;
-      overflow: hidden;
-    }
-    img {
-      border-radius: 50%;
+  .grid {
+    ${grid()};
+    &.disk-img {
+      .gatsby-resp-image-wrapper {
+        border-radius: 50% !important;
+        overflow: hidden;
+      }
+      img {
+        border-radius: 50%;
+      }
     }
   }
-  #partners {
-    ${imageGrid()};
-  }
-  .image-grid {
-    ${imageGrid(`3em`)};
+  /* For side-by-side images */
+  .grid.fit {
+    ${grid({ fit: `auto-fit`, minWidth: `12em`, gap: `0 1em` })};
   }
   .multi-col-list ul,
   .multi-col-list ol {
@@ -87,6 +79,9 @@ export const Body = styled.div`
         box-shadow: 0 0 5px gray;
         border-radius: 1em;
         padding: 0.8em;
+        ul {
+          list-style: disc;
+        }
         > :first-child {
           grid-column: 1;
           grid-row: span 10;
@@ -112,6 +107,16 @@ export const Body = styled.div`
         }
       }
     }
+  }
+`
+
+export const Content = styled.div`
+  display: contents;
+  > * {
+    grid-column: 3;
+  }
+  > *:first-child {
+    margin-top: 0;
   }
 `
 
