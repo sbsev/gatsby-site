@@ -101,7 +101,7 @@ const closerCss = css`
 
 export const TocToggle = styled(Cross).attrs(props => ({
   as: props.opener && BookContent,
-  size: props.opener ? `1.8em` : `1.5em`,
+  size: props.opener ? `1.8em` : `1.2em`,
 }))`
   transition: 0.3s;
   justify-self: end;
