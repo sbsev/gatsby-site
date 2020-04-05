@@ -3,14 +3,6 @@ import { BookContent } from 'styled-icons/boxicons-regular'
 import { Close as Cross } from 'styled-icons/material'
 import mediaQuery from 'utils/mediaQuery'
 
-const openTocDiv = css`
-  background: white;
-  padding: 0.7em 1.2em;
-  border-radius: 0.5em;
-  box-shadow: 0 0 1em rgba(0, 0, 0, 0.5);
-  border: 1px solid;
-`
-
 export const TocDiv = styled.aside`
   height: max-content;
   z-index: 1;
@@ -21,9 +13,14 @@ export const TocDiv = styled.aside`
   /* Prevents child nav from overflowing: https://stackoverflow.com/a/38066257 */
   display: flex;
   flex-direction: column;
+  background: white;
+  padding: 0.7em 0.8em 0;
+  border-radius: 0.5em;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   nav {
-    max-height: 78vh;
+    max-height: 73vh;
     overflow-y: scroll;
+    overscroll-behavior: none;
     ${mediaQuery.minLaptop} {
       mask-image: linear-gradient(
         to bottom,
@@ -39,26 +36,27 @@ export const TocDiv = styled.aside`
     bottom: 1em;
     left: 1em;
     ${props => !props.open && `height: 0;`};
-    ${props => props.open && openTocDiv};
     visibility: ${props => (props.open ? `visible` : `hidden`)};
     opacity: ${props => (props.open ? 1 : 0)};
     transition: 0.3s;
   }
   ${mediaQuery.minLaptop} {
     font-size: 0.85em;
-    grid-column: 4 / -1;
+    grid-column: 4/-1;
+    grid-row: span 10;
     position: sticky;
     top: 7em;
   }
 `
 
-export const Title = styled.h2`
+export const Title = styled.strong`
   margin: 0;
   padding-bottom: 0.5em;
   display: grid;
   grid-auto-flow: column;
   align-items: center;
   grid-template-columns: auto auto 1fr;
+  font-size: 1.8em;
 `
 
 export const TocLink = styled.a`
