@@ -1,5 +1,5 @@
-const queryTemplate = (type, fields = ``) => `{
-  items: allContentful${type} {
+const queryTemplate = (type, fields = ``, filter = ``) => `{
+  items: allContentful${type}${filter} {
     edges {
       node {
         objectID: id
@@ -29,26 +29,19 @@ const postFields = `
   }
   tags {
     title
-    slug
   }
 `
 
 const flatten = arr =>
-  arr.map(({ node: { body, slug, ...rest } }) => ({
-    ...body.remark,
-    slug: (`/` + slug).replace(`//`, `/`),
-    ...rest,
-  }))
+  arr.map(({ node: { body, ...rest } }) => ({ ...body.remark, ...rest }))
+
 const settings = { attributesToSnippet: [`excerpt:20`] }
 
 const queries = [
   {
     indexName: `Pages`,
-    query: queryTemplate(`Page`),
-    transformer: ({ data }) =>
-      flatten(
-        data.items.edges.filter(page => ![`Fehler 404`].includes(page.node.title))
-      ),
+    query: queryTemplate(`Page`, ``, `(filter: {slug: {nin: "/404"}})`),
+    transformer: ({ data }) => flatten(data.items.edges),
     settings,
   },
   {

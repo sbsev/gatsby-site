@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import mediaQuery from 'utils/mediaQuery'
 
-export const FooterContainer = styled.div`
+export const FooterDiv = styled.footer`
   background: ${props => props.theme.darkBlue};
   padding: 5vh 5vw;
   color: white;

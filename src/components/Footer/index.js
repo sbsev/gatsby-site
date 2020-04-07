@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery, Link } from 'gatsby'
 import React from 'react'
 import Social from '../Social'
-import { FooterContainer, FooterLinks, PoweredBy, Source } from './styles'
+import { FooterDiv, FooterLinks, PoweredBy, Source } from './styles'
 
 export default function Footer() {
   const { footer } = useStaticQuery(graphql`
@@ -29,7 +29,7 @@ export default function Footer() {
   `)
   const { copyright, source, links, poweredBy } = footer.data
   return (
-    <FooterContainer>
+    <FooterDiv>
       <div>
         © {new Date().getFullYear()} - {copyright}
       </div>
@@ -40,7 +40,7 @@ export default function Footer() {
           </Link>
         ))}
       </FooterLinks>
-      <Social css="font-size: 1.3em;" />
+      <Social css="font-size: 1.3em;" Facebook Linkedin Youtube Instagram />
       <Source dangerouslySetInnerHTML={{ __html: source }} />
       <PoweredBy>
         Powered by:{` `}
@@ -50,6 +50,6 @@ export default function Footer() {
           </a>
         ))}
       </PoweredBy>
-    </FooterContainer>
+    </FooterDiv>
   )
 }

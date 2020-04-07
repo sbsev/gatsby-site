@@ -11,12 +11,12 @@ export default function TagList({ tags, activeTag, setTag }) {
         &nbsp; Tags
         <Toggle open={open} onClick={() => setOpen(!open)} />
       </h2>
-      {tags.map(({ node: { title, slug, icon } }) => (
+      {tags.map(({ node: { title, icon } }) => (
         <Tag
           open={open}
           key={title}
-          active={activeTag === slug}
-          onClick={() => setTag(slug)}
+          active={activeTag === title}
+          onClick={() => setTag(title)}
         >
           <TagIcon src={icon.file.url} alt={icon.title} />
           {title}

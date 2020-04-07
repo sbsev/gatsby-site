@@ -16,7 +16,7 @@ const addMarkers = chapters => map => {
       title: node.title,
     })
     marker.addListener(`click`, () => {
-      window.location.href = `/standorte/` + node.slug
+      window.location.href = node.slug
     })
   })
 }
@@ -37,31 +37,28 @@ export default function ChaptersPage({ data, location }) {
   const { page, chapters } = data
   const { title, cover, caption, body, updatedAt } = page
   const { excerpt, html } = body.remark
-  const mainChildren = (
-    <>
-      <Map {...mapProps(chapters.edges)} />
-      <Grid gap="0 2em" as="ol" minWidth="10em">
-        {chapters.edges.map(({ node }) => (
-          <li key={node.slug}>
-            <Link to={`/standorte/` + node.slug}>{node.title}</Link>
-          </li>
-        ))}
-      </Grid>
-    </>
-  )
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle cover={cover} caption={caption}>
         <h1>{title}</h1>
       </PageTitle>
-      <PageBody {...{ html, updatedAt, mainChildren }} />
+      <PageBody {...{ html, updatedAt }}>
+        <Map {...mapProps(chapters.edges)} />
+        <Grid gap="0 2em" as="ol" minWidth="8em">
+          {chapters.edges.map(({ node }) => (
+            <li key={node.slug}>
+              <Link to={node.slug}>{node.title}</Link>
+            </li>
+          ))}
+        </Grid>
+      </PageBody>
     </Global>
   )
 }
 
 export const query = graphql`
   {
-    page: contentfulPage(slug: { eq: "standorte" }) {
+    page: contentfulPage(slug: { eq: "/standorte" }) {
       ...pageFields
     }
     chapters: allContentfulChapter(

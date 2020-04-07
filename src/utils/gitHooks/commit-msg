@@ -5,6 +5,10 @@
 
 # Get value of IS_OWNER in .env if any.
 IS_OWNER=$(grep IS_OWNER .env | xargs)
+if [ -z "${IS_OWNER}" ]; then
+  echo ".env file does not set a value for IS_OWNER. Skipping commit-msg hook."
+  exit 0
+fi
 IS_OWNER=${IS_OWNER#*=}
 
 update_version_on_netlify() {
@@ -17,6 +21,7 @@ if $IS_OWNER = true; then
   commit_msg=$(<$commit_msg_file)
   case $commit_msg in
     *"upgrade deps"*|*"upgrade dependencies"*|*"update deps"*|*"update dependencies"*)
+
       # Get current local node and yarn versions.
       yarn_version="$(yarn -v)"
       node_version=$(node -v)

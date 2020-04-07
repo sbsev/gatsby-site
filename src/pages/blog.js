@@ -10,7 +10,7 @@ import PostList from 'components/PostList'
 const filterPostsByTag = (tag, posts) =>
   tag === `alle`
     ? posts
-    : posts.filter(({ node }) => node.tags.map(tag => tag.slug).includes(tag))
+    : posts.filter(({ node }) => node.tags.map(tag => tag.title).includes(tag))
 
 const readActiveTagFromUrl = urlParams => urlParams.replace(/.*tag=([^&]+).*/, `$1`)
 
@@ -54,7 +54,6 @@ export const query = graphql`
       edges {
         node {
           title
-          slug
           icon {
             title
             file {

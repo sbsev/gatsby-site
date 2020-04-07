@@ -31,12 +31,8 @@ exports.createPages = async ({ graphql, actions }) => {
       response.data.content.edges.forEach(edge => {
         // exclude pages defined in src/pages
         const { slug } = edge.node
-        if (![`/`, `standorte`].includes(slug)) {
-          actions.createPage({
-            path: slug,
-            component,
-            context: { slug },
-          })
+        if (![`/`, `/standorte`].includes(slug)) {
+          actions.createPage({ path: slug, component, context: { slug } })
         }
       })
     })
@@ -44,8 +40,12 @@ exports.createPages = async ({ graphql, actions }) => {
 }
 
 exports.onCreateNode = ({ node }) => {
-  if (node.internal.type === `ContentfulPost`)
-    node.slug = (`/blog/` + node.slug).replace(`//`, `/`)
+  // Ensure all slugs start with a forward slash.
+  if (node.slug && !node.slug.startsWith(`/`)) node.slug = `/` + node.slug
+  // Prefix all post slugs with /blog.
+  if (node.internal.type === `ContentfulPost`) node.slug = `/blog` + node.slug
+  if (node.internal.type === `ContentfulChapter`)
+    node.slug = `/standorte` + node.slug
 }
 
 // Enable absolute imports from `src`.

@@ -16,7 +16,6 @@ export const query = graphql`
     }
     tags {
       title
-      slug
     }
     date(formatString: "D. MMM YYYY", locale: "de")
     cover {

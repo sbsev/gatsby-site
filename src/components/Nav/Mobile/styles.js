@@ -19,7 +19,6 @@ export const MobileNavDiv = styled.nav`
   height: 100%;
   background: rgba(0, 0, 0, 0.9);
   padding: 2em;
-  font-size: 1.4em;
   color: white;
   right: 100%;
   display: grid;

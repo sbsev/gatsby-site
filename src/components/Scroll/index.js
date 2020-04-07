@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Arrow } from './styles'
 
 export default function Scroll({ direction = `up`, by, to, ...rest }) {
-  const { showBelow, className, size = `calc(0.6em + 30px)` } = rest
+  const { showBelow, className, size = `40px` } = rest
   if (![`up`, `down`].includes(direction))
     throw TypeError(`Scroll 'direction' prop must be either 'up' or 'down'`)
   if (to && (typeof to !== `number` || to <= 0))

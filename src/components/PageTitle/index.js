@@ -1,5 +1,5 @@
 import React from 'react'
-import { PageTitleDiv, Title, Img } from './styles'
+import { PageTitleDiv, Img } from './styles'
 import { Caption } from '../styles'
 import Slideshow from '../Slideshow'
 
@@ -16,7 +16,7 @@ export default function PageTitle({ children, cover, caption, slideshow, ...rest
       ) : (
         <Img {...cover} alt={cover.title} />
       )}
-      <Title>{children}</Title>
+      {children}
       {caption && (
         <Caption
           showOnHoverParent={PageTitleDiv}

@@ -1,52 +1,48 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
 
-const imageGrid = (mode = `auto-fill`, gap = `2em`, textFormat = true) => css`
+const grid = ({ gap = `2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
   display: grid;
   grid-gap: ${gap};
-  grid-template-columns: repeat(${mode}, minmax(7em, 1fr));
-  margin: 2em 0;
+  grid-template-columns: repeat(${fit}, minmax(${minWidth}, 1fr));
   img {
     width: 100%;
   }
-  ${textFormat &&
-    `h3 {
+  /* prettier-ignore */
+  h1, h2, h3, h4, h5, h6 {
     grid-column: 1/-1;
     text-align: center;
     margin-bottom: 0;
   }
-  > p {
-    text-align: center;
-    margin: 0;
-    > em {
-      display: block;
-      font-style: normal;
-    }
-    > strong {
-      display: block;
-      font-weight: lighter;
-      font-size: 0.9em;
-    }
-  }`}
 `
 
-export const Body = styled.div`
+export const Main = styled.main`
   margin: calc(3em + 3vh) 0;
   display: grid;
   grid-gap: 0 4vw;
   grid-template-columns: 1fr 1fr minmax(8em, ${props => props.theme.maxWidth}) 1fr 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: dense;
-  > main {
-    grid-column: 3;
-  }
   ${mediaQuery.minPhablet} {
-    p {
+    > p {
       text-align: justify;
     }
   }
+  > * {
+    grid-column: 3;
+  }
   p > img {
     max-width: 100%;
+  }
+  /* Image captions */
+  .gatsby-resp-image-wrapper + em,
+  .gatsby-resp-image-wrapper + strong {
+    text-align: center;
+    display: block;
+    font-size: 0.9em;
+    + strong {
+      font-weight: lighter;
+    }
   }
   .img-small {
     max-width: 16em;
@@ -54,7 +50,7 @@ export const Body = styled.div`
   }
   #heads,
   #alumni {
-    ${imageGrid()};
+    ${grid({ gap: `0 2em` })};
     .gatsby-resp-image-wrapper {
       border-radius: 50% !important;
       overflow: hidden;
@@ -64,16 +60,96 @@ export const Body = styled.div`
     }
   }
   #partners {
-    ${imageGrid()};
+    ${grid({ gap: `0 2em` })};
   }
-  .image-grid {
-    ${imageGrid(`auto-fit`, `1em`, false)};
+  .grid {
+    ${grid({ gap: `3em` })};
+  }
+  .grid.fit {
+    ${grid({ fit: `auto-fit`, minWidth: `12em`, gap: `1em` })};
   }
   .multi-col-list ul,
   .multi-col-list ol {
     display: grid;
     grid-gap: 0 2em;
     grid-template-columns: repeat(auto-fit, minmax(10em, 1fr));
+  }
+  .left-img-right-text-boxes {
+    > ul {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-gap: 1em;
+      > li {
+        display: grid;
+        grid-gap: 0 1em;
+        grid-template-columns: auto 1fr;
+        box-shadow: 0 0 5px gray;
+        border-radius: 1em;
+        padding: 0.8em;
+        > :first-child {
+          grid-column: 1;
+          grid-row: span 10;
+        }
+        > :not(:first-child) {
+          grid-column: 2;
+        }
+        p {
+          margin: 0;
+        }
+        em.block,
+        strong.block {
+          display: block;
+        }
+        em.block {
+          font-weight: lighter;
+        }
+        img:first-child,
+        .gatsby-resp-image-wrapper:first-child {
+          width: 7em;
+          border-radius: 0.5em;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .full-width {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    &.bg {
+      padding: 0.5em calc(50vw - 50%);
+      color: white;
+      &.orange {
+        background: ${props => props.theme.orange};
+      }
+      &.yellow {
+        background: ${props => props.theme.yellow};
+      }
+      &.green {
+        background: ${props => props.theme.lighterGreen};
+      }
+      &.blue {
+        background: ${props => props.theme.blue};
+      }
+      &.light-blue {
+        background: ${props => props.theme.lightBlue};
+      }
+    }
+  }
+`
+
+export const Content = styled.div`
+  display: contents;
+  > * {
+    grid-column: 3;
+  }
+  > *:first-child {
+    margin-top: 0;
   }
 `
 

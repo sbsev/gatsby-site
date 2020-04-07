@@ -1,7 +1,7 @@
 import { Link } from 'gatsby'
 import React, { Fragment } from 'react'
 import PostMeta from '../PostMeta'
-import { Cover, Post, Tag, Title } from './styles'
+import { Cover, Post, Tag } from './styles'
 
 export default function PostExcerpt({ post, activeTag, setTag }) {
   const { cover, slug, title, author, date, tags, body } = post
@@ -15,9 +15,9 @@ export default function PostExcerpt({ post, activeTag, setTag }) {
         </Link>
       )}
       <main>
-        <Title>
+        <h2>
           <Link to={slug}>{title}</Link>
-        </Title>
+        </h2>
         <PostMeta {...{ author, date, timeToRead }} />
         <div>
           <span>Tags: </span>

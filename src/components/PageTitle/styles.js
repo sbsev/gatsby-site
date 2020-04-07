@@ -3,29 +3,26 @@ import styled from 'styled-components'
 
 export const PageTitleDiv = styled.hgroup`
   position: relative;
+  z-index: 1; /* To allow clicking slideshow dots on landing page. */
   color: white;
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-items: center;
-  min-height: 70vh;
-  flex: 1; /* For filling height between header and footer on 404 page */
+  align-content: center;
+  min-height: 50vh;
   overflow: hidden;
-`
-
-export const Title = styled.div`
+  flex: 1; /* For filling height between header and footer on 404 page */
   text-align: center;
-  position: absolute;
-  font-size: calc(1em + 0.5vw);
-  margin: 1em;
-  max-width: 30em;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 0.5em;
-  padding: 0.4em 0.8em;
+  box-shadow: 0 0 6px grey;
+  /* Exclude the cover image/slideshow. */
+  > :not(:first-child) {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0.5em;
+    padding: 0.2em 0.4em;
+    margin: 1em;
+    max-width: 30em;
+  }
   a {
     color: ${props => props.theme.lighterGreen};
-  }
-  > * {
-    margin: 0;
   }
 `
 
@@ -33,12 +30,8 @@ export const Img = styled(Image).attrs(
   ({ fluid, src }) => !fluid && src && { as: `img` }
 )`
   position: absolute !important;
+  z-index: -1;
   width: 100%;
-  height: ${({ as }) => as !== `img` && `100%`};
-  background: ${({ theme }) => `linear-gradient(
-    10deg,
-    ${theme.lighterGreen} 0%,
-    ${theme.darkBlue} 50%,
-    ${theme.lightBlue} 100%
-  )`};
+  height: 100%;
+  object-fit: cover;
 `

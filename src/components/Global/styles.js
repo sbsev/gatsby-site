@@ -32,7 +32,10 @@ export const GlobalStyle = createGlobalStyle`
   }
   h1, h2, h3, h4, h5, h6 {
     line-height: initial;
+    /* margin-top: 1em; */
+    margin-bottom: 0.2em;
   }
+  ${[...Array(6)].map((_, idx) => `h${idx + 1} { font-size: ${2 - 0.2 * idx}em; }`)}
   a {
     text-decoration: none;
     color: ${theme.blue};
@@ -42,7 +45,8 @@ export const GlobalStyle = createGlobalStyle`
   }
   #gatsby-focus-wrapper {
     min-height: 100vh;
-    display: grid;
+    display: flex;
+    flex-direction: column;
   }
   .btn {
     display: inline-block;
@@ -53,19 +57,30 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0.4em 0.6em;
     font-size: ${props => props.size};
     transition: 0.3s;
-    .block {
+    ${btnColors}
+    a {
+      color: white;
+    }
+    &.block {
+      display: block;
       margin: 0 auto;
+      width: fit-content;
     }
     :hover {
       transform: scale(1.05);
       background: ${props => props.theme.lightBlue};
     }
-    ${btnColors}
-    .medium {
+    &.block {
+      display: block;
+      margin: 0 auto;
+      width: fit-content;
+    }
+    &.medium {
       font-size: 1.4em;
     }
-    .large {
-      font-size: 1.7em;
+    &.large {
+      font-size: 1.6em;
+      margin: 1.2em auto;
     }
   }
   .inline-img {
@@ -98,13 +113,5 @@ export const GlobalStyle = createGlobalStyle`
         border-right: none;
       }
     }
-  }
-  .rcornerbox {
-    border-radius: 20px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: ${props => props.theme.darkBlue};
-    padding: 20px;
-    width: auto;
   }
 `

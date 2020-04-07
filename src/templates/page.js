@@ -13,13 +13,14 @@ export default function PageTemplate({ data, location }) {
   return (
     <Global pageTitle={title} path={location.pathname} description={excerpt}>
       <PageTitle cover={cover} caption={caption}>
-        <h1>{title}</h1>
-        {subtitle && (
+        {subtitle ? (
           <div
             dangerouslySetInnerHTML={{
-              __html: subtitle.remark.html,
+              __html: `<h1>${title}</h1>` + subtitle.remark.html,
             }}
           />
+        ) : (
+          <h1>{title}</h1>
         )}
       </PageTitle>
       {html && <PageBody {...{ html, updatedAt, title }}>{toc && <Toc />}</PageBody>}

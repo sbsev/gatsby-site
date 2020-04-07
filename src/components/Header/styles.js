@@ -4,9 +4,7 @@ import mediaQuery from 'utils/mediaQuery'
 import Owl from 'assets/logo'
 
 export const HeaderContainer = styled.header`
-  background: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  width: fill-available;
+  background: ${props => props.theme.darkBlue};
   z-index: 2;
   font-size: 1.2em;
   display: grid;
@@ -19,7 +17,6 @@ export const HeaderContainer = styled.header`
   font-weight: bold;
   ${mediaQuery.minNetbook} {
     grid-template-areas: 'title nav social search';
-    grid-template-columns: auto auto 1fr auto;
   }
   a {
     color: white;

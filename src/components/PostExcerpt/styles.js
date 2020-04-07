@@ -13,16 +13,15 @@ export const Post = styled.article`
     padding: 1em;
     display: grid;
   }
+  h2 {
+    margin-top: 0;
+  }
 `
 
 export const Cover = styled(Img).attrs(
-  ({ fluid, src }) => !fluid && { as: src ? `img` : `div` }
+  ({ fluid, src }) => !fluid && src && { as: `img` }
 )`
   height: 15em;
-`
-
-export const Title = styled.h2`
-  margin-top: 0;
 `
 
 export const Tag = styled.button`
