@@ -26,6 +26,7 @@ const remarkPlugins = [
   `gatsby-remark-smartypants`,
   `gatsby-remark-autolink-headers`,
   `gatsby-remark-attr`,
+  `gatsby-remark-emoji`,
 ]
 
 module.exports = {
