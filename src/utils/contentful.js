@@ -180,42 +180,23 @@ const publishDraftPeople = () =>
     .then(console.log)
     .catch(console.error)
 
-const getRemits = () =>
-  client
-    .getSpace(process.env.CONTENTFUL_SPACE_ID)
-    .then(space => space.getEnvironment(`master`))
-    .then(env => env.getEntries({ content_type: contentTypes.remit }))
-    .then(({ items }) => {
-      const remitsObj = {}
-      items.forEach(item => (remitsObj[item.fields.title.de] = item.sys.id))
-      return remitsObj
-    })
-    .then(console.log)
-    .catch(console.error)
-
-const getChapters = () =>
-  client
-    .getSpace(process.env.CONTENTFUL_SPACE_ID)
-    .then(space => space.getEnvironment(`master`))
-    .then(env => env.getEntries({ content_type: contentTypes.chapter }))
-    .then(({ items }) => {
-      const chaptersObj = {}
-      items.forEach(item => (chaptersObj[item.fields.title.de] = item.sys.id))
-      return chaptersObj
-    })
-    .then(console.log)
-    .catch(console.error)
-
 const searchPages = () =>
   client
     .getSpace(process.env.CONTENTFUL_SPACE_ID)
     .then(space => space.getEnvironment(`master`))
     .then(env => env.getEntries({ content_type: contentTypes.page }))
     .then(({ items }) =>
-      items.filter(
-        item => item.fields.body && item.fields.body.de.includes(`image-row`)
-      )
+      items.filter(item => item.fields.body && item.fields.body.de.includes(`id="`))
     )
+    // .then(items =>
+    //   items.forEach(item => {
+    //     item.fields.body.de = item.fields.body.de.replace(
+    //       `id="alumni"`,
+    //       `class="grid disk-img"`
+    //     )
+    //     return item.update()
+    //   })
+    // )
     .then(items => items.map(item => item.fields.title.de))
     .then(console.log)
     .catch(console.error)

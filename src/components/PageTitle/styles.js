@@ -13,6 +13,7 @@ export const PageTitleDiv = styled.hgroup`
   flex: 1; /* For filling height between header and footer on 404 page */
   text-align: center;
   box-shadow: 0 0 6px grey;
+  font-size: calc(1em + 0.4vw);
   /* Exclude the cover image/slideshow. */
   > :not(:first-child) {
     background: rgba(0, 0, 0, 0.7);
@@ -23,6 +24,12 @@ export const PageTitleDiv = styled.hgroup`
   }
   a {
     color: ${props => props.theme.lighterGreen};
+  }
+  ul,
+  ol {
+    justify-content: center;
+    display: grid;
+    text-align: left;
   }
 `
 

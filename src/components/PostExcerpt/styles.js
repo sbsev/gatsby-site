@@ -22,6 +22,8 @@ export const Cover = styled(Img).attrs(
   ({ fluid, src }) => !fluid && src && { as: `img` }
 )`
   height: 15em;
+  width: 100%;
+  object-fit: cover;
 `
 
 export const Tag = styled.button`

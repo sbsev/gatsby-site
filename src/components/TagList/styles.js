@@ -4,7 +4,7 @@ import { ToggleOff, ToggleOn } from 'styled-icons/fa-solid'
 
 import mediaQuery from 'utils/mediaQuery'
 
-export const TagGrid = styled.div`
+export const TagGrid = styled.aside`
   display: grid;
   grid-gap: 0.8em;
   grid-column: 4;

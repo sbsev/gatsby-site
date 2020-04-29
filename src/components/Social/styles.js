@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { Share } from 'styled-icons/material'
-import { Youtube, FacebookSquare as Facebook } from 'styled-icons/fa-brands'
-import { Github, Linkedin, Instagram, Twitter } from 'styled-icons/fa-brands'
+import { Youtube, FacebookSquare as Facebook, Github } from 'styled-icons/fa-brands'
+import { Linkedin, Instagram, Twitter, XingSquare } from 'styled-icons/fa-brands'
 import { ContactsBook } from 'styled-icons/remix-fill'
 import mediaQuery from 'utils/mediaQuery'
 
@@ -54,8 +54,8 @@ export const Toggle = styled(Share).attrs({ size: `1em` })`
 `
 
 export const Icons = {
-  Contacts: styled(ContactsBook)`
-    vertical-align: -0.18em;
+  Kontakt: styled(ContactsBook)`
+    vertical-align: -0.15em;
   `,
   Youtube,
   Linkedin,
@@ -63,4 +63,5 @@ export const Icons = {
   Github,
   Instagram,
   Twitter,
+  Xing: XingSquare,
 }

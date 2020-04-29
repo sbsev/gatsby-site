@@ -63,7 +63,7 @@ export const query = graphql`
         }
       }
     }
-    cover: contentfulAsset(title: { eq: "Scrabble Blog" }) {
+    cover: contentfulAsset(title: { eq: "Blog Banner" }) {
       ...image
     }
   }

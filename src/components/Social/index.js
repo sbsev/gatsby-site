@@ -8,12 +8,13 @@ export default function Social({ collapse, className, ...display }) {
     {
       social: contentfulJson(title: { eq: "Social" }) {
         data {
-          Contacts
+          Kontakt
+          Instagram
           Facebook
           Github
-          Linkedin
           Youtube
-          Instagram
+          Linkedin
+          Xing
         }
       }
     }

@@ -3,7 +3,7 @@ import { BookContent } from 'styled-icons/boxicons-regular'
 import { Close as Cross } from 'styled-icons/material'
 import mediaQuery from 'utils/mediaQuery'
 
-export const TocDiv = styled.div`
+export const TocDiv = styled.aside`
   height: max-content;
   z-index: 1;
   line-height: 2em;
@@ -14,7 +14,7 @@ export const TocDiv = styled.div`
   display: flex;
   flex-direction: column;
   background: white;
-  padding: 0.7em;
+  padding: 0.7em 0.8em 0;
   border-radius: 0.5em;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   nav {

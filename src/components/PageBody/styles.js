@@ -1,18 +1,28 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
 
-const grid = ({ gap = `2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
+const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
   display: grid;
   grid-gap: ${gap};
   grid-template-columns: repeat(${fit}, minmax(${minWidth}, 1fr));
+  /* Prevent large images from overflowing. */
+  text-align: center;
   img {
     width: 100%;
   }
   /* prettier-ignore */
   h1, h2, h3, h4, h5, h6 {
     grid-column: 1/-1;
-    text-align: center;
     margin-bottom: 0;
+  }
+  em,
+  strong {
+    text-align: center;
+    display: block;
+    font-style: normal;
+  }
+  strong {
+    font-weight: lighter;
   }
 `
 
@@ -34,39 +44,21 @@ export const Main = styled.main`
   p > img {
     max-width: 100%;
   }
-  /* Image captions */
-  .gatsby-resp-image-wrapper + em,
-  .gatsby-resp-image-wrapper + strong {
-    text-align: center;
-    display: block;
-    font-size: 0.9em;
-    + strong {
-      font-weight: lighter;
-    }
-  }
-  .img-small {
-    max-width: 16em;
-    margin: auto;
-  }
-  #heads,
-  #alumni {
-    ${grid({ gap: `0 2em` })};
-    .gatsby-resp-image-wrapper {
-      border-radius: 50% !important;
-      overflow: hidden;
-    }
-    img {
-      border-radius: 50%;
-    }
-  }
-  #partners {
-    ${grid({ gap: `0 2em` })};
-  }
   .grid {
-    ${grid({ gap: `3em` })};
+    ${grid()};
+    &.disk-img {
+      .gatsby-resp-image-wrapper {
+        border-radius: 50% !important;
+        overflow: hidden;
+      }
+      img {
+        border-radius: 50%;
+      }
+    }
   }
+  /* For side-by-side images */
   .grid.fit {
-    ${grid({ fit: `auto-fit`, minWidth: `12em`, gap: `1em` })};
+    ${grid({ fit: `auto-fit`, minWidth: `12em`, gap: `0 1em` })};
   }
   .multi-col-list ul,
   .multi-col-list ol {
@@ -87,6 +79,9 @@ export const Main = styled.main`
         box-shadow: 0 0 5px gray;
         border-radius: 1em;
         padding: 0.8em;
+        ul {
+          list-style: disc;
+        }
         > :first-child {
           grid-column: 1;
           grid-row: span 10;
