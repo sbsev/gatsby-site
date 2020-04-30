@@ -10,7 +10,7 @@ export const PageTitleDiv = styled.hgroup`
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  min-height: 50vh;
+  min-height: 20em;
   overflow: hidden;
   flex: 1; /* For filling height between header and footer on 404 page */
   text-align: center;
