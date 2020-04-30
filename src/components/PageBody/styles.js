@@ -86,20 +86,26 @@ export const Main = styled.main`
       grid-gap: 1em;
       > li {
         display: grid;
-        grid-gap: 0 1em;
-        grid-template-columns: auto 1fr;
+        grid-gap: 1em;
         box-shadow: 0 0 5px gray;
         border-radius: 1em;
         padding: 0.8em;
         ul {
           list-style: disc;
+          padding-left: 1.3em;
         }
         > :first-child {
-          grid-column: 1;
-          grid-row: span 10;
+          justify-self: center;
         }
-        > :not(:first-child) {
-          grid-column: 2;
+        ${mediaQuery.minPhone} {
+          grid-template-columns: auto 1fr;
+          > :first-child {
+            grid-column: 1;
+            grid-row: span 2;
+          }
+          > :not(:first-child) {
+            grid-column: 2;
+          }
         }
         p {
           margin: 0;
