@@ -27,7 +27,7 @@ export const PageTitleDiv = styled.hgroup`
     margin-left: auto;
   }
   a {
-    color: ${props => props.theme.lighterGreen};
+    color: ${p => p.theme.lighterGreen};
   }
   ul,
   ol {

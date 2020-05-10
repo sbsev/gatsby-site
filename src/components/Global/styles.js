@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import mediaQuery, { screens } from 'utils/mediaQuery'
-import typography from 'utils/typography'
 import theme from 'utils/theme'
+import typography from 'utils/typography'
 
 const { phone, desktop } = screens
 const { fonts, minFontSize, maxFontSize, minLineHeight, maxLineHeight } = typography
@@ -40,7 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     color: ${theme.blue};
     :hover {
-      color: ${props => props.theme.lightBlue};
+      color: ${p => p.theme.lightBlue};
     }
   }
   #gatsby-focus-wrapper {
@@ -51,11 +51,11 @@ export const GlobalStyle = createGlobalStyle`
   .btn {
     display: inline-block;
     margin-top: 0.5em;
-    background: ${props => props.theme.darkBlue};
+    background: ${p => p.theme.darkBlue};
     color: white !important;
     border-radius: 0.2em;
     padding: 0.4em 0.6em;
-    font-size: ${props => props.size};
+    font-size: ${p => p.size};
     transition: 0.3s;
     ${btnColors}
     a {
@@ -68,7 +68,7 @@ export const GlobalStyle = createGlobalStyle`
     }
     :hover {
       transform: scale(1.05);
-      background: ${props => props.theme.lightBlue};
+      background: ${p => p.theme.lightBlue};
     }
     &.block {
       display: block;
@@ -94,16 +94,16 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
   table td, table th {
-    border: 1px solid ${props => props.theme.lightGray};
+    border: 1px solid ${p => p.theme.lightGray};
     padding: 0.4em 0.8em;
   }
   tbody tr:nth-child(odd) {
-    background: ${props => props.theme.lightestGray};
+    background: ${p => p.theme.lightestGray};
   }
   div.scroll {
     overflow: scroll;
     margin: 1em auto;
-    border: 1px solid ${props => props.theme.lightGray};
+    border: 1px solid ${p => p.theme.lightGray};
     border-width: 0 1px;
     table td, table th {
       :first-child {

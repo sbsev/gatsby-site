@@ -1,10 +1,9 @@
-import styled from 'styled-components'
-
-import mediaQuery from 'utils/mediaQuery'
 import Owl from 'assets/logo'
+import styled from 'styled-components'
+import mediaQuery from 'utils/mediaQuery'
 
 export const HeaderContainer = styled.header`
-  background: ${props => props.theme.darkBlue};
+  background: ${p => p.theme.darkBlue};
   z-index: 2;
   font-size: 1.2em;
   display: grid;
@@ -22,10 +21,10 @@ export const HeaderContainer = styled.header`
     color: white;
     transition: 0.3s;
     &.active {
-      color: ${props => props.theme.orange};
+      color: ${p => p.theme.orange};
     }
     :hover {
-      color: ${props => props.theme.lightBlue};
+      color: ${p => p.theme.lightBlue};
     }
   }
 `

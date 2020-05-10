@@ -1,9 +1,8 @@
 import styled from 'styled-components'
-
 import mediaQuery from 'utils/mediaQuery'
 
 export const FooterDiv = styled.footer`
-  background: ${props => props.theme.darkBlue};
+  background: ${p => p.theme.darkBlue};
   padding: 5vh 5vw;
   color: white;
   font-weight: bold;
@@ -28,7 +27,7 @@ export const FooterDiv = styled.footer`
   a {
     color: white;
     :hover {
-      color: ${props => props.theme.lightBlue};
+      color: ${p => p.theme.lightBlue};
     }
   }
 `
@@ -45,7 +44,7 @@ export const FooterLinks = styled.div`
 
 export const Source = styled.span`
   a {
-    color: ${props => props.theme.lighterGreen};
+    color: ${p => p.theme.lighterGreen};
   }
 `
 
