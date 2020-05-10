@@ -1,11 +1,13 @@
 import { animated } from 'react-spring'
 import styled, { css } from 'styled-components'
-import { ThMenu } from 'styled-icons/typicons'
 import { Close as Cross } from 'styled-icons/material'
+import { ThMenu } from 'styled-icons/typicons'
 import mediaQuery from 'utils/mediaQuery'
 
-export { KeyboardArrowDown as ArrowDown } from 'styled-icons/material'
-export { KeyboardArrowUp as ArrowUp } from 'styled-icons/material'
+export {
+  KeyboardArrowDown as ArrowDown,
+  KeyboardArrowUp as ArrowUp,
+} from 'styled-icons/material'
 
 export const MobileNavDiv = styled.nav`
   z-index: 1;
@@ -24,7 +26,7 @@ export const MobileNavDiv = styled.nav`
   display: grid;
   grid-gap: 1em;
   grid-auto-rows: max-content;
-  transform: translate(${props => (props.open ? `99%` : `0`)});
+  transform: translate(${p => (p.open ? `99%` : `0`)});
   transition: 0.3s;
   line-height: 1.4em;
   /* Needed to scroll past last element in case of overflow. */
@@ -50,7 +52,7 @@ export const Children = styled(animated.div)`
   padding-left: 0.8em;
   border-left: thin dashed white;
   overflow: hidden;
-  padding-bottom: ${props => props.open && `0.6em`};
+  padding-bottom: ${p => p.open && `0.6em`};
   > div {
     margin-top: 0.6em;
     display: grid;
@@ -77,5 +79,5 @@ export const NavToggle = styled(ThMenu).attrs(props => ({
   ${mediaQuery.minLaptop} {
     display: none;
   }
-  ${props => props.closer && closerCss};
+  ${p => p.closer && closerCss};
 `

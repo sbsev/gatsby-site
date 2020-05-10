@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const BrowserWarning = styled.div`
-  background: ${(props) => props.theme.lightBlue};
+  background: ${p => p.theme.lightBlue};
   color: white;
   text-align: center;
   p {
@@ -10,6 +10,6 @@ export const BrowserWarning = styled.div`
     margin: auto;
   }
   a {
-    color: ${(props) => props.theme.darkYellow};
+    color: ${p => p.theme.darkYellow};
   }
 `

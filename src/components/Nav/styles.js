@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
 import { Link } from 'gatsby'
+import styled, { css } from 'styled-components'
 
 const span = css`
   grid-column: 1/-1;
@@ -11,5 +11,5 @@ export const NavLink = styled(Link).attrs({
   activeClassName: `active`,
   partiallyActive: true,
 })`
-  ${props => props.span && span};
+  ${p => p.span && span};
 `

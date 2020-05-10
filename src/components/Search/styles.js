@@ -1,7 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { Search } from 'styled-icons/fa-solid'
 import { Algolia } from 'styled-icons/fa-brands'
+import { Search } from 'styled-icons/fa-solid'
 
 export const Root = styled.div`
   position: relative;
@@ -16,11 +16,11 @@ export const SearchIcon = styled(Search)`
 
 const focus = css`
   background: white;
-  color: ${props => props.theme.darkBlue};
+  color: ${p => p.theme.darkBlue};
   cursor: text;
   width: 5em;
   + ${SearchIcon} {
-    color: ${props => props.theme.darkBlue};
+    color: ${p => p.theme.darkBlue};
     margin: 0.3em;
   }
 `
@@ -28,20 +28,20 @@ const focus = css`
 const collapse = css`
   width: 0;
   cursor: pointer;
-  color: ${props => props.theme.lightBlue};
+  color: ${p => p.theme.lightBlue};
   + ${SearchIcon} {
     color: white;
   }
-  ${props => props.focus && focus}
-  margin-left: ${props => (props.focus ? `-1.6em` : `-1em`)};
-  padding-left: ${props => (props.focus ? `1.6em` : `1em`)};
+  ${p => p.focus && focus}
+  margin-left: ${p => (p.focus ? `-1.6em` : `-1em`)};
+  padding-left: ${p => (p.focus ? `1.6em` : `1em`)};
   ::placeholder {
-    color: ${props => props.theme.darkBlue};
+    color: ${p => p.theme.darkBlue};
   }
 `
 
 const expand = css`
-  background: ${props => props.theme.lighterGray};
+  background: ${p => p.theme.lighterGray};
   width: 6em;
   margin-left: -1.6em;
   padding-left: 1.6em;
@@ -57,7 +57,7 @@ export const Input = styled.input`
   background: transparent;
   transition: 0.3s;
   border-radius: 0.2em;
-  ${props => (props.collapse ? collapse : expand)};
+  ${p => (p.collapse ? collapse : expand)};
 `
 
 export const Form = styled.form`
@@ -68,7 +68,7 @@ export const Form = styled.form`
 
 export const HitsWrapper = styled.div`
   font-size: 0.8em;
-  display: ${props => (props.show ? `grid` : `none`)};
+  display: ${p => (p.show ? `grid` : `none`)};
   background: white;
   max-height: 80vh;
   overflow: scroll;
@@ -82,7 +82,7 @@ export const HitsWrapper = styled.div`
   padding: 0.7em 1em 0.4em;
   border-radius: 0.2em;
   a {
-    color: ${props => props.theme.blue} !important;
+    color: ${p => p.theme.blue} !important;
   }
   * {
     margin-top: 0;
@@ -92,15 +92,15 @@ export const HitsWrapper = styled.div`
   }
   div + div {
     margin-top: 0.6em;
-    border-top: 1px solid ${props => props.theme.lightGray};
+    border-top: 1px solid ${p => p.theme.lightGray};
   }
   header {
     display: flex;
     justify-content: space-between;
-    border-bottom: 2px solid ${props => props.theme.darkGray};
+    border-bottom: 2px solid ${p => p.theme.darkGray};
     h2 {
       color: white;
-      background: ${props => props.theme.orange};
+      background: ${p => p.theme.orange};
       padding: 0.1em 0.4em;
       border-radius: 0.2em;
       margin-bottom: 0.3em;

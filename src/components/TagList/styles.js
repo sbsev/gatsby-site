@@ -1,8 +1,7 @@
 import styled from 'styled-components'
-export { Tags as TagsIcon } from 'styled-icons/fa-solid'
 import { ToggleOff, ToggleOn } from 'styled-icons/fa-solid'
-
 import mediaQuery from 'utils/mediaQuery'
+export { Tags as TagsIcon } from 'styled-icons/fa-solid'
 
 export const TagGrid = styled.aside`
   display: grid;
@@ -35,18 +34,18 @@ export const Tag = styled.button`
   cursor: pointer;
   width: max-content;
   white-space: nowrap;
-  color: ${props => props.theme.darkGray};
+  color: ${p => p.theme.darkGray};
   border-radius: 0.2em;
   background: ${({ active, theme }) => active && theme.orange};
-  box-shadow: 0 0 0.5em ${props => props.theme.lighterGray};
-  border: 1px solid ${props => props.theme.lightGray};
+  box-shadow: 0 0 0.5em ${p => p.theme.lighterGray};
+  border: 1px solid ${p => p.theme.lightGray};
   ${mediaQuery.maxPhablet} {
     padding: 0.1em 0.5em 0.2em;
     margin: 0 1em 1em 0;
     transition: 0.6s;
-    visibility: ${props => (props.open ? `visible` : `hidden`)};
-    margin-bottom: ${props => (props.open ? `1em` : `-2em`)};
-    opacity: ${props => (props.open ? 1 : 0)};
+    visibility: ${p => (p.open ? `visible` : `hidden`)};
+    margin-bottom: ${p => (p.open ? `1em` : `-2em`)};
+    opacity: ${p => (p.open ? 1 : 0)};
   }
 `
 

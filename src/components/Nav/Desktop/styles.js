@@ -3,7 +3,7 @@ import { fadeInOnHoverParent } from '../../styles'
 
 export { DownArrow } from 'styled-icons/boxicons-solid'
 
-// Unfortunately can't accomodate expanding search box via overflow-x: scroll;
+// Unfortunately can't accommodate expanding search box via overflow-x: scroll;
 // because of https://stackoverflow.com/a/6433475 as it will
 // include SubNavs in vertical scrolling, effectively hiding them.
 export const DesktopNavDiv = styled.nav`
@@ -26,8 +26,7 @@ export const SubNav = styled.div`
   position: absolute;
   transition: 0.3s;
   padding: 0.7em 1em;
-  grid-template-columns: ${props =>
-    props.children.length >= 10 ? `1fr 1fr` : `1fr`};
+  grid-template-columns: ${p => (p.children.length >= 10 ? `1fr 1fr` : `1fr`)};
   background: rgba(0, 0, 0, 0.9);
   ${fadeInOnHoverParent(NavEntry)}
 `

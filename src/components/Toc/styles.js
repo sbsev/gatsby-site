@@ -35,9 +35,9 @@ export const TocDiv = styled.aside`
     position: fixed;
     bottom: 1em;
     left: 1em;
-    ${props => !props.open && `height: 0;`};
-    visibility: ${props => (props.open ? `visible` : `hidden`)};
-    opacity: ${props => (props.open ? 1 : 0)};
+    ${p => !p.open && `height: 0;`};
+    visibility: ${p => (p.open ? `visible` : `hidden`)};
+    opacity: ${p => (p.open ? 1 : 0)};
     transition: 0.3s;
   }
   ${mediaQuery.minLaptop} {
@@ -61,15 +61,15 @@ export const Title = styled.strong`
 
 export const TocLink = styled.a`
   cursor: pointer;
-  color: ${props => !props.active && `black`};
-  font-weight: ${props => props.active && `bold`};
+  color: ${p => !p.active && `black`};
+  font-weight: ${p => p.active && `bold`};
   display: block;
   margin: 0.2em 0 0.4em;
-  margin-left: ${props => props.depth + `em`};
+  margin-left: ${p => p.depth + `em`};
   border-top: ${({ theme, depth }) =>
     `1px solid ` + (depth === 0 ? theme.gray : theme.lightGray)};
   :hover {
-    color: ${props => props.theme.lighterGreen};
+    color: ${p => p.theme.lighterGreen};
   }
 `
 
@@ -86,7 +86,7 @@ const openerCss = css`
   background: white;
   z-index: 1;
   border-radius: 0 50% 50% 0;
-  transform: translate(${props => (props.open ? `-150%` : 0)});
+  transform: translate(${p => (p.open ? `-150%` : 0)});
   border: 1px solid;
   border-left: none;
 `
@@ -110,5 +110,5 @@ export const TocToggle = styled(Cross).attrs(props => ({
   ${mediaQuery.minLaptop} {
     display: none;
   }
-  ${props => (props.opener ? openerCss : closerCss)};
+  ${p => (p.opener ? openerCss : closerCss)};
 `

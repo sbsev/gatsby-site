@@ -1,7 +1,14 @@
 import styled, { css } from 'styled-components'
+import {
+  FacebookSquare as Facebook,
+  Github,
+  Instagram,
+  Linkedin,
+  Twitter,
+  XingSquare,
+  Youtube,
+} from 'styled-icons/fa-brands'
 import { Share } from 'styled-icons/material'
-import { Youtube, FacebookSquare as Facebook, Github } from 'styled-icons/fa-brands'
-import { Linkedin, Instagram, Twitter, XingSquare } from 'styled-icons/fa-brands'
 import { ContactsBook } from 'styled-icons/remix-fill'
 import mediaQuery from 'utils/mediaQuery'
 
@@ -14,7 +21,7 @@ const collapse = css`
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  background: ${props => props.theme.lighterGreen};
+  background: ${p => p.theme.lighterGreen};
   border-radius: 0.2em;
   padding: 1vmin;
   font-size: 1.3em;
@@ -30,7 +37,6 @@ const alwaysShow = css`
   align-items: end;
   grid-auto-columns: max-content;
   grid-area: social;
-  ${props => props.styles};
 `
 
 export const Container = styled.div`
@@ -40,7 +46,7 @@ export const Container = styled.div`
     ${alwaysShow};
   }
   ${mediaQuery.maxLaptop} {
-    ${props => (props.collapse ? collapse : alwaysShow)};
+    ${p => (p.collapse ? collapse : alwaysShow)};
   }
 `
 

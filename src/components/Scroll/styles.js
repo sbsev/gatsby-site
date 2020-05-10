@@ -6,15 +6,15 @@ export const Arrow = styled(Down).attrs(props => ({
 }))`
   position: absolute;
   bottom: 1em;
-  right: calc(50vw - ${props => props.size} / 2);
-  background: ${props => props.theme.lighterGreen};
+  right: calc(50vw - ${p => p.size} / 2);
+  background: ${p => p.theme.lighterGreen};
   color: white;
   border-radius: 50%;
   transition: 0.3s;
-  opacity: ${props => (props.show ? 1 : 0)};
-  visibility: ${props => (props.show ? `visible` : `hidden`)};
+  opacity: ${p => (p.show ? 1 : 0)};
+  visibility: ${p => (p.show ? `visible` : `hidden`)};
   :hover {
     transform: scale(1.15);
-    background: ${props => props.theme.orange};
+    background: ${p => p.theme.orange};
   }
 `
