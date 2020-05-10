@@ -26,9 +26,9 @@ export const GlobalStyle = createGlobalStyle`
   ${[...Array(6)].map((_, idx) => `h${idx + 1} { font-size: ${2 - 0.2 * idx}em; }`)}
   a {
     text-decoration: none;
-    color: ${props => props.theme.blue};
+    color: ${p => p.theme.blue};
     :hover {
-      color: ${props => props.theme.lightBlue};
+      color: ${p => p.theme.lightBlue};
     }
   }
   #gatsby-focus-wrapper {
@@ -84,16 +84,16 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
   }
   table td, table th {
-    border: 1px solid ${props => props.theme.lightGray};
+    border: 1px solid ${p => p.theme.lightGray};
     padding: 0.4em 0.8em;
   }
   tbody tr:nth-child(odd) {
-    background: ${props => props.theme.lightestGray};
+    background: ${p => p.theme.lightestGray};
   }
   div.scroll {
     overflow: scroll;
     margin: 1em auto;
-    border: 1px solid ${props => props.theme.lightGray};
+    border: 1px solid ${p => p.theme.lightGray};
     border-width: 0 1px;
     table td, table th {
       :first-child {

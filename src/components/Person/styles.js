@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import Image from 'gatsby-image'
+import styled from 'styled-components'
 
 export const PersonContainer = styled.div`
   text-align: center;
@@ -15,7 +15,7 @@ export const Details = styled.div`
   left: 50%;
   opacity: 0;
   visibility: hidden;
-  background: ${props => props.theme.lightestGray};
+  background: ${p => p.theme.lightestGray};
   z-index: 2;
   max-width: 90vw;
   min-width: 15em;

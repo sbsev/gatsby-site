@@ -12,21 +12,21 @@ export const Caption = styled.figcaption`
   border-radius: 0.5em 0.5em 0 0 !important;
   margin: 0 !important;
   a {
-    color: ${props => props.theme.lightBlue};
+    color: ${p => p.theme.lightBlue};
     transition: 0.3s;
     :hover {
-      color: ${props => props.theme.orange};
+      color: ${p => p.theme.orange};
     }
   }
   > p:first-child {
     margin: 0;
   }
-  ${props =>
-    props.showOnHoverParent &&
+  ${p =>
+    p.showOnHoverParent &&
     css`
       visibility: hidden;
       opacity: 0;
-      ${props.showOnHoverParent}:hover & {
+      ${p.showOnHoverParent}:hover & {
         visibility: visible;
         opacity: 1;
       }

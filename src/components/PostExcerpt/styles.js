@@ -5,9 +5,9 @@ export const Post = styled.article`
   height: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 0 1em ${props => props.theme.lightGray};
+  box-shadow: 0 0 1em ${p => p.theme.lightGray};
   border-radius: 0.5em;
-  border: 1px solid ${props => props.theme.lightGray};
+  border: 1px solid ${p => p.theme.lightGray};
   overflow: hidden;
   > main {
     padding: 1em;
