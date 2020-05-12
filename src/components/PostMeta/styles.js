@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components'
 import Img from 'gatsby-image'
+import styled, { css } from 'styled-components'
 
 const inExcerpt = css`
   display: grid;
@@ -35,7 +35,7 @@ const inTitle = css`
 `
 
 export const Meta = styled.div`
-  ${props => (props.inTitle ? inTitle : inExcerpt)};
+  ${p => (p.inTitle ? inTitle : inExcerpt)};
 `
 
 export const AuthorPhoto = styled(Img)`

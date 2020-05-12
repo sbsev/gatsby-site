@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
+import { theme } from 'utils/theme'
 
 const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
   display: grid;
@@ -26,11 +27,22 @@ const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => cs
   }
 `
 
+const bgColors = [
+  [`orange`],
+  [`yellow`],
+  [`lighterGreen`, `green`],
+  [`blue`],
+  [`lightBlue`, `light-blue`],
+  [`darkBlue`, `dark-blue`],
+]
+  .map(([color, name]) => `&.${name || color} { background: ${theme[color]}; }`)
+  .join(`\n`)
+
 export const Main = styled.main`
   margin: calc(3em + 3vh) 0;
   display: grid;
   grid-gap: 0 4vw;
-  grid-template-columns: 1fr 1fr minmax(8em, ${props => props.theme.maxWidth}) 1fr 1fr;
+  grid-template-columns: 1fr 1fr minmax(8em, ${p => p.theme.maxWidth}) 1fr 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: dense;
   ${mediaQuery.minPhablet} {
@@ -74,20 +86,26 @@ export const Main = styled.main`
       grid-gap: 1em;
       > li {
         display: grid;
-        grid-gap: 0 1em;
-        grid-template-columns: auto 1fr;
+        grid-gap: 1em;
         box-shadow: 0 0 5px gray;
         border-radius: 1em;
         padding: 0.8em;
         ul {
           list-style: disc;
+          padding-left: 1.3em;
         }
         > :first-child {
-          grid-column: 1;
-          grid-row: span 10;
+          justify-self: center;
         }
-        > :not(:first-child) {
-          grid-column: 2;
+        ${mediaQuery.minPhone} {
+          grid-template-columns: auto 1fr;
+          > :first-child {
+            grid-column: 1;
+            grid-row: span 2;
+          }
+          > :not(:first-child) {
+            grid-column: 2;
+          }
         }
         p {
           margin: 0;
@@ -119,20 +137,12 @@ export const Main = styled.main`
     &.bg {
       padding: 0.5em calc(50vw - 50%);
       color: white;
-      &.orange {
-        background: ${props => props.theme.orange};
-      }
-      &.yellow {
-        background: ${props => props.theme.yellow};
-      }
-      &.green {
-        background: ${props => props.theme.lighterGreen};
-      }
-      &.blue {
-        background: ${props => props.theme.blue};
-      }
-      &.light-blue {
-        background: ${props => props.theme.lightBlue};
+      ${bgColors}
+      &.blue a, &.light-blue a, &.dark-blue a {
+        color: ${p => p.theme.green};
+        :hover {
+          ${p => p.theme.lightGreen};
+        }
       }
     }
   }

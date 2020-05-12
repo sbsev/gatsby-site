@@ -5,10 +5,12 @@ export const PageTitleDiv = styled.hgroup`
   position: relative;
   z-index: 1; /* To allow clicking slideshow dots on landing page. */
   color: white;
-  display: grid;
+  /* Use flex instead of grid. Else Safari messes up vertical alignment of children. */
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
-  min-height: 50vh;
+  min-height: 20em;
   overflow: hidden;
   flex: 1; /* For filling height between header and footer on 404 page */
   text-align: center;
@@ -21,9 +23,11 @@ export const PageTitleDiv = styled.hgroup`
     padding: 0.2em 0.4em;
     margin: 1em;
     max-width: 30em;
+    margin-right: auto;
+    margin-left: auto;
   }
   a {
-    color: ${props => props.theme.lighterGreen};
+    color: ${p => p.theme.lighterGreen};
   }
   ul,
   ol {
