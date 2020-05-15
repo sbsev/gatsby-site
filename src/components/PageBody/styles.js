@@ -146,6 +146,77 @@ export const Main = styled.main`
       }
     }
   }
+  .color-table {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 0.5em;
+    text-align: left;
+    padding: 0.5em calc(50vw - 50%);
+    padding-bottom: 1.5em;
+    padding-top: 0;
+    border-spacing: 0.5em 0;
+    > ul {
+      text-align: center;
+      display: table;
+      width: 100%;
+      table-layout: fixed;
+      padding: 0;
+      margin-bottom: 0;
+      > li {
+        display: table-cell;
+        box-shadow: 0 0 3px gray;
+        vertical-align: middle;
+        border-radius: 1em;
+        border-spacing: 30px;
+        padding: 0.5em;
+        background: ${theme.lightBlue};
+        color: black;
+        a {
+          color: ${theme.green};
+          :hover {
+            color: ${theme.lightGreen};
+          }
+        }
+        :nth-child(odd) {
+          background: ${theme.green};
+        }
+      }
+    }
+    &.blue {
+      background: ${theme.darkBlue};
+      color: white;
+      a {
+        color: ${theme.green};
+        :hover {
+          color: ${theme.lightGreen};
+        }
+      }
+      li {
+        background: ${theme.green};
+        color: black;
+        a {
+          color: ${theme.darkBlue};
+          :hover {
+            color: ${theme.blue};
+          }
+        }
+        :nth-child(odd) {
+          background: ${theme.lightBlue};
+          a {
+            color: ${theme.darkBlue};
+            :hover {
+              color: ${theme.blue};
+            }
+          }
+        }
+      }
+    }
+  }
 `
 
 export const Content = styled.div`

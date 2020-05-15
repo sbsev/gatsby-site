@@ -7,7 +7,7 @@ export const Arrow = styled(Down).attrs(props => ({
   position: absolute;
   bottom: 1em;
   right: calc(50vw - ${p => p.size} / 2);
-  background: ${p => p.theme.lighterGreen};
+  background: ${p => p.theme.green};
   color: white;
   border-radius: 50%;
   transition: 0.3s;
