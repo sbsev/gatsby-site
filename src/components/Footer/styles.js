@@ -44,7 +44,7 @@ export const FooterLinks = styled.div`
 
 export const Source = styled.span`
   a {
-    color: ${p => p.theme.lighterGreen};
+    color: ${p => p.theme.green};
   }
 `
 
