@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import theme from 'utils/theme'
+import { colors } from 'utils/theme'
 import BrowserCheck from '../BrowserCheck'
 import Footer from '../Footer'
 import Header from '../Header'
@@ -22,7 +22,7 @@ export default function Global({ children, ...rest }) {
     }
   `)
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={colors}>
       <>
         <Seo site={site.meta} {...rest} />
         <GlobalStyle />

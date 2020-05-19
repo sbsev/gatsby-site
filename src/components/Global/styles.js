@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import mediaQuery, { screens } from 'utils/mediaQuery'
-import theme from 'utils/theme'
-import typography from 'utils/typography'
+import { colors } from 'utils/theme'
+import { typography } from 'utils/theme'
 
 const { phone, desktop } = screens
 const { fonts, minFontSize, maxFontSize, minLineHeight, maxLineHeight } = typography
@@ -9,8 +9,8 @@ const { fonts, minFontSize, maxFontSize, minLineHeight, maxLineHeight } = typogr
 const btnColors = [`blue`, `green`, `orange`]
   .map(
     color =>
-      `&.${color} { background: ${theme[color]}; :hover { background: ${
-        theme[`light` + color.charAt(0).toUpperCase() + color.slice(1)]
+      `&.${color} { background: ${colors[color]}; :hover { background: ${
+        colors[`light` + color.charAt(0).toUpperCase() + color.slice(1)]
       } } }`
   )
   .join(`\n`)
@@ -38,7 +38,7 @@ export const GlobalStyle = createGlobalStyle`
   ${[...Array(6)].map((_, idx) => `h${idx + 1} { font-size: ${2 - 0.2 * idx}em; }`)}
   a {
     text-decoration: none;
-    color: ${theme.blue};
+    color: ${colors.blue};
     :hover {
       color: ${p => p.theme.lightBlue};
     }

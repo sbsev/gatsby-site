@@ -16,7 +16,7 @@ export const Dot = styled.div`
   height: ${p => p.size};
   width: ${p => p.size};
   background: rgba(0, 0, 0, 0.5);
-  background: ${p => p.active && p.theme.lighterGreen};
+  background: ${p => p.active && p.theme.green};
   transition: 0.6s;
   border: 1px solid white;
   :hover {
