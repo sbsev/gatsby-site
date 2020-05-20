@@ -8,6 +8,7 @@
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
   "repository": "https://github.com/StudentenBildenSchueler/sbs-homepage",
   "dependencies": {
+    "airtable": "^0.8.1",
     "babel-plugin-styled-components": "^1.10.7",
     "gatsby": "2.21.15",
     "gatsby-image": "^2.3.4",
@@ -35,7 +36,9 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.0.0",
+    "react-hook-form": "^5.7.2",
     "react-instantsearch-dom": "^6.4.0",
+    "react-select": "^3.1.0",
     "react-spring": "^8.0.27",
     "sharp": "0.25.2",
     "styled-components": "^5.1.0",
