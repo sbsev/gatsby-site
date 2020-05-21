@@ -1,20 +1,21 @@
-import React from 'react'
+import { startCase } from 'lodash'
 import PropTypes from 'prop-types'
+import React from 'react'
 import { Helmet } from 'react-helmet'
 
-export default function Seo({ site, pageTitle, path = ``, ...rest }) {
-  const { description, children } = rest
-  const title = pageTitle ? `${pageTitle} | ${site.title}` : site.title
-  const pageUrl = site.url + path
-  const desc = description || site.description
+export default function Seo({ site, uri = ``, data, children }) {
+  const pageTitle = `${data?.page?.title || startCase(uri)} | ${site.title}`
+  const pageUrl = site.url + uri
+  const description = data?.page?.excerpt || site.description
   return (
-    <Helmet title={title}>
+    <Helmet title={pageTitle}>
       <meta property="og:type" content="website" />
-      <html lang="en" />
-      {pageTitle && <meta property="og:title" content={pageTitle} />}
+      <html lang="de" />
+      <meta property="og:title" content={pageTitle} />
       <meta property="og:url" content={pageUrl} />
-      <meta property="og:description" content={desc} />
-      <meta name="description" content={desc} />
+      <meta property="og:description" content={description} />
+      <meta name="description" content={description} />
+      <link rel="canonical" href={pageUrl} />
       {children}
     </Helmet>
   )
@@ -26,7 +27,5 @@ Seo.propTypes = {
     url: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }),
-  pageTitle: PropTypes.string,
-  path: PropTypes.string,
-  description: PropTypes.string,
+  uri: PropTypes.string.isRequired,
 }

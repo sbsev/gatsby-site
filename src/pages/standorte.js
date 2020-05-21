@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 
-import Global from 'components/Global'
 import PageTitle from 'components/PageTitle'
 import Map from 'components/Map'
 import PageBody from 'components/PageBody'
@@ -33,12 +32,12 @@ const mapProps = chapters => ({
   onMountProps: chapters,
 })
 
-export default function ChaptersPage({ data, location }) {
+export default function ChaptersPage({ data }) {
   const { page, chapters } = data
   const { title, cover, caption, body, updatedAt } = page
-  const { excerpt, html } = body.remark
+  const { html } = body.remark
   return (
-    <Global pageTitle={title} path={location.pathname} description={excerpt}>
+    <>
       <PageTitle cover={cover} caption={caption}>
         <h1>{title}</h1>
       </PageTitle>
@@ -52,7 +51,7 @@ export default function ChaptersPage({ data, location }) {
           ))}
         </Grid>
       </PageBody>
-    </Global>
+    </>
   )
 }
 

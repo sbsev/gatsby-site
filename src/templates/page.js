@@ -1,18 +1,16 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 
-import Global from 'components/Global'
 import PageTitle from 'components/PageTitle'
 import PageBody from 'components/PageBody'
 import Toc from 'components/Toc'
 
-export default function PageTemplate({ data, location }) {
+export default function PageTemplate({ data }) {
   const { page } = data
-  const { title, subtitle, cover, caption, toc, body, updatedAt } = page
-  const { excerpt, html } = (body && body.remark) || { excerpt: ``, html: `` }
+  const { title, subtitle, cover, caption, toc, body = {}, updatedAt } = page
   return (
-    <Global pageTitle={title} path={location.pathname} description={excerpt}>
-      <PageTitle cover={cover} caption={caption}>
+    <>
+      <PageTitle {...{ cover, caption }}>
         {subtitle ? (
           <div
             dangerouslySetInnerHTML={{
@@ -23,8 +21,12 @@ export default function PageTemplate({ data, location }) {
           <h1>{title}</h1>
         )}
       </PageTitle>
-      {html && <PageBody {...{ html, updatedAt, title }}>{toc && <Toc />}</PageBody>}
-    </Global>
+      {body?.remark?.html && (
+        <PageBody {...body.remark} {...{ updatedAt, title }}>
+          {toc && <Toc />}
+        </PageBody>
+      )}
+    </>
   )
 }
 

@@ -1,5 +1,4 @@
 import Airtable from 'airtable'
-import Global from 'components/Global'
 import PageBody from 'components/PageBody'
 import PageTitle from 'components/PageTitle'
 import { graphql } from 'gatsby'
@@ -139,7 +138,7 @@ export default function SignupPage({ data, location }) {
   }
 
   return (
-    <Global pageTitle="Anmeldung" path={location.pathname}>
+    <>
       <PageTitle cover={cover}>
         <h1>{snippets.pageTitle}</h1>
       </PageTitle>
@@ -300,7 +299,7 @@ export default function SignupPage({ data, location }) {
           <Submit>Anmeldung abschicken</Submit>
         </form>
       </PageBody>
-    </Global>
+    </>
   )
 }
 
