@@ -3,10 +3,10 @@ import React from 'react'
 import { Main, Content, Updated, Address } from './styles'
 
 export default function PageBody(props) {
-  const { children, html, updatedAt, title } = props
+  const { children, html, updatedAt, title, ...rest } = props
   const mailto = `mailto:it@studenten-bilden-schueler.de?subject=Feedback zu Seite "${title}"`
   return (
-    <Main>
+    <Main {...rest}>
       {children}
       <Content dangerouslySetInnerHTML={{ __html: html }} />
       {updatedAt && <Updated>Zuletzt bearbeitet: {updatedAt}</Updated>}
