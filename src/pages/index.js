@@ -1,20 +1,19 @@
 import { graphql } from 'gatsby'
 import React from 'react'
-import Global from 'components/Global'
 import PageBody from 'components/PageBody'
 import PageTitle from 'components/PageTitle'
 
-export default function IndexPage({ data, location }) {
+export default function IndexPage({ data }) {
   const { page, slideshow, updatedAt } = data
-  const { title, subtitle, body, caption } = page
-  const { excerpt, html } = body && body.remark
+  const { subtitle, body, caption } = page
+  const { html } = body && body.remark
   return (
-    <Global pageTitle={title} path={location.pathname} description={excerpt}>
+    <>
       <PageTitle {...{ slideshow, caption }} css="min-height: 70vh;">
         <div dangerouslySetInnerHTML={{ __html: subtitle.remark.html }} />
       </PageTitle>
       <PageBody {...{ html, updatedAt }} />
-    </Global>
+    </>
   )
 }
 

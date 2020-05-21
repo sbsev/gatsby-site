@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { graphql } from 'gatsby'
 
-import Global from 'components/Global'
 import PageTitle from 'components/PageTitle'
 import PageBody from 'components/PageBody'
 import TagList from 'components/TagList'
@@ -29,7 +28,7 @@ export default function BlogPage({ data, location }) {
     )
   }
   return (
-    <Global pageTitle="Blog" path={location.pathname}>
+    <>
       <PageTitle cover={cover}>
         <h1>Blog</h1>
       </PageTitle>
@@ -37,7 +36,7 @@ export default function BlogPage({ data, location }) {
         <TagList tags={tags.edges} activeTag={tag} setTag={handleTagClick} />
         <PostList posts={filteredPosts} />
       </PageBody>
-    </Global>
+    </>
   )
 }
 
