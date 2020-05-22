@@ -1,3 +1,4 @@
+import React from 'react'
 import styled, { css } from 'styled-components'
 
 const requiredCss = css`
@@ -13,7 +14,7 @@ const descriptionCss = css`
 const errorCss = css`
   color: red;
   display: block;
-  margin: 0.5em auto;
+  margin-top: 0.5em;
 `
 
 export const Text = styled.span.attrs(p => {
@@ -77,3 +78,47 @@ export const ButtonGroup = styled.div`
     }
   }
 `
+
+const Label = styled.label`
+  display: flex;
+  align-items: center;
+  width: max-content;
+  span {
+    height: 1.5em;
+    width: 2.7em;
+    padding: 0.1em;
+    box-sizing: border-box;
+    border: 1px solid ${p => p.theme.lightGray};
+    border-radius: 0.75em;
+    transition: 0.3s;
+  }
+  input:checked + span {
+    background: ${p => p.theme.lighterGray};
+  }
+  input {
+    display: none;
+  }
+  input + span::after {
+    content: '';
+    display: block;
+    height: 1.2em;
+    width: 1.2em;
+    border-radius: 50%;
+    background: ${p => p.theme.orange};
+    transition: 0.3s;
+  }
+  input:checked + span::after {
+    background: ${p => p.theme.green};
+    transform: translate(100%);
+  }
+`
+
+export const Switch = props => {
+  const { name, value, disabled, onClick, register, ...rest } = props
+  return (
+    <Label {...rest} onClick={disabled ? null : onClick}>
+      <input type="checkbox" name={name} value={value} ref={register} />
+      <span />
+    </Label>
+  )
+}
