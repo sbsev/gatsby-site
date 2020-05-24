@@ -2,10 +2,12 @@ import Airtable from 'airtable'
 import PageBody from 'components/PageBody'
 import PageTitle from 'components/PageTitle'
 import { graphql } from 'gatsby'
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import Select from 'react-select'
 import { useForm, Controller } from 'react-hook-form'
 import { Text, Input, Submit, ButtonGroup, Switch } from 'components/styles/forms'
+import { useLocalStorage } from 'hooks'
+import { globalHistory } from '@reach/router'
 
 const RadioButtons = ({ options, name, register, initial, ...rest }) => (
   <ButtonGroup {...rest}>
@@ -40,8 +42,25 @@ const airtable = new Airtable({
 
 export default function SignupPage({ data, location }) {
   let { cover, form, studentForm, pupilForm } = data
+  const [storedData, setStoredData] = useLocalStorage(`formData`)
 
-  const { register, handleSubmit, errors, control, watch } = useForm()
+  const { register, handleSubmit, errors, control, watch, getValues } = useForm({
+    defaultValues: storedData,
+  })
+
+  // For domain changes (site-external navigation)
+  useEffect(() => {
+    const leaveListener = () => setStoredData(getValues())
+    window.addEventListener(`beforeunload`, leaveListener)
+    return () => window.removeEventListener(`beforeunload`, leaveListener)
+  }, [getValues, setStoredData])
+
+  // For Gatsby route changes (site-internal navigation)
+  // https://github.com/reach/router/issues/262
+  useEffect(() => {
+    // globalHistory.listen returns an unsubscribe function
+    return globalHistory.listen(() => setStoredData(getValues()))
+  }, [getValues, setStoredData])
 
   form = form.text.remark.html
     .replace(/(^<!--|-->$)/g, ``) // remove html comments at start and end
