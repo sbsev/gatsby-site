@@ -105,11 +105,21 @@ export default function SignupPage({ data, location }) {
   const Error = ({ name }) =>
     errors[name]?.type === `required` && <Text error>{snippets.required}</Text>
 
+  const today = new Date()
+
   const onSubmit = async data => {
     const table = data.type === `Student` ? `Studenten` : `Schüler`
     const global = airtable.base(baseKeys.register)(table)
     const chapter = airtable.base(baseKeys[data.chapter?.value])(table)
-
+    if (data.age) {
+      data.birthDate =
+        today.getFullYear() -
+        data.age +
+        `-` +
+        (today.getMonth() + 1) +
+        `-` +
+        today.getDate()
+    }
     const fields = {
       'Vor- und Nachname': data.fullname, // for students
       Vorname: data.firstname, // for pupils
@@ -127,7 +137,7 @@ export default function SignupPage({ data, location }) {
       // pass undefined in case Number(data.semester) is NaN
       Studienfach: data.studySubject, // for students
       Geburtsort: data.birthPlace, // for students
-      Geburtsdatum: data.birthDate || undefined, // for students
+      Geburtsdatum: data.age ? data.birthDate : undefined, // for students
       Datenschutz: data.dataProtection,
       Kontaktperson: data.nameContact, // for pupils
       'E-Mail Kontaktperson': data.emailContact, // for pupils
@@ -270,6 +280,13 @@ export default function SignupPage({ data, location }) {
               rules={{ required: true }}
             />
             <Error name="discovery" />
+
+            <Text as="h2" required>
+              {snippets.agreementTitle}
+            </Text>
+            <Text description html={snippets.agreement} />
+            <Switch name="agreement" register={register({ required: true })} />
+            <Error name="agreement" />
           </>
         )}
         {type === `Schüler` && (
@@ -323,9 +340,9 @@ export default function SignupPage({ data, location }) {
             <Text description html={snippets.remarks} />
             <Input type="text" name="remarks" ref={register} />
 
-            <Text as="h2">{snippets.birthDateTitle}</Text>
-            <Text description html={snippets.birthDate} />
-            <Input type="date" name="birthDate" ref={register} />
+            <Text as="h2">{snippets.ageTitle}</Text>
+            <Text description html={snippets.age} />
+            <Input type="number" name="age" ref={register} />
 
             <Text as="h2" required>
               {snippets.nameContactTitle}
