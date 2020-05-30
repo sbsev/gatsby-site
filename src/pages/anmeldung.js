@@ -111,14 +111,12 @@ export default function SignupPage({ data, location }) {
     const table = data.type === `Student` ? `Studenten` : `Schüler`
     const global = airtable.base(baseKeys.register)(table)
     const chapter = airtable.base(baseKeys[data.chapter?.value])(table)
+
+    //for pupils calculate approximate birthdate from age
     if (data.age) {
-      data.birthDate =
-        today.getFullYear() -
-        data.age +
-        `-` +
-        (today.getMonth() + 1) +
-        `-` +
-        today.getDate()
+      data.birthDate = `${today.getFullYear() - data.age}-${
+        today.getMonth() + 1
+      }-${today.getDate()}`
     }
     const fields = {
       'Vor- und Nachname': data.fullname, // for students
@@ -145,12 +143,22 @@ export default function SignupPage({ data, location }) {
       'Organisation Kontaktperson': data.orgContact, // for pupils
     }
 
+    //Certain chapters organize contact persons a bit different to others
+    if (data.chapter?.value === `Halle` && table === `Schüler`) {
+      fields.Kontaktperson = data.nameContact
+        ? `${data.nameContact}; ${data.orgContact}; ${data.emailContact}; ${data.phoneContact}`
+        : undefined
+      fields['E-Mail Kontaktperson'] = undefined
+      fields['Telefon Kontaktperson'] = undefined
+      fields['Organisation Kontaktperson'] = undefined
+    }
     try {
       // use Promise.all to fail fast if one record creation fails
       await Promise.all([
         global.create([{ fields: { ...fields, Standort: data.chapter?.value } }], {
           typecast: true,
         }),
+
         chapter.create([{ fields }], { typecast: true }),
       ])
       alert(snippets.success)
