@@ -8,9 +8,9 @@ export const Caption = styled.figcaption`
   font-size: 0.8em;
   transition: 0.3s;
   color: white;
-  padding: 0.1em 0.5em;
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 0.5em 0.5em 0 0;
+  border-radius: 0.5em 0.5em 0 0 !important;
+  margin: 0 !important;
   a {
     color: ${p => p.theme.lightBlue};
     transition: 0.3s;

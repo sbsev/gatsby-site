@@ -1,7 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import theme from 'utils/theme'
+import { colors } from 'utils/theme'
 import BrowserCheck from '../BrowserCheck'
 import Footer from '../Footer'
 import Header from '../Header'
@@ -9,11 +9,15 @@ import Scroll from '../Scroll'
 import Seo from '../Seo'
 import { GlobalStyle } from './styles'
 
-export default function Global({ children, ...rest }) {
+export const Providers = ({ children }) => (
+  <ThemeProvider theme={colors}>{children}</ThemeProvider>
+)
+
+export function PageComponents({ children, ...rest }) {
   const { site } = useStaticQuery(graphql`
     {
       site {
-        meta: siteMetadata {
+        site: siteMetadata {
           title
           url
           description
@@ -22,16 +26,14 @@ export default function Global({ children, ...rest }) {
     }
   `)
   return (
-    <ThemeProvider theme={theme}>
-      <>
-        <Seo site={site.meta} {...rest} />
-        <GlobalStyle />
-        <BrowserCheck />
-        <Header site={site.meta} />
-        {children}
-        <Footer />
-        <Scroll showBelow={1500} css="position: fixed; right: 1em;" />
-      </>
-    </ThemeProvider>
+    <>
+      <GlobalStyle />
+      <BrowserCheck />
+      <Seo {...site} {...rest} />
+      <Header {...site} />
+      {children}
+      <Footer />
+      <Scroll showBelow={1500} css="position: fixed; right: 1em;" />
+    </>
   )
 }

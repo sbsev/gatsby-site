@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import mediaQuery from 'utils/mediaQuery'
-import { theme } from 'utils/theme'
+import { colors } from 'utils/theme'
 
 const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
   display: grid;
@@ -35,14 +35,14 @@ const bgColors = [
   [`lightBlue`, `light-blue`],
   [`darkBlue`, `dark-blue`],
 ]
-  .map(([color, name]) => `&.${name || color} { background: ${theme[color]}; }`)
+  .map(([color, name]) => `&.${name || color} { background: ${colors[color]}; }`)
   .join(`\n`)
 
 export const Main = styled.main`
   margin: calc(3em + 3vh) 0;
   display: grid;
   grid-gap: 0 4vw;
-  grid-template-columns: 1fr 1fr minmax(8em, ${p => p.theme.maxWidth}) 1fr 1fr;
+  grid-template-columns: 1fr 1fr minmax(8em, 40em) 1fr 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: dense;
   ${mediaQuery.minPhablet} {
@@ -174,43 +174,43 @@ export const Main = styled.main`
         border-radius: 1em;
         border-spacing: 30px;
         padding: 0.5em;
-        background: ${theme.lightBlue};
+        background: ${colors.lightBlue};
         color: black;
         a {
-          color: ${theme.green};
+          color: ${colors.green};
           :hover {
-            color: ${theme.lightGreen};
+            color: ${colors.lightGreen};
           }
         }
         :nth-child(odd) {
-          background: ${theme.green};
+          background: ${colors.green};
         }
       }
     }
     &.blue {
-      background: ${theme.darkBlue};
+      background: ${colors.darkBlue};
       color: white;
       a {
-        color: ${theme.green};
+        color: ${colors.green};
         :hover {
-          color: ${theme.lightGreen};
+          color: ${colors.lightGreen};
         }
       }
       li {
-        background: ${theme.green};
+        background: ${colors.green};
         color: black;
         a {
-          color: ${theme.darkBlue};
+          color: ${colors.darkBlue};
           :hover {
-            color: ${theme.blue};
+            color: ${colors.blue};
           }
         }
         :nth-child(odd) {
-          background: ${theme.lightBlue};
+          background: ${colors.lightBlue};
           a {
-            color: ${theme.darkBlue};
+            color: ${colors.darkBlue};
             :hover {
-              color: ${theme.blue};
+              color: ${colors.blue};
             }
           }
         }

@@ -4,9 +4,12 @@
   force = true
 
 [build.environment]
-  NODE_VERSION = "13.12.0"
+  NODE_VERSION = "14.2.0"
   YARN_VERSION = "1.22.4"
 
 [build]
   publish = "public"
   command = "gatsby build"
+
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"

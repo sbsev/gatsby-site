@@ -5,7 +5,7 @@ export const BrowserWarning = styled.div`
   color: white;
   text-align: center;
   p {
-    max-width: ${p => p.theme.maxWidth};
+    max-width: 40em;
     padding: 0.2em 1em;
     margin: auto;
   }
