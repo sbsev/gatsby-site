@@ -161,9 +161,9 @@ export const Main = styled.main`
     padding-top: 0;
     border-spacing: 0.5em 0;
     > ul {
+      width: 100%;
       text-align: center;
       display: table;
-      width: 100%;
       table-layout: fixed;
       padding: 0;
       margin-bottom: 0;
@@ -171,11 +171,15 @@ export const Main = styled.main`
         display: table-cell;
         box-shadow: 0 0 3px gray;
         vertical-align: middle;
-        border-radius: 1em;
+        border-radius: 0.5em;
         border-spacing: 30px;
         padding: 0.5em;
-        background: ${colors.lightBlue};
-        color: black;
+        background: ${colors.darkBlue};
+        color: white;
+        ${mediaQuery.maxPhone} {
+          display: block;
+          margin-bottom: 1em;
+        }
         a {
           color: ${colors.green};
           :hover {
@@ -183,8 +187,29 @@ export const Main = styled.main`
           }
         }
         :nth-child(odd) {
-          background: ${colors.green};
+          background: ${colors.darkBlue};
         }
+      }
+    }
+    &.alternating {
+      li {
+        :nth-child(odd) {
+          background: ${colors.green};
+          color: white;
+          a {
+            color: ${colors.darkBlue};
+            :hover {
+              color: ${colors.blue};
+            }
+          }
+        }
+      }
+    }
+    &.more-spacing {
+      border-spacing: 3em 0;
+      li {
+        padding: 1.2em;
+        font-size: 1.2em;
       }
     }
     &.blue {
@@ -206,12 +231,14 @@ export const Main = styled.main`
           }
         }
         :nth-child(odd) {
-          background: ${colors.lightBlue};
-          a {
-            color: ${colors.darkBlue};
-            :hover {
-              color: ${colors.blue};
-            }
+          background: ${colors.green};
+        }
+      }
+      &.alternating {
+        li {
+          :nth-child(odd) {
+            background: ${colors.lightBlue};
+            color: black;
           }
         }
       }
