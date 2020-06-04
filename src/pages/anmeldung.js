@@ -44,7 +44,7 @@ export default function SignupPage({ data, location }) {
   let { cover, form, studentForm, pupilForm } = data
   const [storedData, setStoredData] = useLocalStorage(`formData`)
 
-  const { register, handleSubmit, errors, control, watch, getValues } = useForm({
+  const { register, errors, control, getValues, ...rhf } = useForm({
     defaultValues: storedData,
   })
 
@@ -84,7 +84,7 @@ export default function SignupPage({ data, location }) {
     value: initChapter,
   }
 
-  const type = watch(`type`, initType || `Student`)
+  const type = rhf.watch(`type`, initType || `Student`)
 
   let snippets = useMemo(
     () =>
@@ -110,6 +110,12 @@ export default function SignupPage({ data, location }) {
     const global = airtable.base(baseKeys.register)(table)
     const chapter = airtable.base(baseKeys[data.chapter?.value])(table)
 
+    if (data.age) {
+      // convert pupil age to approximate birthday (assuming today's day and month)
+      const date = new Date()
+      date.setFullYear(date.getFullYear() - data.age)
+      data.birthDate = date
+    }
     const fields = {
       'Vor- und Nachname': data.fullname, // for students
       Vorname: data.firstname, // for pupils
@@ -127,7 +133,7 @@ export default function SignupPage({ data, location }) {
       // pass undefined in case Number(data.semester) is NaN
       Studienfach: data.studySubject, // for students
       Geburtsort: data.birthPlace, // for students
-      Geburtsdatum: data.birthDate || undefined, // for students
+      Geburtsdatum: data.birthDate,
       Datenschutz: data.dataProtection,
       Kontaktperson: data.nameContact, // for pupils
       'E-Mail Kontaktperson': data.emailContact, // for pupils
@@ -135,15 +141,29 @@ export default function SignupPage({ data, location }) {
       'Organisation Kontaktperson': data.orgContact, // for pupils
     }
 
+    // Certain chapters organize contact persons a bit different to others
+    if (data.chapter?.value === `Halle` && table === `Schüler`) {
+      fields.Kontaktperson = `${data.nameContact}; ${data.orgContact}; ${data.emailContact}; ${data.phoneContact}`
+      fields[`E-Mail Kontaktperson`] = undefined
+      fields[`Telefon Kontaktperson`] = undefined
+      fields[`Organisation Kontaktperson`] = undefined
+    }
     try {
       // use Promise.all to fail fast if one record creation fails
       await Promise.all([
         global.create([{ fields: { ...fields, Standort: data.chapter?.value } }], {
           typecast: true,
         }),
-        chapter.create([{ fields }], { typecast: true }),
+        // Create new link to Kontaktpersonen table
+        chapter.create(
+          [{ fields: { ...fields, Kontaktpersonen: data.nameContact } }],
+          { typecast: true }
+        ),
       ])
       alert(snippets.success)
+      // Reset form fields and localStorage.
+      rhf.reset()
+      setStoredData(null)
     } catch (err) {
       alert(snippets.error + `\n\n` + JSON.stringify(err, null, 4))
     }
@@ -154,7 +174,7 @@ export default function SignupPage({ data, location }) {
       <PageTitle cover={cover}>
         <h1>{snippets.pageTitle}</h1>
       </PageTitle>
-      <PageBody as="form" onSubmit={handleSubmit(onSubmit)}>
+      <PageBody as="form" onSubmit={rhf.handleSubmit(onSubmit)}>
         <RadioButtons
           options={form.types}
           register={register}
@@ -209,7 +229,7 @@ export default function SignupPage({ data, location }) {
 
             <Text as="h2">{snippets.semesterTitle}</Text>
             <Text description html={snippets.semester} />
-            <Input type="number" name="semester" ref={register} />
+            <Input type="number" name="semester" ref={register} min="1" />
 
             <Text as="h2">{snippets.birthPlaceTitle}</Text>
             <Text description html={snippets.birthPlace} />
@@ -270,6 +290,13 @@ export default function SignupPage({ data, location }) {
               rules={{ required: true }}
             />
             <Error name="discovery" />
+
+            <Text as="h2" required>
+              {snippets.agreementTitle}
+            </Text>
+            <Text description html={snippets.agreement} />
+            <Switch name="agreement" register={register({ required: true })} />
+            <Error name="agreement" />
           </>
         )}
         {type === `Schüler` && (
@@ -323,9 +350,9 @@ export default function SignupPage({ data, location }) {
             <Text description html={snippets.remarks} />
             <Input type="text" name="remarks" ref={register} />
 
-            <Text as="h2">{snippets.birthDateTitle}</Text>
-            <Text description html={snippets.birthDate} />
-            <Input type="date" name="birthDate" ref={register} />
+            <Text as="h2">{snippets.ageTitle}</Text>
+            <Text description html={snippets.age} />
+            <Input type="number" name="age" ref={register} min="1" />
 
             <Text as="h2" required>
               {snippets.nameContactTitle}
