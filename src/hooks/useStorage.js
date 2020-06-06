@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react'
 
-export const useLocalStorage = (key, initialValue, options = {}) => {
+export const useStorage = (storage, key, initialValue, options = {}) => {
+  // storage can be local or session or any instance that supports
+  // reading and writing key-value pairs (like any JS object).
   const { deleteKeyIfValueIs = null } = options
+
   // We pass useState a function that handles initial state creation.
   // That way, the function is executed only once and useLocalStorage
   // returns the correct value on initial render.
   const [value, setValue] = useState(() => {
-    // During SSR, localStorage is unavailable so we go straight to initialValue.
-    if (typeof localStorage === `undefined`) return initialValue
+    // During SSR, storage is unavailable so we go straight to initialValue.
+    if (typeof window === `undefined`) return initialValue
     try {
-      const value = localStorage[key]
+      const value = storage[key]
       // Parse stored JSON if there was any, else return initialValue.
       return value ? JSON.parse(value) : initialValue
     } catch (error) {
@@ -20,9 +23,9 @@ export const useLocalStorage = (key, initialValue, options = {}) => {
   })
 
   useEffect(() => {
-    // If key is not in localStorage, set it to the provided initial value to
+    // If key is not in storage, set it to the provided initial value to
     // ensure we store it even if setStoredValue is never called.
-    if (localStorage[key] === undefined) localStorage[key] = JSON.stringify(value)
+    if (storage[key] === undefined) storage[key] = JSON.stringify(value)
 
     // The CustomEvent triggered by a call to useLocalStorage somewhere
     // else in the app carries the new value as the event.detail.
@@ -31,9 +34,9 @@ export const useLocalStorage = (key, initialValue, options = {}) => {
     // Register event listener on initial state creation. Allows us to react
     // to events emitted by setValue below. That way we can keep value in sync
     // between multiple call sites to useLocalStorage with the same key.
-    document.addEventListener(`localStorage:${key}Change`, cb)
-    return () => document.removeEventListener(`localStorage:${key}Change`, cb)
-  }, [value, key])
+    document.addEventListener(`storage:${key}Change`, cb)
+    return () => document.removeEventListener(`storage:${key}Change`, cb)
+  }, [value, key, storage])
 
   const setStoredValue = newValue => {
     if (newValue === value) return
@@ -42,15 +45,21 @@ export const useLocalStorage = (key, initialValue, options = {}) => {
     // which takes the current value.
     if (newValue instanceof Function) newValue = newValue(value)
 
-    const event = new CustomEvent(`localStorage:${key}Change`, {
+    const event = new CustomEvent(`storage:${key}Change`, {
       detail: newValue,
     })
     document.dispatchEvent(event)
 
-    setValue(newValue)
+    if (newValue === deleteKeyIfValueIs) delete storage[key]
+    else storage[key] = JSON.stringify(newValue)
 
-    if (newValue === deleteKeyIfValueIs) delete localStorage[key]
-    else localStorage[key] = JSON.stringify(newValue)
+    setValue(newValue)
   }
   return [value, setStoredValue]
 }
+
+export const useLocalStorage = (...args) =>
+  useStorage(typeof window !== `undefined` && localStorage, ...args)
+
+export const useSessionStorage = (...args) =>
+  useStorage(typeof window !== `undefined` && sessionStorage, ...args)

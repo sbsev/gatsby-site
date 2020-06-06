@@ -2,11 +2,11 @@ import Airtable from 'airtable'
 import PageBody from 'components/PageBody'
 import PageTitle from 'components/PageTitle'
 import { graphql } from 'gatsby'
-import React, { useMemo, useEffect } from 'react'
+import React, { useMemo, useEffect, useCallback } from 'react'
 import Select from 'react-select'
 import { useForm, Controller } from 'react-hook-form'
 import { Text, Input, Submit, ButtonGroup, Switch } from 'components/styles/forms'
-import { useLocalStorage } from 'hooks'
+import { useSessionStorage } from 'hooks'
 import { globalHistory } from '@reach/router'
 
 const RadioButtons = ({ options, name, register, initial, ...rest }) => (
@@ -42,25 +42,26 @@ const airtable = new Airtable({
 
 export default function SignupPage({ data, location }) {
   let { cover, form, studentForm, pupilForm } = data
-  const [storedData, setStoredData] = useLocalStorage(`formData`)
+  const [storedData, setStoredData] = useSessionStorage(`formData`)
 
   const { register, errors, control, getValues, ...rhf } = useForm({
     defaultValues: storedData,
   })
 
-  // For domain changes (site-external navigation)
+  const leaveListener = useCallback(() => {
+    setStoredData(getValues())
+  }, [setStoredData, getValues])
+
+  // For domain changes and page reloads (site-external navigation)
   useEffect(() => {
-    const leaveListener = () => setStoredData(getValues())
     window.addEventListener(`beforeunload`, leaveListener)
     return () => window.removeEventListener(`beforeunload`, leaveListener)
-  }, [getValues, setStoredData])
+  }, [getValues, leaveListener, setStoredData])
 
   // For Gatsby route changes (site-internal navigation)
   // https://github.com/reach/router/issues/262
-  useEffect(() => {
-    // globalHistory.listen returns an unsubscribe function
-    return globalHistory.listen(() => setStoredData(getValues()))
-  }, [getValues, setStoredData])
+  // globalHistory.listen returns an unsubscribe function
+  useEffect(() => globalHistory.listen(leaveListener), [leaveListener])
 
   form = form.text.remark.html
     .replace(/(^<!--|-->$)/g, ``) // remove html comments at start and end
@@ -77,14 +78,19 @@ export default function SignupPage({ data, location }) {
   // initChapter should remain between parsing `form` above and turning items
   // into { label, value } objects below for chapters.includes to work.
   const urlParams = new URLSearchParams(location.search)
-  const initType = urlParams.get(`type`) || `Student`
+  // Student should be the default type if no other valid type was specified.
+  const initType =
+    storedData?.type || /sch(ue|ü)ler/i.test(urlParams.get(`type`))
+      ? `Schüler`
+      : `Student`
   let initChapter = urlParams.get(`chapter`)
+  const source = urlParams.get(`source`)
   initChapter = form.chapters.includes(initChapter) && {
     label: initChapter,
     value: initChapter,
   }
 
-  const type = rhf.watch(`type`, initType || `Student`)
+  const type = rhf.watch(`type`, initType)
 
   let snippets = useMemo(
     () =>
@@ -107,8 +113,8 @@ export default function SignupPage({ data, location }) {
 
   const onSubmit = async data => {
     const table = data.type === `Student` ? `Studenten` : `Schüler`
-    const global = airtable.base(baseKeys.register)(table)
-    const chapter = airtable.base(baseKeys[data.chapter?.value])(table)
+    const globalTable = airtable.base(baseKeys.register)(table)
+    const chapterTable = airtable.base(baseKeys[data.chapter?.value])(table)
 
     if (data.age) {
       // convert pupil age to approximate birthday (assuming today's day and month)
@@ -151,19 +157,28 @@ export default function SignupPage({ data, location }) {
     try {
       // use Promise.all to fail fast if one record creation fails
       await Promise.all([
-        global.create([{ fields: { ...fields, Standort: data.chapter?.value } }], {
-          typecast: true,
-        }),
+        globalTable.create(
+          [{ fields: { ...fields, Standort: data.chapter?.value, Quelle: source } }],
+          { typecast: true }
+        ),
         // Create new link to Kontaktpersonen table
-        chapter.create(
+        chapterTable.create(
           [{ fields: { ...fields, Kontaktpersonen: data.nameContact } }],
           { typecast: true }
         ),
       ])
       alert(snippets.success)
       // Reset form fields and localStorage.
-      rhf.reset()
-      setStoredData(null)
+      setStoredData({})
+      rhf.reset(null)
+      // Second reset needed to clear controlled react-select fields.
+      rhf.reset({
+        chapter: ``,
+        subjects: ``,
+        schoolTypes: ``,
+        schoolType: null,
+        discovery: null,
+      })
     } catch (err) {
       alert(snippets.error + `\n\n` + JSON.stringify(err, null, 4))
     }
@@ -177,11 +192,13 @@ export default function SignupPage({ data, location }) {
       <PageBody as="form" onSubmit={rhf.handleSubmit(onSubmit)}>
         <RadioButtons
           options={form.types}
-          register={register}
+          register={register({ required: true })}
           name="type"
-          initial={initType}
+          initial={type}
           css="margin: 0 auto 4em;"
         />
+        <Error name="type" />
+
         <Text as="section" html={snippets.infoText} />
         <Text required as="h2">
           {snippets.chapterTitle}
