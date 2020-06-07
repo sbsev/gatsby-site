@@ -21,13 +21,7 @@ const addMarkers = chapters => map => {
 }
 
 const mapProps = chapters => ({
-  options: {
-    center: { lat: 51, lng: 10 },
-    zoom:
-      // Checking for window so as not to throw during server-side rendering.
-      typeof window !== `undefined` &&
-      5 + Math.min(window.innerWidth, window.innerHeight) / 1000,
-  },
+  options: { center: { lat: 51.5, lng: 10 }, zoom: 5.6 },
   onMount: addMarkers,
   onMountProps: chapters,
 })
