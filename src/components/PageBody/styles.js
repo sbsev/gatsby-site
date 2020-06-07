@@ -27,17 +27,6 @@ const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => cs
   }
 `
 
-const bgColors = [
-  [`orange`],
-  [`yellow`],
-  [`lighterGreen`, `green`],
-  [`blue`],
-  [`lightBlue`, `light-blue`],
-  [`darkBlue`, `dark-blue`],
-]
-  .map(([color, name]) => `&.${name || color} { background: ${colors[color]}; }`)
-  .join(`\n`)
-
 export const Main = styled.main`
   margin: calc(3em + 3vh) 0;
   display: grid;
@@ -132,16 +121,79 @@ export const Main = styled.main`
     width: 100vw;
     left: 50%;
     right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    &.bg {
-      padding: 0.5em calc(50vw - 50%);
+    margin: 2em -50vw;
+    padding: 2em calc(50vw - 50%);
+    > ul {
+      padding: 0;
+      text-align: center;
+      display: flex;
+      list-style: none;
+      margin: 2em auto;
+      ${mediaQuery.maxPhone} {
+        flex-direction: column;
+      }
+      > li {
+        flex: 1;
+        vertical-align: middle;
+        border-radius: 0.5em;
+        padding: 0.5em;
+        background: ${colors.darkBlue};
+        color: white;
+        & + li {
+          margin-left: 1em;
+          ${mediaQuery.maxPhone} {
+            flex-direction: column;
+            margin-left: 0;
+            margin-top: 1em;
+          }
+        }
+        a {
+          color: ${colors.green};
+          :hover {
+            color: ${colors.lightGreen};
+          }
+        }
+      }
+    }
+    &.alternating {
+      li {
+        :nth-child(odd) {
+          background: ${colors.green};
+          color: white;
+          a {
+            color: ${colors.darkBlue};
+            :hover {
+              color: ${colors.blue};
+            }
+          }
+        }
+      }
+    }
+    &.blue {
+      background: ${colors.darkBlue};
       color: white;
-      ${bgColors}
-      &.blue a, &.light-blue a, &.dark-blue a {
-        color: ${p => p.theme.green};
+      padding: 4em calc(50vw - 50%) 6em;
+      a {
+        color: ${colors.green};
         :hover {
-          ${p => p.theme.lightGreen};
+          color: ${colors.lightGreen};
+        }
+      }
+      li {
+        background: ${colors.green};
+        a {
+          color: ${colors.darkBlue};
+          :hover {
+            color: ${colors.blue};
+          }
+        }
+      }
+      &.alternating {
+        li {
+          :nth-child(odd) {
+            background: ${colors.lightBlue};
+            color: black;
+          }
         }
       }
     }

@@ -7,7 +7,7 @@ const inExcerpt = css`
   grid-template-areas:
     'photo author'
     'photo date'
-    'photo readtime';
+    'photo timeToRead';
   grid-template-columns: max-content 1fr;
   margin-bottom: 0.5em;
   align-items: center;
