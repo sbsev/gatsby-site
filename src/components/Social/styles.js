@@ -14,6 +14,7 @@ import mediaQuery from 'utils/mediaQuery'
 
 export const SocialDiv = styled.div`
   position: relative;
+  font-size: 1.2em;
 `
 
 const collapse = css`

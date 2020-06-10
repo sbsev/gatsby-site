@@ -1,7 +1,6 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
-import { useStaticQuery, graphql } from 'gatsby'
-
-import { SocialDiv, Container, Toggle, Icons } from './styles'
+import { Container, Icons, SocialDiv, Toggle } from './styles'
 
 export default function Social({ collapse, className, ...display }) {
   const { social } = useStaticQuery(graphql`
@@ -9,6 +8,7 @@ export default function Social({ collapse, className, ...display }) {
       social: contentfulJson(title: { eq: "Social" }) {
         data {
           Kontakt
+          Twitter
           Instagram
           Facebook
           Github
