@@ -7,15 +7,15 @@ import PageBody from 'components/PageBody'
 import { Grid } from 'components/styles'
 
 const addMarkers = chapters => map => {
-  chapters.forEach(({ node }, index) => {
+  chapters.forEach(({ title, slug, coords }, index) => {
     const marker = new window.google.maps.Marker({
       map,
-      position: node.coords,
+      position: coords,
       label: `${index + 1}`,
-      title: node.title,
+      title,
     })
     marker.addListener(`click`, () => {
-      window.location.href = node.slug
+      window.location.href = slug
     })
   })
 }
@@ -36,11 +36,11 @@ export default function ChaptersPage({ data }) {
         <h1>{title}</h1>
       </PageTitle>
       <PageBody {...{ html, updatedAt }}>
-        <Map {...mapProps(chapters.edges)} />
+        <Map {...mapProps(chapters.nodes)} />
         <Grid gap="0 2em" as="ol" minWidth="8em">
-          {chapters.edges.map(({ node }) => (
-            <li key={node.slug}>
-              <Link to={node.slug}>{node.title}</Link>
+          {chapters.nodes.map(({ slug, title }) => (
+            <li key={slug}>
+              <Link to={slug}>{title}</Link>
             </li>
           ))}
         </Grid>
@@ -58,14 +58,12 @@ export const query = graphql`
       filter: { active: { eq: true } }
       sort: { fields: title, order: ASC }
     ) {
-      edges {
-        node {
-          title
-          slug
-          coords {
-            lat
-            lng: lon
-          }
+      nodes {
+        title
+        slug
+        coords {
+          lat
+          lng: lon
         }
       }
     }

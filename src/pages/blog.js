@@ -9,7 +9,7 @@ import PostList from 'components/PostList'
 const filterPostsByTag = (tag, posts) =>
   tag === `alle`
     ? posts
-    : posts.filter(({ node }) => node.tags.map(tag => tag.title).includes(tag))
+    : posts.filter(post => post.tags.map(tag => tag.title).includes(tag))
 
 const readActiveTagFromUrl = urlParams => urlParams.replace(/.*tag=([^&]+).*/, `$1`)
 
@@ -17,7 +17,7 @@ export default function BlogPage({ data, location }) {
   const { posts, tags, cover } = data
   const urlTag = readActiveTagFromUrl(location.search)
   const [tag, setTag] = useState(urlTag || `alle`)
-  const filteredPosts = filterPostsByTag(tag, posts.edges)
+  const filteredPosts = filterPostsByTag(tag, posts.nodes)
 
   const handleTagClick = tag => {
     setTag(tag)
@@ -33,7 +33,7 @@ export default function BlogPage({ data, location }) {
         <h1>Blog</h1>
       </PageTitle>
       <PageBody>
-        <TagList tags={tags.edges} activeTag={tag} setTag={handleTagClick} />
+        <TagList tags={tags.nodes} activeTag={tag} setTag={handleTagClick} />
         <PostList posts={filteredPosts} />
       </PageBody>
     </>
@@ -43,21 +43,17 @@ export default function BlogPage({ data, location }) {
 export const query = graphql`
   {
     posts: allContentfulPost(sort: { fields: [date], order: DESC }) {
-      edges {
-        node {
-          ...postFields
-        }
+      nodes {
+        ...postFields
       }
     }
     tags: allContentfulBlogTag(sort: { fields: [title], order: ASC }) {
-      edges {
-        node {
+      nodes {
+        title
+        icon {
           title
-          icon {
-            title
-            file {
-              url
-            }
+          file {
+            url
           }
         }
       }

@@ -6,13 +6,8 @@ const postTemplate = path.resolve(`./src/templates/post.js`)
 const contentfulQuery = contentType => `
   {
     content: allContentful${contentType} {
-      edges {
-        node {
-          internal {
-            type
-          }
-          slug
-        }
+      nodes {
+        slug
       }
     }
   }
@@ -28,9 +23,8 @@ exports.createPages = async ({ graphql, actions }) => {
     pageSets.map(async ([query, component]) => {
       const response = await graphql(query)
       if (response.errors) throw new Error(response.errors)
-      response.data.content.edges.forEach(edge => {
+      response.data.content.nodes.forEach(({ slug }) => {
         // exclude pages defined in src/pages
-        const { slug } = edge.node
         if (![`/`, `/standorte`].includes(slug)) {
           actions.createPage({ path: slug, component, context: { slug } })
         }

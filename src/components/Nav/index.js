@@ -24,18 +24,16 @@ export default function Nav(props) {
         filter: { active: { eq: true } }
         sort: { fields: title, order: ASC }
       ) {
-        edges {
-          node {
-            title
-            slug
-          }
+        nodes {
+          title
+          slug
         }
       }
     }
   `)
-  chapters = chapters.edges.map(({ node }) => ({
-    title: node.title,
-    url: node.slug,
+  chapters = chapters.nodes.map(chapter => ({
+    title: chapter.title,
+    url: chapter.slug,
   }))
   // Clone nav and insert chapters.
   // Merging chapters without cloning results in chapters compounding on every link click.

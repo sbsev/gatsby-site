@@ -11,7 +11,7 @@ export default function TagList({ tags, activeTag, setTag }) {
         &nbsp; Tags
         <Toggle open={open} onClick={() => setOpen(!open)} />
       </h2>
-      {tags.map(({ node: { title, icon } }) => (
+      {tags.map(({ title, icon }) => (
         <Tag
           open={open}
           key={title}
