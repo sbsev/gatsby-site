@@ -2,7 +2,7 @@ import Airtable from 'airtable'
 import PageBody from 'components/PageBody'
 import PageTitle from 'components/PageTitle'
 import { graphql } from 'gatsby'
-import React, { useMemo, useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import Select from 'react-select'
 import { useForm, Controller } from 'react-hook-form'
 import { Text, Input, Submit, ButtonGroup, Switch } from 'components/styles/forms'
@@ -63,6 +63,7 @@ export default function SignupPage({ data, location }) {
   // globalHistory.listen returns an unsubscribe function
   useEffect(() => globalHistory.listen(leaveListener), [leaveListener])
 
+  const { updatedAt } = form // save the value of updatedAt before we reassign form
   form = form.text.remark.html
     .replace(/(^<!--|-->$)/g, ``) // remove html comments at start and end
     .split(/-->\n?\n?<!--/) // split at all middle html comments
@@ -80,11 +81,11 @@ export default function SignupPage({ data, location }) {
   const urlParams = new URLSearchParams(location.search)
   // Student should be the default type if no other valid type was specified.
   const initType =
-    storedData?.type || /sch(ue|ü)ler/i.test(urlParams.get(`type`))
-      ? `Schüler`
-      : `Student`
+    storedData?.type ||
+    (/sch(ue|ü)ler/i.test(urlParams.get(`type`)) ? `Schüler` : `Student`)
+
   let initChapter = urlParams.get(`chapter`)
-  const source = urlParams.get(`source`)
+
   initChapter = form.chapters.includes(initChapter) && {
     label: initChapter,
     value: initChapter,
@@ -92,10 +93,8 @@ export default function SignupPage({ data, location }) {
 
   const type = rhf.watch(`type`, initType)
 
-  let snippets = useMemo(
-    () =>
-      parseSnippets((type === `Student` ? studentForm : pupilForm).text.remark.html),
-    [pupilForm, studentForm, type]
+  let snippets = parseSnippets(
+    (type === `Student` ? studentForm : pupilForm).text.remark.html
   )
 
   for (const key in form) {
@@ -139,7 +138,12 @@ export default function SignupPage({ data, location }) {
       // pass undefined in case Number(data.semester) is NaN
       Studienfach: data.studySubject, // for students
       Geburtsort: data.birthPlace, // for students
-      Geburtsdatum: data.birthDate,
+      // Manual conversion of date string into iso format (yyyy-mm-dd). Only necessary
+      // in Safari. Should do nothing in other browsers.
+      Geburtsdatum:
+        typeof data.birthDate === `string`
+          ? data.birthDate.split(`.`).reverse().join(`-`)
+          : data.birthDate,
       Datenschutz: data.dataProtection,
       Kontaktperson: data.nameContact, // for pupils
       'E-Mail Kontaktperson': data.emailContact, // for pupils
@@ -155,12 +159,22 @@ export default function SignupPage({ data, location }) {
       fields[`Organisation Kontaktperson`] = undefined
     }
     try {
+      const source = [`source`, `chapter`, `type`]
+        .map(key => `${key}: ${urlParams.get(key)}`)
+        .join(`, `)
+
+      // fields not present in individual chapter tables
+      const globalFields = {
+        Standort: data.chapter?.value,
+        Quelle: `landing: ${location.origin}${window.locations[1]}, prev: ${document.referrer}, ${source}`,
+        Spur: window.locations.join(`,\n`),
+      }
+
       // use Promise.all to fail fast if one record creation fails
       await Promise.all([
-        globalTable.create(
-          [{ fields: { ...fields, Standort: data.chapter?.value, Quelle: source } }],
-          { typecast: true }
-        ),
+        globalTable.create([{ fields: { ...fields, ...globalFields } }], {
+          typecast: true,
+        }),
         // Create new link to Kontaktpersonen table
         chapterTable.create(
           [{ fields: { ...fields, Kontaktpersonen: data.nameContact } }],
@@ -189,7 +203,12 @@ export default function SignupPage({ data, location }) {
       <PageTitle cover={cover}>
         <h1>{snippets.pageTitle}</h1>
       </PageTitle>
-      <PageBody as="form" onSubmit={rhf.handleSubmit(onSubmit)}>
+      <PageBody
+        as="form"
+        onSubmit={rhf.handleSubmit(onSubmit)}
+        updatedAt={updatedAt}
+        title={snippets.pageTitle}
+      >
         <RadioButtons
           options={form.types}
           register={register({ required: true })}
@@ -435,7 +454,7 @@ export default function SignupPage({ data, location }) {
         )}
         <Text as="h2">{snippets.submitTitle}</Text>
         <Text description html={snippets.submit} />
-        <Submit>Anmeldung abschicken</Submit>
+        <Submit disabled={rhf.formState.isSubmitting}>Anmeldung abschicken</Submit>
       </PageBody>
     </>
   )
@@ -448,9 +467,10 @@ export const query = graphql`
         html
       }
     }
+    updatedAt(formatString: "D. MMM YYYY", locale: "de")
   }
   {
-    cover: contentfulAsset(title: { eq: "Contact Banner" }) {
+    cover: contentfulAsset(title: { eq: "Welcome Mat" }) {
       ...image
     }
     studentForm: contentfulMicrocopy(title: { eq: "StudentForm" }) {
