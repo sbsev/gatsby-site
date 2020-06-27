@@ -10,7 +10,7 @@ import {
 } from 'styled-icons/fa-brands'
 import { Share } from 'styled-icons/material'
 import { ContactsBook } from 'styled-icons/remix-fill'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 
 export const SocialDiv = styled.div`
   position: relative;
@@ -43,10 +43,10 @@ const alwaysShow = css`
 export const Container = styled.div`
   display: grid;
   grid-gap: 0.8em;
-  ${mediaQuery.minLaptop} {
+  ${mediaQueries.minLaptop} {
     ${alwaysShow};
   }
-  ${mediaQuery.maxLaptop} {
+  ${mediaQueries.maxLaptop} {
     ${p => (p.collapse ? collapse : alwaysShow)};
   }
 `
@@ -55,7 +55,7 @@ export const Toggle = styled(Share).attrs({ size: `1em` })`
   color: white;
   cursor: pointer;
   font-size: 1.3em;
-  ${mediaQuery.minLaptop} {
+  ${mediaQueries.minLaptop} {
     display: none;
   }
 `

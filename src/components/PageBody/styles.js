@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 import { colors } from 'utils/theme'
 
 const grid = ({ gap = `0 2em`, fit = `auto-fill`, minWidth = `7em` } = {}) => css`
@@ -34,7 +34,7 @@ export const Main = styled.main`
   grid-template-columns: 1fr 1fr minmax(8em, 40em) 1fr 1fr;
   grid-auto-rows: max-content;
   grid-auto-flow: dense;
-  ${mediaQuery.minPhablet} {
+  ${mediaQueries.minPhablet} {
     > p {
       text-align: justify;
     }
@@ -86,7 +86,7 @@ export const Main = styled.main`
         > :first-child {
           justify-self: center;
         }
-        ${mediaQuery.minPhone} {
+        ${mediaQueries.minPhone} {
           grid-template-columns: auto 1fr;
           > :first-child {
             grid-column: 1;
@@ -129,7 +129,7 @@ export const Main = styled.main`
       display: flex;
       list-style: none;
       margin: 2em auto;
-      ${mediaQuery.maxPhone} {
+      ${mediaQueries.maxPhone} {
         flex-direction: column;
       }
       > li {
@@ -141,7 +141,7 @@ export const Main = styled.main`
         color: white;
         & + li {
           margin-left: 1em;
-          ${mediaQuery.maxPhone} {
+          ${mediaQueries.maxPhone} {
             flex-direction: column;
             margin-left: 0;
             margin-top: 1em;

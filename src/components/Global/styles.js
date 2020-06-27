@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import mediaQuery, { screens } from 'utils/mediaQuery'
+import { mediaQueries, screens } from 'utils/mediaQueries'
 import { typography } from 'utils/theme'
 
 const { phone, desktop } = screens
@@ -11,11 +11,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${fonts};
     font-size: ${minFontSize}em;
     line-height: ${minLineHeight}em;
-    ${mediaQuery.minPhone} {
+    ${mediaQueries.minPhone} {
       font-size: calc(${minFontSize}em + (${maxFontSize} - ${minFontSize}) * ((100vw - ${phone}em) / (${desktop} - ${phone})));
       line-height: calc(${minLineHeight}em + (${maxLineHeight} - ${minLineHeight}) * ((100vw - ${phone}em) / (${desktop} - ${phone})));
     }
-    ${mediaQuery.minDesktop} {
+    ${mediaQueries.minDesktop} {
       font-size: ${maxFontSize}em;
       line-height: ${maxLineHeight}em;
     }

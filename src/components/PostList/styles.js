@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 
 export const PostListContainer = styled.div`
   display: grid;
@@ -11,7 +11,7 @@ export const PostListContainer = styled.div`
   height: max-content;
   grid-column: 2/4;
   grid-row: 1;
-  ${mediaQuery.maxPhablet} {
+  ${mediaQueries.maxPhablet} {
     grid-row: 2;
   }
 `

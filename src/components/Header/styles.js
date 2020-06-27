@@ -1,6 +1,6 @@
 import Owl from 'assets/logo'
 import styled from 'styled-components'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 
 export const HeaderContainer = styled.header`
   background: ${p => p.theme.darkBlue};
@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
   grid-template-columns: auto 1fr auto auto;
   padding: calc(0.2em + 1vh) calc(1em + 1vw);
   font-weight: bold;
-  ${mediaQuery.minNetbook} {
+  ${mediaQueries.minNetbook} {
     grid-template-areas: 'title nav social search';
   }
   a {

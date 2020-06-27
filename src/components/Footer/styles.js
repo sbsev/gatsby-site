@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 
 export const FooterDiv = styled.footer`
   background: ${p => p.theme.darkBlue};
@@ -15,13 +15,13 @@ export const FooterDiv = styled.footer`
     'copyright'
     'social'
     'links';
-  ${mediaQuery.minTablet} {
+  ${mediaQueries.minTablet} {
     justify-content: space-around;
     grid-template-areas:
       'copyright social'
       'links links';
   }
-  ${mediaQuery.minLaptop} {
+  ${mediaQueries.minLaptop} {
     grid-template-areas: 'copyright links social';
   }
   a {
@@ -37,7 +37,7 @@ export const FooterLinks = styled.div`
   display: grid;
   grid-gap: 3vmin;
   grid-auto-flow: column;
-  ${mediaQuery.maxPhone} {
+  ${mediaQueries.maxPhone} {
     grid-template-rows: auto auto;
   }
 `

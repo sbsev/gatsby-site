@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { ToggleOff, ToggleOn } from 'styled-icons/fa-solid'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 export { Tags as TagsIcon } from 'styled-icons/fa-solid'
 
 export const TagGrid = styled.aside`
@@ -11,7 +11,7 @@ export const TagGrid = styled.aside`
   h2 {
     margin: 0;
   }
-  ${mediaQuery.maxPhablet} {
+  ${mediaQueries.maxPhablet} {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -39,7 +39,7 @@ export const Tag = styled.button`
   background: ${({ active, theme }) => active && theme.orange};
   box-shadow: 0 0 0.5em ${p => p.theme.lighterGray};
   border: 1px solid ${p => p.theme.lightGray};
-  ${mediaQuery.maxPhablet} {
+  ${mediaQueries.maxPhablet} {
     padding: 0.1em 0.5em 0.2em;
     margin: 0 1em 1em 0;
     transition: 0.6s;
@@ -60,7 +60,7 @@ export const Toggle = styled(ToggleOff).attrs(props => ({
 }))`
   margin-left: 0.5em;
   cursor: pointer;
-  ${mediaQuery.minPhablet} {
+  ${mediaQueries.minPhablet} {
     display: none;
   }
 `

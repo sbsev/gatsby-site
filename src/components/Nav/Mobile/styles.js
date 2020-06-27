@@ -2,7 +2,7 @@ import { animated } from 'react-spring'
 import styled, { css } from 'styled-components'
 import { Close as Cross } from 'styled-icons/material'
 import { ThMenu } from 'styled-icons/typicons'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 
 export {
   KeyboardArrowDown as ArrowDown,
@@ -76,7 +76,7 @@ export const NavToggle = styled(ThMenu).attrs(props => ({
   :hover {
     transform: scale(1.1);
   }
-  ${mediaQuery.minLaptop} {
+  ${mediaQueries.minLaptop} {
     display: none;
   }
   ${p => p.closer && closerCss};

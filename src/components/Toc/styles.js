@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 import { BookContent } from 'styled-icons/boxicons-regular'
 import { Close as Cross } from 'styled-icons/material'
-import mediaQuery from 'utils/mediaQuery'
+import { mediaQueries } from 'utils/mediaQueries'
 
 export const TocDiv = styled.aside`
   height: max-content;
@@ -21,7 +21,7 @@ export const TocDiv = styled.aside`
     max-height: 73vh;
     overflow-y: scroll;
     overscroll-behavior: none;
-    ${mediaQuery.minLaptop} {
+    ${mediaQueries.minLaptop} {
       mask-image: linear-gradient(
         to bottom,
         transparent,
@@ -31,7 +31,7 @@ export const TocDiv = styled.aside`
       );
     }
   }
-  ${mediaQuery.maxLaptop} {
+  ${mediaQueries.maxLaptop} {
     position: fixed;
     bottom: 1em;
     left: 1em;
@@ -40,7 +40,7 @@ export const TocDiv = styled.aside`
     opacity: ${p => (p.open ? 1 : 0)};
     transition: 0.3s;
   }
-  ${mediaQuery.minLaptop} {
+  ${mediaQueries.minLaptop} {
     font-size: 0.85em;
     grid-column: 4/-1;
     grid-row: span 10;
@@ -107,7 +107,7 @@ export const TocToggle = styled(Cross).attrs(props => ({
   :hover {
     transform: scale(1.1);
   }
-  ${mediaQuery.minLaptop} {
+  ${mediaQueries.minLaptop} {
     display: none;
   }
   ${p => (p.opener ? openerCss : closerCss)};

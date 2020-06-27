@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useRef, useState, useEffect } from 'react'
 import { animated, useSpring } from 'react-spring'
 import { useOnClickOutside, useSize } from 'hooks'
 import {
@@ -10,6 +10,7 @@ import {
   NavToggle,
 } from './styles'
 import { NavLink } from '../styles'
+import { globalHistory } from '@reach/router'
 
 const Tree = memo(({ text, url, children }) => {
   const ref = useRef()
@@ -43,6 +44,10 @@ export default function MobileNav({ nav }) {
   const ref = useRef()
   const [open, setOpen] = useState(false)
   useOnClickOutside(ref, () => open && setOpen(false))
+  // Manually close MobileNav on route changes. This doesn't happen automatically
+  // because the component is included in wrapPageElement which is never unmounted.
+  // globalHistory.listen returns an unsubscribe function
+  useEffect(() => globalHistory.listen(() => setOpen(false)), [])
   return (
     <>
       <NavToggle open={open} onClick={() => setOpen(true)} />
