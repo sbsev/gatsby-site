@@ -21,24 +21,20 @@ export default function Nav(props) {
         }
       }
       chapters: allContentfulChapter(
-        filter: { active: { eq: true } }
+        filter: { active: { eq: true }, node_locale: { eq: "de" } }
         sort: { fields: title, order: ASC }
       ) {
         nodes {
           title
-          slug
+          url: slug
         }
       }
     }
   `)
-  chapters = chapters.nodes.map(chapter => ({
-    title: chapter.title,
-    url: chapter.slug,
-  }))
   // Clone nav and insert chapters.
   // Merging chapters without cloning results in chapters compounding on every link click.
   nav = JSON.parse(JSON.stringify(nav.data.nav))
-  nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters)
+  nav.find(el => el.url === `/standorte`).subNav.unshift(...chapters.nodes)
   const mobile = useScreenQuery(`maxNetbook`)
   if (mobile) return <MobileNav nav={nav} {...props} />
   // Only render DesktopNav if screen query is false.
