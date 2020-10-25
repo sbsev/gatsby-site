@@ -4,8 +4,8 @@
   force = true
 
 [build.environment]
-  NODE_VERSION = "14.10.0"
-  YARN_VERSION = "1.22.4"
+  NODE_VERSION = "15.0.1"
+  YARN_VERSION = "1.22.10"
 
 [build]
   publish = "public"

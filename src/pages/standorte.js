@@ -55,7 +55,7 @@ export const query = graphql`
       ...pageFields
     }
     chapters: allContentfulChapter(
-      filter: { active: { eq: true } }
+      filter: { active: { eq: true }, node_locale: { eq: "de" } }
       sort: { fields: title, order: ASC }
     ) {
       nodes {
