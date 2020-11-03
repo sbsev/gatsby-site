@@ -26,7 +26,7 @@ function Map({ options, onMount, className, onMountProps }) {
 
   return (
     <div
-      css="height: 60vh; margin: 1em 0; border-radius: 0.5em;"
+      css="height: 30em; max-height: 60vh; margin: 1em 0;"
       {...{ ref, className }}
     />
   )

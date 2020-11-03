@@ -18,13 +18,8 @@ const addMarkers = chapters => map => {
       window.location.href = slug
     })
   })
+  map.fitBounds({ south: 49, west: 8, north: 54, east: 12 })
 }
-
-const mapProps = chapters => ({
-  options: { center: { lat: 51.5, lng: 10 }, zoom: 5.6 },
-  onMount: addMarkers,
-  onMountProps: chapters,
-})
 
 export default function ChaptersPage({ data }) {
   const { page, chapters } = data
@@ -36,7 +31,6 @@ export default function ChaptersPage({ data }) {
         <h1>{title}</h1>
       </PageTitle>
       <PageBody {...{ html, updatedAt }}>
-        <Map {...mapProps(chapters.nodes)} />
         <Grid gap="0 2em" as="ol" minWidth="8em">
           {chapters.nodes.map(({ slug, title }) => (
             <li key={slug}>
@@ -44,6 +38,14 @@ export default function ChaptersPage({ data }) {
             </li>
           ))}
         </Grid>
+        <Map
+          {...{
+            onMount: addMarkers,
+            onMountProps: chapters.nodes,
+            options: { disableDefaultUI: true },
+          }}
+          css="margin: 2em calc(50% - 50vw);"
+        />
       </PageBody>
     </>
   )
