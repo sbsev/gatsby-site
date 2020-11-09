@@ -75,7 +75,6 @@ const plugins = [
       theme_color: `#150956`,
     },
   },
-  `gatsby-plugin-offline`,
   `gatsby-plugin-netlify`,
   `gatsby-plugin-netlify-cache`,
 ]

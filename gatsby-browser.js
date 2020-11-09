@@ -15,6 +15,3 @@ export const onRouteUpdate = () => {
   if (!window.locations) window.locations = [document.referrer]
   window.locations.push(location.pathname + location.search)
 }
-
-// https://gatsbyjs.org/docs/add-offline-support-with-a-service-worker
-export const onServiceWorkerUpdateReady = () => window.location.reload()
