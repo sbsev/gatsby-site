@@ -26,7 +26,7 @@ export const SubNav = styled.div`
   position: absolute;
   transition: 0.3s;
   padding: 0.7em 1em;
-  grid-template-columns: ${p => (p.children.length >= 10 ? `1fr 1fr` : `1fr`)};
+  grid-template-columns: ${p => `1fr `.repeat(Math.ceil(p.children.length / 10))};
   background: rgba(0, 0, 0, 0.9);
   ${fadeInOnHoverParent(NavEntry)}
 `
