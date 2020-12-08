@@ -3,6 +3,8 @@
 const contentful = require(`contentful-management`)
 require(`dotenv`).config()
 
+// to use any of the functions in this file, generate a Content Management Token (CMT) at
+// https://app.contentful.com/spaces/gi9muc70s4ub/api/cma_tokens and add it to your .env file
 const client = contentful.createClient({
   accessToken: process.env.CONTENTFUL_MANAGEMENT_TOKEN,
 })
@@ -186,17 +188,10 @@ const searchPages = () =>
     .then(space => space.getEnvironment(`master`))
     .then(env => env.getEntries({ content_type: contentTypes.page }))
     .then(({ items }) =>
-      items.filter(item => item.fields.body && item.fields.body.de.includes(`id="`))
+      items.filter(
+        item => item.fields.body && item.fields.body.de.includes(`/mitmachen`)
+      )
     )
-    // .then(items =>
-    //   items.forEach(item => {
-    //     item.fields.body.de = item.fields.body.de.replace(
-    //       `id="alumni"`,
-    //       `class="grid disk-img"`
-    //     )
-    //     return item.update()
-    //   })
-    // )
     .then(items => items.map(item => item.fields.title.de))
     .then(console.log)
     .catch(console.error)

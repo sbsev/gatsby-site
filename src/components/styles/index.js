@@ -7,8 +7,7 @@ export const fadeInOnHoverParent = parent => css`
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  ${parent}:hover &,
-  ${parent}:focus-within & {
+  ${parent}:hover & {
     opacity: 1;
     visibility: visible;
     pointer-events: initial;
