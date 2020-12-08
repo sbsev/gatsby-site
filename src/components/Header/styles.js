@@ -27,6 +27,9 @@ export const HeaderContainer = styled.header`
       color: ${p => p.theme.lightBlue};
     }
   }
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
 `
 
 export const Logo = styled(Owl)`
