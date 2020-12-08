@@ -17,7 +17,7 @@ const Header = ({ site }) => (
       <Logo alt={site.title} css="vertical-align: bottom;" />
     </Link>
     <Nav />
-    <Social collapse Kontakt Instagram Facebook Linkedin />
+    <Social collapse Instagram Facebook Linkedin />
     <Search collapse indices={searchIndices} />
   </HeaderContainer>
 )

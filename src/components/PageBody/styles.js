@@ -121,8 +121,8 @@ export const Main = styled.main`
     width: 100vw;
     left: 50%;
     right: 50%;
-    margin: 2em -50vw;
-    padding: 2em calc(50vw - 50%);
+    margin: 0 -50vw;
+    padding: 1.5em calc(50vw - 50%);
     > ul {
       padding: 0;
       text-align: center;
@@ -172,7 +172,7 @@ export const Main = styled.main`
     &.blue {
       background: ${colors.darkBlue};
       color: white;
-      padding: 4em calc(50vw - 50%) 6em;
+      padding: 1.5em calc(50vw - 50%);
       a {
         color: ${colors.green};
         :hover {
