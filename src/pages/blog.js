@@ -42,12 +42,18 @@ export default function BlogPage({ data, location }) {
 
 export const query = graphql`
   {
-    posts: allContentfulPost(sort: { fields: [date], order: DESC }) {
+    posts: allContentfulPost(
+      filter: { node_locale: { eq: "de" } }
+      sort: { fields: [date], order: DESC }
+    ) {
       nodes {
         ...postFields
       }
     }
-    tags: allContentfulBlogTag(sort: { fields: [title], order: ASC }) {
+    tags: allContentfulBlogTag(
+      filter: { node_locale: { eq: "de" } }
+      sort: { fields: [title], order: ASC }
+    ) {
       nodes {
         title
         icon {
