@@ -1,6 +1,9 @@
 # [Studenten bilden Schüler e.V.](https://studenten-bilden-schueler.de)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bc8ffc70-0bae-4463-bd69-7a98ec1c0746/deploy-status)](https://app.netlify.com/sites/studenten-bilden-schueler/deploys)
+[![License](https://img.shields.io/github/license/sbsev/sbs-homepage?label=License)](/license)
+![GitHub Repo Size](https://img.shields.io/github/repo-size/sbsev/sbs-homepage?label=Repo+Size)
+![GitHub last commit](https://img.shields.io/github/last-commit/sbsev/sbs-homepage?label=Last+Commit)
 
 This repo powers the [Gatsby](https://gatsbyjs.org) site hosted at [studenten-bilden-schueler.de](https://studenten-bilden-schueler.de). It is maintained by [Janosh Riebesell](https://janosh.io) ([Mail](mailto:janosh.riebesell@studenten-bilden-schueler.de), [GitHub](https://github.com/janosh)).
 
@@ -13,7 +16,7 @@ To get this site running locally, you need [`git`](https://git-scm.com), [`gatsb
 1. Clone the repo to your machine and change into its directory.
 
    ```sh
-   git clone https://github.com/StudentenBildenSchueler/sbs-homepage
+   git clone https://github.com/sbsev/sbs-homepage
    && sbs-homepage
    && git config core.hooksPath src/utils/gitHooks
    && chmod -R u+x src/utils/gitHooks

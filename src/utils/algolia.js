@@ -6,7 +6,7 @@ const queryTemplate = (type, fields = ``, filter = ``) => `{
       title
       body {
         remark: childMarkdownRemark {
-          excerpt(pruneLength: 5000)
+          body: excerpt(pruneLength: 5000)
           headings {
             value
             depth

@@ -19,7 +19,7 @@ const postHit = hit => (
     &emsp;
     <Tags size="1em" />
     &nbsp;
-    {hit.tags.map((tag, index) => (
+    {hit?.tags?.map((tag, index) => (
       <Fragment key={tag.title}>
         {index > 0 && `, `}
         {tag.title}
@@ -38,7 +38,7 @@ export default connectHits(function HitComp({ type, hits, onClick }) {
         </h3>
       </Link>
       {extend && extend(hit)}
-      <Snippet attribute="excerpt" hit={hit} tagName="mark" />
+      <Snippet attribute="body" hit={hit} tagName="mark" />
     </div>
   ))
 })
