@@ -6,7 +6,7 @@
   "homepage": "https://studenten-bilden-schueler.de",
   "version": "1.0.0",
   "author": "Janosh Riebesell <janosh.riebesell@studenten-bilden-schueler.de>",
-  "repository": "https://github.com/StudentenBildenSchueler/sbs-homepage",
+  "repository": "https://github.com/sbsev/sbs-homepage",
   "dependencies": {
     "airtable": "0.9.0",
     "babel-plugin-styled-components": "^1.11.1",

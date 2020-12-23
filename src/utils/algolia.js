@@ -23,7 +23,7 @@ const postFields = `
   author {
     name
     email
-    homepage
+    url
   }
   tags {
     title

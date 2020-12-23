@@ -7,7 +7,7 @@ export const query = graphql`
     author {
       name
       email
-      homepage
+      url
       photo {
         fluid(maxWidth: 200) {
           ...GatsbyContentfulFluid_withWebp

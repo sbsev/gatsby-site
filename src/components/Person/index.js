@@ -5,7 +5,7 @@ import { Email } from 'styled-icons/material'
 
 import { PersonContainer, Details, Img, Remits, Name } from './styles'
 
-const Person = ({ name, remits, photo, bio, email, homepage, dateJoined }) => (
+const Person = ({ name, remits, photo, bio, email, url, dateJoined }) => (
   <PersonContainer>
     <Img fluid={photo.fluid} />
     <Name>{name}</Name>
@@ -17,10 +17,10 @@ const Person = ({ name, remits, photo, bio, email, homepage, dateJoined }) => (
           &nbsp;Seit {dateJoined} dabei
         </span>
       )}
-      {(email || homepage) && (
+      {(email || url) && (
         <address>
-          {homepage && (
-            <a href={homepage}>
+          {url && (
+            <a href={url}>
               <Link size="1em" />
               &nbsp;Homepage
             </a>

@@ -10,13 +10,13 @@ import { Meta, AuthorPhoto } from './styles'
 export default function PostExcerpt({ timeToRead, author, date, inTitle }) {
   return (
     <Meta inTitle={inTitle}>
-      <AuthorPhoto fluid={author.photo.fluid} alt={author.name} />
+      <AuthorPhoto fluid={author?.photo?.fluid} alt={author.name} />
       <div>
         <UserEdit size="1em" /> &nbsp;{author.name}
-        {author.homepage && (
+        {author.url && (
           <>
             &nbsp;
-            <a href={author.homepage}>
+            <a href={author.url}>
               <Link size="1em" />
             </a>
           </>
