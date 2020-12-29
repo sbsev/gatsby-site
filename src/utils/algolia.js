@@ -36,7 +36,7 @@ const settings = { attributesToSnippet: [`excerpt:20`] }
 
 const queries = [
   {
-    indexName: `Pages`,
+    indexName: `Seiten`,
     query: queryTemplate(`Page`, ``, `(filter: {slug: {nin: "/404"}})`),
     transformer: ({ data }) => flatten(data.items.nodes),
     settings,

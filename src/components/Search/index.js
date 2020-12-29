@@ -40,10 +40,10 @@ export default function Search({ indices, collapse }) {
       >
         <Input onFocus={() => setFocus(true)} {...{ collapse, focus }} />
         <HitsWrapper show={query.length > 0 && focus}>
-          {indices.map(({ name, title, type }) => (
+          {indices.map(({ name, type }) => (
             <Index key={name} indexName={name}>
               <header>
-                <h2>{title}</h2>
+                <h2>{name}</h2>
                 <Stats />
               </header>
               <Results />

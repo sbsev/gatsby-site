@@ -6,10 +6,7 @@ import Social from '../Social'
 import Search from '../Search'
 import { HeaderContainer, Logo } from './styles'
 
-const searchIndices = [
-  { name: `Pages`, title: `Seiten` },
-  { name: `Posts`, title: `Blog`, type: `postHit` },
-]
+const searchIndices = [{ name: `Seiten` }, { name: `Posts`, type: `postHit` }]
 
 const Header = ({ site }) => (
   <HeaderContainer>
