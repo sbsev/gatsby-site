@@ -1,7 +1,7 @@
-[[redirects]]
-  from = "https://studenten-bilden-schueler.netlify.com/*"
-  to = "https://studenten-bilden-schueler.de/:splat"
-  force = true
+# [[redirects]]
+#   from = "https://studenten-bilden-schueler.netlify.com/*"
+#   to = "https://studenten-bilden-schueler.de/:splat"
+#   force = true
 
 [build.environment]
   NODE_VERSION = "15.0.1"

@@ -1,3 +1,5 @@
+> ### ⚠️ This repo was superseded by our [new site written in Svelte](https://github.com/sbsev/svelte-site).
+
 # [Studenten bilden Schüler e.V.](https://studenten-bilden-schueler.de)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/bc8ffc70-0bae-4463-bd69-7a98ec1c0746/deploy-status)](https://app.netlify.com/sites/studenten-bilden-schueler/deploys)
